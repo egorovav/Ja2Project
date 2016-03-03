@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Alexey\Documents\Visual Studio 2013\Projects\Ja2Project\MapViewer\obj\Debug\
+C:\Ja2Project\MapViewer\obj\Debug\
 MapViewer
 none
 false
 DEBUG;TRACE
-C:\Users\Alexey\Documents\Visual Studio 2013\Projects\Ja2Project\MapViewer\App.xaml
-11151548125
+C:\Ja2Project\MapViewer\App.xaml
+4960086965
+1-869049680
+17-919364318
+15370859538
+MainWindow.xaml;View\GlobalMapsView.xaml;View\GlobalMapView.xaml;View\ShapeView3D.xaml;
 
-9-1939307156
-12-1401562060
-MainWindow.xaml;
-
-False
+True
 
