@@ -631,4 +631,538 @@
 			<LocalName language="cz" name="Tlustý kov s oknem" />
 		</LocalNames>
 	</Data>
+  <Data name="StiEditor">
+    <LocalNames>
+      <LocalName language="ru" name="Редактор STI файлов" />
+      <LocalName language="en" name="STI file editor" />
+    </LocalNames>
+  </Data>
+  <Data name="Open">
+    <LocalNames>
+      <LocalName language="ru" name="Открыть" />
+      <LocalName language="en" name="Open" />
+    </LocalNames>
+  </Data>
+  <Data name="Help">
+    <LocalNames>
+      <LocalName language="ru" name="Помощь" />
+      <LocalName language="en" name="Help" />
+    </LocalNames>
+  </Data>
+  <Data name="Library">
+    <LocalNames>
+      <LocalName language="ru" name="Библиотека" />
+      <LocalName language="en" name="Library" />
+    </LocalNames>
+  </Data>
+  <Data name="WorkingArea">
+    <LocalNames>
+      <LocalName language="ru" name="Рабочая область" />
+      <LocalName language="en" name="Working area" />
+    </LocalNames>
+  </Data>
+  <Data name="Player">
+    <LocalNames>
+      <LocalName language="ru" name="Проигрыватель" />
+      <LocalName language="en" name="Player" />
+    </LocalNames>
+  </Data>
+  <Data name="Background">
+    <LocalNames>
+      <LocalName language="ru" name="Фон" />
+      <LocalName language="en" name="Background" />
+    </LocalNames>
+  </Data>
+  <Data name="Load">
+    <LocalNames>
+      <LocalName language="ru" name="Загрузить" />
+      <LocalName language="en" name="Load" />
+    </LocalNames>
+  </Data>
+  <Data name="Foreshortening">
+    <LocalNames>
+      <LocalName language="ru" name="Ракурс" />
+      <LocalName language="en" name="Foreshortening" />
+    </LocalNames>
+  </Data>
+  <Data name="Scale">
+    <LocalNames>
+      <LocalName language="ru" name="Масштаб" />
+      <LocalName language="en" name="Scale" />
+    </LocalNames>
+  </Data>
+  <Data name="Displacement">
+    <LocalNames>
+      <LocalName language="ru" name="Смещение" />
+      <LocalName language="en" name="Displacement" />
+    </LocalNames>
+  </Data>
+  <Data name="SaveDisplacement">
+    <LocalNames>
+      <LocalName language="ru" name="Сохранить смещение" />
+      <LocalName language="en" name="Save displacement" />
+    </LocalNames>
+  </Data>
+  <Data name="Start">
+    <LocalNames>
+      <LocalName language="ru" name="Старт" />
+      <LocalName language="en" name="Start" />
+    </LocalNames>
+  </Data>
+  <Data name="Stop">
+    <LocalNames>
+      <LocalName language="ru" name="Стоп" />
+      <LocalName language="en" name="Stop" />
+    </LocalNames>
+  </Data>
+  <Data name="Add">
+    <LocalNames>
+      <LocalName language="ru" name="Добавить" />
+      <LocalName language="en" name="Add" />
+    </LocalNames>
+  </Data>
+  <Data name="AddToLibrary">
+    <LocalNames>
+      <LocalName language="ru" name="Добавить в библиотеку" />
+      <LocalName language="en" name="Add to library" />
+    </LocalNames>
+  </Data>
+  <Data name="AddToWorking">
+    <LocalNames>
+      <LocalName language="ru" name="Добавить в рабочую область" />
+      <LocalName language="en" name="Add to working area" />
+    </LocalNames>
+  </Data>
+  <Data name="Attention">
+    <LocalNames>
+      <LocalName language="ru" name="Внимание" />
+      <LocalName language="en" name="Attention" />
+    </LocalNames>
+  </Data>
+  <Data name="Autoupdating">
+    <LocalNames>
+      <LocalName language="ru" name="Автообновление" />
+      <LocalName language="en" name="Autoupdating" />
+    </LocalNames>
+  </Data>
+  <Data name="Black">
+    <LocalNames>
+      <LocalName language="ru" name="Чёрный" />
+      <LocalName language="en" name="Black" />
+    </LocalNames>
+  </Data>
+  <Data name="Blacks">
+    <LocalNames>
+      <LocalName language="ru" name="Чёрные" />
+      <LocalName language="en" name="Blacks" />
+    </LocalNames>
+  </Data>
+  <Data name="BreakdownForeshortenings">
+    <LocalNames>
+      <LocalName language="ru" name="Разбивка по ракурсам" />
+      <LocalName language="en" name="Breakdown on foreshortenings" />
+    </LocalNames>
+  </Data>
+  <Data name="Brown">
+    <LocalNames>
+      <LocalName language="ru" name="Коричневый" />
+      <LocalName language="en" name="Brown" />
+    </LocalNames>
+  </Data>
+  <Data name="Cancel">
+    <LocalNames>
+      <LocalName language="ru" name="Отмена" />
+      <LocalName language="en" name="Cancel" />
+    </LocalNames>
+  </Data>
+  <Data name="CopyToBuffer">
+    <LocalNames>
+      <LocalName language="ru" name="Копировать в буфер" />
+      <LocalName language="en" name="Copy to the buffer" />
+    </LocalNames>
+  </Data>
+  <Data name="Dark">
+    <LocalNames>
+      <LocalName language="ru" name="Тёмный" />
+      <LocalName language="en" name="Dark" />
+    </LocalNames>
+  </Data>
+  <Data name="DarkBlue">
+    <LocalNames>
+      <LocalName language="ru" name="Синий" />
+      <LocalName language="en" name="Dark blue" />
+    </LocalNames>
+  </Data>
+  <Data name="DarkBlues">
+    <LocalNames>
+      <LocalName language="ru" name="Синие" />
+      <LocalName language="en" name="Dark blue" />
+    </LocalNames>
+  </Data>
+  <Data name="DarkRed">
+    <LocalNames>
+      <LocalName language="ru" name="Тёмно-рыжие" />
+      <LocalName language="en" name="Dark-red" />
+    </LocalNames>
+  </Data>
+  <Data name="Darks">
+    <LocalNames>
+      <LocalName language="ru" name="Тёмные" />
+      <LocalName language="en" name="Dark" />
+    </LocalNames>
+  </Data>
+  <Data name="DefaultPosition">
+    <LocalNames>
+      <LocalName language="ru" name="Расположить по умолчанию" />
+      <LocalName language="en" name="Default position" />
+    </LocalNames>
+  </Data>
+  <Data name="Difference">
+    <LocalNames>
+      <LocalName language="ru" name="Разница" />
+      <LocalName language="en" name="Difference" />
+    </LocalNames>
+  </Data>
+  <Data name="Dirty">
+    <LocalNames>
+      <LocalName language="ru" name="Грязные" />
+      <LocalName language="en" name="Dirty" />
+    </LocalNames>
+  </Data>
+  <Data name="Edit">
+    <LocalNames>
+      <LocalName language="ru" name="Редактировать" />
+      <LocalName language="en" name="Edit" />
+    </LocalNames>
+  </Data>
+  <Data name="Editing">
+    <LocalNames>
+      <LocalName language="ru" name="Редактирование" />
+      <LocalName language="en" name="Editing" />
+    </LocalNames>
+  </Data>
+  <Data name="Error">
+    <LocalNames>
+      <LocalName language="ru" name="Ошибка" />
+      <LocalName language="en" name="Error" />
+    </LocalNames>
+  </Data>
+  <Data name="FileContainsLocaPalettes">
+    <LocalNames>
+      <LocalName language="ru" name="Файл содержит локальные палитры. Конвертирование в sti невозможно" />
+      <LocalName language="en" name="File contains local palettes. Converting in sti is impossible" />
+    </LocalNames>
+  </Data>
+  <Data name="Files">
+    <LocalNames>
+      <LocalName language="ru" name="Файлы" />
+      <LocalName language="en" name="Files" />
+    </LocalNames>
+  </Data>
+  <Data name="GrayHaired">
+    <LocalNames>
+      <LocalName language="ru" name="Седые" />
+      <LocalName language="en" name="Gray-haired" />
+    </LocalNames>
+  </Data>
+  <Data name="Green">
+    <LocalNames>
+      <LocalName language="ru" name="Зелёный" />
+      <LocalName language="en" name="Green" />
+    </LocalNames>
+  </Data>
+  <Data name="Greens">
+    <LocalNames>
+      <LocalName language="ru" name="Зелёные" />
+      <LocalName language="en" name="Green" />
+    </LocalNames>
+  </Data>
+  <Data name="Grey">
+    <LocalNames>
+      <LocalName language="ru" name="Серый" />
+      <LocalName language="en" name="Grey" />
+    </LocalNames>
+  </Data>
+  <Data name="Hair">
+    <LocalNames>
+      <LocalName language="ru" name="Волосы" />
+      <LocalName language="en" name="Hair" />
+    </LocalNames>
+  </Data>
+  <Data name="Info">
+    <LocalNames>
+      <LocalName language="ru" name="Инфо" />
+      <LocalName language="en" name="Info" />
+    </LocalNames>
+  </Data>
+  <Data name="Info2">
+    <LocalNames>
+      <LocalName language="ru" name="Инфо2" />
+      <LocalName language="en" name="Info2" />
+    </LocalNames>
+  </Data>
+  <Data name="InitialPalette">
+    <LocalNames>
+      <LocalName language="ru" name="Исходная палитра" />
+      <LocalName language="en" name="Initial palette" />
+    </LocalNames>
+  </Data>
+  <Data name="InsertFromBuffer">
+    <LocalNames>
+      <LocalName language="ru" name="Вставить из буфера" />
+      <LocalName language="en" name="Insert from buffer" />
+    </LocalNames>
+  </Data>
+  <Data name="InTotalForeshortenings">
+    <LocalNames>
+      <LocalName language="ru" name="Всего ракурсов" />
+      <LocalName language="en" name="In total foreshortenings" />
+    </LocalNames>
+  </Data>
+  <Data name="InTotalFrames">
+    <LocalNames>
+      <LocalName language="ru" name="Всего кадров" />
+      <LocalName language="en" name="In total frames" />
+    </LocalNames>
+  </Data>
+  <Data name="Jeans">
+    <LocalNames>
+      <LocalName language="ru" name="Джинсовая" />
+      <LocalName language="en" name="Jeans" />
+    </LocalNames>
+  </Data>
+  <Data name="Jeanses">
+    <LocalNames>
+      <LocalName language="ru" name="Джинсовые" />
+      <LocalName language="en" name="Jeans" />
+    </LocalNames>
+  </Data>
+  <Data name="Jersey">
+    <LocalNames>
+      <LocalName language="ru" name="Фуфайка" />
+      <LocalName language="en" name="Jersey" />
+    </LocalNames>
+  </Data>
+  <Data name="Leather">
+    <LocalNames>
+      <LocalName language="ru" name="Кожанные" />
+      <LocalName language="en" name="Leather" />
+    </LocalNames>
+  </Data>
+  <Data name="Light">
+    <LocalNames>
+      <LocalName language="ru" name="Светлые" />
+      <LocalName language="en" name="Light" />
+    </LocalNames>
+  </Data>
+  <Data name="LoadingError">
+    <LocalNames>
+      <LocalName language="ru" name="Ошибка при загрузке файла" />
+      <LocalName language="en" name="Error at loading a file" />
+    </LocalNames>
+  </Data>
+  <Data name="MyPalette">
+    <LocalNames>
+      <LocalName language="ru" name="Моя палитра" />
+      <LocalName language="en" name="My palette" />
+    </LocalNames>
+  </Data>
+  <Data name="NoAnimated">
+    <LocalNames>
+      <LocalName language="ru" name="STI-файл не анимированный" />
+      <LocalName language="en" name="STI-file isn't an animation" />
+    </LocalNames>
+  </Data>
+  <Data name="NoFile">
+    <LocalNames>
+      <LocalName language="ru" name="В папке приложения нет файла" />
+      <LocalName language="en" name="In a folder of the application there is no file" />
+    </LocalNames>
+  </Data>
+  <Data name="NoFolder">
+    <LocalNames>
+      <LocalName language="ru" name="В папке приложения нет папки Background" />
+      <LocalName language="en" name="In a folder of the application there is no folder Background" />
+    </LocalNames>
+  </Data>
+  <Data name="NotAPicture">
+    <LocalNames>
+      <LocalName language="ru" name="не является картинкой" />
+      <LocalName language="en" name="is not a picture" />
+    </LocalNames>
+  </Data>
+  <Data name="NotExists">
+    <LocalNames>
+      <LocalName language="ru" name="не существует" />
+      <LocalName language="en" name="not exists" />
+    </LocalNames>
+  </Data>
+  <Data name="Number">
+    <LocalNames>
+      <LocalName language="ru" name="Номер кадра" />
+      <LocalName language="en" name="Frame number" />
+    </LocalNames>
+  </Data>
+  <Data name="Palette">
+    <LocalNames>
+      <LocalName language="ru" name="Палитра" />
+      <LocalName language="en" name="Palette" />
+    </LocalNames>
+  </Data>
+  <Data name="PaletteName">
+    <LocalNames>
+      <LocalName language="ru" name="Название палитры" />
+      <LocalName language="en" name="Palette name" />
+    </LocalNames>
+  </Data>
+  <Data name="Pink">
+    <LocalNames>
+      <LocalName language="ru" name="Розовый" />
+      <LocalName language="en" name="Pink" />
+    </LocalNames>
+  </Data>
+  <Data name="Red">
+    <LocalNames>
+      <LocalName language="ru" name="Красый" />
+      <LocalName language="en" name="Red" />
+    </LocalNames>
+  </Data>
+  <Data name="Refresh">
+    <LocalNames>
+      <LocalName language="ru" name="Обновить" />
+      <LocalName language="en" name="Refresh" />
+    </LocalNames>
+  </Data>
+  <Data name="Remove">
+    <LocalNames>
+      <LocalName language="ru" name="Удалить" />
+      <LocalName language="en" name="Remove" />
+    </LocalNames>
+  </Data>
+  <Data name="RemovePalette">
+    <LocalNames>
+      <LocalName language="ru" name="Удалть палитру" />
+      <LocalName language="en" name="Remove a palette" />
+    </LocalNames>
+  </Data>
+  <Data name="Roody">
+    <LocalNames>
+      <LocalName language="ru" name="Рыжие" />
+      <LocalName language="en" name="Roody" />
+    </LocalNames>
+  </Data>
+  <Data name="SaveDisplacementForWorking">
+    <LocalNames>
+      <LocalName language="ru" name="Сохранить смещения левого спрайта для текущей рабочей области?" />
+      <LocalName language="en" name="Save displacement left animation for current working area?" />
+    </LocalNames>
+  </Data>
+  <Data name="SavePalette">
+    <LocalNames>
+      <LocalName language="ru" name="Сохранение палитры" />
+      <LocalName language="en" name="Save palette" />
+    </LocalNames>
+  </Data>
+  <Data name="SaveToBMP">
+    <LocalNames>
+      <LocalName language="ru" name="Сохранить в BMP" />
+      <LocalName language="en" name="Save to BMP" />
+    </LocalNames>
+  </Data>
+  <Data name="SaveToGIF">
+    <LocalNames>
+      <LocalName language="ru" name="Сохранить в GIF" />
+      <LocalName language="en" name="Save to GIF" />
+    </LocalNames>
+  </Data>
+  <Data name="SaveToSTI">
+    <LocalNames>
+      <LocalName language="ru" name="Сохранить в STI" />
+      <LocalName language="en" name="Save to STI" />
+    </LocalNames>
+  </Data>
+  <Data name="SaveToTIFF">
+    <LocalNames>
+      <LocalName language="ru" name="Сохранить в TIFF" />
+      <LocalName language="en" name="Save to TIFF" />
+    </LocalNames>
+  </Data>
+  <Data name="Shadow">
+    <LocalNames>
+      <LocalName language="ru" name="Тень" />
+      <LocalName language="en" name="Shadow" />
+    </LocalNames>
+  </Data>
+  <Data name="ShowAll">
+    <LocalNames>
+      <LocalName language="ru" name="Показать все" />
+      <LocalName language="en" name="Show all" />
+    </LocalNames>
+  </Data>
+  <Data name="Skin">
+    <LocalNames>
+      <LocalName language="ru" name="Кожа" />
+      <LocalName language="en" name="Skin" />
+    </LocalNames>
+  </Data>
+  <Data name="SumForeshortenings">
+    <LocalNames>
+      <LocalName language="ru" name="Сумма по ракурсам" />
+      <LocalName language="en" name="Sum on foreshortenings" />
+    </LocalNames>
+  </Data>
+  <Data name="Sunburnt">
+    <LocalNames>
+      <LocalName language="ru" name="Загорелый" />
+      <LocalName language="en" name="Sunburnt" />
+    </LocalNames>
+  </Data>
+  <Data name="Transparent">
+    <LocalNames>
+      <LocalName language="ru" name="Прозрачная" />
+      <LocalName language="en" name="Transparent" />
+    </LocalNames>
+  </Data>
+  <Data name="Trousers">
+    <LocalNames>
+      <LocalName language="ru" name="Штаны" />
+      <LocalName language="en" name="Trousers" />
+    </LocalNames>
+  </Data>
+  <Data name="View">
+    <LocalNames>
+      <LocalName language="ru" name="Просмотреть" />
+      <LocalName language="en" name="Play" />
+    </LocalNames>
+  </Data>
+  <Data name="ViewSynchronously">
+    <LocalNames>
+      <LocalName language="ru" name="Просмотреть синхронно" />
+      <LocalName language="en" name="Play synchronously" />
+    </LocalNames>
+  </Data>
+  <Data name="Violet">
+    <LocalNames>
+      <LocalName language="ru" name="Фиолетовый" />
+      <LocalName language="en" name="Violet" />
+    </LocalNames>
+  </Data>
+  <Data name="White">
+    <LocalNames>
+      <LocalName language="ru" name="Белый" />
+      <LocalName language="en" name="White" />
+    </LocalNames>
+  </Data>
+  <Data name="Woolen">
+    <LocalNames>
+      <LocalName language="ru" name="Шерстяные" />
+      <LocalName language="en" name="Woolen" />
+    </LocalNames>
+  </Data>
+  <Data name="Yellow">
+    <LocalNames>
+      <LocalName language="ru" name="Жёлтая" />
+      <LocalName language="en" name="Yellow" />
+    </LocalNames>
+  </Data>
 </ArrayOfData>

@@ -24,15 +24,6 @@ C:\Users\Alexey\documents\visual studio 2013\Projects\Ja2Project\Ja2DataDbTest\o
 C:\Users\Alexey\documents\visual studio 2013\Projects\Ja2Project\Ja2DataDbTest\obj\Debug\Ja2DataDbTest.csproj.GenerateResource.Cache
 C:\Users\Alexey\documents\visual studio 2013\Projects\Ja2Project\Ja2DataDbTest\obj\Debug\Ja2DataDbTest.exe
 C:\Users\Alexey\documents\visual studio 2013\Projects\Ja2Project\Ja2DataDbTest\obj\Debug\Ja2DataDbTest.pdb
-C:\Ja2Project\Ja2DataDbTest\obj\Debug\Ja2DataDbTest.csprojResolveAssemblyReference.cache
-C:\Ja2Project\Ja2DataDbTest\obj\Debug\App.baml
-C:\Ja2Project\Ja2DataDbTest\obj\Debug\MainWindow.g.cs
-C:\Ja2Project\Ja2DataDbTest\obj\Debug\App.g.cs
-C:\Ja2Project\Ja2DataDbTest\obj\Debug\GeneratedInternalTypeHelper.g.cs
-C:\Ja2Project\Ja2DataDbTest\obj\Debug\Ja2DataDbTest_MarkupCompile.cache
-C:\Ja2Project\Ja2DataDbTest\obj\Debug\Ja2DataDbTest_MarkupCompile.lref
-C:\Ja2Project\Ja2DataDbTest\obj\Debug\Ja2DataDbTest.exe
-C:\Ja2Project\Ja2DataDbTest\obj\Debug\Ja2DataDbTest.pdb
 C:\Ja2Project\Ja2DataDbTest\bin\Debug\Ja2DataDbTest.exe.config
 C:\Ja2Project\Ja2DataDbTest\bin\Debug\Ja2DataDbTest.exe
 C:\Ja2Project\Ja2DataDbTest\bin\Debug\Ja2DataDbTest.pdb
@@ -46,7 +37,16 @@ C:\Ja2Project\Ja2DataDbTest\bin\Debug\Ja2Data.pdb
 C:\Ja2Project\Ja2DataDbTest\bin\Debug\CommonWpfControls.pdb
 C:\Ja2Project\Ja2DataDbTest\bin\Debug\EntityFramework.xml
 C:\Ja2Project\Ja2DataDbTest\bin\Debug\EntityFramework.SqlServer.xml
+C:\Ja2Project\Ja2DataDbTest\obj\Debug\Ja2DataDbTest.csprojResolveAssemblyReference.cache
+C:\Ja2Project\Ja2DataDbTest\obj\Debug\App.baml
+C:\Ja2Project\Ja2DataDbTest\obj\Debug\MainWindow.g.cs
+C:\Ja2Project\Ja2DataDbTest\obj\Debug\App.g.cs
+C:\Ja2Project\Ja2DataDbTest\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Ja2Project\Ja2DataDbTest\obj\Debug\Ja2DataDbTest_MarkupCompile.cache
+C:\Ja2Project\Ja2DataDbTest\obj\Debug\Ja2DataDbTest_MarkupCompile.lref
 C:\Ja2Project\Ja2DataDbTest\obj\Debug\MainWindow.baml
 C:\Ja2Project\Ja2DataDbTest\obj\Debug\Ja2DataDbTest.g.resources
 C:\Ja2Project\Ja2DataDbTest\obj\Debug\Ja2DataDbTest.Properties.Resources.resources
 C:\Ja2Project\Ja2DataDbTest\obj\Debug\Ja2DataDbTest.csproj.GenerateResource.Cache
+C:\Ja2Project\Ja2DataDbTest\obj\Debug\Ja2DataDbTest.exe
+C:\Ja2Project\Ja2DataDbTest\obj\Debug\Ja2DataDbTest.pdb

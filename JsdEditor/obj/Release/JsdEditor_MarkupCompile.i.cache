@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\JsdEditor\obj\Release\
+C:\Ja2Project\JsdEditor\obj\Release\
 JsdEditor
 none
 false
 TRACE
-C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\JsdEditor\App.xaml
+C:\Ja2Project\JsdEditor\App.xaml
 8-186346507
 1-869049680
 251521775460
-181174455911
+18-1055914861
 MainWindow.xaml;View\JsdFileView.xaml;View\LayerView.xaml;View\NewJsdFileView.xaml;View\ShapePreview3D.xaml;View\ShapeView.xaml;View\ShapeView3D.xaml;View\StructureView.xaml;
 
 True

@@ -11,6 +11,7 @@ C:\Users\Alexey\Documents\Visual Studio 2013\Projects\JA2\Localizer\obj\Debug\Lo
 C:\Users\Alexey\Documents\Visual Studio 2013\Projects\JA2\Localizer\obj\Debug\Localizer.csproj.GenerateResource.Cache
 C:\Users\Alexey\Documents\Visual Studio 2013\Projects\JA2\Localizer\obj\Debug\Localizer.dll
 C:\Users\Alexey\Documents\Visual Studio 2013\Projects\JA2\Localizer\obj\Debug\Localizer.pdb
+C:\Ja2Project\Localizer\bin\Debug\Localizer.xml
 C:\Ja2Project\Localizer\bin\Debug\Localizer.dll
 C:\Ja2Project\Localizer\bin\Debug\Localizer.pdb
 C:\Ja2Project\Localizer\obj\Debug\Localizer.csprojResolveAssemblyReference.cache

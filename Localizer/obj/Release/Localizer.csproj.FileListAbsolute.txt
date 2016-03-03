@@ -27,8 +27,16 @@ C:\Users\Alexey\Documents\Visual Studio 2013\Projects\Ja2Project\Localizer\obj\R
 C:\Users\Alexey\Documents\Visual Studio 2013\Projects\Ja2Project\Localizer\obj\Release\Localizer.pdb
 C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\Localizer\bin\Release\Localizer.dll
 C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\Localizer\bin\Release\Localizer.pdb
-C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\Localizer\obj\Release\Localizer.csprojResolveAssemblyReference.cache
 C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\Localizer\obj\Release\Localizer.Resource.resources
 C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\Localizer\obj\Release\Localizer.csproj.GenerateResource.Cache
 C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\Localizer\obj\Release\Localizer.dll
 C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\Localizer\obj\Release\Localizer.pdb
+C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\Localizer\bin\Release\Localizer.xml
+C:\Ja2Project\Localizer\bin\Release\Localizer.xml
+C:\Ja2Project\Localizer\bin\Release\Localizer.dll
+C:\Ja2Project\Localizer\bin\Release\Localizer.pdb
+C:\Ja2Project\Localizer\obj\Release\Localizer.csprojResolveAssemblyReference.cache
+C:\Ja2Project\Localizer\obj\Release\Localizer.Resource.resources
+C:\Ja2Project\Localizer\obj\Release\Localizer.csproj.GenerateResource.Cache
+C:\Ja2Project\Localizer\obj\Release\Localizer.dll
+C:\Ja2Project\Localizer\obj\Release\Localizer.pdb

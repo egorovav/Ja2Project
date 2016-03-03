@@ -136,17 +136,20 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="Refresh" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAATNJREFUOE9jYKAW
-        2HToxn90vG7flf8rd57/v2Tzyf+LN5/sxmsXSDMuMGf1gf9mXin4DVm//ypOA9buPPl/19ErEEM2nejB
-        6pLVuy9iNaBgpvL/c9fO/K/vX/Lfyi8dbAhWA5ZvOwM34OHLc/9BGmE4vFrg/7qdp/5PXrQdtwFAp8EN
-        AGk8dnUVmB9UJvj/9qML/1++/Qo2wNQzGbsL5q07jGIAjPPz15//7z5+///w+Uf8BsxauQ8jDP78/ff/
-        09efYK/cevgOvwHTlu6CG/Dm4z2wpu8/fv+/+vAImH359mv8BoD8BwPIAQhi7zm95//pq8+JN+Dp2+v/
-        /bMEwAF35/H7/xdvvvp/5PwT4g1ADrird9/8P3n52f+9px4SZwDIK/gwzmiExTFIASFMrQwMNgcAe9vW
-        Uz23mxkAAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABPElEQVQ4T2OgGth06MZ/dLxu35X/K3ee
+        /79k88n/izef7IYqxQ5AGnCBOasP/DfzSsFvyPr9V6HKMcHanSf/7zp6BWLIphM9UC2oYPXui1DlqKBg
+        pvL/c9fO/K/vX/Lfyi8dbAhUCypYvu0MVMv//w9fngNrhOHwaoH/63ae+j950XbcBgCdBtUOsfXY1VVg
+        dlCZ4P/bjy78f/n2K9gAU89k7AbMW3cYrAEEQAbAwM9ff/6/+/j9/8PnH/EbMGvlPqgWBPjz99//T19/
+        gg289fAdfgOmLd0F1fb//5uP98Cavv/4/f/qwyNg9uXbr/EbAJKEAZAGZLzn9J7/p68+J96Ap2+v//fP
+        EgAH3J3H7/9fvPnq/5HzT4g3ADngrt598//k5Wf/9556SJwBIBofxmsASJIYDNVCDcDAAAB729ZT079e
+        4wAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="Tile" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\tile.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Localizer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Localizer.xml;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>

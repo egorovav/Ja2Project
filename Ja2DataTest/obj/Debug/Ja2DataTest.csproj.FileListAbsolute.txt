@@ -17,14 +17,6 @@ C:\Users\Alexey\documents\visual studio 2013\Projects\Ja2Project\Ja2DataTest\obj
 C:\Users\Alexey\documents\visual studio 2013\Projects\Ja2Project\Ja2DataTest\obj\Debug\Ja2DataTest.csproj.GenerateResource.Cache
 C:\Users\Alexey\documents\visual studio 2013\Projects\Ja2Project\Ja2DataTest\obj\Debug\Ja2DataTest.exe
 C:\Users\Alexey\documents\visual studio 2013\Projects\Ja2Project\Ja2DataTest\obj\Debug\Ja2DataTest.pdb
-C:\Ja2Project\Ja2DataTest\obj\Debug\Ja2DataTest.csprojResolveAssemblyReference.cache
-C:\Ja2Project\Ja2DataTest\obj\Debug\App.baml
-C:\Ja2Project\Ja2DataTest\obj\Debug\MainWindow.g.cs
-C:\Ja2Project\Ja2DataTest\obj\Debug\App.g.cs
-C:\Ja2Project\Ja2DataTest\obj\Debug\GeneratedInternalTypeHelper.g.cs
-C:\Ja2Project\Ja2DataTest\obj\Debug\Ja2DataTest_MarkupCompile.cache
-C:\Ja2Project\Ja2DataTest\obj\Debug\Ja2DataTest_MarkupCompile.lref
-C:\Ja2Project\Ja2DataTest\obj\Debug\Ja2DataTest.exe
 C:\Ja2Project\Ja2DataTest\bin\Debug\Ja2DataTest.exe.config
 C:\Ja2Project\Ja2DataTest\bin\Debug\Ja2DataTest.exe
 C:\Ja2Project\Ja2DataTest\bin\Debug\Ja2DataTest.pdb
@@ -32,8 +24,16 @@ C:\Ja2Project\Ja2DataTest\bin\Debug\CommonWpfControls.dll
 C:\Ja2Project\Ja2DataTest\bin\Debug\Ja2Data.dll
 C:\Ja2Project\Ja2DataTest\bin\Debug\Ja2Data.pdb
 C:\Ja2Project\Ja2DataTest\bin\Debug\CommonWpfControls.pdb
+C:\Ja2Project\Ja2DataTest\obj\Debug\Ja2DataTest.csprojResolveAssemblyReference.cache
+C:\Ja2Project\Ja2DataTest\obj\Debug\App.baml
+C:\Ja2Project\Ja2DataTest\obj\Debug\MainWindow.g.cs
+C:\Ja2Project\Ja2DataTest\obj\Debug\App.g.cs
+C:\Ja2Project\Ja2DataTest\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Ja2Project\Ja2DataTest\obj\Debug\Ja2DataTest_MarkupCompile.cache
+C:\Ja2Project\Ja2DataTest\obj\Debug\Ja2DataTest_MarkupCompile.lref
 C:\Ja2Project\Ja2DataTest\obj\Debug\MainWindow.baml
 C:\Ja2Project\Ja2DataTest\obj\Debug\Ja2DataTest.g.resources
 C:\Ja2Project\Ja2DataTest\obj\Debug\Ja2DataTest.Properties.Resources.resources
 C:\Ja2Project\Ja2DataTest\obj\Debug\Ja2DataTest.csproj.GenerateResource.Cache
+C:\Ja2Project\Ja2DataTest\obj\Debug\Ja2DataTest.exe
 C:\Ja2Project\Ja2DataTest\obj\Debug\Ja2DataTest.pdb

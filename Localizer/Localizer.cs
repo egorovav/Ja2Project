@@ -14,29 +14,43 @@ namespace LocalizerNameSpace
     {
         static Localizer()
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(Data[]));
-            Stream dataStream = null;
 
             if (File.Exists("Localizer.xml"))
-                dataStream = new FileStream("Localizer.xml", FileMode.Open, FileAccess.Read);
-            else
-                dataStream = new MemoryStream((byte[])ResourceManager.GetObject("Localizer"));
-            using (dataStream)
             {
-                Data[] records = (Data[])serializer.Deserialize(dataStream);
-                foreach (Data record in records)
+                try
                 {
-                    foreach (LocalName localName in record.LocalNames)
+                    using(Stream dataStream = new FileStream("Localizer.xml", FileMode.Open, FileAccess.Read))
+                        LoadLocalizer(dataStream);
+                }
+                catch
+                {
+                    using(Stream dataStream = new MemoryStream((byte[])ResourceManager.GetObject("Localizer")))
+                        LoadLocalizer(dataStream);
+                }
+            }
+            else
+            {
+                using(Stream dataStream = new MemoryStream((byte[])ResourceManager.GetObject("Localizer")))
+                    LoadLocalizer(dataStream);
+            }
+
+        }
+
+        private static void LoadLocalizer(Stream dataStream)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(Data[]));
+            Data[] records = (Data[])serializer.Deserialize(dataStream);
+            foreach (Data record in records)
+            {
+                foreach (LocalName localName in record.LocalNames)
+                {
+                    if (localName.language == BaseUsingConfig.CultureInfo && !localData.ContainsKey(record.name))
                     {
-                        if (localName.language == BaseUsingConfig.CultureInfo && !localData.ContainsKey(record.name))
-                        {
-                            localData.Add(record.name, localName.name);
-                            break;
-                        }
+                        localData.Add(record.name, localName.name);
+                        break;
                     }
                 }
             }
-
         }
 
         static Hashtable localData = new Hashtable();

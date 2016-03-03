@@ -196,6 +196,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="dotNetStiEditor.EXE.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -213,6 +214,7 @@
     <None Include="Resources\Background.PNG" />
     <Content Include="Resources\help.htm">
     </Content>
+    <None Include="Resources\Localizer.xml" />
     <Content Include="Resources\Tile.gif" />
     <EmbeddedResource Include="AboutForm.resx">
       <SubType>Designer</SubType>
