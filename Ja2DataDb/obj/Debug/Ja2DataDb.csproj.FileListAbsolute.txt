@@ -10,3 +10,15 @@ C:\Users\Alexey\documents\visual studio 2013\Projects\Ja2Project\Ja2DataDb\bin\D
 C:\Users\Alexey\documents\visual studio 2013\Projects\Ja2Project\Ja2DataDb\obj\Debug\Ja2DataDb.csprojResolveAssemblyReference.cache
 C:\Users\Alexey\documents\visual studio 2013\Projects\Ja2Project\Ja2DataDb\obj\Debug\Ja2DataDb.dll
 C:\Users\Alexey\documents\visual studio 2013\Projects\Ja2Project\Ja2DataDb\obj\Debug\Ja2DataDb.pdb
+C:\Ja2Project\Ja2DataDb\obj\Debug\Ja2DataDb.csprojResolveAssemblyReference.cache
+C:\Ja2Project\Ja2DataDb\obj\Debug\Ja2DataDb.dll
+C:\Ja2Project\Ja2DataDb\bin\Debug\Ja2DataDb.dll.config
+C:\Ja2Project\Ja2DataDb\bin\Debug\Ja2DataDb.dll
+C:\Ja2Project\Ja2DataDb\bin\Debug\Ja2DataDb.pdb
+C:\Ja2Project\Ja2DataDb\bin\Debug\EntityFramework.dll
+C:\Ja2Project\Ja2DataDb\bin\Debug\EntityFramework.SqlServer.dll
+C:\Ja2Project\Ja2DataDb\bin\Debug\Ja2Data.dll
+C:\Ja2Project\Ja2DataDb\bin\Debug\Ja2Data.pdb
+C:\Ja2Project\Ja2DataDb\bin\Debug\EntityFramework.xml
+C:\Ja2Project\Ja2DataDb\bin\Debug\EntityFramework.SqlServer.xml
+C:\Ja2Project\Ja2DataDb\obj\Debug\Ja2DataDb.pdb

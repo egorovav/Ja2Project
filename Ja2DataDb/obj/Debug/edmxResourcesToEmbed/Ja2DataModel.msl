@@ -11,15 +11,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="AuxDataJsdAux">
-      <EntityTypeMapping TypeName="Ja2DataModel.AuxDataJsdAux">
-        <MappingFragment StoreEntitySet="AuxDataJsdAux">
-          <ScalarProperty Name="AuxDataJsdAuxId" ColumnName="AuxDataJsdAuxId" />
-          <ScalarProperty Name="AuxObjectDataId" ColumnName="AuxObjectDataId" />
-          <ScalarProperty Name="JsdAuxDataId" ColumnName="JsdAuxDataId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="AuxObjectAuxFlag">
       <EntityTypeMapping TypeName="Ja2DataModel.AuxObjectAuxFlag">
         <MappingFragment StoreEntitySet="AuxObjectAuxFlag">
@@ -48,6 +39,8 @@
     <EntitySetMapping Name="DataInfo">
       <EntityTypeMapping TypeName="Ja2DataModel.DataInfo">
         <MappingFragment StoreEntitySet="DataInfo">
+          <ScalarProperty Name="Localizer" ColumnName="Localizer" />
+          <ScalarProperty Name="Local" ColumnName="Local" />
           <ScalarProperty Name="DataInfoId" ColumnName="DataInfoId" />
           <ScalarProperty Name="ProduserName" ColumnName="ProduserName" />
           <ScalarProperty Name="MajorVerson" ColumnName="MajorVerson" />
@@ -137,15 +130,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="JsdStructureStrucrureFlag">
-      <EntityTypeMapping TypeName="Ja2DataModel.JsdStructureStrucrureFlag">
-        <MappingFragment StoreEntitySet="JsdStructureStrucrureFlag">
-          <ScalarProperty Name="JsdStructureStrucrureFlagId" ColumnName="JsdStructureStrucrureFlagId" />
-          <ScalarProperty Name="JsdStructureId" ColumnName="JsdStructureId" />
-          <ScalarProperty Name="FlagId" ColumnName="FlagId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="JsdTile">
       <EntityTypeMapping TypeName="Ja2DataModel.JsdTile">
         <MappingFragment StoreEntitySet="JsdTile">
@@ -171,35 +155,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="JsdTileProfile">
-      <EntityTypeMapping TypeName="Ja2DataModel.JsdTileProfile">
-        <MappingFragment StoreEntitySet="JsdTileProfile">
-          <ScalarProperty Name="JsdTileProfileId" ColumnName="JsdTileProfileId" />
-          <ScalarProperty Name="JsdTileId" ColumnName="JsdTileId" />
-          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="JsdTileProfileCell">
-      <EntityTypeMapping TypeName="Ja2DataModel.JsdTileProfileCell">
-        <MappingFragment StoreEntitySet="JsdTileProfileCell">
-          <ScalarProperty Name="JsdTileProfileCellId" ColumnName="JsdTileProfileCellId" />
-          <ScalarProperty Name="JsdTileProfileRowId" ColumnName="JsdTileProfileRowId" />
-          <ScalarProperty Name="CellNumber" ColumnName="CellNumber" />
-          <ScalarProperty Name="CellValue" ColumnName="CellValue" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="JsdTileProfileRow">
-      <EntityTypeMapping TypeName="Ja2DataModel.JsdTileProfileRow">
-        <MappingFragment StoreEntitySet="JsdTileProfileRow">
-          <ScalarProperty Name="JsdTileProfileRowId" ColumnName="JsdTileProfileRowId" />
-          <ScalarProperty Name="JsdTileProfileId" ColumnName="JsdTileProfileId" />
-          <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="JsdTileTileFlag">
       <EntityTypeMapping TypeName="Ja2DataModel.JsdTileTileFlag">
         <MappingFragment StoreEntitySet="JsdTileTileFlag">
@@ -212,6 +167,7 @@
     <EntitySetMapping Name="SlfFile">
       <EntityTypeMapping TypeName="Ja2DataModel.SlfFile">
         <MappingFragment StoreEntitySet="SlfFile">
+          <ScalarProperty Name="DataInfoId" ColumnName="DataInfoId" />
           <ScalarProperty Name="SlfFileId" ColumnName="SlfFileId" />
           <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -230,30 +186,13 @@
     <EntitySetMapping Name="SlfRecord">
       <EntityTypeMapping TypeName="Ja2DataModel.SlfRecord">
         <MappingFragment StoreEntitySet="SlfRecord">
+          <ScalarProperty Name="UnstructuredDataId" ColumnName="UnstructuredDataId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="SlfRecordId" ColumnName="SlfRecordId" />
           <ScalarProperty Name="SlfRecordHeaderId" ColumnName="SlfRecordHeaderId" />
           <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="Data" ColumnName="Data" />
           <ScalarProperty Name="SlfFileId" ColumnName="SlfFileId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="SlfRecordHeader">
-      <EntityTypeMapping TypeName="Ja2DataModel.SlfRecordHeader">
-        <MappingFragment StoreEntitySet="SlfRecordHeader">
-          <ScalarProperty Name="SlfRecordHeaderId" ColumnName="SlfRecordHeaderId" />
-          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="FileName" ColumnName="FileName" />
-          <ScalarProperty Name="Offset" ColumnName="Offset" />
-          <ScalarProperty Name="Length" ColumnName="Length" />
-          <ScalarProperty Name="State" ColumnName="State" />
-          <ScalarProperty Name="Reserved" ColumnName="Reserved" />
-          <ScalarProperty Name="FileTime" ColumnName="FileTime" />
-          <ScalarProperty Name="Reserved2" ColumnName="Reserved2" />
-          <ScalarProperty Name="DataTypeId" ColumnName="DataTypeId" />
-          <ScalarProperty Name="FileNameExtention" ColumnName="FileNameExtention" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -324,6 +263,7 @@
     <EntitySetMapping Name="StciIndexedSubImage">
       <EntityTypeMapping TypeName="Ja2DataModel.StciIndexedSubImage">
         <MappingFragment StoreEntitySet="StciIndexedSubImage">
+          <ScalarProperty Name="UnstructuredDataId" ColumnName="UnstructuredDataId" />
           <ScalarProperty Name="StciIndexedSubImageId" ColumnName="StciIndexedSubImageId" />
           <ScalarProperty Name="StciIndexedId" ColumnName="StciIndexedId" />
           <ScalarProperty Name="AuxObjectDataId" ColumnName="AuxObjectDataId" />
@@ -335,7 +275,6 @@
           <ScalarProperty Name="OffsetY" ColumnName="OffsetY" />
           <ScalarProperty Name="Height" ColumnName="Height" />
           <ScalarProperty Name="Width" ColumnName="Width" />
-          <ScalarProperty Name="Data" ColumnName="Data" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -351,6 +290,7 @@
     <EntitySetMapping Name="StciRgb">
       <EntityTypeMapping TypeName="Ja2DataModel.StciRgb">
         <MappingFragment StoreEntitySet="StciRgb">
+          <ScalarProperty Name="UnstructuredDataId" ColumnName="UnstructuredDataId" />
           <ScalarProperty Name="StciRgbId" ColumnName="StciRgbId" />
           <ScalarProperty Name="SlfRecordStciId" ColumnName="SlfRecordStciId" />
           <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
@@ -363,7 +303,95 @@
           <ScalarProperty Name="GreenDepth" ColumnName="GreenDepth" />
           <ScalarProperty Name="BlueDepth" ColumnName="BlueDepth" />
           <ScalarProperty Name="AlphaDepth" ColumnName="AlphaDepth" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UnstructuredData">
+      <EntityTypeMapping TypeName="Ja2DataModel.UnstructuredData">
+        <MappingFragment StoreEntitySet="UnstructuredData">
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="UnstructuredDataId" ColumnName="UnstructuredDataId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AuxDataJsdAux">
+      <EntityTypeMapping TypeName="Ja2DataModel.AuxDataJsdAux">
+        <MappingFragment StoreEntitySet="AuxDataJsdAux">
+          <ScalarProperty Name="JsdAuxDataId" ColumnName="JsdAuxDataId" />
+          <ScalarProperty Name="AuxObjectDataId" ColumnName="AuxObjectDataId" />
+          <ScalarProperty Name="AuxDataJsdAuxId" ColumnName="AuxDataJsdAuxId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DataType">
+      <EntityTypeMapping TypeName="Ja2DataModel.DataType">
+        <MappingFragment StoreEntitySet="DataType">
+          <ScalarProperty Name="Descriotion" ColumnName="Descriotion" />
+          <ScalarProperty Name="DataTypeName" ColumnName="DataTypeName" />
+          <ScalarProperty Name="DataTypeId" ColumnName="DataTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FileExtention">
+      <EntityTypeMapping TypeName="Ja2DataModel.FileExtention">
+        <MappingFragment StoreEntitySet="FileExtention">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="DataTypeId" ColumnName="DataTypeId" />
+          <ScalarProperty Name="Extention" ColumnName="Extention" />
+          <ScalarProperty Name="FileExtentionId" ColumnName="FileExtentionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SlfRecordText">
+      <EntityTypeMapping TypeName="Ja2DataModel.SlfRecordText">
+        <MappingFragment StoreEntitySet="SlfRecordText">
+          <ScalarProperty Name="TextData" ColumnName="TextData" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SlfFileId" ColumnName="SlfFileId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="SlfRecordHeaderId" ColumnName="SlfRecordHeaderId" />
+          <ScalarProperty Name="SlfRecordId" ColumnName="SlfRecordId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SlfRecordHeader">
+      <EntityTypeMapping TypeName="Ja2DataModel.SlfRecordHeader">
+        <MappingFragment StoreEntitySet="SlfRecordHeader">
+          <ScalarProperty Name="FileNameWithoutExtention" ColumnName="FileNameWithoutExtention" />
+          <ScalarProperty Name="FileNameExtention" ColumnName="FileNameExtention" />
+          <ScalarProperty Name="Reserved2" ColumnName="Reserved2" />
+          <ScalarProperty Name="FileTime" ColumnName="FileTime" />
+          <ScalarProperty Name="Reserved" ColumnName="Reserved" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Length" ColumnName="Length" />
+          <ScalarProperty Name="Offset" ColumnName="Offset" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="SlfRecordHeaderId" ColumnName="SlfRecordHeaderId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JsdStructureStructureFlag">
+      <EntityTypeMapping TypeName="Ja2DataModel.JsdStructureStructureFlag">
+        <MappingFragment StoreEntitySet="JsdStructureStructureFlag">
+          <ScalarProperty Name="FlagId" ColumnName="FlagId" />
+          <ScalarProperty Name="JsdStructureId" ColumnName="JsdStructureId" />
+          <ScalarProperty Name="JsdStructureStrucrureFlagId" ColumnName="JsdStructureStrucrureFlagId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JsdTileCell">
+      <EntityTypeMapping TypeName="Ja2DataModel.JsdTileCell">
+        <MappingFragment StoreEntitySet="JsdTileCell">
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="CellNumber" ColumnName="CellNumber" />
+          <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+          <ScalarProperty Name="JsdTileId" ColumnName="JsdTileId" />
+          <ScalarProperty Name="JsdTileCellId" ColumnName="JsdTileCellId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

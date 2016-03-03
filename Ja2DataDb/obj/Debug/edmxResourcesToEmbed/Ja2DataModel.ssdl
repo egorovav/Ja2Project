@@ -51,6 +51,25 @@
     <Property Name="Revision" Type="int" />
     <Property Name="Build" Type="int" />
     <Property Name="BuildDate" Type="datetime" />
+    <Property Name="Local" Type="char" MaxLength="5" />
+    <Property Name="Localizer" Type="char" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="DataType">
+    <Key>
+      <PropertyRef Name="DataTypeId" />
+    </Key>
+    <Property Name="DataTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DataTypeName" Type="char" MaxLength="4" Nullable="false" />
+    <Property Name="Descriotion" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="FileExtention">
+    <Key>
+      <PropertyRef Name="FileExtentionId" />
+    </Key>
+    <Property Name="FileExtentionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Extention" Type="char" MaxLength="4" Nullable="false" />
+    <Property Name="DataTypeId" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="FileState">
     <Key>
@@ -76,7 +95,7 @@
     <Property Name="SlfRecordJsdId" Type="bigint" Nullable="false" />
     <Property Name="DateCreated" Type="datetime" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
-    <Property Name="TileLocationData" Type="varbinary(max)" Nullable="false" />
+    <Property Name="TileLocationData" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="JsdHeaderFlags">
     <Key>
@@ -124,7 +143,7 @@
     <Property Name="Value" Type="tinyint" Nullable="false" />
     <Property Name="Mask" Type="bigint" StoreGeneratedPattern="Computed" />
   </EntityType>
-  <EntityType Name="JsdStructureStrucrureFlag">
+  <EntityType Name="JsdStructureStructureFlag">
     <Key>
       <PropertyRef Name="JsdStructureStrucrureFlagId" />
     </Key>
@@ -146,6 +165,16 @@
     <Property Name="VehicleHitLocation" Type="tinyint" Nullable="false" />
     <Property Name="Unused" Type="tinyint" Nullable="false" />
   </EntityType>
+  <EntityType Name="JsdTileCell">
+    <Key>
+      <PropertyRef Name="JsdTileCellId" />
+    </Key>
+    <Property Name="JsdTileCellId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JsdTileId" Type="bigint" Nullable="false" />
+    <Property Name="RowNumber" Type="tinyint" Nullable="false" />
+    <Property Name="CellNumber" Type="tinyint" Nullable="false" />
+    <Property Name="Value" Type="tinyint" Nullable="false" />
+  </EntityType>
   <EntityType Name="JsdTileFlags">
     <Key>
       <PropertyRef Name="JsdTileFlagsId" />
@@ -154,32 +183,6 @@
     <Property Name="Name" Type="varchar" MaxLength="25" Nullable="false" />
     <Property Name="Value" Type="tinyint" Nullable="false" />
     <Property Name="Mask" Type="int" StoreGeneratedPattern="Computed" />
-  </EntityType>
-  <EntityType Name="JsdTileProfile">
-    <Key>
-      <PropertyRef Name="JsdTileProfileId" />
-    </Key>
-    <Property Name="JsdTileProfileId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="JsdTileId" Type="bigint" Nullable="false" />
-    <Property Name="DateCreated" Type="datetime" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="JsdTileProfileCell">
-    <Key>
-      <PropertyRef Name="JsdTileProfileCellId" />
-    </Key>
-    <Property Name="JsdTileProfileCellId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="JsdTileProfileRowId" Type="bigint" Nullable="false" />
-    <Property Name="CellNumber" Type="tinyint" Nullable="false" />
-    <Property Name="CellValue" Type="tinyint" Nullable="false" />
-  </EntityType>
-  <EntityType Name="JsdTileProfileRow">
-    <Key>
-      <PropertyRef Name="JsdTileProfileRowId" />
-    </Key>
-    <Property Name="JsdTileProfileRowId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="JsdTileProfileId" Type="bigint" Nullable="false" />
-    <Property Name="RowNumber" Type="tinyint" Nullable="false" />
   </EntityType>
   <EntityType Name="JsdTileTileFlag">
     <Key>
@@ -196,6 +199,7 @@
     <Property Name="SlfFileId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="DateCreated" Type="datetime" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="DataInfoId" Type="int" Nullable="false" />
     <Property Name="FileName" Type="varchar" MaxLength="255" />
     <Property Name="LibName" Type="varchar" MaxLength="255" Nullable="false" />
     <Property Name="PathToLibrary" Type="varchar" MaxLength="255" Nullable="false" />
@@ -212,10 +216,11 @@
     </Key>
     <Property Name="SlfRecordId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="SlfRecordHeaderId" Type="bigint" Nullable="false" />
+    <Property Name="SlfFileId" Type="int" Nullable="false" />
+    <Property Name="ID" Type="char" MaxLength="4" Nullable="false" />
+    <Property Name="UnstructuredDataId" Type="int" />
     <Property Name="DateCreated" Type="datetime" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
-    <Property Name="Data" Type="varbinary(max)" Nullable="false" />
-    <Property Name="SlfFileId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="SlfRecordHeader">
     <Key>
@@ -231,8 +236,8 @@
     <Property Name="Reserved" Type="tinyint" Nullable="false" />
     <Property Name="FileTime" Type="datetime2" Precision="7" Nullable="false" />
     <Property Name="Reserved2" Type="int" Nullable="false" />
-    <Property Name="DataTypeId" Type="char" MaxLength="4" />
-    <Property Name="FileNameExtention" Type="varchar" MaxLength="4" StoreGeneratedPattern="Computed" />
+    <Property Name="FileNameExtention" Type="varchar" MaxLength="4" />
+    <Property Name="FileNameWithoutExtention" Type="varchar" MaxLength="255" StoreGeneratedPattern="Computed" />
   </EntityType>
   <EntityType Name="SlfRecordJsd">
     <Key>
@@ -268,6 +273,18 @@
     <Property Name="Depth" Type="tinyint" Nullable="false" />
     <Property Name="AppDataSize" Type="int" Nullable="false" />
     <Property Name="Unused" Type="binary" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="SlfRecordText">
+    <Key>
+      <PropertyRef Name="SlfRecordId" />
+    </Key>
+    <Property Name="SlfRecordId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SlfRecordHeaderId" Type="bigint" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="SlfFileId" Type="int" Nullable="false" />
+    <Property Name="ID" Type="char" MaxLength="4" Nullable="false" />
+    <Property Name="TextData" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="StciFlags">
     <Key>
@@ -309,7 +326,7 @@
     <Property Name="OffsetY" Type="int" Nullable="false" />
     <Property Name="Height" Type="int" Nullable="false" />
     <Property Name="Width" Type="int" Nullable="false" />
-    <Property Name="Data" Type="varbinary(max)" Nullable="false" />
+    <Property Name="UnstructuredDataId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="StciRecordStciFlag">
     <Key>
@@ -335,7 +352,16 @@
     <Property Name="GreenDepth" Type="tinyint" Nullable="false" />
     <Property Name="BlueDepth" Type="tinyint" Nullable="false" />
     <Property Name="AlphaDepth" Type="tinyint" Nullable="false" />
+    <Property Name="UnstructuredDataId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UnstructuredData">
+    <Key>
+      <PropertyRef Name="UnstructuredDataId" />
+    </Key>
+    <Property Name="UnstructuredDataId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Data" Type="varbinary(max)" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
   </EntityType>
   <Association Name="FK_AuxDataJsdAux_AuxObjectData">
     <End Role="AuxObjectData" Type="Self.AuxObjectData" Multiplicity="1" />
@@ -345,7 +371,7 @@
         <PropertyRef Name="AuxObjectDataId" />
       </Principal>
       <Dependent Role="AuxDataJsdAux">
-        <PropertyRef Name="JsdAuxDataId" />
+        <PropertyRef Name="AuxObjectDataId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -382,6 +408,18 @@
       </Principal>
       <Dependent Role="AuxObjectAuxFlag">
         <PropertyRef Name="AuxObjectDataId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FileExtention_DataType">
+    <End Role="DataType" Type="Self.DataType" Multiplicity="1" />
+    <End Role="FileExtention" Type="Self.FileExtention" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DataType">
+        <PropertyRef Name="DataTypeId" />
+      </Principal>
+      <Dependent Role="FileExtention">
+        <PropertyRef Name="DataTypeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -447,24 +485,24 @@
   </Association>
   <Association Name="FK_JsdStructureStrucrureFlag_JsdStructure">
     <End Role="JsdStructure" Type="Self.JsdStructure" Multiplicity="1" />
-    <End Role="JsdStructureStrucrureFlag" Type="Self.JsdStructureStrucrureFlag" Multiplicity="*" />
+    <End Role="JsdStructureStructureFlag" Type="Self.JsdStructureStructureFlag" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="JsdStructure">
         <PropertyRef Name="JsdStructureId" />
       </Principal>
-      <Dependent Role="JsdStructureStrucrureFlag">
+      <Dependent Role="JsdStructureStructureFlag">
         <PropertyRef Name="JsdStructureId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_JsdStructureStrucrureFlag_JsdStructureFlags">
     <End Role="JsdStructureFlags" Type="Self.JsdStructureFlags" Multiplicity="1" />
-    <End Role="JsdStructureStrucrureFlag" Type="Self.JsdStructureStrucrureFlag" Multiplicity="*" />
+    <End Role="JsdStructureStructureFlag" Type="Self.JsdStructureStructureFlag" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="JsdStructureFlags">
         <PropertyRef Name="JsdStructureFlagId" />
       </Principal>
-      <Dependent Role="JsdStructureStrucrureFlag">
+      <Dependent Role="JsdStructureStructureFlag">
         <PropertyRef Name="FlagId" />
       </Dependent>
     </ReferentialConstraint>
@@ -481,39 +519,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_JsdTileProfile_JsdTile">
+  <Association Name="FK_JsdTileCell_JsdTile">
     <End Role="JsdTile" Type="Self.JsdTile" Multiplicity="1" />
-    <End Role="JsdTileProfile" Type="Self.JsdTileProfile" Multiplicity="*" />
+    <End Role="JsdTileCell" Type="Self.JsdTileCell" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="JsdTile">
         <PropertyRef Name="JsdTileId" />
       </Principal>
-      <Dependent Role="JsdTileProfile">
+      <Dependent Role="JsdTileCell">
         <PropertyRef Name="JsdTileId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_JsdTileProfileCell_JsdTileProfileRow">
-    <End Role="JsdTileProfileRow" Type="Self.JsdTileProfileRow" Multiplicity="1" />
-    <End Role="JsdTileProfileCell" Type="Self.JsdTileProfileCell" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="JsdTileProfileRow">
-        <PropertyRef Name="JsdTileProfileRowId" />
-      </Principal>
-      <Dependent Role="JsdTileProfileCell">
-        <PropertyRef Name="JsdTileProfileRowId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_JsdTileProfileRow_JsdTileProfile">
-    <End Role="JsdTileProfile" Type="Self.JsdTileProfile" Multiplicity="1" />
-    <End Role="JsdTileProfileRow" Type="Self.JsdTileProfileRow" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="JsdTileProfile">
-        <PropertyRef Name="JsdTileProfileId" />
-      </Principal>
-      <Dependent Role="JsdTileProfileRow">
-        <PropertyRef Name="JsdTileProfileId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -541,6 +555,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_SlfFile_DataInfo">
+    <End Role="DataInfo" Type="Self.DataInfo" Multiplicity="1" />
+    <End Role="SlfFile" Type="Self.SlfFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DataInfo">
+        <PropertyRef Name="DataInfoId" />
+      </Principal>
+      <Dependent Role="SlfFile">
+        <PropertyRef Name="DataInfoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_SlfRecord_SlfFile">
     <End Role="SlfFile" Type="Self.SlfFile" Multiplicity="1" />
     <End Role="SlfRecord" Type="Self.SlfRecord" Multiplicity="*" />
@@ -562,6 +588,18 @@
       </Principal>
       <Dependent Role="SlfRecord">
         <PropertyRef Name="SlfRecordHeaderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SlfRecord_UnstructuredData">
+    <End Role="UnstructuredData" Type="Self.UnstructuredData" Multiplicity="0..1" />
+    <End Role="SlfRecord" Type="Self.SlfRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UnstructuredData">
+        <PropertyRef Name="UnstructuredDataId" />
+      </Principal>
+      <Dependent Role="SlfRecord">
+        <PropertyRef Name="UnstructuredDataId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -616,6 +654,30 @@ warning 6035: The relationship 'FK_SlfRecordHeader_FileState' has columns that a
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_SlfRecordText_SlfFile">
+    <End Role="SlfFile" Type="Self.SlfFile" Multiplicity="1" />
+    <End Role="SlfRecordText" Type="Self.SlfRecordText" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SlfFile">
+        <PropertyRef Name="SlfFileId" />
+      </Principal>
+      <Dependent Role="SlfRecordText">
+        <PropertyRef Name="SlfFileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SlfRecordText_SlfRecordHeader">
+    <End Role="SlfRecordHeader" Type="Self.SlfRecordHeader" Multiplicity="1" />
+    <End Role="SlfRecordText" Type="Self.SlfRecordText" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SlfRecordHeader">
+        <PropertyRef Name="SlfRecordHeaderId" />
+      </Principal>
+      <Dependent Role="SlfRecordText">
+        <PropertyRef Name="SlfRecordHeaderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_StciIndexed_SlfRecordStci">
     <End Role="SlfRecordStci" Type="Self.SlfRecordStci" Multiplicity="1" />
     <End Role="StciIndexed" Type="Self.StciIndexed" Multiplicity="*" />
@@ -649,6 +711,18 @@ warning 6035: The relationship 'FK_SlfRecordHeader_FileState' has columns that a
       </Principal>
       <Dependent Role="StciIndexedSubImage">
         <PropertyRef Name="StciIndexedId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StciIndexedSubImage_UnstructuredData">
+    <End Role="UnstructuredData" Type="Self.UnstructuredData" Multiplicity="1" />
+    <End Role="StciIndexedSubImage" Type="Self.StciIndexedSubImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UnstructuredData">
+        <PropertyRef Name="UnstructuredDataId" />
+      </Principal>
+      <Dependent Role="StciIndexedSubImage">
+        <PropertyRef Name="UnstructuredDataId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -688,12 +762,26 @@ warning 6035: The relationship 'FK_SlfRecordHeader_FileState' has columns that a
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_StciRgb_UnstructuredData">
+    <End Role="UnstructuredData" Type="Self.UnstructuredData" Multiplicity="1" />
+    <End Role="StciRgb" Type="Self.StciRgb" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UnstructuredData">
+        <PropertyRef Name="UnstructuredDataId" />
+      </Principal>
+      <Dependent Role="StciRgb">
+        <PropertyRef Name="UnstructuredDataId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="Ja2DataModelStoreContainer">
     <EntitySet Name="AuxDataFlags" EntityType="Self.AuxDataFlags" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AuxDataJsdAux" EntityType="Self.AuxDataJsdAux" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AuxObjectAuxFlag" EntityType="Self.AuxObjectAuxFlag" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AuxObjectData" EntityType="Self.AuxObjectData" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DataInfo" EntityType="Self.DataInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DataType" EntityType="Self.DataType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FileExtention" EntityType="Self.FileExtention" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FileState" EntityType="Self.FileState" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="JsdArmor" EntityType="Self.JsdArmor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="JsdAuxData" EntityType="Self.JsdAuxData" Schema="dbo" store:Type="Tables" />
@@ -701,23 +789,23 @@ warning 6035: The relationship 'FK_SlfRecordHeader_FileState' has columns that a
     <EntitySet Name="JsdRecordHeaderFlag" EntityType="Self.JsdRecordHeaderFlag" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="JsdStructure" EntityType="Self.JsdStructure" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="JsdStructureFlags" EntityType="Self.JsdStructureFlags" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="JsdStructureStrucrureFlag" EntityType="Self.JsdStructureStrucrureFlag" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JsdStructureStructureFlag" EntityType="Self.JsdStructureStructureFlag" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="JsdTile" EntityType="Self.JsdTile" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JsdTileCell" EntityType="Self.JsdTileCell" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="JsdTileFlags" EntityType="Self.JsdTileFlags" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="JsdTileProfile" EntityType="Self.JsdTileProfile" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="JsdTileProfileCell" EntityType="Self.JsdTileProfileCell" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="JsdTileProfileRow" EntityType="Self.JsdTileProfileRow" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="JsdTileTileFlag" EntityType="Self.JsdTileTileFlag" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SlfFile" EntityType="Self.SlfFile" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SlfRecord" EntityType="Self.SlfRecord" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SlfRecordHeader" EntityType="Self.SlfRecordHeader" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SlfRecordJsd" EntityType="Self.SlfRecordJsd" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SlfRecordStci" EntityType="Self.SlfRecordStci" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SlfRecordText" EntityType="Self.SlfRecordText" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StciFlags" EntityType="Self.StciFlags" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StciIndexed" EntityType="Self.StciIndexed" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StciIndexedSubImage" EntityType="Self.StciIndexedSubImage" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StciRecordStciFlag" EntityType="Self.StciRecordStciFlag" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StciRgb" EntityType="Self.StciRgb" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UnstructuredData" EntityType="Self.UnstructuredData" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_AuxDataJsdAux_AuxObjectData" Association="Self.FK_AuxDataJsdAux_AuxObjectData">
       <End Role="AuxObjectData" EntitySet="AuxObjectData" />
       <End Role="AuxDataJsdAux" EntitySet="AuxDataJsdAux" />
@@ -733,6 +821,10 @@ warning 6035: The relationship 'FK_SlfRecordHeader_FileState' has columns that a
     <AssociationSet Name="FK_AuxObjectAuxFlag_AuxObjectData" Association="Self.FK_AuxObjectAuxFlag_AuxObjectData">
       <End Role="AuxObjectData" EntitySet="AuxObjectData" />
       <End Role="AuxObjectAuxFlag" EntitySet="AuxObjectAuxFlag" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FileExtention_DataType" Association="Self.FK_FileExtention_DataType">
+      <End Role="DataType" EntitySet="DataType" />
+      <End Role="FileExtention" EntitySet="FileExtention" />
     </AssociationSet>
     <AssociationSet Name="FK_JsdAuxData_SlfRecordJsd" Association="Self.FK_JsdAuxData_SlfRecordJsd">
       <End Role="SlfRecordJsd" EntitySet="SlfRecordJsd" />
@@ -756,27 +848,19 @@ warning 6035: The relationship 'FK_SlfRecordHeader_FileState' has columns that a
     </AssociationSet>
     <AssociationSet Name="FK_JsdStructureStrucrureFlag_JsdStructure" Association="Self.FK_JsdStructureStrucrureFlag_JsdStructure">
       <End Role="JsdStructure" EntitySet="JsdStructure" />
-      <End Role="JsdStructureStrucrureFlag" EntitySet="JsdStructureStrucrureFlag" />
+      <End Role="JsdStructureStructureFlag" EntitySet="JsdStructureStructureFlag" />
     </AssociationSet>
     <AssociationSet Name="FK_JsdStructureStrucrureFlag_JsdStructureFlags" Association="Self.FK_JsdStructureStrucrureFlag_JsdStructureFlags">
       <End Role="JsdStructureFlags" EntitySet="JsdStructureFlags" />
-      <End Role="JsdStructureStrucrureFlag" EntitySet="JsdStructureStrucrureFlag" />
+      <End Role="JsdStructureStructureFlag" EntitySet="JsdStructureStructureFlag" />
     </AssociationSet>
     <AssociationSet Name="FK_JsdTile_JsdStructure" Association="Self.FK_JsdTile_JsdStructure">
       <End Role="JsdStructure" EntitySet="JsdStructure" />
       <End Role="JsdTile" EntitySet="JsdTile" />
     </AssociationSet>
-    <AssociationSet Name="FK_JsdTileProfile_JsdTile" Association="Self.FK_JsdTileProfile_JsdTile">
+    <AssociationSet Name="FK_JsdTileCell_JsdTile" Association="Self.FK_JsdTileCell_JsdTile">
       <End Role="JsdTile" EntitySet="JsdTile" />
-      <End Role="JsdTileProfile" EntitySet="JsdTileProfile" />
-    </AssociationSet>
-    <AssociationSet Name="FK_JsdTileProfileCell_JsdTileProfileRow" Association="Self.FK_JsdTileProfileCell_JsdTileProfileRow">
-      <End Role="JsdTileProfileRow" EntitySet="JsdTileProfileRow" />
-      <End Role="JsdTileProfileCell" EntitySet="JsdTileProfileCell" />
-    </AssociationSet>
-    <AssociationSet Name="FK_JsdTileProfileRow_JsdTileProfile" Association="Self.FK_JsdTileProfileRow_JsdTileProfile">
-      <End Role="JsdTileProfile" EntitySet="JsdTileProfile" />
-      <End Role="JsdTileProfileRow" EntitySet="JsdTileProfileRow" />
+      <End Role="JsdTileCell" EntitySet="JsdTileCell" />
     </AssociationSet>
     <AssociationSet Name="FK_JsdTileTileFlag_JsdTile" Association="Self.FK_JsdTileTileFlag_JsdTile">
       <End Role="JsdTile" EntitySet="JsdTile" />
@@ -786,12 +870,20 @@ warning 6035: The relationship 'FK_SlfRecordHeader_FileState' has columns that a
       <End Role="JsdTileFlags" EntitySet="JsdTileFlags" />
       <End Role="JsdTileTileFlag" EntitySet="JsdTileTileFlag" />
     </AssociationSet>
+    <AssociationSet Name="FK_SlfFile_DataInfo" Association="Self.FK_SlfFile_DataInfo">
+      <End Role="DataInfo" EntitySet="DataInfo" />
+      <End Role="SlfFile" EntitySet="SlfFile" />
+    </AssociationSet>
     <AssociationSet Name="FK_SlfRecord_SlfFile" Association="Self.FK_SlfRecord_SlfFile">
       <End Role="SlfFile" EntitySet="SlfFile" />
       <End Role="SlfRecord" EntitySet="SlfRecord" />
     </AssociationSet>
     <AssociationSet Name="FK_SlfRecord_SlfRecordHeader" Association="Self.FK_SlfRecord_SlfRecordHeader">
       <End Role="SlfRecordHeader" EntitySet="SlfRecordHeader" />
+      <End Role="SlfRecord" EntitySet="SlfRecord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SlfRecord_UnstructuredData" Association="Self.FK_SlfRecord_UnstructuredData">
+      <End Role="UnstructuredData" EntitySet="UnstructuredData" />
       <End Role="SlfRecord" EntitySet="SlfRecord" />
     </AssociationSet>
     <AssociationSet Name="FK_SlfRecordJsd_SlfFile" Association="Self.FK_SlfRecordJsd_SlfFile">
@@ -810,6 +902,14 @@ warning 6035: The relationship 'FK_SlfRecordHeader_FileState' has columns that a
       <End Role="SlfRecordHeader" EntitySet="SlfRecordHeader" />
       <End Role="SlfRecordStci" EntitySet="SlfRecordStci" />
     </AssociationSet>
+    <AssociationSet Name="FK_SlfRecordText_SlfFile" Association="Self.FK_SlfRecordText_SlfFile">
+      <End Role="SlfFile" EntitySet="SlfFile" />
+      <End Role="SlfRecordText" EntitySet="SlfRecordText" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SlfRecordText_SlfRecordHeader" Association="Self.FK_SlfRecordText_SlfRecordHeader">
+      <End Role="SlfRecordHeader" EntitySet="SlfRecordHeader" />
+      <End Role="SlfRecordText" EntitySet="SlfRecordText" />
+    </AssociationSet>
     <AssociationSet Name="FK_StciIndexed_SlfRecordStci" Association="Self.FK_StciIndexed_SlfRecordStci">
       <End Role="SlfRecordStci" EntitySet="SlfRecordStci" />
       <End Role="StciIndexed" EntitySet="StciIndexed" />
@@ -822,6 +922,10 @@ warning 6035: The relationship 'FK_SlfRecordHeader_FileState' has columns that a
       <End Role="StciIndexed" EntitySet="StciIndexed" />
       <End Role="StciIndexedSubImage" EntitySet="StciIndexedSubImage" />
     </AssociationSet>
+    <AssociationSet Name="FK_StciIndexedSubImage_UnstructuredData" Association="Self.FK_StciIndexedSubImage_UnstructuredData">
+      <End Role="UnstructuredData" EntitySet="UnstructuredData" />
+      <End Role="StciIndexedSubImage" EntitySet="StciIndexedSubImage" />
+    </AssociationSet>
     <AssociationSet Name="FK_StciRecordStciFlag_SlfRecordStci" Association="Self.FK_StciRecordStciFlag_SlfRecordStci">
       <End Role="SlfRecordStci" EntitySet="SlfRecordStci" />
       <End Role="StciRecordStciFlag" EntitySet="StciRecordStciFlag" />
@@ -832,6 +936,10 @@ warning 6035: The relationship 'FK_SlfRecordHeader_FileState' has columns that a
     </AssociationSet>
     <AssociationSet Name="FK_StciRgb_SlfRecordStci" Association="Self.FK_StciRgb_SlfRecordStci">
       <End Role="SlfRecordStci" EntitySet="SlfRecordStci" />
+      <End Role="StciRgb" EntitySet="StciRgb" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StciRgb_UnstructuredData" Association="Self.FK_StciRgb_UnstructuredData">
+      <End Role="UnstructuredData" EntitySet="UnstructuredData" />
       <End Role="StciRgb" EntitySet="StciRgb" />
     </AssociationSet>
   </EntityContainer>
