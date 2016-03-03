@@ -1,0 +1,244 @@
+﻿<ArrayOfJsdMaterial xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<JsdMaterial>
+		<Index>0</Index>
+		<Name>MATERIAL_NOTHING</Name>
+		<NotUsed>false</NotUsed>
+		<Armor>0</Armor>
+	</JsdMaterial>
+	<JsdMaterial>
+		<Index>1</Index>
+		<Name>MATERIAL_WOOD_WALL</Name>
+		<NotUsed>false</NotUsed>
+		<Armor>25</Armor>
+	</JsdMaterial>
+	<JsdMaterial>
+		<Index>2</Index>
+		<Name>MATERIAL_PLYWOOD_WALL</Name>
+		<NotUsed>false</NotUsed>
+		<Armor>20</Armor>
+	</JsdMaterial>
+	<JsdMaterial>
+		<Index>3</Index>
+		<Name>MATERIAL_LIVE_WOOD</Name>
+		<NotUsed>false</NotUsed>
+		<Armor>30</Armor>
+	</JsdMaterial>
+	<JsdMaterial>
+		<Index>4</Index>
+		<Name>MATERIAL_LIGHT_VEGETATION</Name>
+		<NotUsed>false</NotUsed>
+		<Armor>3</Armor>
+	</JsdMaterial>
+	<JsdMaterial>
+		<Index>5</Index>
+		<Name>MATERIAL_FURNITURE</Name>
+		<NotUsed>false</NotUsed>
+		<Armor>10</Armor>
+	</JsdMaterial>
+	<JsdMaterial>
+		<Index>6</Index>
+		<Name>MATERIAL_PORCELAIN</Name>
+		<NotUsed>false</NotUsed>
+		<Armor>47</Armor>
+	</JsdMaterial>
+	<JsdMaterial>
+		<Index>7</Index>
+		<Name>MATERIAL_CACTUS</Name>
+		<NotUsed>false</NotUsed>
+		<Armor>10</Armor>
+	</JsdMaterial>
+	<JsdMaterial>
+		<Index>8</Index>
+		<Name>MATERIAL_NOTUSED1</Name>
+		<NotUsed>true</NotUsed>
+		<Armor>0</Armor>
+	</JsdMaterial>
+	<JsdMaterial>
+		<Index>9</Index>
+		<Name>MATERIAL_NOTUSED2</Name>
+		<NotUsed>true</NotUsed>
+		<Armor>0</Armor>
+	</JsdMaterial>
+	<JsdMaterial>
+		<Index>10</Index>
+		<Name>MATERIAL_NOTUSED3</Name>
+		<NotUsed>true</NotUsed>
+		<Armor>0</Armor>
+	</JsdMaterial>
+	<JsdMaterial>
+		<Index>11</Index>
+		<Name>MATERIAL_STONE</Name>
+		<NotUsed>false</NotUsed>
+		<Armor>55</Armor>
+	</JsdMaterial>
+	<JsdMaterial>
+		<Index>12</Index>
+		<Name>MATERIAL_CONCRETE1</Name>
+		<NotUsed>false</NotUsed>
+		<Armor>63</Armor>
+	</JsdMaterial>
+	<JsdMaterial>
+		<Index>13</Index>
+		<Name>MATERIAL_CONCRETE2</Name>
+		<NotUsed>false</NotUsed>
+		<Armor>70</Armor>
+	</JsdMaterial>
+	<JsdMaterial>
+		<Index>14</Index>
+		<Name>MATERIAL_ROCK</Name>
+		<NotUsed>false</NotUsed>
+		<Armor>85</Armor>
+	</JsdMaterial>
+	<JsdMaterial>
+		<Index>15</Index>
+		<Name>MATERIAL_RUBBER</Name>
+		<NotUsed>false</NotUsed>
+		<Armor>9</Armor>
+	</JsdMaterial>
+	<JsdMaterial>
+		<Index>16</Index>
+		<Name>MATERIAL_SAND</Name>
+		<NotUsed>false</NotUsed>
+		<Armor>40</Armor>
+	</JsdMaterial>
+	<JsdMaterial>
+		<Index>17</Index>
+		<Name>MATERIAL_CLOTH</Name>
+		<NotUsed>false</NotUsed>
+		<Armor>1</Armor>
+	</JsdMaterial>
+	<JsdMaterial>
+		<Index>18</Index>
+		<Name>MATERIAL_SANDBAG</Name>
+		<NotUsed>false</NotUsed>
+		<Armor>40</Armor>
+	</JsdMaterial>
+	<JsdMaterial>
+		<Index>19</Index>
+		<Name>MATERIAL_NOTUSED5</Name>
+		<NotUsed>true</NotUsed>
+		<Armor>0</Armor>
+	</JsdMaterial>
+	<JsdMaterial>
+		<Index>20</Index>
+		<Name>MATERIAL_NOTUSED6</Name>
+		<NotUsed>true</NotUsed>
+		<Armor>0</Armor>
+	</JsdMaterial>
+	<JsdMaterial>
+		<Index>21</Index>
+		<Name>MATERIAL_LIGHT_METAL</Name>
+		<NotUsed>false</NotUsed>
+		<Armor>37</Armor>
+	</JsdMaterial>
+	<JsdMaterial>
+		<Index>22</Index>
+		<Name>MATERIAL_THICKER_METAL</Name>
+		<NotUsed>false</NotUsed>
+		<Armor>57</Armor>
+	</JsdMaterial>
+	<JsdMaterial>
+		<Index>23</Index>
+		<Name>MATERIAL_HEAVY_METAL</Name>
+		<NotUsed>false</NotUsed>
+		<Armor>85</Armor>
+	</JsdMaterial>
+	<JsdMaterial>
+		<Index>24</Index>
+		<Name>MATERIAL_INDESTRUCTABLE_STONE</Name>
+		<NotUsed>false</NotUsed>
+		<Armor>127</Armor>
+	</JsdMaterial>
+	<JsdMaterial>
+		<Index>25</Index>
+		<Name>MATERIAL_INDESTRUCTABLE_METAL</Name>
+		<NotUsed>false</NotUsed>
+		<Armor>127</Armor>
+	</JsdMaterial>
+	<JsdMaterial>
+		<!-- Отличаеться от 22, наверное, только звуком попадания пули. -->
+		<Index>26</Index>
+		<Name>MATERIAL_THICKER_METAL_WITH_SCREEN_WINDOWS</Name>
+		<NotUsed>false</NotUsed>
+		<Armor>57</Armor>
+	</JsdMaterial>
+</ArrayOfJsdMaterial>
+
+<!--//    MATERIAL_NOTHING - Ничего,
+//MATERIAL_WOOD_WALL - Дерево,
+//MATERIAL_PLYWOOD_WALL - Фанера,
+//MATERIAL_LIVE_WOOD - Живое дерево,
+//MATERIAL_LIGHT_VEGETATION - Трава,
+//MATERIAL_FURNITURE - Мебель,
+//MATERIAL_PORCELAIN - Фарфор,
+//MATERIAL_CACTUS - Кактус, бамбук,
+//MATERIAL_NOTUSED1 - Не используется 1,
+//MATERIAL_NOTUSED2 - Не используется 2,
+
+//MATERIAL_NOTUSED3 - Не используется 3,
+//MATERIAL_STONE - Каменная кладка,
+//MATERIAL_CONCRETE1 - Бетон,
+//MATERIAL_CONCRETE2 - Железобетон,
+//MATERIAL_ROCK - Камень,
+//MATERIAL_RUBBER - Резина,
+//MATERIAL_SAND - Песок,
+//MATERIAL_CLOTH - Ткань,
+//MATERIAL_SANDBAG - Мешок с песком,
+//MATERIAL_NOTUSED5 - Не используется 5,
+
+//MATERIAL_NOTUSED6 - Не используется 6,
+//MATERIAL_LIGHT_METAL - Тонкий металл,
+//MATERIAL_THICKER_METAL - Толстый металл,
+//MATERIAL_HEAVY_METAL - Тяжёлый металл,
+//MATERIAL_INDESTRUCTABLE_STONE - Неразрушимый камень,
+//MATERIAL_INDESTRUCTABLE_METAL - Неразрушимый металл,
+//MATERIAL_THICKER_METAL_WITH_SCREEN_WINDOWS - Тонкий металл с окном,
+/*
+index  1-10, organics
+index 11-20, rocks and concretes
+index 21-30, metals
+
+index 1, dry timber
+index 2, furniture wood
+index 3, tree wood
+index 11, stone masonry
+index 12, non-reinforced concrete
+index 13, reinforced concrete
+index 14, rock
+index 21, light metal (furniture)
+index 22, heavy metal (doors etc)
+index 23, really heavy metal
+index 24, indestructable stone
+index 25, indestructable metal
+*/
+
+{ // note: must increase; r.c. should block *AP* 7.62mm rounds
+	 0,		// nothing
+	25,		// dry timber; wood wall +1/2
+	20,		// furniture wood (thin!) or plywood wall +1/2
+	30,		// wood (live); 1.5x timber
+	 3,		// light vegetation
+	10,		// upholstered furniture
+	47,		// porcelain
+	10,		// cactus, hay, bamboo
+		0,
+		0,
+		0,
+	55,		// stone masonry; 3x timber
+	63,		// non-reinforced concrete; 4x timber???
+  70,		// reinforced concrete; 6x timber
+  85,		// rock? - number invented
+	 9,		// rubber - tires
+	40,		// sand
+		1,	// cloth
+	40,		// sandbag
+		0,
+		0,
+	37,		// light metal (furniture; NB thin!)
+	57,		// thicker metal (dumpster)
+  85,		// heavy metal (vault doors) - block everything
+	// note that vehicle armour will probably end up in here
+	127,	// rock indestructable
+	127,	// indestructable
+	57,		// like 22 but with screen windows
+};-->

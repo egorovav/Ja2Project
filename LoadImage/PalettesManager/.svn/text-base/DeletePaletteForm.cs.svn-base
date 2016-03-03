@@ -1,0 +1,35 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+using Localizer;
+
+namespace dotNetStiEditor
+{
+	public partial class DeletePaletteForm : Form
+	{
+		public DeletePaletteForm(List<PaletteRecord> palettes)
+		{
+			Initialize();
+			this.comboBox1.DisplayMember = "Name";
+		//	this.comboBox1.ValueMember = "ColorListNames";
+			this.comboBox1.DataSource = palettes;
+		}
+		void Initialize()
+		{
+			InitializeComponent();
+			this.cancelButton.Text = Resources.GetString("Cancel");
+			this.label1.Text = Resources.GetString("PaletteName");
+			this.okButton.Text = Resources.GetString("Remove");
+			this.Text = Resources.GetString("RemovePalette");
+		}
+
+		public int PaletteIndex
+		{
+			get { return this.comboBox1.SelectedIndex; }
+		}
+	}
+}

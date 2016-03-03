@@ -1,0 +1,19 @@
+﻿<Window x:Class="CommonWpfControls.ProgressWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ProgressWindow"
+        WindowStyle="None" Background="Transparent" AllowsTransparency="True">
+    <Grid>
+        <ProgressBar x:Name="pbDrawingProgress"
+                     Background="Red" 
+                     Foreground="Blue"
+                     Height="34" Width="512"/>
+        <Button x:Name="btnCancel" 
+                Margin="5" 
+                Width="100"
+                Height="26"
+                Content="Cancel"
+                Visibility="Collapsed"
+                Click="btnCancel_Click" />
+    </Grid>
+</Window>

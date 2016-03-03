@@ -1,0 +1,2386 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Ja2DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AuxDataFlags">
+          <Key>
+            <PropertyRef Name="AuxDataFlagsId" />
+          </Key>
+          <Property Name="AuxDataFlagsId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Value" Type="tinyint" Nullable="false" />
+          <Property Name="Mask" Type="int" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="AuxDataJsdAux">
+          <Key>
+            <PropertyRef Name="AuxDataJsdAuxId" />
+          </Key>
+          <Property Name="AuxDataJsdAuxId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AuxObjectDataId" Type="bigint" Nullable="false" />
+          <Property Name="JsdAuxDataId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AuxObjectAuxFlag">
+          <Key>
+            <PropertyRef Name="AuxObjectFlagId" />
+          </Key>
+          <Property Name="AuxObjectFlagId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AuxObjectDataId" Type="bigint" Nullable="false" />
+          <Property Name="FlagId" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AuxObjectData">
+          <Key>
+            <PropertyRef Name="AuxObjectDataId" />
+          </Key>
+          <Property Name="AuxObjectDataId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="WallOrientation" Type="tinyint" Nullable="false" />
+          <Property Name="NumberOfTiles" Type="tinyint" Nullable="false" />
+          <Property Name="TileLocIndex" Type="int" Nullable="false" />
+          <Property Name="Unused1" Type="binary" MaxLength="3" Nullable="false" />
+          <Property Name="CurrentFrame" Type="tinyint" Nullable="false" />
+          <Property Name="NumberOfFrames" Type="tinyint" Nullable="false" />
+          <Property Name="Unused" Type="binary" MaxLength="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DataInfo">
+          <Key>
+            <PropertyRef Name="DataInfoId" />
+          </Key>
+          <Property Name="DataInfoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProduserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MajorVerson" Type="int" Nullable="false" />
+          <Property Name="MinorVersion" Type="int" Nullable="false" />
+          <Property Name="Revision" Type="int" />
+          <Property Name="Build" Type="int" />
+          <Property Name="BuildDate" Type="datetime" />
+          <Property Name="Local" Type="char" MaxLength="5" />
+          <Property Name="Localizer" Type="char" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="DataType">
+          <Key>
+            <PropertyRef Name="DataTypeId" />
+          </Key>
+          <Property Name="DataTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DataTypeName" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="Descriotion" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="FileExtention">
+          <Key>
+            <PropertyRef Name="FileExtentionId" />
+          </Key>
+          <Property Name="FileExtentionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Extention" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="DataTypeId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="FileState">
+          <Key>
+            <PropertyRef Name="FileStateId" />
+          </Key>
+          <Property Name="FileStateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileStateName" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="FileStateValue" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JsdArmor">
+          <Key>
+            <PropertyRef Name="JsdArmorId" />
+          </Key>
+          <Property Name="JsdArmorId" Type="tinyint" Nullable="false" />
+          <Property Name="Material" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Value" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JsdAuxData">
+          <Key>
+            <PropertyRef Name="JsdAuxDataId" />
+          </Key>
+          <Property Name="JsdAuxDataId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SlfRecordJsdId" Type="bigint" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="TileLocationData" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="JsdHeaderFlags">
+          <Key>
+            <PropertyRef Name="JsdRecordFlagId" />
+          </Key>
+          <Property Name="JsdRecordFlagId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Value" Type="tinyint" Nullable="false" />
+          <Property Name="Mask" Type="int" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="JsdRecordHeaderFlag">
+          <Key>
+            <PropertyRef Name="JsdRecordHeaderFlagId" />
+          </Key>
+          <Property Name="JsdRecordHeaderFlagId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JsdRecordId" Type="bigint" Nullable="false" />
+          <Property Name="FlagId" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JsdStructure">
+          <Key>
+            <PropertyRef Name="JsdStructureId" />
+          </Key>
+          <Property Name="JsdStructureId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SlfRecordJsdId" Type="bigint" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Armour" Type="tinyint" Nullable="false" />
+          <Property Name="HitPoints" Type="tinyint" Nullable="false" />
+          <Property Name="Density" Type="tinyint" Nullable="false" />
+          <Property Name="NumberOfTiles" Type="tinyint" Nullable="false" />
+          <Property Name="StructureNumber" Type="int" Nullable="false" />
+          <Property Name="WallOrientation" Type="tinyint" Nullable="false" />
+          <Property Name="DestructionPartner" Type="smallint" Nullable="false" />
+          <Property Name="PartnerDelta" Type="smallint" Nullable="false" />
+          <Property Name="ZTileOffsetX" Type="smallint" Nullable="false" />
+          <Property Name="ZTileOffsetY" Type="smallint" Nullable="false" />
+          <Property Name="Unused" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JsdStructureFlags">
+          <Key>
+            <PropertyRef Name="JsdStructureFlagId" />
+          </Key>
+          <Property Name="JsdStructureFlagId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Value" Type="tinyint" Nullable="false" />
+          <Property Name="Mask" Type="bigint" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="JsdStructureStructureFlag">
+          <Key>
+            <PropertyRef Name="JsdStructureStrucrureFlagId" />
+          </Key>
+          <Property Name="JsdStructureStrucrureFlagId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JsdStructureId" Type="bigint" Nullable="false" />
+          <Property Name="FlagId" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JsdTile">
+          <Key>
+            <PropertyRef Name="JsdTileId" />
+          </Key>
+          <Property Name="JsdTileId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JsdStructureId" Type="bigint" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="PosRelToBase" Type="smallint" Nullable="false" />
+          <Property Name="XPosRelToBase" Type="smallint" Nullable="false" />
+          <Property Name="YPosRelToBase" Type="smallint" Nullable="false" />
+          <Property Name="VehicleHitLocation" Type="tinyint" Nullable="false" />
+          <Property Name="Unused" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JsdTileCell">
+          <Key>
+            <PropertyRef Name="JsdTileCellId" />
+          </Key>
+          <Property Name="JsdTileCellId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JsdTileId" Type="bigint" Nullable="false" />
+          <Property Name="RowNumber" Type="tinyint" Nullable="false" />
+          <Property Name="CellNumber" Type="tinyint" Nullable="false" />
+          <Property Name="Value" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JsdTileFlags">
+          <Key>
+            <PropertyRef Name="JsdTileFlagsId" />
+          </Key>
+          <Property Name="JsdTileFlagsId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Value" Type="tinyint" Nullable="false" />
+          <Property Name="Mask" Type="int" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="JsdTileTileFlag">
+          <Key>
+            <PropertyRef Name="JsdTileTileFlagId" />
+          </Key>
+          <Property Name="JsdTileTileFlagId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JsdTileId" Type="bigint" Nullable="false" />
+          <Property Name="FlagId" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SlfFile">
+          <Key>
+            <PropertyRef Name="SlfFileId" />
+          </Key>
+          <Property Name="SlfFileId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="DataInfoId" Type="int" Nullable="false" />
+          <Property Name="FileName" Type="varchar" MaxLength="255" />
+          <Property Name="LibName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PathToLibrary" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="EntriesCount" Type="int" Nullable="false" />
+          <Property Name="Used" Type="int" Nullable="false" />
+          <Property Name="Sort" Type="smallint" Nullable="false" />
+          <Property Name="Version" Type="smallint" Nullable="false" />
+          <Property Name="ContainsSubDirectories" Type="tinyint" Nullable="false" />
+          <Property Name="Reserved" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SlfRecord">
+          <Key>
+            <PropertyRef Name="SlfRecordId" />
+          </Key>
+          <Property Name="SlfRecordId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SlfRecordHeaderId" Type="bigint" Nullable="false" />
+          <Property Name="SlfFileId" Type="int" Nullable="false" />
+          <Property Name="ID" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="UnstructuredDataId" Type="int" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SlfRecordHeader">
+          <Key>
+            <PropertyRef Name="SlfRecordHeaderId" />
+          </Key>
+          <Property Name="SlfRecordHeaderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="FileName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Offset" Type="bigint" Nullable="false" />
+          <Property Name="Length" Type="bigint" Nullable="false" />
+          <Property Name="State" Type="tinyint" Nullable="false" />
+          <Property Name="Reserved" Type="tinyint" Nullable="false" />
+          <Property Name="FileTime" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Reserved2" Type="int" Nullable="false" />
+          <Property Name="FileNameExtention" Type="varchar" MaxLength="4" />
+          <Property Name="FileNameWithoutExtention" Type="varchar" MaxLength="255" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="SlfRecordJsd">
+          <Key>
+            <PropertyRef Name="SlfRecordJsdId" />
+          </Key>
+          <Property Name="SlfRecordJsdId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SlfRecordHeaderId" Type="bigint" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="SlfFileId" Type="int" Nullable="false" />
+          <Property Name="ID" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="NumberOfStructuresAndOrImages" Type="int" Nullable="false" />
+          <Property Name="NumberOfStructuresStored" Type="int" Nullable="false" />
+          <Property Name="StructureDataSize" Type="int" Nullable="false" />
+          <Property Name="Unused" Type="binary" MaxLength="3" Nullable="false" />
+          <Property Name="NumberOfImageTileLocsStored" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SlfRecordStci">
+          <Key>
+            <PropertyRef Name="SlfRecordId" />
+          </Key>
+          <Property Name="SlfRecordId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SlfRecordHeaderId" Type="bigint" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="SlfFileId" Type="int" Nullable="false" />
+          <Property Name="ID" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="OriginalSize" Type="bigint" Nullable="false" />
+          <Property Name="StoredSize" Type="bigint" Nullable="false" />
+          <Property Name="TransparentValue" Type="bigint" Nullable="false" />
+          <Property Name="Height" Type="int" Nullable="false" />
+          <Property Name="Width" Type="int" Nullable="false" />
+          <Property Name="Depth" Type="tinyint" Nullable="false" />
+          <Property Name="AppDataSize" Type="int" Nullable="false" />
+          <Property Name="Unused" Type="binary" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="SlfRecordText">
+          <Key>
+            <PropertyRef Name="SlfRecordId" />
+          </Key>
+          <Property Name="SlfRecordId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SlfRecordHeaderId" Type="bigint" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="SlfFileId" Type="int" Nullable="false" />
+          <Property Name="ID" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="TextData" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="StciFlags">
+          <Key>
+            <PropertyRef Name="StciFlagsId" />
+          </Key>
+          <Property Name="StciFlagsId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Value" Type="int" Nullable="false" />
+          <Property Name="Mask" Type="int" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="StciIndexed">
+          <Key>
+            <PropertyRef Name="StciIndexedId" />
+          </Key>
+          <Property Name="StciIndexedId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SlfRecordStciId" Type="bigint" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="NumberOfColours" Type="bigint" Nullable="false" />
+          <Property Name="NumberOfSubImages" Type="int" Nullable="false" />
+          <Property Name="RedDepth" Type="tinyint" Nullable="false" />
+          <Property Name="GreenDepth" Type="tinyint" Nullable="false" />
+          <Property Name="BlueDepth" Type="tinyint" Nullable="false" />
+          <Property Name="Unused" Type="binary" MaxLength="11" Nullable="false" />
+          <Property Name="Palette" Type="binary" MaxLength="768" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StciIndexedSubImage">
+          <Key>
+            <PropertyRef Name="StciIndexedSubImageId" />
+          </Key>
+          <Property Name="StciIndexedSubImageId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StciIndexedId" Type="bigint" Nullable="false" />
+          <Property Name="AuxObjectDataId" Type="bigint" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="DataOffset" Type="bigint" Nullable="false" />
+          <Property Name="DataLength" Type="bigint" Nullable="false" />
+          <Property Name="OffsetX" Type="int" Nullable="false" />
+          <Property Name="OffsetY" Type="int" Nullable="false" />
+          <Property Name="Height" Type="int" Nullable="false" />
+          <Property Name="Width" Type="int" Nullable="false" />
+          <Property Name="UnstructuredDataId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StciRecordStciFlag">
+          <Key>
+            <PropertyRef Name="StciRecordsFlagsId" />
+          </Key>
+          <Property Name="StciRecordsFlagsId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RecordId" Type="bigint" Nullable="false" />
+          <Property Name="FlagId" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StciRgb">
+          <Key>
+            <PropertyRef Name="StciRgbId" />
+          </Key>
+          <Property Name="StciRgbId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SlfRecordStciId" Type="bigint" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RedMask" Type="int" Nullable="false" />
+          <Property Name="GreenMask" Type="int" Nullable="false" />
+          <Property Name="BlueMask" Type="int" Nullable="false" />
+          <Property Name="AlphaMask" Type="int" Nullable="false" />
+          <Property Name="RedDepth" Type="tinyint" Nullable="false" />
+          <Property Name="GreenDepth" Type="tinyint" Nullable="false" />
+          <Property Name="BlueDepth" Type="tinyint" Nullable="false" />
+          <Property Name="AlphaDepth" Type="tinyint" Nullable="false" />
+          <Property Name="UnstructuredDataId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UnstructuredData">
+          <Key>
+            <PropertyRef Name="UnstructuredDataId" />
+          </Key>
+          <Property Name="UnstructuredDataId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Data" Type="varbinary(max)" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AuxDataJsdAux_AuxObjectData">
+          <End Role="AuxObjectData" Type="Self.AuxObjectData" Multiplicity="1" />
+          <End Role="AuxDataJsdAux" Type="Self.AuxDataJsdAux" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AuxObjectData">
+              <PropertyRef Name="AuxObjectDataId" />
+            </Principal>
+            <Dependent Role="AuxDataJsdAux">
+              <PropertyRef Name="AuxObjectDataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuxDataJsdAux_JsdAuxData">
+          <End Role="JsdAuxData" Type="Self.JsdAuxData" Multiplicity="1" />
+          <End Role="AuxDataJsdAux" Type="Self.AuxDataJsdAux" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JsdAuxData">
+              <PropertyRef Name="JsdAuxDataId" />
+            </Principal>
+            <Dependent Role="AuxDataJsdAux">
+              <PropertyRef Name="JsdAuxDataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuxObjectAuxFlag_AuxDataFlags">
+          <End Role="AuxDataFlags" Type="Self.AuxDataFlags" Multiplicity="1" />
+          <End Role="AuxObjectAuxFlag" Type="Self.AuxObjectAuxFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AuxDataFlags">
+              <PropertyRef Name="AuxDataFlagsId" />
+            </Principal>
+            <Dependent Role="AuxObjectAuxFlag">
+              <PropertyRef Name="FlagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuxObjectAuxFlag_AuxObjectData">
+          <End Role="AuxObjectData" Type="Self.AuxObjectData" Multiplicity="1" />
+          <End Role="AuxObjectAuxFlag" Type="Self.AuxObjectAuxFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AuxObjectData">
+              <PropertyRef Name="AuxObjectDataId" />
+            </Principal>
+            <Dependent Role="AuxObjectAuxFlag">
+              <PropertyRef Name="AuxObjectDataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FileExtention_DataType">
+          <End Role="DataType" Type="Self.DataType" Multiplicity="1" />
+          <End Role="FileExtention" Type="Self.FileExtention" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataType">
+              <PropertyRef Name="DataTypeId" />
+            </Principal>
+            <Dependent Role="FileExtention">
+              <PropertyRef Name="DataTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JsdAuxData_SlfRecordJsd">
+          <End Role="SlfRecordJsd" Type="Self.SlfRecordJsd" Multiplicity="1" />
+          <End Role="JsdAuxData" Type="Self.JsdAuxData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlfRecordJsd">
+              <PropertyRef Name="SlfRecordJsdId" />
+            </Principal>
+            <Dependent Role="JsdAuxData">
+              <PropertyRef Name="SlfRecordJsdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JsdRecordHeaderFlag_JsdHeaderFlags">
+          <End Role="JsdHeaderFlags" Type="Self.JsdHeaderFlags" Multiplicity="1" />
+          <End Role="JsdRecordHeaderFlag" Type="Self.JsdRecordHeaderFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JsdHeaderFlags">
+              <PropertyRef Name="JsdRecordFlagId" />
+            </Principal>
+            <Dependent Role="JsdRecordHeaderFlag">
+              <PropertyRef Name="FlagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JsdRecordHeaderFlag_SlfRecordJsd">
+          <End Role="SlfRecordJsd" Type="Self.SlfRecordJsd" Multiplicity="1" />
+          <End Role="JsdRecordHeaderFlag" Type="Self.JsdRecordHeaderFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlfRecordJsd">
+              <PropertyRef Name="SlfRecordJsdId" />
+            </Principal>
+            <Dependent Role="JsdRecordHeaderFlag">
+              <PropertyRef Name="JsdRecordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JsdStructure_JsdArmor">
+          <End Role="JsdArmor" Type="Self.JsdArmor" Multiplicity="1" />
+          <End Role="JsdStructure" Type="Self.JsdStructure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JsdArmor">
+              <PropertyRef Name="JsdArmorId" />
+            </Principal>
+            <Dependent Role="JsdStructure">
+              <PropertyRef Name="Armour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JsdStructure_SlfRecordJsd">
+          <End Role="SlfRecordJsd" Type="Self.SlfRecordJsd" Multiplicity="1" />
+          <End Role="JsdStructure" Type="Self.JsdStructure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlfRecordJsd">
+              <PropertyRef Name="SlfRecordJsdId" />
+            </Principal>
+            <Dependent Role="JsdStructure">
+              <PropertyRef Name="SlfRecordJsdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JsdStructureStrucrureFlag_JsdStructure">
+          <End Role="JsdStructure" Type="Self.JsdStructure" Multiplicity="1" />
+          <End Role="JsdStructureStructureFlag" Type="Self.JsdStructureStructureFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JsdStructure">
+              <PropertyRef Name="JsdStructureId" />
+            </Principal>
+            <Dependent Role="JsdStructureStructureFlag">
+              <PropertyRef Name="JsdStructureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JsdStructureStrucrureFlag_JsdStructureFlags">
+          <End Role="JsdStructureFlags" Type="Self.JsdStructureFlags" Multiplicity="1" />
+          <End Role="JsdStructureStructureFlag" Type="Self.JsdStructureStructureFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JsdStructureFlags">
+              <PropertyRef Name="JsdStructureFlagId" />
+            </Principal>
+            <Dependent Role="JsdStructureStructureFlag">
+              <PropertyRef Name="FlagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JsdTile_JsdStructure">
+          <End Role="JsdStructure" Type="Self.JsdStructure" Multiplicity="1" />
+          <End Role="JsdTile" Type="Self.JsdTile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JsdStructure">
+              <PropertyRef Name="JsdStructureId" />
+            </Principal>
+            <Dependent Role="JsdTile">
+              <PropertyRef Name="JsdStructureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JsdTileCell_JsdTile">
+          <End Role="JsdTile" Type="Self.JsdTile" Multiplicity="1" />
+          <End Role="JsdTileCell" Type="Self.JsdTileCell" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JsdTile">
+              <PropertyRef Name="JsdTileId" />
+            </Principal>
+            <Dependent Role="JsdTileCell">
+              <PropertyRef Name="JsdTileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JsdTileTileFlag_JsdTile">
+          <End Role="JsdTile" Type="Self.JsdTile" Multiplicity="1" />
+          <End Role="JsdTileTileFlag" Type="Self.JsdTileTileFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JsdTile">
+              <PropertyRef Name="JsdTileId" />
+            </Principal>
+            <Dependent Role="JsdTileTileFlag">
+              <PropertyRef Name="JsdTileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JsdTileTileFlag_JsdTileFlags">
+          <End Role="JsdTileFlags" Type="Self.JsdTileFlags" Multiplicity="1" />
+          <End Role="JsdTileTileFlag" Type="Self.JsdTileTileFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JsdTileFlags">
+              <PropertyRef Name="JsdTileFlagsId" />
+            </Principal>
+            <Dependent Role="JsdTileTileFlag">
+              <PropertyRef Name="FlagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SlfFile_DataInfo">
+          <End Role="DataInfo" Type="Self.DataInfo" Multiplicity="1" />
+          <End Role="SlfFile" Type="Self.SlfFile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataInfo">
+              <PropertyRef Name="DataInfoId" />
+            </Principal>
+            <Dependent Role="SlfFile">
+              <PropertyRef Name="DataInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SlfRecord_SlfFile">
+          <End Role="SlfFile" Type="Self.SlfFile" Multiplicity="1" />
+          <End Role="SlfRecord" Type="Self.SlfRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlfFile">
+              <PropertyRef Name="SlfFileId" />
+            </Principal>
+            <Dependent Role="SlfRecord">
+              <PropertyRef Name="SlfFileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SlfRecord_SlfRecordHeader">
+          <End Role="SlfRecordHeader" Type="Self.SlfRecordHeader" Multiplicity="1" />
+          <End Role="SlfRecord" Type="Self.SlfRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlfRecordHeader">
+              <PropertyRef Name="SlfRecordHeaderId" />
+            </Principal>
+            <Dependent Role="SlfRecord">
+              <PropertyRef Name="SlfRecordHeaderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SlfRecord_UnstructuredData">
+          <End Role="UnstructuredData" Type="Self.UnstructuredData" Multiplicity="0..1" />
+          <End Role="SlfRecord" Type="Self.SlfRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnstructuredData">
+              <PropertyRef Name="UnstructuredDataId" />
+            </Principal>
+            <Dependent Role="SlfRecord">
+              <PropertyRef Name="UnstructuredDataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_SlfRecordHeader_FileState' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_SlfRecordHeader_FileState" />-->
+        <Association Name="FK_SlfRecordJsd_SlfFile">
+          <End Role="SlfFile" Type="Self.SlfFile" Multiplicity="1" />
+          <End Role="SlfRecordJsd" Type="Self.SlfRecordJsd" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlfFile">
+              <PropertyRef Name="SlfFileId" />
+            </Principal>
+            <Dependent Role="SlfRecordJsd">
+              <PropertyRef Name="SlfFileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SlfRecordJsd_SlfRecordHeader">
+          <End Role="SlfRecordHeader" Type="Self.SlfRecordHeader" Multiplicity="1" />
+          <End Role="SlfRecordJsd" Type="Self.SlfRecordJsd" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlfRecordHeader">
+              <PropertyRef Name="SlfRecordHeaderId" />
+            </Principal>
+            <Dependent Role="SlfRecordJsd">
+              <PropertyRef Name="SlfRecordHeaderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SlfRecordStci_SlfFile">
+          <End Role="SlfFile" Type="Self.SlfFile" Multiplicity="1" />
+          <End Role="SlfRecordStci" Type="Self.SlfRecordStci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlfFile">
+              <PropertyRef Name="SlfFileId" />
+            </Principal>
+            <Dependent Role="SlfRecordStci">
+              <PropertyRef Name="SlfFileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SlfRecordStci_SlfRecordHeader">
+          <End Role="SlfRecordHeader" Type="Self.SlfRecordHeader" Multiplicity="1" />
+          <End Role="SlfRecordStci" Type="Self.SlfRecordStci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlfRecordHeader">
+              <PropertyRef Name="SlfRecordHeaderId" />
+            </Principal>
+            <Dependent Role="SlfRecordStci">
+              <PropertyRef Name="SlfRecordHeaderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SlfRecordText_SlfFile">
+          <End Role="SlfFile" Type="Self.SlfFile" Multiplicity="1" />
+          <End Role="SlfRecordText" Type="Self.SlfRecordText" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlfFile">
+              <PropertyRef Name="SlfFileId" />
+            </Principal>
+            <Dependent Role="SlfRecordText">
+              <PropertyRef Name="SlfFileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SlfRecordText_SlfRecordHeader">
+          <End Role="SlfRecordHeader" Type="Self.SlfRecordHeader" Multiplicity="1" />
+          <End Role="SlfRecordText" Type="Self.SlfRecordText" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlfRecordHeader">
+              <PropertyRef Name="SlfRecordHeaderId" />
+            </Principal>
+            <Dependent Role="SlfRecordText">
+              <PropertyRef Name="SlfRecordHeaderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StciIndexed_SlfRecordStci">
+          <End Role="SlfRecordStci" Type="Self.SlfRecordStci" Multiplicity="1" />
+          <End Role="StciIndexed" Type="Self.StciIndexed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlfRecordStci">
+              <PropertyRef Name="SlfRecordId" />
+            </Principal>
+            <Dependent Role="StciIndexed">
+              <PropertyRef Name="SlfRecordStciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StciIndexedSubImage_AuxObjectData">
+          <End Role="AuxObjectData" Type="Self.AuxObjectData" Multiplicity="0..1" />
+          <End Role="StciIndexedSubImage" Type="Self.StciIndexedSubImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AuxObjectData">
+              <PropertyRef Name="AuxObjectDataId" />
+            </Principal>
+            <Dependent Role="StciIndexedSubImage">
+              <PropertyRef Name="AuxObjectDataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StciIndexedSubImage_StciIndexed">
+          <End Role="StciIndexed" Type="Self.StciIndexed" Multiplicity="1" />
+          <End Role="StciIndexedSubImage" Type="Self.StciIndexedSubImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StciIndexed">
+              <PropertyRef Name="StciIndexedId" />
+            </Principal>
+            <Dependent Role="StciIndexedSubImage">
+              <PropertyRef Name="StciIndexedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StciIndexedSubImage_UnstructuredData">
+          <End Role="UnstructuredData" Type="Self.UnstructuredData" Multiplicity="1" />
+          <End Role="StciIndexedSubImage" Type="Self.StciIndexedSubImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnstructuredData">
+              <PropertyRef Name="UnstructuredDataId" />
+            </Principal>
+            <Dependent Role="StciIndexedSubImage">
+              <PropertyRef Name="UnstructuredDataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StciRecordStciFlag_SlfRecordStci">
+          <End Role="SlfRecordStci" Type="Self.SlfRecordStci" Multiplicity="1" />
+          <End Role="StciRecordStciFlag" Type="Self.StciRecordStciFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlfRecordStci">
+              <PropertyRef Name="SlfRecordId" />
+            </Principal>
+            <Dependent Role="StciRecordStciFlag">
+              <PropertyRef Name="RecordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StciRecordStciFlag_StciFlags">
+          <End Role="StciFlags" Type="Self.StciFlags" Multiplicity="1" />
+          <End Role="StciRecordStciFlag" Type="Self.StciRecordStciFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StciFlags">
+              <PropertyRef Name="StciFlagsId" />
+            </Principal>
+            <Dependent Role="StciRecordStciFlag">
+              <PropertyRef Name="FlagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StciRgb_SlfRecordStci">
+          <End Role="SlfRecordStci" Type="Self.SlfRecordStci" Multiplicity="1" />
+          <End Role="StciRgb" Type="Self.StciRgb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlfRecordStci">
+              <PropertyRef Name="SlfRecordId" />
+            </Principal>
+            <Dependent Role="StciRgb">
+              <PropertyRef Name="SlfRecordStciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StciRgb_UnstructuredData">
+          <End Role="UnstructuredData" Type="Self.UnstructuredData" Multiplicity="1" />
+          <End Role="StciRgb" Type="Self.StciRgb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnstructuredData">
+              <PropertyRef Name="UnstructuredDataId" />
+            </Principal>
+            <Dependent Role="StciRgb">
+              <PropertyRef Name="UnstructuredDataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Ja2DataModelStoreContainer">
+          <EntitySet Name="AuxDataFlags" EntityType="Self.AuxDataFlags" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AuxDataJsdAux" EntityType="Self.AuxDataJsdAux" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AuxObjectAuxFlag" EntityType="Self.AuxObjectAuxFlag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AuxObjectData" EntityType="Self.AuxObjectData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DataInfo" EntityType="Self.DataInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DataType" EntityType="Self.DataType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FileExtention" EntityType="Self.FileExtention" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FileState" EntityType="Self.FileState" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JsdArmor" EntityType="Self.JsdArmor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JsdAuxData" EntityType="Self.JsdAuxData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JsdHeaderFlags" EntityType="Self.JsdHeaderFlags" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JsdRecordHeaderFlag" EntityType="Self.JsdRecordHeaderFlag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JsdStructure" EntityType="Self.JsdStructure" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JsdStructureFlags" EntityType="Self.JsdStructureFlags" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JsdStructureStructureFlag" EntityType="Self.JsdStructureStructureFlag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JsdTile" EntityType="Self.JsdTile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JsdTileCell" EntityType="Self.JsdTileCell" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JsdTileFlags" EntityType="Self.JsdTileFlags" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JsdTileTileFlag" EntityType="Self.JsdTileTileFlag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SlfFile" EntityType="Self.SlfFile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SlfRecord" EntityType="Self.SlfRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SlfRecordHeader" EntityType="Self.SlfRecordHeader" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SlfRecordJsd" EntityType="Self.SlfRecordJsd" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SlfRecordStci" EntityType="Self.SlfRecordStci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SlfRecordText" EntityType="Self.SlfRecordText" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StciFlags" EntityType="Self.StciFlags" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StciIndexed" EntityType="Self.StciIndexed" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StciIndexedSubImage" EntityType="Self.StciIndexedSubImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StciRecordStciFlag" EntityType="Self.StciRecordStciFlag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StciRgb" EntityType="Self.StciRgb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnstructuredData" EntityType="Self.UnstructuredData" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AuxDataJsdAux_AuxObjectData" Association="Self.FK_AuxDataJsdAux_AuxObjectData">
+            <End Role="AuxObjectData" EntitySet="AuxObjectData" />
+            <End Role="AuxDataJsdAux" EntitySet="AuxDataJsdAux" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuxDataJsdAux_JsdAuxData" Association="Self.FK_AuxDataJsdAux_JsdAuxData">
+            <End Role="JsdAuxData" EntitySet="JsdAuxData" />
+            <End Role="AuxDataJsdAux" EntitySet="AuxDataJsdAux" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuxObjectAuxFlag_AuxDataFlags" Association="Self.FK_AuxObjectAuxFlag_AuxDataFlags">
+            <End Role="AuxDataFlags" EntitySet="AuxDataFlags" />
+            <End Role="AuxObjectAuxFlag" EntitySet="AuxObjectAuxFlag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuxObjectAuxFlag_AuxObjectData" Association="Self.FK_AuxObjectAuxFlag_AuxObjectData">
+            <End Role="AuxObjectData" EntitySet="AuxObjectData" />
+            <End Role="AuxObjectAuxFlag" EntitySet="AuxObjectAuxFlag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FileExtention_DataType" Association="Self.FK_FileExtention_DataType">
+            <End Role="DataType" EntitySet="DataType" />
+            <End Role="FileExtention" EntitySet="FileExtention" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JsdAuxData_SlfRecordJsd" Association="Self.FK_JsdAuxData_SlfRecordJsd">
+            <End Role="SlfRecordJsd" EntitySet="SlfRecordJsd" />
+            <End Role="JsdAuxData" EntitySet="JsdAuxData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JsdRecordHeaderFlag_JsdHeaderFlags" Association="Self.FK_JsdRecordHeaderFlag_JsdHeaderFlags">
+            <End Role="JsdHeaderFlags" EntitySet="JsdHeaderFlags" />
+            <End Role="JsdRecordHeaderFlag" EntitySet="JsdRecordHeaderFlag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JsdRecordHeaderFlag_SlfRecordJsd" Association="Self.FK_JsdRecordHeaderFlag_SlfRecordJsd">
+            <End Role="SlfRecordJsd" EntitySet="SlfRecordJsd" />
+            <End Role="JsdRecordHeaderFlag" EntitySet="JsdRecordHeaderFlag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JsdStructure_JsdArmor" Association="Self.FK_JsdStructure_JsdArmor">
+            <End Role="JsdArmor" EntitySet="JsdArmor" />
+            <End Role="JsdStructure" EntitySet="JsdStructure" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JsdStructure_SlfRecordJsd" Association="Self.FK_JsdStructure_SlfRecordJsd">
+            <End Role="SlfRecordJsd" EntitySet="SlfRecordJsd" />
+            <End Role="JsdStructure" EntitySet="JsdStructure" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JsdStructureStrucrureFlag_JsdStructure" Association="Self.FK_JsdStructureStrucrureFlag_JsdStructure">
+            <End Role="JsdStructure" EntitySet="JsdStructure" />
+            <End Role="JsdStructureStructureFlag" EntitySet="JsdStructureStructureFlag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JsdStructureStrucrureFlag_JsdStructureFlags" Association="Self.FK_JsdStructureStrucrureFlag_JsdStructureFlags">
+            <End Role="JsdStructureFlags" EntitySet="JsdStructureFlags" />
+            <End Role="JsdStructureStructureFlag" EntitySet="JsdStructureStructureFlag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JsdTile_JsdStructure" Association="Self.FK_JsdTile_JsdStructure">
+            <End Role="JsdStructure" EntitySet="JsdStructure" />
+            <End Role="JsdTile" EntitySet="JsdTile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JsdTileCell_JsdTile" Association="Self.FK_JsdTileCell_JsdTile">
+            <End Role="JsdTile" EntitySet="JsdTile" />
+            <End Role="JsdTileCell" EntitySet="JsdTileCell" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JsdTileTileFlag_JsdTile" Association="Self.FK_JsdTileTileFlag_JsdTile">
+            <End Role="JsdTile" EntitySet="JsdTile" />
+            <End Role="JsdTileTileFlag" EntitySet="JsdTileTileFlag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JsdTileTileFlag_JsdTileFlags" Association="Self.FK_JsdTileTileFlag_JsdTileFlags">
+            <End Role="JsdTileFlags" EntitySet="JsdTileFlags" />
+            <End Role="JsdTileTileFlag" EntitySet="JsdTileTileFlag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SlfFile_DataInfo" Association="Self.FK_SlfFile_DataInfo">
+            <End Role="DataInfo" EntitySet="DataInfo" />
+            <End Role="SlfFile" EntitySet="SlfFile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SlfRecord_SlfFile" Association="Self.FK_SlfRecord_SlfFile">
+            <End Role="SlfFile" EntitySet="SlfFile" />
+            <End Role="SlfRecord" EntitySet="SlfRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SlfRecord_SlfRecordHeader" Association="Self.FK_SlfRecord_SlfRecordHeader">
+            <End Role="SlfRecordHeader" EntitySet="SlfRecordHeader" />
+            <End Role="SlfRecord" EntitySet="SlfRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SlfRecord_UnstructuredData" Association="Self.FK_SlfRecord_UnstructuredData">
+            <End Role="UnstructuredData" EntitySet="UnstructuredData" />
+            <End Role="SlfRecord" EntitySet="SlfRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SlfRecordJsd_SlfFile" Association="Self.FK_SlfRecordJsd_SlfFile">
+            <End Role="SlfFile" EntitySet="SlfFile" />
+            <End Role="SlfRecordJsd" EntitySet="SlfRecordJsd" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SlfRecordJsd_SlfRecordHeader" Association="Self.FK_SlfRecordJsd_SlfRecordHeader">
+            <End Role="SlfRecordHeader" EntitySet="SlfRecordHeader" />
+            <End Role="SlfRecordJsd" EntitySet="SlfRecordJsd" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SlfRecordStci_SlfFile" Association="Self.FK_SlfRecordStci_SlfFile">
+            <End Role="SlfFile" EntitySet="SlfFile" />
+            <End Role="SlfRecordStci" EntitySet="SlfRecordStci" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SlfRecordStci_SlfRecordHeader" Association="Self.FK_SlfRecordStci_SlfRecordHeader">
+            <End Role="SlfRecordHeader" EntitySet="SlfRecordHeader" />
+            <End Role="SlfRecordStci" EntitySet="SlfRecordStci" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SlfRecordText_SlfFile" Association="Self.FK_SlfRecordText_SlfFile">
+            <End Role="SlfFile" EntitySet="SlfFile" />
+            <End Role="SlfRecordText" EntitySet="SlfRecordText" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SlfRecordText_SlfRecordHeader" Association="Self.FK_SlfRecordText_SlfRecordHeader">
+            <End Role="SlfRecordHeader" EntitySet="SlfRecordHeader" />
+            <End Role="SlfRecordText" EntitySet="SlfRecordText" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StciIndexed_SlfRecordStci" Association="Self.FK_StciIndexed_SlfRecordStci">
+            <End Role="SlfRecordStci" EntitySet="SlfRecordStci" />
+            <End Role="StciIndexed" EntitySet="StciIndexed" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StciIndexedSubImage_AuxObjectData" Association="Self.FK_StciIndexedSubImage_AuxObjectData">
+            <End Role="AuxObjectData" EntitySet="AuxObjectData" />
+            <End Role="StciIndexedSubImage" EntitySet="StciIndexedSubImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StciIndexedSubImage_StciIndexed" Association="Self.FK_StciIndexedSubImage_StciIndexed">
+            <End Role="StciIndexed" EntitySet="StciIndexed" />
+            <End Role="StciIndexedSubImage" EntitySet="StciIndexedSubImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StciIndexedSubImage_UnstructuredData" Association="Self.FK_StciIndexedSubImage_UnstructuredData">
+            <End Role="UnstructuredData" EntitySet="UnstructuredData" />
+            <End Role="StciIndexedSubImage" EntitySet="StciIndexedSubImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StciRecordStciFlag_SlfRecordStci" Association="Self.FK_StciRecordStciFlag_SlfRecordStci">
+            <End Role="SlfRecordStci" EntitySet="SlfRecordStci" />
+            <End Role="StciRecordStciFlag" EntitySet="StciRecordStciFlag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StciRecordStciFlag_StciFlags" Association="Self.FK_StciRecordStciFlag_StciFlags">
+            <End Role="StciFlags" EntitySet="StciFlags" />
+            <End Role="StciRecordStciFlag" EntitySet="StciRecordStciFlag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StciRgb_SlfRecordStci" Association="Self.FK_StciRgb_SlfRecordStci">
+            <End Role="SlfRecordStci" EntitySet="SlfRecordStci" />
+            <End Role="StciRgb" EntitySet="StciRgb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StciRgb_UnstructuredData" Association="Self.FK_StciRgb_UnstructuredData">
+            <End Role="UnstructuredData" EntitySet="UnstructuredData" />
+            <End Role="StciRgb" EntitySet="StciRgb" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Ja2DataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AuxDataFlags">
+          <Key>
+            <PropertyRef Name="AuxDataFlagsId" />
+          </Key>
+          <Property Name="AuxDataFlagsId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Value" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="AuxObjectAuxFlag" Relationship="Self.FK_AuxObjectAuxFlag_AuxDataFlags" FromRole="AuxDataFlags" ToRole="AuxObjectAuxFlag" />
+          <Property Name="Mask" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="AuxObjectAuxFlag">
+          <Key>
+            <PropertyRef Name="AuxObjectFlagId" />
+          </Key>
+          <Property Name="AuxObjectFlagId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AuxObjectDataId" Type="Int64" Nullable="false" />
+          <Property Name="FlagId" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="AuxDataFlags" Relationship="Self.FK_AuxObjectAuxFlag_AuxDataFlags" FromRole="AuxObjectAuxFlag" ToRole="AuxDataFlags" />
+          <NavigationProperty Name="AuxObjectData" Relationship="Self.FK_AuxObjectAuxFlag_AuxObjectData" FromRole="AuxObjectAuxFlag" ToRole="AuxObjectData" />
+        </EntityType>
+        <EntityType Name="AuxObjectData">
+          <Key>
+            <PropertyRef Name="AuxObjectDataId" />
+          </Key>
+          <Property Name="AuxObjectDataId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="WallOrientation" Type="Byte" Nullable="false" />
+          <Property Name="NumberOfTiles" Type="Byte" Nullable="false" />
+          <Property Name="TileLocIndex" Type="Int32" Nullable="false" />
+          <Property Name="Unused1" Type="Binary" MaxLength="3" FixedLength="true" Nullable="false" />
+          <Property Name="CurrentFrame" Type="Byte" Nullable="false" />
+          <Property Name="NumberOfFrames" Type="Byte" Nullable="false" />
+          <Property Name="Unused" Type="Binary" MaxLength="6" FixedLength="true" Nullable="false" />
+          <NavigationProperty Name="AuxObjectAuxFlag" Relationship="Self.FK_AuxObjectAuxFlag_AuxObjectData" FromRole="AuxObjectData" ToRole="AuxObjectAuxFlag" />
+          <NavigationProperty Name="StciIndexedSubImage" Relationship="Self.FK_StciIndexedSubImage_AuxObjectData" FromRole="AuxObjectData" ToRole="StciIndexedSubImage" />
+          <NavigationProperty Name="AuxDataJsdAux" Relationship="Ja2DataModel.FK_AuxDataJsdAux_AuxObjectData" FromRole="AuxObjectData" ToRole="AuxDataJsdAux" />
+        </EntityType>
+        <EntityType Name="DataInfo">
+          <Key>
+            <PropertyRef Name="DataInfoId" />
+          </Key>
+          <Property Name="DataInfoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProduserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MajorVerson" Type="Int32" Nullable="false" />
+          <Property Name="MinorVersion" Type="Int32" Nullable="false" />
+          <Property Name="Revision" Type="Int32" />
+          <Property Name="Build" Type="Int32" />
+          <Property Name="BuildDate" Type="DateTime" Precision="3" />
+          <Property Name="Local" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="Localizer" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="SlfFile" Relationship="Ja2DataModel.FK_SlfFile_DataInfo" FromRole="DataInfo" ToRole="SlfFile" />
+        </EntityType>
+        <EntityType Name="FileState">
+          <Key>
+            <PropertyRef Name="FileStateId" />
+          </Key>
+          <Property Name="FileStateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileStateName" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="FileStateValue" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JsdArmor">
+          <Key>
+            <PropertyRef Name="JsdArmorId" />
+          </Key>
+          <Property Name="JsdArmorId" Type="Byte" Nullable="false" />
+          <Property Name="Material" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Value" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="JsdStructure" Relationship="Self.FK_JsdStructure_JsdArmor" FromRole="JsdArmor" ToRole="JsdStructure" />
+        </EntityType>
+        <EntityType Name="JsdAuxData">
+          <Key>
+            <PropertyRef Name="JsdAuxDataId" />
+          </Key>
+          <Property Name="JsdAuxDataId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SlfRecordJsdId" Type="Int64" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="TileLocationData" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="SlfRecordJsd" Relationship="Self.FK_JsdAuxData_SlfRecordJsd" FromRole="JsdAuxData" ToRole="SlfRecordJsd" />
+          <NavigationProperty Name="AuxDataJsdAux" Relationship="Ja2DataModel.FK_AuxDataJsdAux_JsdAuxData" FromRole="JsdAuxData" ToRole="AuxDataJsdAux" />
+        </EntityType>
+        <EntityType Name="JsdHeaderFlags">
+          <Key>
+            <PropertyRef Name="JsdRecordFlagId" />
+          </Key>
+          <Property Name="JsdRecordFlagId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Value" Type="Byte" Nullable="false" />
+          <Property Name="Mask" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="JsdRecordHeaderFlag" Relationship="Self.FK_JsdRecordHeaderFlag_JsdHeaderFlags" FromRole="JsdHeaderFlags" ToRole="JsdRecordHeaderFlag" />
+        </EntityType>
+        <EntityType Name="JsdRecordHeaderFlag">
+          <Key>
+            <PropertyRef Name="JsdRecordHeaderFlagId" />
+          </Key>
+          <Property Name="JsdRecordHeaderFlagId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JsdRecordId" Type="Int64" Nullable="false" />
+          <Property Name="FlagId" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="JsdHeaderFlags" Relationship="Self.FK_JsdRecordHeaderFlag_JsdHeaderFlags" FromRole="JsdRecordHeaderFlag" ToRole="JsdHeaderFlags" />
+          <NavigationProperty Name="SlfRecordJsd" Relationship="Self.FK_JsdRecordHeaderFlag_SlfRecordJsd" FromRole="JsdRecordHeaderFlag" ToRole="SlfRecordJsd" />
+        </EntityType>
+        <EntityType Name="JsdStructure">
+          <Key>
+            <PropertyRef Name="JsdStructureId" />
+          </Key>
+          <Property Name="JsdStructureId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SlfRecordJsdId" Type="Int64" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Armour" Type="Byte" Nullable="false" />
+          <Property Name="HitPoints" Type="Byte" Nullable="false" />
+          <Property Name="Density" Type="Byte" Nullable="false" />
+          <Property Name="NumberOfTiles" Type="Byte" Nullable="false" />
+          <Property Name="StructureNumber" Type="Int32" Nullable="false" />
+          <Property Name="WallOrientation" Type="Byte" Nullable="false" />
+          <Property Name="DestructionPartner" Type="Int16" Nullable="false" />
+          <Property Name="PartnerDelta" Type="Int16" Nullable="false" />
+          <Property Name="ZTileOffsetX" Type="Int16" Nullable="false" />
+          <Property Name="ZTileOffsetY" Type="Int16" Nullable="false" />
+          <Property Name="Unused" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="JsdArmor" Relationship="Self.FK_JsdStructure_JsdArmor" FromRole="JsdStructure" ToRole="JsdArmor" />
+          <NavigationProperty Name="SlfRecordJsd" Relationship="Ja2DataModel.FK_JsdStructure_SlfRecordJsd" FromRole="JsdStructure" ToRole="SlfRecordJsd" />
+          <NavigationProperty Name="JsdTile" Relationship="Ja2DataModel.FK_JsdTile_JsdStructure" FromRole="JsdStructure" ToRole="JsdTile" />
+          <NavigationProperty Name="JsdStructureStructureFlag" Relationship="Ja2DataModel.FK_JsdStructureStrucrureFlag_JsdStructure" FromRole="JsdStructure" ToRole="JsdStructureStructureFlag" />
+        </EntityType>
+        <EntityType Name="JsdStructureFlags">
+          <Key>
+            <PropertyRef Name="JsdStructureFlagId" />
+          </Key>
+          <Property Name="JsdStructureFlagId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Value" Type="Byte" Nullable="false" />
+          <Property Name="Mask" Type="Int64" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="JsdStructureStructureFlag" Relationship="Ja2DataModel.FK_JsdStructureStrucrureFlag_JsdStructureFlags" FromRole="JsdStructureFlags" ToRole="JsdStructureStructureFlag" />
+        </EntityType>
+        <EntityType Name="JsdTile">
+          <Key>
+            <PropertyRef Name="JsdTileId" />
+          </Key>
+          <Property Name="JsdTileId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JsdStructureId" Type="Int64" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="PosRelToBase" Type="Int16" Nullable="false" />
+          <Property Name="XPosRelToBase" Type="Int16" Nullable="false" />
+          <Property Name="YPosRelToBase" Type="Int16" Nullable="false" />
+          <Property Name="VehicleHitLocation" Type="Byte" Nullable="false" />
+          <Property Name="Unused" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="JsdTileTileFlag" Relationship="Self.FK_JsdTileTileFlag_JsdTile" FromRole="JsdTile" ToRole="JsdTileTileFlag" />
+          <NavigationProperty Name="JsdStructure" Relationship="Ja2DataModel.FK_JsdTile_JsdStructure" FromRole="JsdTile" ToRole="JsdStructure" />
+          <NavigationProperty Name="JsdTileCell" Relationship="Ja2DataModel.FK_JsdTileCell_JsdTile" FromRole="JsdTile" ToRole="JsdTileCell" />
+        </EntityType>
+        <EntityType Name="JsdTileFlags">
+          <Key>
+            <PropertyRef Name="JsdTileFlagsId" />
+          </Key>
+          <Property Name="JsdTileFlagsId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Value" Type="Byte" Nullable="false" />
+          <Property Name="Mask" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="JsdTileTileFlag" Relationship="Self.FK_JsdTileTileFlag_JsdTileFlags" FromRole="JsdTileFlags" ToRole="JsdTileTileFlag" />
+        </EntityType>
+        <EntityType Name="JsdTileTileFlag">
+          <Key>
+            <PropertyRef Name="JsdTileTileFlagId" />
+          </Key>
+          <Property Name="JsdTileTileFlagId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JsdTileId" Type="Int64" Nullable="false" />
+          <Property Name="FlagId" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="JsdTile" Relationship="Self.FK_JsdTileTileFlag_JsdTile" FromRole="JsdTileTileFlag" ToRole="JsdTile" />
+          <NavigationProperty Name="JsdTileFlags" Relationship="Self.FK_JsdTileTileFlag_JsdTileFlags" FromRole="JsdTileTileFlag" ToRole="JsdTileFlags" />
+        </EntityType>
+        <EntityType Name="SlfFile">
+          <Key>
+            <PropertyRef Name="SlfFileId" />
+          </Key>
+          <Property Name="SlfFileId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="FileName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="LibName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PathToLibrary" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EntriesCount" Type="Int32" Nullable="false" />
+          <Property Name="Used" Type="Int32" Nullable="false" />
+          <Property Name="Sort" Type="Int16" Nullable="false" />
+          <Property Name="Version" Type="Int16" Nullable="false" />
+          <Property Name="ContainsSubDirectories" Type="Byte" Nullable="false" />
+          <Property Name="Reserved" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SlfRecord" Relationship="Self.FK_SlfRecord_SlfFile" FromRole="SlfFile" ToRole="SlfRecord" />
+          <NavigationProperty Name="SlfRecordJsd" Relationship="Self.FK_SlfRecordJsd_SlfFile" FromRole="SlfFile" ToRole="SlfRecordJsd" />
+          <NavigationProperty Name="SlfRecordStci" Relationship="Self.FK_SlfRecordStci_SlfFile" FromRole="SlfFile" ToRole="SlfRecordStci" />
+          <Property Name="DataInfoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DataInfo" Relationship="Ja2DataModel.FK_SlfFile_DataInfo" FromRole="SlfFile" ToRole="DataInfo" />
+          <NavigationProperty Name="SlfRecordText" Relationship="Ja2DataModel.FK_SlfRecordText_SlfFile" FromRole="SlfFile" ToRole="SlfRecordText" />
+        </EntityType>
+        <EntityType Name="SlfRecord">
+          <Key>
+            <PropertyRef Name="SlfRecordId" />
+          </Key>
+          <Property Name="SlfRecordId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SlfRecordHeaderId" Type="Int64" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="SlfFileId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SlfFile" Relationship="Self.FK_SlfRecord_SlfFile" FromRole="SlfRecord" ToRole="SlfFile" />
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="UnstructuredDataId" Type="Int32" />
+          <NavigationProperty Name="UnstructuredData" Relationship="Ja2DataModel.FK_SlfRecord_UnstructuredData" FromRole="SlfRecord" ToRole="UnstructuredData" />
+          <NavigationProperty Name="SlfRecordHeader" Relationship="Ja2DataModel.FK_SlfRecord_SlfRecordHeader" FromRole="SlfRecord" ToRole="SlfRecordHeader" />
+        </EntityType>
+        <EntityType Name="SlfRecordJsd">
+          <Key>
+            <PropertyRef Name="SlfRecordJsdId" />
+          </Key>
+          <Property Name="SlfRecordJsdId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SlfRecordHeaderId" Type="Int64" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="SlfFileId" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="NumberOfStructuresAndOrImages" Type="Int32" Nullable="false" />
+          <Property Name="NumberOfStructuresStored" Type="Int32" Nullable="false" />
+          <Property Name="StructureDataSize" Type="Int32" Nullable="false" />
+          <Property Name="Unused" Type="Binary" MaxLength="3" FixedLength="true" Nullable="false" />
+          <Property Name="NumberOfImageTileLocsStored" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="JsdAuxData" Relationship="Self.FK_JsdAuxData_SlfRecordJsd" FromRole="SlfRecordJsd" ToRole="JsdAuxData" />
+          <NavigationProperty Name="JsdRecordHeaderFlag" Relationship="Self.FK_JsdRecordHeaderFlag_SlfRecordJsd" FromRole="SlfRecordJsd" ToRole="JsdRecordHeaderFlag" />
+          <NavigationProperty Name="SlfFile" Relationship="Self.FK_SlfRecordJsd_SlfFile" FromRole="SlfRecordJsd" ToRole="SlfFile" />
+          <NavigationProperty Name="JsdStructure" Relationship="Ja2DataModel.FK_JsdStructure_SlfRecordJsd" FromRole="SlfRecordJsd" ToRole="JsdStructure" />
+          <NavigationProperty Name="SlfRecordHeader" Relationship="Ja2DataModel.FK_SlfRecordJsd_SlfRecordHeader" FromRole="SlfRecordJsd" ToRole="SlfRecordHeader" />
+        </EntityType>
+        <EntityType Name="SlfRecordStci">
+          <Key>
+            <PropertyRef Name="SlfRecordId" />
+          </Key>
+          <Property Name="SlfRecordId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SlfRecordHeaderId" Type="Int64" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="SlfFileId" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="OriginalSize" Type="Int64" Nullable="false" />
+          <Property Name="StoredSize" Type="Int64" Nullable="false" />
+          <Property Name="TransparentValue" Type="Int64" Nullable="false" />
+          <Property Name="Height" Type="Int32" Nullable="false" />
+          <Property Name="Width" Type="Int32" Nullable="false" />
+          <Property Name="Depth" Type="Byte" Nullable="false" />
+          <Property Name="AppDataSize" Type="Int32" Nullable="false" />
+          <Property Name="Unused" Type="Binary" MaxLength="15" FixedLength="true" />
+          <NavigationProperty Name="SlfFile" Relationship="Self.FK_SlfRecordStci_SlfFile" FromRole="SlfRecordStci" ToRole="SlfFile" />
+          <NavigationProperty Name="StciIndexed" Relationship="Self.FK_StciIndexed_SlfRecordStci" FromRole="SlfRecordStci" ToRole="StciIndexed" />
+          <NavigationProperty Name="StciRecordStciFlag" Relationship="Self.FK_StciRecordStciFlag_SlfRecordStci" FromRole="SlfRecordStci" ToRole="StciRecordStciFlag" />
+          <NavigationProperty Name="StciRgb" Relationship="Self.FK_StciRgb_SlfRecordStci" FromRole="SlfRecordStci" ToRole="StciRgb" />
+          <NavigationProperty Name="SlfRecordHeader" Relationship="Ja2DataModel.FK_SlfRecordStci_SlfRecordHeader" FromRole="SlfRecordStci" ToRole="SlfRecordHeader" />
+        </EntityType>
+        <EntityType Name="StciFlags">
+          <Key>
+            <PropertyRef Name="StciFlagsId" />
+          </Key>
+          <Property Name="StciFlagsId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Value" Type="Int32" Nullable="false" />
+          <Property Name="Mask" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="StciRecordStciFlag" Relationship="Self.FK_StciRecordStciFlag_StciFlags" FromRole="StciFlags" ToRole="StciRecordStciFlag" />
+        </EntityType>
+        <EntityType Name="StciIndexed">
+          <Key>
+            <PropertyRef Name="StciIndexedId" />
+          </Key>
+          <Property Name="StciIndexedId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SlfRecordStciId" Type="Int64" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="NumberOfColours" Type="Int64" Nullable="false" />
+          <Property Name="NumberOfSubImages" Type="Int32" Nullable="false" />
+          <Property Name="RedDepth" Type="Byte" Nullable="false" />
+          <Property Name="GreenDepth" Type="Byte" Nullable="false" />
+          <Property Name="BlueDepth" Type="Byte" Nullable="false" />
+          <Property Name="Unused" Type="Binary" MaxLength="11" FixedLength="true" Nullable="false" />
+          <Property Name="Palette" Type="Binary" MaxLength="768" FixedLength="true" Nullable="false" />
+          <NavigationProperty Name="SlfRecordStci" Relationship="Self.FK_StciIndexed_SlfRecordStci" FromRole="StciIndexed" ToRole="SlfRecordStci" />
+          <NavigationProperty Name="StciIndexedSubImage" Relationship="Self.FK_StciIndexedSubImage_StciIndexed" FromRole="StciIndexed" ToRole="StciIndexedSubImage" />
+        </EntityType>
+        <EntityType Name="StciIndexedSubImage">
+          <Key>
+            <PropertyRef Name="StciIndexedSubImageId" />
+          </Key>
+          <Property Name="StciIndexedSubImageId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StciIndexedId" Type="Int64" Nullable="false" />
+          <Property Name="AuxObjectDataId" Type="Int64" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="DataOffset" Type="Int64" Nullable="false" />
+          <Property Name="DataLength" Type="Int64" Nullable="false" />
+          <Property Name="OffsetX" Type="Int32" Nullable="false" />
+          <Property Name="OffsetY" Type="Int32" Nullable="false" />
+          <Property Name="Height" Type="Int32" Nullable="false" />
+          <Property Name="Width" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AuxObjectData" Relationship="Self.FK_StciIndexedSubImage_AuxObjectData" FromRole="StciIndexedSubImage" ToRole="AuxObjectData" />
+          <NavigationProperty Name="StciIndexed" Relationship="Self.FK_StciIndexedSubImage_StciIndexed" FromRole="StciIndexedSubImage" ToRole="StciIndexed" />
+          <Property Name="UnstructuredDataId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UnstructuredData" Relationship="Ja2DataModel.FK_StciIndexedSubImage_UnstructuredData" FromRole="StciIndexedSubImage" ToRole="UnstructuredData" />
+        </EntityType>
+        <EntityType Name="StciRecordStciFlag">
+          <Key>
+            <PropertyRef Name="StciRecordsFlagsId" />
+          </Key>
+          <Property Name="StciRecordsFlagsId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RecordId" Type="Int64" Nullable="false" />
+          <Property Name="FlagId" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="SlfRecordStci" Relationship="Self.FK_StciRecordStciFlag_SlfRecordStci" FromRole="StciRecordStciFlag" ToRole="SlfRecordStci" />
+          <NavigationProperty Name="StciFlags" Relationship="Self.FK_StciRecordStciFlag_StciFlags" FromRole="StciRecordStciFlag" ToRole="StciFlags" />
+        </EntityType>
+        <EntityType Name="StciRgb">
+          <Key>
+            <PropertyRef Name="StciRgbId" />
+          </Key>
+          <Property Name="StciRgbId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SlfRecordStciId" Type="Int64" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="RedMask" Type="Int32" Nullable="false" />
+          <Property Name="GreenMask" Type="Int32" Nullable="false" />
+          <Property Name="BlueMask" Type="Int32" Nullable="false" />
+          <Property Name="AlphaMask" Type="Int32" Nullable="false" />
+          <Property Name="RedDepth" Type="Byte" Nullable="false" />
+          <Property Name="GreenDepth" Type="Byte" Nullable="false" />
+          <Property Name="BlueDepth" Type="Byte" Nullable="false" />
+          <Property Name="AlphaDepth" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="SlfRecordStci" Relationship="Self.FK_StciRgb_SlfRecordStci" FromRole="StciRgb" ToRole="SlfRecordStci" />
+          <Property Name="UnstructuredDataId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UnstructuredData" Relationship="Ja2DataModel.FK_StciRgb_UnstructuredData" FromRole="StciRgb" ToRole="UnstructuredData" />
+        </EntityType>
+        <Association Name="FK_AuxObjectAuxFlag_AuxDataFlags">
+          <End Role="AuxDataFlags" Type="Self.AuxDataFlags" Multiplicity="1" />
+          <End Role="AuxObjectAuxFlag" Type="Self.AuxObjectAuxFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AuxDataFlags">
+              <PropertyRef Name="AuxDataFlagsId" />
+            </Principal>
+            <Dependent Role="AuxObjectAuxFlag">
+              <PropertyRef Name="FlagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuxObjectAuxFlag_AuxObjectData">
+          <End Role="AuxObjectData" Type="Self.AuxObjectData" Multiplicity="1" />
+          <End Role="AuxObjectAuxFlag" Type="Self.AuxObjectAuxFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AuxObjectData">
+              <PropertyRef Name="AuxObjectDataId" />
+            </Principal>
+            <Dependent Role="AuxObjectAuxFlag">
+              <PropertyRef Name="AuxObjectDataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StciIndexedSubImage_AuxObjectData">
+          <End Role="AuxObjectData" Type="Self.AuxObjectData" Multiplicity="0..1" />
+          <End Role="StciIndexedSubImage" Type="Self.StciIndexedSubImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AuxObjectData">
+              <PropertyRef Name="AuxObjectDataId" />
+            </Principal>
+            <Dependent Role="StciIndexedSubImage">
+              <PropertyRef Name="AuxObjectDataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JsdStructure_JsdArmor">
+          <End Role="JsdArmor" Type="Self.JsdArmor" Multiplicity="1" />
+          <End Role="JsdStructure" Type="Self.JsdStructure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JsdArmor">
+              <PropertyRef Name="JsdArmorId" />
+            </Principal>
+            <Dependent Role="JsdStructure">
+              <PropertyRef Name="Armour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JsdAuxData_SlfRecordJsd">
+          <End Role="SlfRecordJsd" Type="Self.SlfRecordJsd" Multiplicity="1" />
+          <End Role="JsdAuxData" Type="Self.JsdAuxData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlfRecordJsd">
+              <PropertyRef Name="SlfRecordJsdId" />
+            </Principal>
+            <Dependent Role="JsdAuxData">
+              <PropertyRef Name="SlfRecordJsdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JsdRecordHeaderFlag_JsdHeaderFlags">
+          <End Role="JsdHeaderFlags" Type="Self.JsdHeaderFlags" Multiplicity="1" />
+          <End Role="JsdRecordHeaderFlag" Type="Self.JsdRecordHeaderFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JsdHeaderFlags">
+              <PropertyRef Name="JsdRecordFlagId" />
+            </Principal>
+            <Dependent Role="JsdRecordHeaderFlag">
+              <PropertyRef Name="FlagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JsdRecordHeaderFlag_SlfRecordJsd">
+          <End Role="SlfRecordJsd" Type="Self.SlfRecordJsd" Multiplicity="1" />
+          <End Role="JsdRecordHeaderFlag" Type="Self.JsdRecordHeaderFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlfRecordJsd">
+              <PropertyRef Name="SlfRecordJsdId" />
+            </Principal>
+            <Dependent Role="JsdRecordHeaderFlag">
+              <PropertyRef Name="JsdRecordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JsdTileTileFlag_JsdTile">
+          <End Role="JsdTile" Type="Self.JsdTile" Multiplicity="1" />
+          <End Role="JsdTileTileFlag" Type="Self.JsdTileTileFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JsdTile">
+              <PropertyRef Name="JsdTileId" />
+            </Principal>
+            <Dependent Role="JsdTileTileFlag">
+              <PropertyRef Name="JsdTileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JsdTileTileFlag_JsdTileFlags">
+          <End Role="JsdTileFlags" Type="Self.JsdTileFlags" Multiplicity="1" />
+          <End Role="JsdTileTileFlag" Type="Self.JsdTileTileFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JsdTileFlags">
+              <PropertyRef Name="JsdTileFlagsId" />
+            </Principal>
+            <Dependent Role="JsdTileTileFlag">
+              <PropertyRef Name="FlagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SlfRecord_SlfFile">
+          <End Role="SlfFile" Type="Self.SlfFile" Multiplicity="1" />
+          <End Role="SlfRecord" Type="Self.SlfRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlfFile">
+              <PropertyRef Name="SlfFileId" />
+            </Principal>
+            <Dependent Role="SlfRecord">
+              <PropertyRef Name="SlfFileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SlfRecordJsd_SlfFile">
+          <End Role="SlfFile" Type="Self.SlfFile" Multiplicity="1" />
+          <End Role="SlfRecordJsd" Type="Self.SlfRecordJsd" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlfFile">
+              <PropertyRef Name="SlfFileId" />
+            </Principal>
+            <Dependent Role="SlfRecordJsd">
+              <PropertyRef Name="SlfFileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SlfRecordStci_SlfFile">
+          <End Role="SlfFile" Type="Self.SlfFile" Multiplicity="1" />
+          <End Role="SlfRecordStci" Type="Self.SlfRecordStci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlfFile">
+              <PropertyRef Name="SlfFileId" />
+            </Principal>
+            <Dependent Role="SlfRecordStci">
+              <PropertyRef Name="SlfFileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StciIndexed_SlfRecordStci">
+          <End Role="SlfRecordStci" Type="Self.SlfRecordStci" Multiplicity="1" />
+          <End Role="StciIndexed" Type="Self.StciIndexed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlfRecordStci">
+              <PropertyRef Name="SlfRecordId" />
+            </Principal>
+            <Dependent Role="StciIndexed">
+              <PropertyRef Name="SlfRecordStciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StciRecordStciFlag_SlfRecordStci">
+          <End Role="SlfRecordStci" Type="Self.SlfRecordStci" Multiplicity="1" />
+          <End Role="StciRecordStciFlag" Type="Self.StciRecordStciFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlfRecordStci">
+              <PropertyRef Name="SlfRecordId" />
+            </Principal>
+            <Dependent Role="StciRecordStciFlag">
+              <PropertyRef Name="RecordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StciRgb_SlfRecordStci">
+          <End Role="SlfRecordStci" Type="Self.SlfRecordStci" Multiplicity="1" />
+          <End Role="StciRgb" Type="Self.StciRgb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlfRecordStci">
+              <PropertyRef Name="SlfRecordId" />
+            </Principal>
+            <Dependent Role="StciRgb">
+              <PropertyRef Name="SlfRecordStciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StciRecordStciFlag_StciFlags">
+          <End Role="StciFlags" Type="Self.StciFlags" Multiplicity="1" />
+          <End Role="StciRecordStciFlag" Type="Self.StciRecordStciFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StciFlags">
+              <PropertyRef Name="StciFlagsId" />
+            </Principal>
+            <Dependent Role="StciRecordStciFlag">
+              <PropertyRef Name="FlagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StciIndexedSubImage_StciIndexed">
+          <End Role="StciIndexed" Type="Self.StciIndexed" Multiplicity="1" />
+          <End Role="StciIndexedSubImage" Type="Self.StciIndexedSubImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StciIndexed">
+              <PropertyRef Name="StciIndexedId" />
+            </Principal>
+            <Dependent Role="StciIndexedSubImage">
+              <PropertyRef Name="StciIndexedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Ja2DataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AuxDataFlags" EntityType="Self.AuxDataFlags" />
+          <EntitySet Name="AuxObjectAuxFlag" EntityType="Self.AuxObjectAuxFlag" />
+          <EntitySet Name="AuxObjectData" EntityType="Self.AuxObjectData" />
+          <EntitySet Name="DataInfo" EntityType="Self.DataInfo" />
+          <EntitySet Name="FileState" EntityType="Self.FileState" />
+          <EntitySet Name="JsdArmor" EntityType="Self.JsdArmor" />
+          <EntitySet Name="JsdAuxData" EntityType="Self.JsdAuxData" />
+          <EntitySet Name="JsdHeaderFlags" EntityType="Self.JsdHeaderFlags" />
+          <EntitySet Name="JsdRecordHeaderFlag" EntityType="Self.JsdRecordHeaderFlag" />
+          <EntitySet Name="JsdStructure" EntityType="Self.JsdStructure" />
+          <EntitySet Name="JsdStructureFlags" EntityType="Self.JsdStructureFlags" />
+          <EntitySet Name="JsdTile" EntityType="Self.JsdTile" />
+          <EntitySet Name="JsdTileFlags" EntityType="Self.JsdTileFlags" />
+          <EntitySet Name="JsdTileTileFlag" EntityType="Self.JsdTileTileFlag" />
+          <EntitySet Name="SlfFile" EntityType="Self.SlfFile" />
+          <EntitySet Name="SlfRecord" EntityType="Self.SlfRecord" />
+          <EntitySet Name="SlfRecordJsd" EntityType="Self.SlfRecordJsd" />
+          <EntitySet Name="SlfRecordStci" EntityType="Self.SlfRecordStci" />
+          <EntitySet Name="StciFlags" EntityType="Self.StciFlags" />
+          <EntitySet Name="StciIndexed" EntityType="Self.StciIndexed" />
+          <EntitySet Name="StciIndexedSubImage" EntityType="Self.StciIndexedSubImage" />
+          <EntitySet Name="StciRecordStciFlag" EntityType="Self.StciRecordStciFlag" />
+          <EntitySet Name="StciRgb" EntityType="Self.StciRgb" />
+          <AssociationSet Name="FK_AuxObjectAuxFlag_AuxDataFlags" Association="Self.FK_AuxObjectAuxFlag_AuxDataFlags">
+            <End Role="AuxDataFlags" EntitySet="AuxDataFlags" />
+            <End Role="AuxObjectAuxFlag" EntitySet="AuxObjectAuxFlag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuxObjectAuxFlag_AuxObjectData" Association="Self.FK_AuxObjectAuxFlag_AuxObjectData">
+            <End Role="AuxObjectData" EntitySet="AuxObjectData" />
+            <End Role="AuxObjectAuxFlag" EntitySet="AuxObjectAuxFlag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StciIndexedSubImage_AuxObjectData" Association="Self.FK_StciIndexedSubImage_AuxObjectData">
+            <End Role="AuxObjectData" EntitySet="AuxObjectData" />
+            <End Role="StciIndexedSubImage" EntitySet="StciIndexedSubImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JsdStructure_JsdArmor" Association="Self.FK_JsdStructure_JsdArmor">
+            <End Role="JsdArmor" EntitySet="JsdArmor" />
+            <End Role="JsdStructure" EntitySet="JsdStructure" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JsdAuxData_SlfRecordJsd" Association="Self.FK_JsdAuxData_SlfRecordJsd">
+            <End Role="SlfRecordJsd" EntitySet="SlfRecordJsd" />
+            <End Role="JsdAuxData" EntitySet="JsdAuxData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JsdRecordHeaderFlag_JsdHeaderFlags" Association="Self.FK_JsdRecordHeaderFlag_JsdHeaderFlags">
+            <End Role="JsdHeaderFlags" EntitySet="JsdHeaderFlags" />
+            <End Role="JsdRecordHeaderFlag" EntitySet="JsdRecordHeaderFlag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JsdRecordHeaderFlag_SlfRecordJsd" Association="Self.FK_JsdRecordHeaderFlag_SlfRecordJsd">
+            <End Role="SlfRecordJsd" EntitySet="SlfRecordJsd" />
+            <End Role="JsdRecordHeaderFlag" EntitySet="JsdRecordHeaderFlag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JsdTileTileFlag_JsdTile" Association="Self.FK_JsdTileTileFlag_JsdTile">
+            <End Role="JsdTile" EntitySet="JsdTile" />
+            <End Role="JsdTileTileFlag" EntitySet="JsdTileTileFlag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JsdTileTileFlag_JsdTileFlags" Association="Self.FK_JsdTileTileFlag_JsdTileFlags">
+            <End Role="JsdTileFlags" EntitySet="JsdTileFlags" />
+            <End Role="JsdTileTileFlag" EntitySet="JsdTileTileFlag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SlfRecord_SlfFile" Association="Self.FK_SlfRecord_SlfFile">
+            <End Role="SlfFile" EntitySet="SlfFile" />
+            <End Role="SlfRecord" EntitySet="SlfRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SlfRecordJsd_SlfFile" Association="Self.FK_SlfRecordJsd_SlfFile">
+            <End Role="SlfFile" EntitySet="SlfFile" />
+            <End Role="SlfRecordJsd" EntitySet="SlfRecordJsd" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SlfRecordStci_SlfFile" Association="Self.FK_SlfRecordStci_SlfFile">
+            <End Role="SlfFile" EntitySet="SlfFile" />
+            <End Role="SlfRecordStci" EntitySet="SlfRecordStci" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StciIndexed_SlfRecordStci" Association="Self.FK_StciIndexed_SlfRecordStci">
+            <End Role="SlfRecordStci" EntitySet="SlfRecordStci" />
+            <End Role="StciIndexed" EntitySet="StciIndexed" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StciRecordStciFlag_SlfRecordStci" Association="Self.FK_StciRecordStciFlag_SlfRecordStci">
+            <End Role="SlfRecordStci" EntitySet="SlfRecordStci" />
+            <End Role="StciRecordStciFlag" EntitySet="StciRecordStciFlag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StciRgb_SlfRecordStci" Association="Self.FK_StciRgb_SlfRecordStci">
+            <End Role="SlfRecordStci" EntitySet="SlfRecordStci" />
+            <End Role="StciRgb" EntitySet="StciRgb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StciRecordStciFlag_StciFlags" Association="Self.FK_StciRecordStciFlag_StciFlags">
+            <End Role="StciFlags" EntitySet="StciFlags" />
+            <End Role="StciRecordStciFlag" EntitySet="StciRecordStciFlag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StciIndexedSubImage_StciIndexed" Association="Self.FK_StciIndexedSubImage_StciIndexed">
+            <End Role="StciIndexed" EntitySet="StciIndexed" />
+            <End Role="StciIndexedSubImage" EntitySet="StciIndexedSubImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JsdStructure_SlfRecordJsd" Association="Ja2DataModel.FK_JsdStructure_SlfRecordJsd">
+            <End Role="SlfRecordJsd" EntitySet="SlfRecordJsd" />
+            <End Role="JsdStructure" EntitySet="JsdStructure" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JsdTile_JsdStructure" Association="Ja2DataModel.FK_JsdTile_JsdStructure">
+            <End Role="JsdStructure" EntitySet="JsdStructure" />
+            <End Role="JsdTile" EntitySet="JsdTile" />
+          </AssociationSet>
+          <EntitySet Name="UnstructuredData" EntityType="Ja2DataModel.UnstructuredData" />
+          <AssociationSet Name="FK_SlfRecord_UnstructuredData" Association="Ja2DataModel.FK_SlfRecord_UnstructuredData">
+            <End Role="UnstructuredData" EntitySet="UnstructuredData" />
+            <End Role="SlfRecord" EntitySet="SlfRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StciIndexedSubImage_UnstructuredData" Association="Ja2DataModel.FK_StciIndexedSubImage_UnstructuredData">
+            <End Role="UnstructuredData" EntitySet="UnstructuredData" />
+            <End Role="StciIndexedSubImage" EntitySet="StciIndexedSubImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StciRgb_UnstructuredData" Association="Ja2DataModel.FK_StciRgb_UnstructuredData">
+            <End Role="UnstructuredData" EntitySet="UnstructuredData" />
+            <End Role="StciRgb" EntitySet="StciRgb" />
+          </AssociationSet>
+          <EntitySet Name="AuxDataJsdAux" EntityType="Ja2DataModel.AuxDataJsdAux" />
+          <AssociationSet Name="FK_AuxDataJsdAux_AuxObjectData" Association="Ja2DataModel.FK_AuxDataJsdAux_AuxObjectData">
+            <End Role="AuxObjectData" EntitySet="AuxObjectData" />
+            <End Role="AuxDataJsdAux" EntitySet="AuxDataJsdAux" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuxDataJsdAux_JsdAuxData" Association="Ja2DataModel.FK_AuxDataJsdAux_JsdAuxData">
+            <End Role="JsdAuxData" EntitySet="JsdAuxData" />
+            <End Role="AuxDataJsdAux" EntitySet="AuxDataJsdAux" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SlfFile_DataInfo" Association="Ja2DataModel.FK_SlfFile_DataInfo">
+            <End Role="DataInfo" EntitySet="DataInfo" />
+            <End Role="SlfFile" EntitySet="SlfFile" />
+          </AssociationSet>
+          <EntitySet Name="DataType" EntityType="Ja2DataModel.DataType" />
+          <EntitySet Name="FileExtention" EntityType="Ja2DataModel.FileExtention" />
+          <EntitySet Name="SlfRecordText" EntityType="Ja2DataModel.SlfRecordText" />
+          <AssociationSet Name="FK_FileExtention_DataType" Association="Ja2DataModel.FK_FileExtention_DataType">
+            <End Role="DataType" EntitySet="DataType" />
+            <End Role="FileExtention" EntitySet="FileExtention" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SlfRecordText_SlfFile" Association="Ja2DataModel.FK_SlfRecordText_SlfFile">
+            <End Role="SlfFile" EntitySet="SlfFile" />
+            <End Role="SlfRecordText" EntitySet="SlfRecordText" />
+          </AssociationSet>
+          <EntitySet Name="SlfRecordHeader" EntityType="Ja2DataModel.SlfRecordHeader" />
+          <AssociationSet Name="FK_SlfRecord_SlfRecordHeader" Association="Ja2DataModel.FK_SlfRecord_SlfRecordHeader">
+            <End Role="SlfRecordHeader" EntitySet="SlfRecordHeader" />
+            <End Role="SlfRecord" EntitySet="SlfRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SlfRecordJsd_SlfRecordHeader" Association="Ja2DataModel.FK_SlfRecordJsd_SlfRecordHeader">
+            <End Role="SlfRecordHeader" EntitySet="SlfRecordHeader" />
+            <End Role="SlfRecordJsd" EntitySet="SlfRecordJsd" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SlfRecordStci_SlfRecordHeader" Association="Ja2DataModel.FK_SlfRecordStci_SlfRecordHeader">
+            <End Role="SlfRecordHeader" EntitySet="SlfRecordHeader" />
+            <End Role="SlfRecordStci" EntitySet="SlfRecordStci" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SlfRecordText_SlfRecordHeader" Association="Ja2DataModel.FK_SlfRecordText_SlfRecordHeader">
+            <End Role="SlfRecordHeader" EntitySet="SlfRecordHeader" />
+            <End Role="SlfRecordText" EntitySet="SlfRecordText" />
+          </AssociationSet>
+          <EntitySet Name="JsdStructureStructureFlag" EntityType="Ja2DataModel.JsdStructureStructureFlag" />
+          <AssociationSet Name="FK_JsdStructureStrucrureFlag_JsdStructure" Association="Ja2DataModel.FK_JsdStructureStrucrureFlag_JsdStructure">
+            <End Role="JsdStructure" EntitySet="JsdStructure" />
+            <End Role="JsdStructureStructureFlag" EntitySet="JsdStructureStructureFlag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JsdStructureStrucrureFlag_JsdStructureFlags" Association="Ja2DataModel.FK_JsdStructureStrucrureFlag_JsdStructureFlags">
+            <End Role="JsdStructureFlags" EntitySet="JsdStructureFlags" />
+            <End Role="JsdStructureStructureFlag" EntitySet="JsdStructureStructureFlag" />
+          </AssociationSet>
+          <EntitySet Name="JsdTileCell" EntityType="Ja2DataModel.JsdTileCell" />
+          <AssociationSet Name="FK_JsdTileCell_JsdTile" Association="Ja2DataModel.FK_JsdTileCell_JsdTile">
+            <End Role="JsdTile" EntitySet="JsdTile" />
+            <End Role="JsdTileCell" EntitySet="JsdTileCell" />
+          </AssociationSet>
+          </EntityContainer>
+        <Association Name="FK_JsdStructure_SlfRecordJsd">
+          <End Type="Ja2DataModel.SlfRecordJsd" Role="SlfRecordJsd" Multiplicity="1" />
+          <End Type="Ja2DataModel.JsdStructure" Role="JsdStructure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlfRecordJsd">
+              <PropertyRef Name="SlfRecordJsdId" />
+            </Principal>
+            <Dependent Role="JsdStructure">
+              <PropertyRef Name="SlfRecordJsdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JsdTile_JsdStructure">
+          <End Type="Ja2DataModel.JsdStructure" Role="JsdStructure" Multiplicity="1" />
+          <End Type="Ja2DataModel.JsdTile" Role="JsdTile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JsdStructure">
+              <PropertyRef Name="JsdStructureId" />
+            </Principal>
+            <Dependent Role="JsdTile">
+              <PropertyRef Name="JsdStructureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UnstructuredData">
+          <Key>
+            <PropertyRef Name="UnstructuredDataId" />
+          </Key>
+          <Property Name="UnstructuredDataId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Data" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="SlfRecord" Relationship="Ja2DataModel.FK_SlfRecord_UnstructuredData" FromRole="UnstructuredData" ToRole="SlfRecord" />
+          <NavigationProperty Name="StciIndexedSubImage" Relationship="Ja2DataModel.FK_StciIndexedSubImage_UnstructuredData" FromRole="UnstructuredData" ToRole="StciIndexedSubImage" />
+          <NavigationProperty Name="StciRgb" Relationship="Ja2DataModel.FK_StciRgb_UnstructuredData" FromRole="UnstructuredData" ToRole="StciRgb" />
+        </EntityType>
+        <Association Name="FK_SlfRecord_UnstructuredData">
+          <End Type="Ja2DataModel.UnstructuredData" Role="UnstructuredData" Multiplicity="0..1" />
+          <End Type="Ja2DataModel.SlfRecord" Role="SlfRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnstructuredData">
+              <PropertyRef Name="UnstructuredDataId" />
+            </Principal>
+            <Dependent Role="SlfRecord">
+              <PropertyRef Name="UnstructuredDataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StciIndexedSubImage_UnstructuredData">
+          <End Type="Ja2DataModel.UnstructuredData" Role="UnstructuredData" Multiplicity="1" />
+          <End Type="Ja2DataModel.StciIndexedSubImage" Role="StciIndexedSubImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnstructuredData">
+              <PropertyRef Name="UnstructuredDataId" />
+            </Principal>
+            <Dependent Role="StciIndexedSubImage">
+              <PropertyRef Name="UnstructuredDataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StciRgb_UnstructuredData">
+          <End Type="Ja2DataModel.UnstructuredData" Role="UnstructuredData" Multiplicity="1" />
+          <End Type="Ja2DataModel.StciRgb" Role="StciRgb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnstructuredData">
+              <PropertyRef Name="UnstructuredDataId" />
+            </Principal>
+            <Dependent Role="StciRgb">
+              <PropertyRef Name="UnstructuredDataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AuxDataJsdAux">
+          <Key>
+            <PropertyRef Name="AuxDataJsdAuxId" />
+          </Key>
+          <Property Name="AuxDataJsdAuxId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AuxObjectDataId" Type="Int64" Nullable="false" />
+          <Property Name="JsdAuxDataId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="AuxObjectData" Relationship="Ja2DataModel.FK_AuxDataJsdAux_AuxObjectData" FromRole="AuxDataJsdAux" ToRole="AuxObjectData" />
+          <NavigationProperty Name="JsdAuxData" Relationship="Ja2DataModel.FK_AuxDataJsdAux_JsdAuxData" FromRole="AuxDataJsdAux" ToRole="JsdAuxData" />
+        </EntityType>
+        <Association Name="FK_AuxDataJsdAux_AuxObjectData">
+          <End Type="Ja2DataModel.AuxObjectData" Role="AuxObjectData" Multiplicity="1" />
+          <End Type="Ja2DataModel.AuxDataJsdAux" Role="AuxDataJsdAux" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AuxObjectData">
+              <PropertyRef Name="AuxObjectDataId" />
+            </Principal>
+            <Dependent Role="AuxDataJsdAux">
+              <PropertyRef Name="AuxObjectDataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuxDataJsdAux_JsdAuxData">
+          <End Type="Ja2DataModel.JsdAuxData" Role="JsdAuxData" Multiplicity="1" />
+          <End Type="Ja2DataModel.AuxDataJsdAux" Role="AuxDataJsdAux" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JsdAuxData">
+              <PropertyRef Name="JsdAuxDataId" />
+            </Principal>
+            <Dependent Role="AuxDataJsdAux">
+              <PropertyRef Name="JsdAuxDataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SlfFile_DataInfo">
+          <End Type="Ja2DataModel.DataInfo" Role="DataInfo" Multiplicity="1" />
+          <End Type="Ja2DataModel.SlfFile" Role="SlfFile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataInfo">
+              <PropertyRef Name="DataInfoId" />
+            </Principal>
+            <Dependent Role="SlfFile">
+              <PropertyRef Name="DataInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DataType">
+          <Key>
+            <PropertyRef Name="DataTypeId" />
+          </Key>
+          <Property Name="DataTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataTypeName" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="Descriotion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FileExtention" Relationship="Ja2DataModel.FK_FileExtention_DataType" FromRole="DataType" ToRole="FileExtention" />
+        </EntityType>
+        <EntityType Name="FileExtention">
+          <Key>
+            <PropertyRef Name="FileExtentionId" />
+          </Key>
+          <Property Name="FileExtentionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Extention" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="DataTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DataType" Relationship="Ja2DataModel.FK_FileExtention_DataType" FromRole="FileExtention" ToRole="DataType" />
+        </EntityType>
+        <EntityType Name="SlfRecordText">
+          <Key>
+            <PropertyRef Name="SlfRecordId" />
+          </Key>
+          <Property Name="SlfRecordId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SlfRecordHeaderId" Type="Int64" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="SlfFileId" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="TextData" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SlfFile" Relationship="Ja2DataModel.FK_SlfRecordText_SlfFile" FromRole="SlfRecordText" ToRole="SlfFile" />
+          <NavigationProperty Name="SlfRecordHeader" Relationship="Ja2DataModel.FK_SlfRecordText_SlfRecordHeader" FromRole="SlfRecordText" ToRole="SlfRecordHeader" />
+        </EntityType>
+        <Association Name="FK_FileExtention_DataType">
+          <End Type="Ja2DataModel.DataType" Role="DataType" Multiplicity="1" />
+          <End Type="Ja2DataModel.FileExtention" Role="FileExtention" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataType">
+              <PropertyRef Name="DataTypeId" />
+            </Principal>
+            <Dependent Role="FileExtention">
+              <PropertyRef Name="DataTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SlfRecordText_SlfFile">
+          <End Type="Ja2DataModel.SlfFile" Role="SlfFile" Multiplicity="1" />
+          <End Type="Ja2DataModel.SlfRecordText" Role="SlfRecordText" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlfFile">
+              <PropertyRef Name="SlfFileId" />
+            </Principal>
+            <Dependent Role="SlfRecordText">
+              <PropertyRef Name="SlfFileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SlfRecordHeader">
+          <Key>
+            <PropertyRef Name="SlfRecordHeaderId" />
+          </Key>
+          <Property Name="SlfRecordHeaderId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Offset" Type="Int64" Nullable="false" />
+          <Property Name="Length" Type="Int64" Nullable="false" />
+          <Property Name="State" Type="Byte" Nullable="false" />
+          <Property Name="Reserved" Type="Byte" Nullable="false" />
+          <Property Name="FileTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Reserved2" Type="Int32" Nullable="false" />
+          <Property Name="FileNameExtention" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="FileNameWithoutExtention" Type="String" MaxLength="255" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="SlfRecord" Relationship="Ja2DataModel.FK_SlfRecord_SlfRecordHeader" FromRole="SlfRecordHeader" ToRole="SlfRecord" />
+          <NavigationProperty Name="SlfRecordJsd" Relationship="Ja2DataModel.FK_SlfRecordJsd_SlfRecordHeader" FromRole="SlfRecordHeader" ToRole="SlfRecordJsd" />
+          <NavigationProperty Name="SlfRecordStci" Relationship="Ja2DataModel.FK_SlfRecordStci_SlfRecordHeader" FromRole="SlfRecordHeader" ToRole="SlfRecordStci" />
+          <NavigationProperty Name="SlfRecordText" Relationship="Ja2DataModel.FK_SlfRecordText_SlfRecordHeader" FromRole="SlfRecordHeader" ToRole="SlfRecordText" />
+        </EntityType>
+        <Association Name="FK_SlfRecord_SlfRecordHeader">
+          <End Type="Ja2DataModel.SlfRecordHeader" Role="SlfRecordHeader" Multiplicity="1" />
+          <End Type="Ja2DataModel.SlfRecord" Role="SlfRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlfRecordHeader">
+              <PropertyRef Name="SlfRecordHeaderId" />
+            </Principal>
+            <Dependent Role="SlfRecord">
+              <PropertyRef Name="SlfRecordHeaderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SlfRecordJsd_SlfRecordHeader">
+          <End Type="Ja2DataModel.SlfRecordHeader" Role="SlfRecordHeader" Multiplicity="1" />
+          <End Type="Ja2DataModel.SlfRecordJsd" Role="SlfRecordJsd" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlfRecordHeader">
+              <PropertyRef Name="SlfRecordHeaderId" />
+            </Principal>
+            <Dependent Role="SlfRecordJsd">
+              <PropertyRef Name="SlfRecordHeaderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SlfRecordStci_SlfRecordHeader">
+          <End Type="Ja2DataModel.SlfRecordHeader" Role="SlfRecordHeader" Multiplicity="1" />
+          <End Type="Ja2DataModel.SlfRecordStci" Role="SlfRecordStci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlfRecordHeader">
+              <PropertyRef Name="SlfRecordHeaderId" />
+            </Principal>
+            <Dependent Role="SlfRecordStci">
+              <PropertyRef Name="SlfRecordHeaderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SlfRecordText_SlfRecordHeader">
+          <End Type="Ja2DataModel.SlfRecordHeader" Role="SlfRecordHeader" Multiplicity="1" />
+          <End Type="Ja2DataModel.SlfRecordText" Role="SlfRecordText" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SlfRecordHeader">
+              <PropertyRef Name="SlfRecordHeaderId" />
+            </Principal>
+            <Dependent Role="SlfRecordText">
+              <PropertyRef Name="SlfRecordHeaderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="JsdStructureStructureFlag">
+          <Key>
+            <PropertyRef Name="JsdStructureStrucrureFlagId" />
+          </Key>
+          <Property Name="JsdStructureStrucrureFlagId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JsdStructureId" Type="Int64" Nullable="false" />
+          <Property Name="FlagId" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="JsdStructure" Relationship="Ja2DataModel.FK_JsdStructureStrucrureFlag_JsdStructure" FromRole="JsdStructureStructureFlag" ToRole="JsdStructure" />
+          <NavigationProperty Name="JsdStructureFlags" Relationship="Ja2DataModel.FK_JsdStructureStrucrureFlag_JsdStructureFlags" FromRole="JsdStructureStructureFlag" ToRole="JsdStructureFlags" />
+        </EntityType>
+        <Association Name="FK_JsdStructureStrucrureFlag_JsdStructure">
+          <End Type="Ja2DataModel.JsdStructure" Role="JsdStructure" Multiplicity="1" />
+          <End Type="Ja2DataModel.JsdStructureStructureFlag" Role="JsdStructureStructureFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JsdStructure">
+              <PropertyRef Name="JsdStructureId" />
+            </Principal>
+            <Dependent Role="JsdStructureStructureFlag">
+              <PropertyRef Name="JsdStructureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JsdStructureStrucrureFlag_JsdStructureFlags">
+          <End Type="Ja2DataModel.JsdStructureFlags" Role="JsdStructureFlags" Multiplicity="1" />
+          <End Type="Ja2DataModel.JsdStructureStructureFlag" Role="JsdStructureStructureFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JsdStructureFlags">
+              <PropertyRef Name="JsdStructureFlagId" />
+            </Principal>
+            <Dependent Role="JsdStructureStructureFlag">
+              <PropertyRef Name="FlagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="JsdTileCell">
+          <Key>
+            <PropertyRef Name="JsdTileCellId" />
+          </Key>
+          <Property Name="JsdTileCellId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JsdTileId" Type="Int64" Nullable="false" />
+          <Property Name="RowNumber" Type="Byte" Nullable="false" />
+          <Property Name="CellNumber" Type="Byte" Nullable="false" />
+          <Property Name="Value" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="JsdTile" Relationship="Ja2DataModel.FK_JsdTileCell_JsdTile" FromRole="JsdTileCell" ToRole="JsdTile" />
+        </EntityType>
+        <Association Name="FK_JsdTileCell_JsdTile">
+          <End Type="Ja2DataModel.JsdTile" Role="JsdTile" Multiplicity="1" />
+          <End Type="Ja2DataModel.JsdTileCell" Role="JsdTileCell" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JsdTile">
+              <PropertyRef Name="JsdTileId" />
+            </Principal>
+            <Dependent Role="JsdTileCell">
+              <PropertyRef Name="JsdTileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Ja2DataModelStoreContainer" CdmEntityContainer="Ja2DataEntities">
+          <EntitySetMapping Name="AuxDataFlags">
+            <EntityTypeMapping TypeName="Ja2DataModel.AuxDataFlags">
+              <MappingFragment StoreEntitySet="AuxDataFlags">
+                <ScalarProperty Name="Mask" ColumnName="Mask" />
+                <ScalarProperty Name="AuxDataFlagsId" ColumnName="AuxDataFlagsId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AuxObjectAuxFlag">
+            <EntityTypeMapping TypeName="Ja2DataModel.AuxObjectAuxFlag">
+              <MappingFragment StoreEntitySet="AuxObjectAuxFlag">
+                <ScalarProperty Name="AuxObjectFlagId" ColumnName="AuxObjectFlagId" />
+                <ScalarProperty Name="AuxObjectDataId" ColumnName="AuxObjectDataId" />
+                <ScalarProperty Name="FlagId" ColumnName="FlagId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AuxObjectData">
+            <EntityTypeMapping TypeName="Ja2DataModel.AuxObjectData">
+              <MappingFragment StoreEntitySet="AuxObjectData">
+                <ScalarProperty Name="AuxObjectDataId" ColumnName="AuxObjectDataId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="WallOrientation" ColumnName="WallOrientation" />
+                <ScalarProperty Name="NumberOfTiles" ColumnName="NumberOfTiles" />
+                <ScalarProperty Name="TileLocIndex" ColumnName="TileLocIndex" />
+                <ScalarProperty Name="Unused1" ColumnName="Unused1" />
+                <ScalarProperty Name="CurrentFrame" ColumnName="CurrentFrame" />
+                <ScalarProperty Name="NumberOfFrames" ColumnName="NumberOfFrames" />
+                <ScalarProperty Name="Unused" ColumnName="Unused" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DataInfo">
+            <EntityTypeMapping TypeName="Ja2DataModel.DataInfo">
+              <MappingFragment StoreEntitySet="DataInfo">
+                <ScalarProperty Name="Localizer" ColumnName="Localizer" />
+                <ScalarProperty Name="Local" ColumnName="Local" />
+                <ScalarProperty Name="DataInfoId" ColumnName="DataInfoId" />
+                <ScalarProperty Name="ProduserName" ColumnName="ProduserName" />
+                <ScalarProperty Name="MajorVerson" ColumnName="MajorVerson" />
+                <ScalarProperty Name="MinorVersion" ColumnName="MinorVersion" />
+                <ScalarProperty Name="Revision" ColumnName="Revision" />
+                <ScalarProperty Name="Build" ColumnName="Build" />
+                <ScalarProperty Name="BuildDate" ColumnName="BuildDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FileState">
+            <EntityTypeMapping TypeName="Ja2DataModel.FileState">
+              <MappingFragment StoreEntitySet="FileState">
+                <ScalarProperty Name="FileStateId" ColumnName="FileStateId" />
+                <ScalarProperty Name="FileStateName" ColumnName="FileStateName" />
+                <ScalarProperty Name="FileStateValue" ColumnName="FileStateValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JsdArmor">
+            <EntityTypeMapping TypeName="Ja2DataModel.JsdArmor">
+              <MappingFragment StoreEntitySet="JsdArmor">
+                <ScalarProperty Name="JsdArmorId" ColumnName="JsdArmorId" />
+                <ScalarProperty Name="Material" ColumnName="Material" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JsdAuxData">
+            <EntityTypeMapping TypeName="Ja2DataModel.JsdAuxData">
+              <MappingFragment StoreEntitySet="JsdAuxData">
+                <ScalarProperty Name="JsdAuxDataId" ColumnName="JsdAuxDataId" />
+                <ScalarProperty Name="SlfRecordJsdId" ColumnName="SlfRecordJsdId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="TileLocationData" ColumnName="TileLocationData" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JsdHeaderFlags">
+            <EntityTypeMapping TypeName="Ja2DataModel.JsdHeaderFlags">
+              <MappingFragment StoreEntitySet="JsdHeaderFlags">
+                <ScalarProperty Name="JsdRecordFlagId" ColumnName="JsdRecordFlagId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Mask" ColumnName="Mask" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JsdRecordHeaderFlag">
+            <EntityTypeMapping TypeName="Ja2DataModel.JsdRecordHeaderFlag">
+              <MappingFragment StoreEntitySet="JsdRecordHeaderFlag">
+                <ScalarProperty Name="JsdRecordHeaderFlagId" ColumnName="JsdRecordHeaderFlagId" />
+                <ScalarProperty Name="JsdRecordId" ColumnName="JsdRecordId" />
+                <ScalarProperty Name="FlagId" ColumnName="FlagId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JsdStructure">
+            <EntityTypeMapping TypeName="Ja2DataModel.JsdStructure">
+              <MappingFragment StoreEntitySet="JsdStructure">
+                <ScalarProperty Name="JsdStructureId" ColumnName="JsdStructureId" />
+                <ScalarProperty Name="SlfRecordJsdId" ColumnName="SlfRecordJsdId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Armour" ColumnName="Armour" />
+                <ScalarProperty Name="HitPoints" ColumnName="HitPoints" />
+                <ScalarProperty Name="Density" ColumnName="Density" />
+                <ScalarProperty Name="NumberOfTiles" ColumnName="NumberOfTiles" />
+                <ScalarProperty Name="StructureNumber" ColumnName="StructureNumber" />
+                <ScalarProperty Name="WallOrientation" ColumnName="WallOrientation" />
+                <ScalarProperty Name="DestructionPartner" ColumnName="DestructionPartner" />
+                <ScalarProperty Name="PartnerDelta" ColumnName="PartnerDelta" />
+                <ScalarProperty Name="ZTileOffsetX" ColumnName="ZTileOffsetX" />
+                <ScalarProperty Name="ZTileOffsetY" ColumnName="ZTileOffsetY" />
+                <ScalarProperty Name="Unused" ColumnName="Unused" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JsdStructureFlags">
+            <EntityTypeMapping TypeName="Ja2DataModel.JsdStructureFlags">
+              <MappingFragment StoreEntitySet="JsdStructureFlags">
+                <ScalarProperty Name="JsdStructureFlagId" ColumnName="JsdStructureFlagId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Mask" ColumnName="Mask" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JsdTile">
+            <EntityTypeMapping TypeName="Ja2DataModel.JsdTile">
+              <MappingFragment StoreEntitySet="JsdTile">
+                <ScalarProperty Name="JsdTileId" ColumnName="JsdTileId" />
+                <ScalarProperty Name="JsdStructureId" ColumnName="JsdStructureId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PosRelToBase" ColumnName="PosRelToBase" />
+                <ScalarProperty Name="XPosRelToBase" ColumnName="XPosRelToBase" />
+                <ScalarProperty Name="YPosRelToBase" ColumnName="YPosRelToBase" />
+                <ScalarProperty Name="VehicleHitLocation" ColumnName="VehicleHitLocation" />
+                <ScalarProperty Name="Unused" ColumnName="Unused" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JsdTileFlags">
+            <EntityTypeMapping TypeName="Ja2DataModel.JsdTileFlags">
+              <MappingFragment StoreEntitySet="JsdTileFlags">
+                <ScalarProperty Name="JsdTileFlagsId" ColumnName="JsdTileFlagsId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Mask" ColumnName="Mask" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JsdTileTileFlag">
+            <EntityTypeMapping TypeName="Ja2DataModel.JsdTileTileFlag">
+              <MappingFragment StoreEntitySet="JsdTileTileFlag">
+                <ScalarProperty Name="JsdTileTileFlagId" ColumnName="JsdTileTileFlagId" />
+                <ScalarProperty Name="JsdTileId" ColumnName="JsdTileId" />
+                <ScalarProperty Name="FlagId" ColumnName="FlagId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SlfFile">
+            <EntityTypeMapping TypeName="Ja2DataModel.SlfFile">
+              <MappingFragment StoreEntitySet="SlfFile">
+                <ScalarProperty Name="DataInfoId" ColumnName="DataInfoId" />
+                <ScalarProperty Name="SlfFileId" ColumnName="SlfFileId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="LibName" ColumnName="LibName" />
+                <ScalarProperty Name="PathToLibrary" ColumnName="PathToLibrary" />
+                <ScalarProperty Name="EntriesCount" ColumnName="EntriesCount" />
+                <ScalarProperty Name="Used" ColumnName="Used" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="ContainsSubDirectories" ColumnName="ContainsSubDirectories" />
+                <ScalarProperty Name="Reserved" ColumnName="Reserved" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SlfRecord">
+            <EntityTypeMapping TypeName="Ja2DataModel.SlfRecord">
+              <MappingFragment StoreEntitySet="SlfRecord">
+                <ScalarProperty Name="UnstructuredDataId" ColumnName="UnstructuredDataId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SlfRecordId" ColumnName="SlfRecordId" />
+                <ScalarProperty Name="SlfRecordHeaderId" ColumnName="SlfRecordHeaderId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="SlfFileId" ColumnName="SlfFileId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SlfRecordJsd">
+            <EntityTypeMapping TypeName="Ja2DataModel.SlfRecordJsd">
+              <MappingFragment StoreEntitySet="SlfRecordJsd">
+                <ScalarProperty Name="SlfRecordJsdId" ColumnName="SlfRecordJsdId" />
+                <ScalarProperty Name="SlfRecordHeaderId" ColumnName="SlfRecordHeaderId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="SlfFileId" ColumnName="SlfFileId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NumberOfStructuresAndOrImages" ColumnName="NumberOfStructuresAndOrImages" />
+                <ScalarProperty Name="NumberOfStructuresStored" ColumnName="NumberOfStructuresStored" />
+                <ScalarProperty Name="StructureDataSize" ColumnName="StructureDataSize" />
+                <ScalarProperty Name="Unused" ColumnName="Unused" />
+                <ScalarProperty Name="NumberOfImageTileLocsStored" ColumnName="NumberOfImageTileLocsStored" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SlfRecordStci">
+            <EntityTypeMapping TypeName="Ja2DataModel.SlfRecordStci">
+              <MappingFragment StoreEntitySet="SlfRecordStci">
+                <ScalarProperty Name="SlfRecordId" ColumnName="SlfRecordId" />
+                <ScalarProperty Name="SlfRecordHeaderId" ColumnName="SlfRecordHeaderId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="SlfFileId" ColumnName="SlfFileId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="OriginalSize" ColumnName="OriginalSize" />
+                <ScalarProperty Name="StoredSize" ColumnName="StoredSize" />
+                <ScalarProperty Name="TransparentValue" ColumnName="TransparentValue" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Depth" ColumnName="Depth" />
+                <ScalarProperty Name="AppDataSize" ColumnName="AppDataSize" />
+                <ScalarProperty Name="Unused" ColumnName="Unused" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StciFlags">
+            <EntityTypeMapping TypeName="Ja2DataModel.StciFlags">
+              <MappingFragment StoreEntitySet="StciFlags">
+                <ScalarProperty Name="StciFlagsId" ColumnName="StciFlagsId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Mask" ColumnName="Mask" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StciIndexed">
+            <EntityTypeMapping TypeName="Ja2DataModel.StciIndexed">
+              <MappingFragment StoreEntitySet="StciIndexed">
+                <ScalarProperty Name="StciIndexedId" ColumnName="StciIndexedId" />
+                <ScalarProperty Name="SlfRecordStciId" ColumnName="SlfRecordStciId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="NumberOfColours" ColumnName="NumberOfColours" />
+                <ScalarProperty Name="NumberOfSubImages" ColumnName="NumberOfSubImages" />
+                <ScalarProperty Name="RedDepth" ColumnName="RedDepth" />
+                <ScalarProperty Name="GreenDepth" ColumnName="GreenDepth" />
+                <ScalarProperty Name="BlueDepth" ColumnName="BlueDepth" />
+                <ScalarProperty Name="Unused" ColumnName="Unused" />
+                <ScalarProperty Name="Palette" ColumnName="Palette" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StciIndexedSubImage">
+            <EntityTypeMapping TypeName="Ja2DataModel.StciIndexedSubImage">
+              <MappingFragment StoreEntitySet="StciIndexedSubImage">
+                <ScalarProperty Name="UnstructuredDataId" ColumnName="UnstructuredDataId" />
+                <ScalarProperty Name="StciIndexedSubImageId" ColumnName="StciIndexedSubImageId" />
+                <ScalarProperty Name="StciIndexedId" ColumnName="StciIndexedId" />
+                <ScalarProperty Name="AuxObjectDataId" ColumnName="AuxObjectDataId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="DataOffset" ColumnName="DataOffset" />
+                <ScalarProperty Name="DataLength" ColumnName="DataLength" />
+                <ScalarProperty Name="OffsetX" ColumnName="OffsetX" />
+                <ScalarProperty Name="OffsetY" ColumnName="OffsetY" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StciRecordStciFlag">
+            <EntityTypeMapping TypeName="Ja2DataModel.StciRecordStciFlag">
+              <MappingFragment StoreEntitySet="StciRecordStciFlag">
+                <ScalarProperty Name="StciRecordsFlagsId" ColumnName="StciRecordsFlagsId" />
+                <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+                <ScalarProperty Name="FlagId" ColumnName="FlagId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StciRgb">
+            <EntityTypeMapping TypeName="Ja2DataModel.StciRgb">
+              <MappingFragment StoreEntitySet="StciRgb">
+                <ScalarProperty Name="UnstructuredDataId" ColumnName="UnstructuredDataId" />
+                <ScalarProperty Name="StciRgbId" ColumnName="StciRgbId" />
+                <ScalarProperty Name="SlfRecordStciId" ColumnName="SlfRecordStciId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RedMask" ColumnName="RedMask" />
+                <ScalarProperty Name="GreenMask" ColumnName="GreenMask" />
+                <ScalarProperty Name="BlueMask" ColumnName="BlueMask" />
+                <ScalarProperty Name="AlphaMask" ColumnName="AlphaMask" />
+                <ScalarProperty Name="RedDepth" ColumnName="RedDepth" />
+                <ScalarProperty Name="GreenDepth" ColumnName="GreenDepth" />
+                <ScalarProperty Name="BlueDepth" ColumnName="BlueDepth" />
+                <ScalarProperty Name="AlphaDepth" ColumnName="AlphaDepth" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnstructuredData">
+            <EntityTypeMapping TypeName="Ja2DataModel.UnstructuredData">
+              <MappingFragment StoreEntitySet="UnstructuredData">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="UnstructuredDataId" ColumnName="UnstructuredDataId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AuxDataJsdAux">
+            <EntityTypeMapping TypeName="Ja2DataModel.AuxDataJsdAux">
+              <MappingFragment StoreEntitySet="AuxDataJsdAux">
+                <ScalarProperty Name="JsdAuxDataId" ColumnName="JsdAuxDataId" />
+                <ScalarProperty Name="AuxObjectDataId" ColumnName="AuxObjectDataId" />
+                <ScalarProperty Name="AuxDataJsdAuxId" ColumnName="AuxDataJsdAuxId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DataType">
+            <EntityTypeMapping TypeName="Ja2DataModel.DataType">
+              <MappingFragment StoreEntitySet="DataType">
+                <ScalarProperty Name="Descriotion" ColumnName="Descriotion" />
+                <ScalarProperty Name="DataTypeName" ColumnName="DataTypeName" />
+                <ScalarProperty Name="DataTypeId" ColumnName="DataTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FileExtention">
+            <EntityTypeMapping TypeName="Ja2DataModel.FileExtention">
+              <MappingFragment StoreEntitySet="FileExtention">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DataTypeId" ColumnName="DataTypeId" />
+                <ScalarProperty Name="Extention" ColumnName="Extention" />
+                <ScalarProperty Name="FileExtentionId" ColumnName="FileExtentionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SlfRecordText">
+            <EntityTypeMapping TypeName="Ja2DataModel.SlfRecordText">
+              <MappingFragment StoreEntitySet="SlfRecordText">
+                <ScalarProperty Name="TextData" ColumnName="TextData" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SlfFileId" ColumnName="SlfFileId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="SlfRecordHeaderId" ColumnName="SlfRecordHeaderId" />
+                <ScalarProperty Name="SlfRecordId" ColumnName="SlfRecordId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SlfRecordHeader">
+            <EntityTypeMapping TypeName="Ja2DataModel.SlfRecordHeader">
+              <MappingFragment StoreEntitySet="SlfRecordHeader">
+                <ScalarProperty Name="FileNameWithoutExtention" ColumnName="FileNameWithoutExtention" />
+                <ScalarProperty Name="FileNameExtention" ColumnName="FileNameExtention" />
+                <ScalarProperty Name="Reserved2" ColumnName="Reserved2" />
+                <ScalarProperty Name="FileTime" ColumnName="FileTime" />
+                <ScalarProperty Name="Reserved" ColumnName="Reserved" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Offset" ColumnName="Offset" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="SlfRecordHeaderId" ColumnName="SlfRecordHeaderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JsdStructureStructureFlag">
+            <EntityTypeMapping TypeName="Ja2DataModel.JsdStructureStructureFlag">
+              <MappingFragment StoreEntitySet="JsdStructureStructureFlag">
+                <ScalarProperty Name="FlagId" ColumnName="FlagId" />
+                <ScalarProperty Name="JsdStructureId" ColumnName="JsdStructureId" />
+                <ScalarProperty Name="JsdStructureStrucrureFlagId" ColumnName="JsdStructureStrucrureFlagId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JsdTileCell">
+            <EntityTypeMapping TypeName="Ja2DataModel.JsdTileCell">
+              <MappingFragment StoreEntitySet="JsdTileCell">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="CellNumber" ColumnName="CellNumber" />
+                <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+                <ScalarProperty Name="JsdTileId" ColumnName="JsdTileId" />
+                <ScalarProperty Name="JsdTileCellId" ColumnName="JsdTileCellId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

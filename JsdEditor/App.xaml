@@ -1,0 +1,89 @@
+﻿<Application x:Class="JsdEditor.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <Style x:Key="ColumnHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="ToolTip" 
+                    Value="{Binding RelativeSource={RelativeSource Self}, Path=Column.Header}" />
+        </Style>
+        <Style x:Key="BasicControlType">
+            <Setter Property="Control.FontSize" Value="12" />
+            <Setter Property="Control.Margin" Value="2" />
+        </Style>
+        <ControlTemplate x:Key="ButtonTemplate" TargetType="{x:Type Button}">
+            <Border x:Name="brd" CornerRadius="5" BorderThickness="1,1,3,3" BorderBrush="Gray">
+                <Border.Background>
+                    <LinearGradientBrush x:Name="ButtonBrush" StartPoint="0.5, 0" EndPoint="0.5, 1">
+                        <GradientStop Color="#AAAAAA" Offset="0"/>
+                        <GradientStop x:Name="gsWhite" Color="#DDDDDD" Offset="0.5"/>
+                        <GradientStop Color="#444444" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Label x:Name="lbl" VerticalAlignment="Center" HorizontalAlignment="Center"
+        			FontSize="{TemplateBinding Property=FontSize}"
+        			Content="{TemplateBinding Content}" 
+        			Foreground="{TemplateBinding Foreground}" />
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="brd" Property="BorderThickness" Value="2,2,2,2" />
+                    <Setter TargetName="brd" Property="Background">
+                        <Setter.Value>
+                            <RadialGradientBrush>
+                                <GradientStop Color="#888888" Offset="1"/>
+                                <GradientStop x:Name="gsLightGray" Color="#CCCCCC" Offset="0"/>
+                            </RadialGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter TargetName="brd" Property="Background">
+                        <Setter.Value>
+                            <LinearGradientBrush StartPoint="0.5, 0" EndPoint="0.5, 1">
+                                <GradientStop Color="#AAAAAA" Offset="1"/>
+                                <GradientStop Color="#CCCCCC" Offset="0.5"/>
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <EventTrigger RoutedEvent="Button.MouseEnter">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard x:Name="bsbMouseEnter">
+                            <Storyboard x:Name="sbLight">
+                                <DoubleAnimation x:Name="LightAnimation"
+                                                Storyboard.TargetName="gsWhite" 
+                                                Storyboard.TargetProperty="Offset" 
+                                                From="0" To="1" Duration="0:0:0.8"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="Button.MouseLeave">
+                    <EventTrigger.Actions>
+                        <StopStoryboard BeginStoryboardName="bsbMouseEnter" />
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <Style TargetType="Button" BasedOn="{StaticResource BasicControlType}">
+            <Setter Property="Template" Value="{StaticResource ButtonTemplate}" />
+        </Style>
+        <Style TargetType="Button" x:Key="ComboBoxStyle">
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Content" Value=" ... " />
+        </Style>
+        <ControlTemplate x:Key="ComboBoxButtonTemplate" TargetType="{x:Type Button}">
+
+        </ControlTemplate>
+        <PathGeometry x:Key="ClockwiseRotateArrow">
+            <PathFigure IsClosed="False" StartPoint="2,4">
+                <ArcSegment Point="2,15" Size="10,10" IsLargeArc="True" SweepDirection="Clockwise" />
+                <LineSegment Point="2,17" />
+                <LineSegment Point="4,15" />
+                <LineSegment Point="2,15" />
+            </PathFigure>
+        </PathGeometry>
+    </Application.Resources>
+</Application>

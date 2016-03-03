@@ -1,0 +1,634 @@
+<ArrayOfData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Data name="JSDEditor">
+		<LocalNames>
+			<LocalName language="ru" name="Редактор JSD-файлов" />
+			<LocalName language="en" name="JSD Editor" />
+			<LocalName language="ua" name="Редактор JSD-файлів" />
+			<LocalName language="cz" name="Editor JSD-souborů" />
+		</LocalNames>
+	</Data>
+	<Data name="AllLevels">
+		<LocalNames>
+			<LocalName language="ru" name="Все уровни" />
+			<LocalName language="en" name="All levels" />
+			<LocalName language="ua" name="Всі рівні" />
+			<LocalName language="cz" name="Všechny úrovně" />
+		</LocalNames>
+	</Data>
+	<Data name="Level">
+		<LocalNames>
+			<LocalName language="ru" name="Уровень" />
+			<LocalName language="en" name="Level" />
+			<LocalName language="ua" name="Рівень" />
+			<LocalName language="cz" name="Úroveň" />
+		</LocalNames>
+	</Data>
+	<Data name="All">
+		<LocalNames>
+			<LocalName language="ru" name="Все" />
+			<LocalName language="en" name="All" />
+			<LocalName language="ua" name="Всі" />
+			<LocalName language="cz" name="Všechny" />
+		</LocalNames>
+	</Data>
+	<Data name="Shape">
+		<LocalNames>
+			<LocalName language="ru" name="Форма" />
+			<LocalName language="en" name="Shape" />
+			<LocalName language="ua" name="Форма" />
+			<LocalName language="cz" name="Tvar" />
+		</LocalNames>
+	</Data>
+	<Data name="File">
+		<LocalNames>
+			<LocalName language="ru" name="Файл" />
+			<LocalName language="en" name="File" />
+			<LocalName language="ua" name="Файл" />
+			<LocalName language="cz" name="Soubor" />
+		</LocalNames>
+	</Data>
+	<Data name="OpenFolder">
+		<LocalNames>
+			<LocalName language="ru" name="Открыть папку..." />
+			<LocalName language="en" name="Open folder..." />
+			<LocalName language="ua" name="Відкрити папку..." />
+			<LocalName language="cz" name="Otevřít složku..." />
+		</LocalNames>
+	</Data>
+	<Data name="OpenJSDFile">
+		<LocalNames>
+			<LocalName language="ru" name="Открыть JSD-Файл..." />
+			<LocalName language="en" name="Open JSD-file..." />
+			<LocalName language="ua" name="Відкрити JSD-файл..." />
+			<LocalName language="cz" name="Otevřít JSD-soubor..." />
+		</LocalNames>
+	</Data>
+	<Data name="Windows">
+		<LocalNames>
+			<LocalName language="ru" name="Окна" />
+			<LocalName language="en" name="Windows" />
+			<LocalName language="ua" name="Вікна" />
+			<LocalName language="cz" name="Okna" />
+		</LocalNames>
+	</Data>
+	<Data name="Structures">
+		<LocalNames>
+			<LocalName language="ru" name="Структуры" />
+			<LocalName language="en" name="Structures" />
+			<LocalName language="ua" name="Структури" />
+			<LocalName language="cz" name="Struktury" />
+		</LocalNames>
+	</Data>
+	<Data name="Auxiliary">
+		<LocalNames>
+			<LocalName language="ru" name="Вспомогательные данные" />
+			<LocalName language="en" name="Auxiliary data" />
+			<LocalName language="ua" name="Допоміжні дані" />
+			<LocalName language="cz" name="Pomocná data" />
+		</LocalNames>
+	</Data>
+	<Data name="Tiles">
+		<LocalNames>
+			<LocalName language="ru" name="Тайлы" />
+			<LocalName language="en" name="Tiles" />
+			<LocalName language="ua" name="Тайли" />
+			<LocalName language="cz" name="Dlaždice" />
+		</LocalNames>
+	</Data>
+	<Data name="View">
+		<LocalNames>
+			<LocalName language="ru" name="Просмотр" />
+			<LocalName language="en" name="View" />
+			<LocalName language="ua" name="Перегляд" />
+			<LocalName language="cz" name="Přehled" />
+		</LocalNames>
+	</Data>
+	<Data name="ShowAll">
+		<LocalNames>
+			<LocalName language="ru" name="Показать все" />
+			<LocalName language="en" name="Show all" />
+			<LocalName language="ua" name="Показати всі" />
+			<LocalName language="cz" name="Ukázat všechny" />
+		</LocalNames>
+	</Data>
+	<Data name="Lock">
+		<LocalNames>
+			<LocalName language="ru" name="Закрепить" />
+			<LocalName language="en" name="Lock" />
+			<LocalName language="ua" name="Закріпити" />
+			<LocalName language="cz" name="Uzamknout" />
+		</LocalNames>
+	</Data>
+	<Data name="Default">
+		<LocalNames>
+			<LocalName language="ru" name="По умолчанию" />
+			<LocalName language="en" name="Default" />
+			<LocalName language="ua" name="По замовчуванню" />
+			<LocalName language="cz" name="Implicitně" />
+		</LocalNames>
+	</Data>
+	<Data name="Files">
+		<LocalNames>
+			<LocalName language="ru" name="Файлы" />
+			<LocalName language="en" name="Files" />
+			<LocalName language="ua" name="Файли" />
+			<LocalName language="cz" name="Soubory" />
+		</LocalNames>
+	</Data>
+	<Data name="ContainsStructures">
+		<LocalNames>
+			<LocalName language="ru" name="Содержит структуры" />
+			<LocalName language="en" name="Contains structures" />
+			<LocalName language="ua" name="Містить структури" />
+			<LocalName language="cz" name="Obsahuje struktury" />
+		</LocalNames>
+	</Data>
+	<Data name="ContainsAuxiliary">
+		<LocalNames>
+			<LocalName language="ru" name="Содержит вспомогательные данные" />
+			<LocalName language="en" name="Contains auxiliary data" />
+			<LocalName language="ua" name="Містить допоміжні дані" />
+			<LocalName language="cz" name="Obsahuje pomocná data" />
+		</LocalNames>
+	</Data>
+	<Data name="CountOfElements">
+		<LocalNames>
+			<LocalName language="ru" name="Число элементов" />
+			<LocalName language="en" name="Count of elements" />
+			<LocalName language="ua" name="Кількість елементів" />
+			<LocalName language="cz" name="Počet elementů" />
+		</LocalNames>
+	</Data>
+	<Data name="CountOfStructures">
+		<LocalNames>
+			<LocalName language="ru" name="Число структур" />
+			<LocalName language="en" name="Count of structures" />
+			<LocalName language="ua" name="Кількість структур" />
+			<LocalName language="cz" name="Počet struktur" />
+		</LocalNames>
+	</Data>
+	<Data name="CountOfTiles">
+		<LocalNames>
+			<LocalName language="ru" name="Число тайлов" />
+			<LocalName language="en" name="Count of tiles" />
+			<LocalName language="ua" name="Кількість тайлів" />
+			<LocalName language="cz" name="Počet dlaždic" />
+		</LocalNames>
+	</Data>
+	<Data name="CountOfFrames">
+		<LocalNames>
+			<LocalName language="ru" name="Число кадров" />
+			<LocalName language="en" name="Count of frames" />
+			<LocalName language="ua" name="Кількість кадрів" />
+			<LocalName language="cz" name="Počet snímků" />
+		</LocalNames>
+	</Data>
+	<Data name="CurrentFrame">
+		<LocalNames>
+			<LocalName language="ru" name="Текущий кадр" />
+			<LocalName language="en" name="Current frame" />
+			<LocalName language="ua" name="Поточний кадр" />
+			<LocalName language="cz" name="Stávající snímek" />
+		</LocalNames>
+	</Data>
+	<Data name="Image">
+		<LocalNames>
+			<LocalName language="ru" name="Изображение" />
+			<LocalName language="en" name="Image" />
+			<LocalName language="ua" name="Зображення" />
+			<LocalName language="cz" name="Obrázek" />
+		</LocalNames>
+	</Data>
+	<Data name="Orientation">
+		<LocalNames>
+			<LocalName language="ru" name="Ориентация" />
+			<LocalName language="en" name="Orientation" />
+			<LocalName language="ua" name="Орієнтація" />
+			<LocalName language="cz" name="Orientace" />
+		</LocalNames>
+	</Data>
+	<Data name="Flags">
+		<LocalNames>
+			<LocalName language="ru" name="Флаги" />
+			<LocalName language="en" name="Flags" />
+			<LocalName language="ua" name="Прапорці" />
+			<LocalName language="cz" name="Vlajky" />
+		</LocalNames>
+	</Data>
+	<Data name="TileLocation">
+		<LocalNames>
+			<LocalName language="ru" name="Координаты тайла" />
+			<LocalName language="en" name="Tile location" />
+			<LocalName language="ua" name="Координати тайлу" />
+			<LocalName language="cz" name="Umístění dlaždic" />
+		</LocalNames>
+	</Data>
+	<Data name="Offset">
+		<LocalNames>
+			<LocalName language="ru" name="Смещение" />
+			<LocalName language="en" name="Shift" />
+			<LocalName language="ua" name="Зміщення" />
+			<LocalName language="cz" name="Posun" />
+		</LocalNames>
+	</Data>
+	<Data name="PosRelToBase">
+		<LocalNames>
+			<LocalName language="ru" name="PosRelToBase" />
+			<LocalName language="en" name="PosRelToBase" />
+			<LocalName language="ua" name="Позиція відносно бази" />
+			<LocalName language="cz" name="Pozice vůči bázi" />
+		</LocalNames>
+	</Data>
+	<Data name="OnRoof">
+		<LocalNames>
+			<LocalName language="ru" name="На крыше" />
+			<LocalName language="en" name="On roof" />
+			<LocalName language="ua" name="На даху" />
+			<LocalName language="cz" name="Na střeše" />
+		</LocalNames>
+	</Data>
+	<Data name="Passable">
+		<LocalNames>
+			<LocalName language="ru" name="Проходимый" />
+			<LocalName language="en" name="Passable" />
+			<LocalName language="ua" name="Прохідний" />
+			<LocalName language="cz" name="Průchozí" />
+		</LocalNames>
+	</Data>
+	<Data name="Settings">
+		<LocalNames>
+			<LocalName language="ru" name="Настройки" />
+			<LocalName language="en" name="Settings" />
+			<LocalName language="ua" name="Налаштування" />
+			<LocalName language="cz" name="Nastavení" />
+		</LocalNames>
+	</Data>
+	<Data name="SelectedOnly">
+		<LocalNames>
+			<LocalName language="ru" name="Только выбранный тайл" />
+			<LocalName language="en" name="Selected only" />
+			<LocalName language="ua" name="Тільки вибраний тайл" />
+			<LocalName language="cz" name="Pouze vybraná dlaždice" />
+		</LocalNames>
+	</Data>
+	<Data name="TransparentStructures">
+		<LocalNames>
+			<LocalName language="ru" name="Прозрачные структуры" />
+			<LocalName language="en" name="Transparent structures" />
+			<LocalName language="ua" name="Прозорі структури" />
+			<LocalName language="cz" name="Průhledné struktury" />
+		</LocalNames>
+	</Data>
+	<Data name="StructureColor">
+		<LocalNames>
+			<LocalName language="ru" name="Цвет структуры" />
+			<LocalName language="en" name="Structure color" />
+			<LocalName language="ua" name="Колір структури" />
+			<LocalName language="cz" name="Barva struktury" />
+		</LocalNames>
+	</Data>
+	<Data name="TileColor">
+		<LocalNames>
+			<LocalName language="ru" name="Цвет тайла" />
+			<LocalName language="en" name="Tile color" />
+			<LocalName language="ua" name="Колір тайла" />
+			<LocalName language="cz" name="Barva dlaždice" />
+		</LocalNames>
+	</Data>
+	<Data name="BackgroundColor">
+		<LocalNames>
+			<LocalName language="ru" name="Цвет поверхности" />
+			<LocalName language="en" name="Background color" />
+			<LocalName language="ua" name="Колір поверхні" />
+			<LocalName language="cz" name="Barva pozadí" />
+		</LocalNames>
+	</Data>
+	<Data name="Name">
+		<LocalNames>
+			<LocalName language="ru" name="Название" />
+			<LocalName language="en" name="Name" />
+			<LocalName language="ua" name="Ім'я" />
+			<LocalName language="cz" name="Jméno" />
+		</LocalNames>
+	</Data>
+	<Data name="Value">
+		<LocalNames>
+			<LocalName language="ru" name="Значение" />
+			<LocalName language="en" name="Value" />
+			<LocalName language="ua" name="Значення" />
+			<LocalName language="cz" name="Hodnota" />
+		</LocalNames>
+	</Data>
+	<Data name="EditFlags">
+		<LocalNames>
+			<LocalName language="ru" name="Редактировать флаги" />
+			<LocalName language="en" name="Edit flags" />
+			<LocalName language="ua" name="Редагувати прапорці" />
+			<LocalName language="cz" name="Editovat vlajky" />
+		</LocalNames>
+	</Data>
+	<Data name="Save">
+		<LocalNames>
+			<LocalName language="ru" name="Сохранить..." />
+			<LocalName language="en" name="Save..." />
+			<LocalName language="ua" name="Зберегти..." />
+			<LocalName language="cz" name="Uložit..." />
+		</LocalNames>
+	</Data>
+	<Data name="SaveAs">
+		<LocalNames>
+			<LocalName language="ru" name="Сохранить как..." />
+			<LocalName language="en" name="Save as..." />
+			<LocalName language="ua" name="Зберегти як..." />
+			<LocalName language="cz" name="Uložit jako..." />
+		</LocalNames>
+	</Data>
+	<Data name="Number">
+		<LocalNames>
+			<LocalName language="ru" name="Номер" />
+			<LocalName language="en" name="Number" />
+			<LocalName language="ua" name="Номер" />
+			<LocalName language="cz" name="Čislo" />
+		</LocalNames>
+	</Data>
+	<Data name="Vitality">
+		<LocalNames>
+			<LocalName language="ru" name="Живучесть" />
+			<LocalName language="en" name="Vitality" />
+			<LocalName language="ua" name="Живучість" />
+			<LocalName language="cz" name="Životaschopnost" />
+		</LocalNames>
+	</Data>
+	<Data name="Density">
+		<LocalNames>
+			<LocalName language="ru" name="Плотность" />
+			<LocalName language="en" name="Density" />
+			<LocalName language="ua" name="Густина" />
+			<LocalName language="cz" name="Hustota" />
+		</LocalNames>
+	</Data>
+	<Data name="Armour">
+		<LocalNames>
+			<LocalName language="ru" name="Броня" />
+			<LocalName language="en" name="Armour" />
+			<LocalName language="ua" name="Броня" />
+			<LocalName language="cz" name="Brnění" />
+		</LocalNames>
+	</Data>
+	<Data name="PartnerDelta">
+		<LocalNames>
+			<LocalName language="ru" name="Расстояние до альтернативной версии объекта" />
+			<LocalName language="en" name="Partner delta" />
+			<LocalName language="ua" name="Відстань до альтернативної версії об'єкта" />
+			<LocalName language="cz" name="Vzdálenost do alternativní verze objektu" />
+		</LocalNames>
+	</Data>
+	<Data name="DestructionPartner">
+		<LocalNames>
+			<LocalName language="ru" name="Разрушенная версия объекта" />
+			<LocalName language="en" name="Destruction partner" />
+			<LocalName language="ua" name="Зруйнована версія об'єкта" />
+			<LocalName language="cz" name="Zničená verze objektu" />
+		</LocalNames>
+	</Data>
+	<Data name="About">
+		<LocalNames>
+			<LocalName language="ru" name="О программе" />
+			<LocalName language="en" name="About" />
+			<LocalName language="ua" name="Про програму" />
+			<LocalName language="cz" name="O aplikaci" />
+		</LocalNames>
+	</Data>
+	<Data name="Information">
+		<LocalNames>
+			<LocalName language="ru" name="Справка" />
+			<LocalName language="en" name="Information" />
+			<LocalName language="ua" name="Довідка" />
+			<LocalName language="cz" name="Informace" />
+		</LocalNames>
+	</Data>
+	<Data name="Format">
+		<LocalNames>
+			<LocalName language="ru" name="Формат JSD" />
+			<LocalName language="en" name="JSD-file format" />
+			<LocalName language="ua" name="Формат JSD" />
+			<LocalName language="cz" name="Format JSD" />
+		</LocalNames>
+	</Data>
+	<Data name="MATERIAL_NOTHING">
+		<LocalNames>
+			<LocalName language="ru" name="Ничего" />
+			<LocalName language="en" name="Nothing" />
+			<LocalName language="ua" name="Нічого" />
+			<LocalName language="cz" name="Nic" />
+		</LocalNames>
+	</Data>
+	<Data name="MATERIAL_WOOD_WALL">
+		<LocalNames>
+			<LocalName language="ru" name="Дерево" />
+			<LocalName language="en" name="Dry timber" />
+			<LocalName language="ua" name="Дерево" />
+			<LocalName language="cz" name="Dřevo" />
+		</LocalNames>
+	</Data>
+	<Data name="MATERIAL_PLYWOOD_WALL">
+		<LocalNames>
+			<LocalName language="ru" name="Фанера" />
+			<LocalName language="en" name="Plywood" />
+			<LocalName language="ua" name="Фанера" />
+			<LocalName language="cz" name="Překližka" />
+		</LocalNames>
+	</Data>
+	<Data name="MATERIAL_LIVE_WOOD">
+		<LocalNames>
+			<LocalName language="ru" name="Живое дерево" />
+			<LocalName language="en" name="Tree wood" />
+			<LocalName language="ua" name="Живе дерево" />
+			<LocalName language="cz" name="Živé dřevo" />
+		</LocalNames>
+	</Data>
+	<Data name="MATERIAL_LIGHT_VEGETATION">
+		<LocalNames>
+			<LocalName language="ru" name="Трава" />
+			<LocalName language="en" name="Light vegetation" />
+			<LocalName language="ua" name="Трава" />
+			<LocalName language="cz" name="Tráva" />
+		</LocalNames>
+	</Data>
+	<Data name="MATERIAL_FURNITURE">
+		<LocalNames>
+			<LocalName language="ru" name="Мебель" />
+			<LocalName language="en" name="Furniture" />
+			<LocalName language="ua" name="Меблі" />
+			<LocalName language="cz" name="Nábytek" />
+		</LocalNames>
+	</Data>
+	<Data name="MATERIAL_PORCELAIN">
+		<LocalNames>
+			<LocalName language="ru" name="Фарфор" />
+			<LocalName language="en" name="Porcelain" />
+			<LocalName language="ua" name="Порцеляна" />
+			<LocalName language="cz" name="Porcelán" />
+		</LocalNames>
+	</Data>
+	<Data name="MATERIAL_CACTUS">
+		<LocalNames>
+			<LocalName language="ru" name="Кактус, бамбук" />
+			<LocalName language="en" name="Cactus, bamboo" />
+			<LocalName language="ua" name="Кактус, бамбук" />
+			<LocalName language="cz" name="Kaktus, bambus" />
+		</LocalNames>
+	</Data>
+	<Data name="MATERIAL_NOTUSED1">
+		<LocalNames>
+			<LocalName language="ru" name="Не используется 1" />
+			<LocalName language="en" name="not used 1" />
+			<LocalName language="ua" name="Не використовується 1" />
+			<LocalName language="cz" name="Nepouživá se 1" />
+		</LocalNames>
+	</Data>
+	<Data name="MATERIAL_NOTUSED2">
+		<LocalNames>
+			<LocalName language="ru" name="Не используется 2" />
+			<LocalName language="en" name="not used 2" />
+			<LocalName language="ua" name="Не використовується 2" />
+			<LocalName language="cz" name="Nepouživá se 2" />
+		</LocalNames>
+	</Data>
+	<Data name="MATERIAL_NOTUSED3">
+		<LocalNames>
+			<LocalName language="ru" name="Не используется 3" />
+			<LocalName language="en" name="not used 3" />
+			<LocalName language="ua" name="Не використовується 3" />
+			<LocalName language="cz" name="Nepouživá se 3" />
+		</LocalNames>
+	</Data>
+	<Data name="MATERIAL_STONE">
+		<LocalNames>
+			<LocalName language="ru" name="Каменная кладка" />
+			<LocalName language="en" name="Stone masonry" />
+			<LocalName language="ua" name="Кам'яна стіна" />
+			<LocalName language="cz" name="Kamenná zeď" />
+		</LocalNames>
+	</Data>
+	<Data name="MATERIAL_CONCRETE1">
+		<LocalNames>
+			<LocalName language="ru" name="Бетон" />
+			<LocalName language="en" name="Non-reinforced concrete" />
+			<LocalName language="ua" name="Бетон" />
+			<LocalName language="cz" name="Beton" />
+		</LocalNames>
+	</Data>
+	<Data name="MATERIAL_CONCRETE2">
+		<LocalNames>
+			<LocalName language="ru" name="Железобетон" />
+			<LocalName language="en" name="Reinforced concrete" />
+			<LocalName language="ua" name="Залізобетон" />
+			<LocalName language="cz" name="Železo-beton" />
+		</LocalNames>
+	</Data>
+	<Data name="MATERIAL_ROCK">
+		<LocalNames>
+			<LocalName language="ru" name="Камень" />
+			<LocalName language="en" name="Rock" />
+			<LocalName language="ua" name="Камінь" />
+			<LocalName language="cz" name="Kámen" />
+		</LocalNames>
+	</Data>
+	<Data name="MATERIAL_RUBBER">
+		<LocalNames>
+			<LocalName language="ru" name="Резина" />
+			<LocalName language="en" name="Rubber" />
+			<LocalName language="ua" name="Гума" />
+			<LocalName language="cz" name="Guma" />
+		</LocalNames>
+	</Data>
+	<Data name="MATERIAL_SAND">
+		<LocalNames>
+			<LocalName language="ru" name="Песок" />
+			<LocalName language="en" name="Sand" />
+			<LocalName language="ua" name="Пісок" />
+			<LocalName language="cz" name="Písek" />
+		</LocalNames>
+	</Data>
+	<Data name="MATERIAL_CLOTH">
+		<LocalNames>
+			<LocalName language="ru" name="Ткань" />
+			<LocalName language="en" name="Cloth" />
+			<LocalName language="ua" name="Тканина" />
+			<LocalName language="cz" name="Látka" />
+		</LocalNames>
+	</Data>
+	<Data name="MATERIAL_SANDBAG">
+		<LocalNames>
+			<LocalName language="ru" name="Мешок с песком" />
+			<LocalName language="en" name="Sandbag" />
+			<LocalName language="ua" name="Мішок з піском" />
+			<LocalName language="cz" name="Pytel písku" />
+		</LocalNames>
+	</Data>
+	<Data name="MATERIAL_NOTUSED5">
+		<LocalNames>
+			<LocalName language="ru" name="Не используется 5" />
+			<LocalName language="en" name="not used 5" />
+			<LocalName language="ua" name="Не використовується 5" />
+			<LocalName language="cz" name="Nepouživá se 5" />
+		</LocalNames>
+	</Data>
+	<Data name="MATERIAL_NOTUSED6">
+		<LocalNames>
+			<LocalName language="ru" name="Не используется 6" />
+			<LocalName language="en" name="not used 6" />
+			<LocalName language="ua" name="Не використовується 6" />
+			<LocalName language="cz" name="Nepouživá se 6" />
+		</LocalNames>
+	</Data>
+	<Data name="MATERIAL_LIGHT_METAL">
+		<LocalNames>
+			<LocalName language="ru" name="Тонкий металл" />
+			<LocalName language="en" name="Light metal" />
+			<LocalName language="ua" name="Тонкий метал" />
+			<LocalName language="cz" name="Tenký kov" />
+		</LocalNames>
+	</Data>
+	<Data name="MATERIAL_THICKER_METAL">
+		<LocalNames>
+			<LocalName language="ru" name="Толстый металл" />
+			<LocalName language="en" name="Thicker metal" />
+			<LocalName language="ua" name="Товстіший метал" />
+			<LocalName language="cz" name="Tlustý kov" />
+		</LocalNames>
+	</Data>
+	<Data name="MATERIAL_HEAVY_METAL">
+		<LocalNames>
+			<LocalName language="ru" name="Тяжёлый металл" />
+			<LocalName language="en" name="Heavy metal" />
+			<LocalName language="ua" name="Важкий метал" />
+			<LocalName language="cz" name="Těžký kov" />
+		</LocalNames>
+	</Data>
+	<Data name="MATERIAL_INDESTRUCTABLE_STONE">
+		<LocalNames>
+			<LocalName language="ru" name="Неразрушимый камень" />
+			<LocalName language="en" name="Rock indestructable" />
+			<LocalName language="ua" name="Незнищенний камінь" />
+			<LocalName language="cz" name="Nezničitelný kámen" />
+		</LocalNames>
+	</Data>
+	<Data name="MATERIAL_INDESTRUCTABLE_METAL">
+		<LocalNames>
+			<LocalName language="ru" name="Неразрушимый металл" />
+			<LocalName language="en" name="Metal indestructable" />
+			<LocalName language="ua" name="Незнищенний метал" />
+			<LocalName language="cz" name="Nezničitelný kov" />
+		</LocalNames>
+	</Data>
+	<Data name="MATERIAL_THICKER_METAL_WITH_SCREEN_WINDOWS">
+		<LocalNames>
+			<LocalName language="ru" name="Толстый металл с окном" />
+			<LocalName language="en" name="Thicker metal with screen windows" />
+			<LocalName language="ua" name="Товстіший метал з вікном" />
+			<LocalName language="cz" name="Tlustý kov s oknem" />
+		</LocalNames>
+	</Data>
+</ArrayOfData>

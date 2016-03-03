@@ -1,0 +1,173 @@
+﻿<UserControl x:Class="JsdEditor.JsdFileView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="clr-namespace:CommonWpfControls;assembly=CommonWpfControls"
+             xmlns:local="clr-namespace:JsdEditor"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="900">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="3"/>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Structure Data" FontSize="14" FontWeight="Medium" />
+        <TextBlock Grid.Column="2" Text="Auxilarity Data" FontSize="14" FontWeight="Medium" />
+        <StackPanel Grid.Row="1" DockPanel.Dock="Top" Orientation="Horizontal">
+            <Button Content="Add Structure" Command="{Binding AddStructureCommand}" CommandParameter="{Binding}" />
+            <Button Content="Delete Structure" Command="{Binding RemoveStructureCommand}" CommandParameter="{Binding}" />
+            <Button Content="Copy Structure" Command="{Binding CopyStructureCommand}" CommandParameter="{Binding}" />
+            <Button Command="{Binding RotateStructureCommand}" CommandParameter="{Binding}" ToolTip="Copy and rotate 90 degrees clockwise">
+                <Path Stroke="Black" StrokeThickness="3" Data="{StaticResource ClockwiseRotateArrow}" />
+            </Button>
+            <Button Command="{Binding AntiRotateStructureCommand}" CommandParameter="{Binding}" ToolTip="Copy and rotate 90 degrees counterclockwise">
+                <Path Stroke="Black" StrokeThickness="3" Data="{StaticResource ClockwiseRotateArrow}" RenderTransformOrigin="0.5 0.5">
+                    <Path.RenderTransform>
+                        <MatrixTransform Matrix="-1, 0, 0, 1, 0, 0" />
+                    </Path.RenderTransform>
+                </Path>
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="2" DockPanel.Dock="Top" Orientation="Horizontal">
+            <Button Content="Add Aux. Data" Command="{Binding AddAuxDataCommand}" CommandParameter="{Binding}" />
+            <Button Content="Delete Aux. Data" Command="{Binding RemoveAuxDataCommand}" CommandParameter="{Binding}" />
+        </StackPanel>
+        <DataGrid x:Name="dgStruct" Grid.Row="2" 
+                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding Structs}"
+                  SelectedItem="{Binding SelectedStruct}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=StructureNumber}" 
+                                    Width="30" Header="#" />
+                <DataGridComboBoxColumn x:Name="dgcbcMaterial" Header="Material"
+                                        SelectedValueBinding="{Binding Path=Armour}"
+                                        SelectedValuePath="Index" DisplayMemberPath="DisplayName" />
+                <DataGridTextColumn Binding="{Binding Path=Armour}" 
+                                    Width="30" Header="Armour"
+                                    IsReadOnly="True"
+                                    HeaderStyle="{StaticResource ColumnHeaderStyle}" />
+                <DataGridTextColumn Binding="{Binding Path=HitPoints}" 
+                                    Width="30" Header="Hit Points" 
+                                    HeaderStyle="{StaticResource ColumnHeaderStyle}" />
+                <DataGridTextColumn Binding="{Binding Path=Density}" 
+                                    Width="30" Header="Density"
+                                    HeaderStyle="{StaticResource ColumnHeaderStyle}" />
+                <DataGridTemplateColumn Header="Flags" HeaderStyle="{StaticResource ColumnHeaderStyle}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DockPanel>
+                                <Button DockPanel.Dock="Right" 
+                                        Style="{StaticResource ComboBoxStyle}" 
+                                        Click="StructFlagsButton_Click">
+                                </Button>
+                                <TextBlock Text="{Binding Flags}" Margin="5,0,5,0" />
+                            </DockPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Binding="{Binding Path=WallOrientation}" 
+                                    Width="30" Header="Wall Orientation"
+                                    HeaderStyle="{StaticResource ColumnHeaderStyle}"/>
+                <DataGridTextColumn Binding="{Binding Path=DestructionPartner}" 
+                                    Width="30" Header="Destruction Partner"
+                                    HeaderStyle="{StaticResource ColumnHeaderStyle}"/>
+                <DataGridTextColumn Binding="{Binding Path=PartnerDelta}" 
+                                    Width="30" Header="Partner Delta"
+                                    HeaderStyle="{StaticResource ColumnHeaderStyle}"/>
+                <DataGridTextColumn Binding="{Binding Path=ZTileOffsetX}" 
+                                    Width="30" Header="Z Tile Offset X"
+                                    HeaderStyle="{StaticResource ColumnHeaderStyle}" />
+                <DataGridTextColumn Binding="{Binding Path=ZTileOffsetY}" 
+                                    Width="30" Header="Z Tile Offset Y"
+                                    HeaderStyle="{StaticResource ColumnHeaderStyle}" />
+                <DataGridTextColumn Binding="{Binding Path=Tiles.Count, Mode=OneWay}" 
+                                    Width="30" Header="Number of Tiles"
+                                    HeaderStyle="{StaticResource ColumnHeaderStyle}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <GridSplitter Grid.Column="1" Grid.RowSpan="3" Width="3" VerticalAlignment="Stretch" HorizontalAlignment="Center" />
+        <DataGrid x:Name="dgAuxData"
+                  Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" 
+                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding AuxData}"
+                  SelectedItem="{Binding SelectedAuxData}"
+                  SelectedIndex="{Binding AuxDataSelectedIndex}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=NumberOfTiles}" 
+                                    Width="30" Header="Number of Tiles"
+                                    HeaderStyle="{StaticResource ColumnHeaderStyle}" />
+                <DataGridTextColumn Binding="{Binding Path=TileLocIndex}" 
+                                    Width="30" Header="Tile Location Index" 
+                                    HeaderStyle="{StaticResource ColumnHeaderStyle}" />
+                <DataGridTextColumn Binding="{Binding Path=CurrentFrame}" 
+                                    Width="30" Header="Current Frame" 
+                                    HeaderStyle="{StaticResource ColumnHeaderStyle}" />
+                <DataGridTemplateColumn Header="Flags" HeaderStyle="{StaticResource ColumnHeaderStyle}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DockPanel>
+                                <Button DockPanel.Dock="Right"
+                                        Style="{StaticResource ComboBoxStyle}"
+                                        Click="AuxFlagsButton_Click" />
+                                <TextBlock Text="{Binding Flags}" Margin="5,0,5,0" />
+                            </DockPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Binding="{Binding Path=WallOrientation}" 
+                                    Width="30" Header="Wall Orientation"
+                                    HeaderStyle="{StaticResource ColumnHeaderStyle}" />
+                <DataGridTextColumn Binding="{Binding Path=NumberOfFrames}" Width="30" 
+                                    Header="Number of Frames" 
+                                    HeaderStyle="{StaticResource ColumnHeaderStyle}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <ListBox x:Name="lbImages"
+                 Grid.Column="4" Grid.RowSpan="4" 
+                 ItemsSource="{Binding Images}"
+                 SelectedIndex="{Binding ImageSelectedIndex}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border>
+                        <Image Margin="5" Source="{Binding Bitmap}" />
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>         
+        </ListBox>
+        <local:ShapePreview3D x:Name="svJsdShape3D" Grid.Row="3" Grid.ColumnSpan="3" />
+        <Popup x:Name="puStructFlags" 
+               Placement="Mouse" 
+               PopupAnimation="Slide" 
+               StaysOpen="False"
+               Closed="puStructFlags_Closed">
+            <Border BorderThickness="1" BorderBrush="Gray" Background="White">
+                <StackPanel>
+                    <TextBlock Margin="2" Text="OPENABLE, CLOSEABLE," />
+                    <TextBlock Margin="2" Text="SEARCHABLE are synonyms" />
+                    <controls:FlagEditorView x:Name="fevStruct" />
+                </StackPanel>
+            </Border>
+        </Popup>
+        <Popup x:Name="puAuxFlags" 
+               Placement="Mouse" 
+               PopupAnimation="Slide" 
+               StaysOpen="False"
+               Closed="puAuxFlags_Closed">
+            <Border BorderThickness="1" BorderBrush="Gray" Background="White">
+                <StackPanel>
+                    <controls:FlagEditorView x:Name="fevAux" />
+                </StackPanel>
+            </Border>
+        </Popup>
+    </Grid>
+</UserControl>

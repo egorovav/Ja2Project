@@ -1,0 +1,239 @@
+﻿using Localizer;
+namespace dotNetStiEditor
+{
+    partial class EditorMainForm
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+					this.components = new System.ComponentModel.Container();
+					this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+					this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+					this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+					this.открытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+					this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+					this.оПрограммеToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+					this.помощьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+					this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+					this.panel = new WeifenLuo.WinFormsUI.DockPanel();
+					this.libDataGridView = new System.Windows.Forms.DataGridView();
+					this.libraryContextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+					this.просмотретьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+					this.копироватьВБуферToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+					this.просмотретьСинхронноToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+					this.добавитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+					this.dataGridView3 = new System.Windows.Forms.DataGridView();
+					this.dataGridView4 = new System.Windows.Forms.DataGridView();
+					this.добавитьВПроигрывательToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+					this.menuStrip1.SuspendLayout();
+					((System.ComponentModel.ISupportInitialize)(this.libDataGridView)).BeginInit();
+					this.libraryContextMenuStrip1.SuspendLayout();
+					((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+					((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+					this.SuspendLayout();
+					// 
+					// openFileDialog1
+					// 
+					this.openFileDialog1.FileName = "openFileDialog1";
+					this.openFileDialog1.Multiselect = true;
+					// 
+					// menuStrip1
+					// 
+					this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.файлToolStripMenuItem,
+            this.оПрограммеToolStripMenuItem});
+					this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+					this.menuStrip1.Name = "menuStrip1";
+					this.menuStrip1.Size = new System.Drawing.Size(619, 24);
+					this.menuStrip1.TabIndex = 10;
+					this.menuStrip1.Text = "menuStrip1";
+					// 
+					// файлToolStripMenuItem
+					// 
+					this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.открытьToolStripMenuItem});
+					this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
+					this.файлToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
+					this.файлToolStripMenuItem.Text = "Файл";
+					// 
+					// открытьToolStripMenuItem
+					// 
+					this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
+					this.открытьToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+					this.открытьToolStripMenuItem.Text = "Открыть";
+					this.открытьToolStripMenuItem.Click += new System.EventHandler(this.открытьToolStripMenuItem_Click);
+					// 
+					// оПрограммеToolStripMenuItem
+					// 
+					this.оПрограммеToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+					this.оПрограммеToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.оПрограммеToolStripMenuItem1,
+            this.помощьToolStripMenuItem});
+					this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
+					this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
+					this.оПрограммеToolStripMenuItem.Text = "Справка";
+					// 
+					// оПрограммеToolStripMenuItem1
+					// 
+					this.оПрограммеToolStripMenuItem1.Name = "оПрограммеToolStripMenuItem1";
+					this.оПрограммеToolStripMenuItem1.Size = new System.Drawing.Size(144, 22);
+					this.оПрограммеToolStripMenuItem1.Text = "О прорамме";
+					this.оПрограммеToolStripMenuItem1.Click += new System.EventHandler(this.оПрограммеToolStripMenuItem1_Click);
+					// 
+					// помощьToolStripMenuItem
+					// 
+					this.помощьToolStripMenuItem.Name = "помощьToolStripMenuItem";
+					this.помощьToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+					this.помощьToolStripMenuItem.Text = "Помощь";
+					this.помощьToolStripMenuItem.Click += new System.EventHandler(this.помощьToolStripMenuItem_Click);
+					// 
+					// folderBrowserDialog1
+					// 
+					this.folderBrowserDialog1.Description = "Select folder contains STI-files.";
+					// 
+					// panel
+					// 
+					this.panel.ActiveAutoHideContent = null;
+					this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
+					this.panel.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
+					this.panel.Location = new System.Drawing.Point(0, 24);
+					this.panel.Name = "panel";
+					this.panel.Size = new System.Drawing.Size(619, 419);
+					this.panel.TabIndex = 3;
+					// 
+					// libDataGridView
+					// 
+					this.libDataGridView.AllowUserToAddRows = false;
+					this.libDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+					this.libDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+					this.libDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+					this.libDataGridView.ContextMenuStrip = this.libraryContextMenuStrip1;
+					this.libDataGridView.Location = new System.Drawing.Point(39, 67);
+					this.libDataGridView.Name = "libDataGridView";
+					this.libDataGridView.Size = new System.Drawing.Size(240, 150);
+					this.libDataGridView.TabIndex = 15;
+					this.libDataGridView.VirtualMode = true;
+					this.libDataGridView.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridView1_UserDeletingRow);
+					this.libDataGridView.CellValueNeeded += new System.Windows.Forms.DataGridViewCellValueEventHandler(this.dataGridView1_CellValueNeeded);
+					// 
+					// libraryContextMenuStrip1
+					// 
+					this.libraryContextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.просмотретьToolStripMenuItem,
+            this.копироватьВБуферToolStripMenuItem,
+            this.просмотретьСинхронноToolStripMenuItem,
+            this.добавитьToolStripMenuItem,
+            this.добавитьВПроигрывательToolStripMenuItem});
+					this.libraryContextMenuStrip1.Name = "contextMenuStrip1";
+					this.libraryContextMenuStrip1.Size = new System.Drawing.Size(237, 136);
+					// 
+					// просмотретьToolStripMenuItem
+					// 
+					this.просмотретьToolStripMenuItem.Name = "просмотретьToolStripMenuItem";
+					this.просмотретьToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+					this.просмотретьToolStripMenuItem.Text = "Просмотреть";
+					this.просмотретьToolStripMenuItem.Click += new System.EventHandler(this.просмотретьToolStripMenuItem_Click);
+					// 
+					// копироватьВБуферToolStripMenuItem
+					// 
+					this.копироватьВБуферToolStripMenuItem.Name = "копироватьВБуферToolStripMenuItem";
+					this.копироватьВБуферToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+					this.копироватьВБуферToolStripMenuItem.Text = "Копировать в буфер ";
+					this.копироватьВБуферToolStripMenuItem.Click += new System.EventHandler(this.копироватьВБуферToolStripMenuItem_Click);
+					// 
+					// просмотретьСинхронноToolStripMenuItem
+					// 
+					this.просмотретьСинхронноToolStripMenuItem.Name = "просмотретьСинхронноToolStripMenuItem";
+					this.просмотретьСинхронноToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+					this.просмотретьСинхронноToolStripMenuItem.Text = "Просмотреть синхронно";
+					this.просмотретьСинхронноToolStripMenuItem.Click += new System.EventHandler(this.просмотретьСинхронноToolStripMenuItem_Click);
+					// 
+					// добавитьToolStripMenuItem
+					// 
+					this.добавитьToolStripMenuItem.Name = "добавитьToolStripMenuItem";
+					this.добавитьToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+					this.добавитьToolStripMenuItem.Text = "Добавить в рабочую область";
+					this.добавитьToolStripMenuItem.Click += new System.EventHandler(this.добавитьToolStripMenuItem_Click);
+					// 
+					// dataGridView3
+					// 
+					this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+					this.dataGridView3.Location = new System.Drawing.Point(323, 67);
+					this.dataGridView3.Name = "dataGridView3";
+					this.dataGridView3.Size = new System.Drawing.Size(240, 150);
+					this.dataGridView3.TabIndex = 21;
+					// 
+					// dataGridView4
+					// 
+					this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+					this.dataGridView4.Location = new System.Drawing.Point(323, 259);
+					this.dataGridView4.Name = "dataGridView4";
+					this.dataGridView4.Size = new System.Drawing.Size(240, 150);
+					this.dataGridView4.TabIndex = 24;
+					// 
+					// добавитьВПроигрывательToolStripMenuItem
+					// 
+					this.добавитьВПроигрывательToolStripMenuItem.Name = "добавитьВПроигрывательToolStripMenuItem";
+					this.добавитьВПроигрывательToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+					this.добавитьВПроигрывательToolStripMenuItem.Text = "Добавить в проигрыватель";
+					this.добавитьВПроигрывательToolStripMenuItem.Click += new System.EventHandler(this.добавитьВПроигрывательToolStripMenuItem_Click);
+					// 
+					// EditorMainForm
+					// 
+					this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+					this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+					this.ClientSize = new System.Drawing.Size(619, 443);
+					this.Controls.Add(this.dataGridView4);
+					this.Controls.Add(this.libDataGridView);
+					this.Controls.Add(this.panel);
+					this.Controls.Add(this.dataGridView3);
+					this.Controls.Add(this.menuStrip1);
+					this.IsMdiContainer = true;
+					this.MainMenuStrip = this.menuStrip1;
+					this.Name = "EditorMainForm";
+					this.Text = "Редактор STI файлов ";
+					this.menuStrip1.ResumeLayout(false);
+					this.menuStrip1.PerformLayout();
+					((System.ComponentModel.ISupportInitialize)(this.libDataGridView)).EndInit();
+					this.libraryContextMenuStrip1.ResumeLayout(false);
+					((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+					((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+					this.ResumeLayout(false);
+					this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem открытьToolStripMenuItem;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private WeifenLuo.WinFormsUI.DockPanel panel;
+        private System.Windows.Forms.DataGridView libDataGridView;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.DataGridView dataGridView4;
+        private System.Windows.Forms.ContextMenuStrip libraryContextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem просмотретьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem копироватьВБуферToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem просмотретьСинхронноToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem добавитьToolStripMenuItem;
+			private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
+			private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem1;
+			private System.Windows.Forms.ToolStripMenuItem помощьToolStripMenuItem;
+			private System.Windows.Forms.ToolStripMenuItem добавитьВПроигрывательToolStripMenuItem;
+    }
+}
+

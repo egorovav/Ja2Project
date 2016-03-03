@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="MapViewer.GlobalMapsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MapViewer"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid PreviewMouseDown="GlobalMapView_MouseDown">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <local:GlobalMapView Level="0" Margin="5"
+                             MapImage="{Binding GlobalMap}" 
+                             SelectedSector="{Binding SelectedSector, Mode=TwoWay}"/>
+        <local:GlobalMapView Level="1" Grid.Row="1" Margin="5" 
+                             MapImage="{Binding GlobalMap1}"
+                             SelectedSector="{Binding SelectedSector, Mode=TwoWay}"/>
+        <local:GlobalMapView Level="2" Grid.Row="1" Grid.Column="1" Margin="5" 
+                             MapImage="{Binding GlobalMap2}"
+                             SelectedSector="{Binding SelectedSector, Mode=TwoWay}"/>
+        <local:GlobalMapView Level="3" Grid.Row="1" Grid.Column="2" Margin="5" 
+                             MapImage="{Binding GlobalMap3}"
+                             SelectedSector="{Binding SelectedSector, Mode=TwoWay}"/>
+    </Grid>
+</UserControl>

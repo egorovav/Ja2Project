@@ -1,0 +1,125 @@
+8
+
+dir
+1
+https://81.169.133.124/source/ja2_allv_sti_editor/dotNetStiEditorSrc/StdLib
+https://81.169.133.124/source/ja2_allv_sti_editor
+
+
+
+2008-01-05T13:46:57.275006Z
+1
+lalien
+has-props
+has-prop-mods
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+462cdfaa-f942-0410-9557-8e18068422a1
+
+StciHeader.cs
+file
+10
+
+
+
+2008-02-21T20:27:48.758441Z
+0643bcbe1710619705e90fb484f26b0e
+2008-02-25T22:43:38.058597Z
+10
+pingvin
+
+ETRLE.cs
+file
+23
+
+
+
+2008-03-18T22:06:41.812500Z
+f05ea65b0b1d13c36b6e6e7e758d930c
+2008-03-24T17:22:06.369158Z
+23
+pingvin
+
+BMP.cs
+file
+
+
+
+
+2008-01-06T12:56:27.593750Z
+c30e04e2fa88b5115a6513ccdd2f0308
+2008-01-05T13:46:57.275006Z
+1
+lalien
+
+StiLib.csproj
+file
+
+
+
+
+2008-01-06T09:53:55.171875Z
+68d2fcbb6b29a7d7eabcd6aa18dd362d
+2008-01-05T13:46:57.275006Z
+1
+lalien
+
+bin
+dir
+
+
+
+delete
+
+GIF.cs
+file
+18
+
+
+
+2008-03-15T17:43:23.937500Z
+7e2eb04a39be5d71fc484e4ad707d1f0
+2008-03-15T20:55:08.239845Z
+18
+pingvin
+
+obj
+dir
+
+Properties
+dir
+
+TIFF.cs
+file
+
+
+
+
+2008-01-06T09:53:55.171875Z
+de3798339b07a628be902d928af90336
+2008-01-05T13:46:57.275006Z
+1
+lalien
+
+RGB.cs
+file
+23
+
+
+
+2008-03-18T22:09:12.203125Z
+b9ffc81a69954785eff8b25bfa154603
+2008-03-24T17:22:06.369158Z
+23
+pingvin
+

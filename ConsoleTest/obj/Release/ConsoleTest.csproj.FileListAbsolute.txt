@@ -1,0 +1,10 @@
+C:\Users\Alexey\Documents\Visual Studio 2013\Projects\Ja2Project\ConsoleTest\bin\Release\ConsoleTest.exe.config
+C:\Users\Alexey\Documents\Visual Studio 2013\Projects\Ja2Project\ConsoleTest\bin\Release\ConsoleTest.exe
+C:\Users\Alexey\Documents\Visual Studio 2013\Projects\Ja2Project\ConsoleTest\bin\Release\ConsoleTest.pdb
+C:\Users\Alexey\Documents\Visual Studio 2013\Projects\Ja2Project\ConsoleTest\obj\Release\ConsoleTest.exe
+C:\Users\Alexey\Documents\Visual Studio 2013\Projects\Ja2Project\ConsoleTest\obj\Release\ConsoleTest.pdb
+C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\ConsoleTest\bin\Release\ConsoleTest.exe.config
+C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\ConsoleTest\bin\Release\ConsoleTest.exe
+C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\ConsoleTest\bin\Release\ConsoleTest.pdb
+C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\ConsoleTest\obj\Release\ConsoleTest.exe
+C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\ConsoleTest\obj\Release\ConsoleTest.pdb

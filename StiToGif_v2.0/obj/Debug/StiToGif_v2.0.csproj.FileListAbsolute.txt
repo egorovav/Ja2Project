@@ -1,0 +1,10 @@
+c:\Users\Alexey\documents\visual studio 2013\Projects\StiToGif\StiToGif_v2.0\bin\Debug\StiToGif_v2.0.exe.config
+c:\Users\Alexey\documents\visual studio 2013\Projects\StiToGif\StiToGif_v2.0\bin\Debug\StiToGif_v2.0.exe
+c:\Users\Alexey\documents\visual studio 2013\Projects\StiToGif\StiToGif_v2.0\bin\Debug\StiToGif_v2.0.pdb
+c:\Users\Alexey\documents\visual studio 2013\Projects\StiToGif\StiToGif_v2.0\bin\Debug\StiLib.dll
+c:\Users\Alexey\documents\visual studio 2013\Projects\StiToGif\StiToGif_v2.0\obj\Debug\StiToGif_v2._0.Properties.Resources.resources
+c:\Users\Alexey\documents\visual studio 2013\Projects\StiToGif\StiToGif_v2.0\obj\Debug\StiToGif_v2.0.csproj.GenerateResource.Cache
+c:\Users\Alexey\documents\visual studio 2013\Projects\StiToGif\StiToGif_v2.0\obj\Debug\StiToGif_v2.0.exe
+c:\Users\Alexey\documents\visual studio 2013\Projects\StiToGif\StiToGif_v2.0\obj\Debug\StiToGif_v2.0.pdb
+c:\Users\Alexey\documents\visual studio 2013\Projects\StiToGif\StiToGif_v2.0\obj\Debug\StiToGif.MainForm.resources
+c:\Users\Alexey\documents\visual studio 2013\Projects\StiToGif\StiToGif_v2.0\obj\Debug\StiToGif_v2.0.csprojResolveAssemblyReference.cache

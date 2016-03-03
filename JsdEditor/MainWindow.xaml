@@ -1,0 +1,109 @@
+﻿<Window x:Class="JsdEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:JsdEditor"
+        xmlns:controls="clr-namespace:CommonWpfControls;assembly=CommonWpfControls"
+        Title="Jsd Editor v 2.0.4" Height="600" Width="800"
+        Closing="MainWindow_Closing">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Open" 
+                        Executed="OpenCommand_Executed" 
+                        CanExecute="OpenCommand_CanExecute" />
+        <CommandBinding Command="ApplicationCommands.SaveAs"
+                        Executed="SaveAsCommand_Executed"
+                        CanExecute="SaveAsCommand_CanExecute" />
+        <CommandBinding Command="ApplicationCommands.New"
+                        Executed="NewCommand_Executed"
+                        CanExecute="NewCommand_CanExecute" />
+        <CommandBinding Command="ApplicationCommands.Save"
+                        Executed="SaveCommand_Executed"
+                        CanExecute="SaveCommand_CanExecute" />
+    </Window.CommandBindings>
+    <Window.Resources>
+        <controls:BoolToCollapsedConverter x:Key="BoolToCollapsedConverter" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Menu>
+            <MenuItem Header="_File">
+                <MenuItem Header="_Open JSD" Command="ApplicationCommands.Open" />
+                <MenuItem Header="_New JSD" Command="ApplicationCommands.New" />
+                <MenuItem Header="_Save As..." Command="ApplicationCommands.SaveAs" />
+                <MenuItem Header="Save" Command="ApplicationCommands.Save" />
+                <Separator />
+                <MenuItem Header="Open _Folder" Click="OpenFolderMenuItem_Click" />
+                <MenuItem Header="Open S_LF" Click="OpenSlfMenuItem_Click" />
+                <Separator />
+                <MenuItem Header="Open STI File" Click="OpenStiMenuItem_Click" />
+                <MenuItem Header="Open STI Folder" Click="OpenStiFolderMenuItem_Click" />
+            </MenuItem>
+            <MenuItem Header="Convert to HD">
+                <MenuItem Header="File" Click="ConvertFileMenuItem_Click" />
+                <MenuItem Header="Folder" Click="ConvertFolderMenuItem_Click" />
+            </MenuItem>
+            <MenuItem Header="_About"></MenuItem>
+        </Menu>
+        <TabControl Grid.Row="1">
+            <TabItem Header="JSD File">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="3" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                <DataGrid x:Name="dgJsdFiles"
+                  ItemsSource="{Binding JsdFiles}"
+                  AutoGenerateColumns="False"
+                  AlternationCount="2"
+                  AlternatingRowBackground="LightGreen"
+                  GridLinesVisibility="Vertical"
+                  BorderThickness="1"
+                  SelectedItem="{Binding SelectedJsdFile}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Path=FileName, Mode=OneWay}" Header="File Name"  />
+                        <DataGridTextColumn Binding="{Binding Path=NumberOfStructures, Mode=OneWay}" 
+                                            Header="Structure Number" Width="30"
+                                            HeaderStyle="{StaticResource ColumnHeaderStyle}" />
+                        <DataGridTextColumn Binding="{Binding Path=NumberOfImages}"
+                                            Header="Image Number" Width="30"
+                                            HeaderStyle="{StaticResource ColumnHeaderStyle}" />
+                        <DataGridCheckBoxColumn Binding="{Binding Path=IsHighDefenition}" Header="HD" IsReadOnly="true" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <GridSplitter Grid.Column="1" Width="3" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
+                <local:JsdFileView x:Name="jfv" Grid.Column="2" />
+                    <ProgressBar
+                        Grid.Column="2"
+                        Background="Red" 
+                        Foreground="Blue"
+                        Height="34"
+                        Width="512"
+                        VerticalAlignment="Bottom"
+                        Margin="0,0,0,60"
+                        Value="{Binding Progress}" 
+                        Visibility="{Binding IsBusy, 
+                        Converter={StaticResource BoolToCollapsedConverter}}" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="JSD Structure">
+                <local:StructureView x:Name="sv" />
+            </TabItem>          
+        </TabControl>
+        <StatusBar Grid.Row="2">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="JSD Files Loaded: " FontWeight="Medium" />
+                <TextBlock Text="{Binding JsdFilesCount}" />
+                <TextBlock Text="; SLF File Name: " FontWeight="Medium"
+                           Visibility="{Binding SlfFileNameIsNotEmpty, Converter={StaticResource BoolToCollapsedConverter}}" />
+                <TextBlock Text="{Binding SlfFileName}" />
+                <TextBlock Text="; Folder Name: " FontWeight="Medium"                       
+                           Visibility="{Binding FolderNameIsNotEmpty, Converter={StaticResource BoolToCollapsedConverter}}" />
+                <TextBlock Text="{Binding FolderName}" />
+            </StackPanel>
+        </StatusBar>
+    </Grid>
+</Window>

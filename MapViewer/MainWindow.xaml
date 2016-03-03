@@ -1,0 +1,78 @@
+﻿<Window x:Class="MapViewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:MapViewer"
+        Title="JA 2 Map Viewer" Height="350" Width="525"
+        Loaded="Window_Loaded">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Open" 
+                        Executed="OpenCommand_Executed" 
+                        CanExecute="OpenCommand_CanExecute" />
+    </Window.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Menu>
+            <MenuItem Header="File">
+                <MenuItem Header="_Open"  Command="ApplicationCommands.Open"/>
+                <MenuItem Header="_Save As">
+                    <MenuItem Header="JPEG" Click="SaveAsJpeg_Click" />
+                    <MenuItem Header="BMP" Click="SaveAsBmp_Click"/>
+                </MenuItem>
+                <MenuItem Header="Convert To">
+                    <MenuItem Header="JPEG" Click="ConvertToJpeg_Click" />
+                    <MenuItem Header="BMP" Click="ConvertToBmp_Click" />
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Data" Click="ChangeData_Click" />
+        </Menu>
+        <TabControl x:Name="tc" Grid.Row="1" Grid.Column="1">
+            <TabItem Header="Map">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                    <local:GlobalMapsView x:Name="gmv" />
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Image" 
+                     MouseMove="mv_MouseMove"
+                     PreviewMouseWheel="mv_MouseWheel">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions> 
+                        <Canvas x:Name="iMap">
+                            <local:MapFrameworkElement x:Name="mv" 
+                                                       >
+                                <local:MapFrameworkElement.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="{Binding ImageScale}" ScaleY="{Binding ImageScale}" />
+                                        <TranslateTransform X="{Binding ImageX}" Y="{Binding ImageY}" />
+                                    </TransformGroup>
+                                </local:MapFrameworkElement.RenderTransform>
+                            </local:MapFrameworkElement>
+                        </Canvas>
+                    </Grid>
+                
+            </TabItem>
+            <TabItem Header="Structure">
+                <local:ShapeView3D x:Name="svMapStructure" />
+            </TabItem>
+        </TabControl>
+        <StackPanel x:Name="spLayers" Grid.Row="1" Margin="10">
+            <CheckBox Content="Load Image" IsChecked="{Binding IsLoadImage}" />
+            <CheckBox Content="Load Structure" IsChecked="{Binding IsLoadStructure}" />
+            <Separator />
+        </StackPanel>
+
+        <StatusBar Grid.Row="2" Grid.ColumnSpan="2">
+            <TextBlock Text="{Binding MapInfo}" />
+        </StatusBar>
+    </Grid>
+</Window>

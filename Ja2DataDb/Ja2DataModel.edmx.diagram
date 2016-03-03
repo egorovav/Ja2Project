@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9a2b3b09c68147b8abd35052b39db4e2" Name="Diagram1">
+        <EntityTypeShape EntityType="Ja2DataModel.AuxDataFlags" Width="1.5" PointX="5.25" PointY="29" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ja2DataModel.AuxObjectAuxFlag" Width="1.5" PointX="7.5" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ja2DataModel.AuxObjectData" Width="1.5" PointX="5.25" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ja2DataModel.DataInfo" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ja2DataModel.FileState" Width="1.5" PointX="10.75" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ja2DataModel.JsdArmor" Width="1.5" PointX="12.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ja2DataModel.JsdAuxData" Width="1.5" PointX="8.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ja2DataModel.JsdHeaderFlags" Width="1.5" PointX="6" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ja2DataModel.JsdRecordHeaderFlag" Width="1.5" PointX="8.25" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ja2DataModel.JsdStructure" Width="1.5" PointX="15" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ja2DataModel.JsdStructureFlags" Width="1.5" PointX="15" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ja2DataModel.JsdTile" Width="1.5" PointX="9.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ja2DataModel.JsdTileFlags" Width="1.5" PointX="9.75" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ja2DataModel.JsdTileTileFlag" Width="1.5" PointX="12" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ja2DataModel.SlfFile" Width="1.5" PointX="0.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ja2DataModel.SlfRecord" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ja2DataModel.SlfRecordJsd" Width="1.5" PointX="6" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ja2DataModel.SlfRecordStci" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ja2DataModel.StciFlags" Width="1.5" PointX="6" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ja2DataModel.StciIndexed" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ja2DataModel.StciIndexedSubImage" Width="1.5" PointX="7.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ja2DataModel.StciRecordStciFlag" Width="1.5" PointX="8.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ja2DataModel.StciRgb" Width="1.5" PointX="5.25" PointY="16.125" IsExpanded="true" />
+        <AssociationConnector Association="Ja2DataModel.FK_AuxObjectAuxFlag_AuxDataFlags" ManuallyRouted="false" />
+        <AssociationConnector Association="Ja2DataModel.FK_AuxObjectAuxFlag_AuxObjectData" ManuallyRouted="false" />
+        <AssociationConnector Association="Ja2DataModel.FK_StciIndexedSubImage_AuxObjectData" ManuallyRouted="false" />
+        <AssociationConnector Association="Ja2DataModel.FK_JsdStructure_JsdArmor" ManuallyRouted="false" />
+        <AssociationConnector Association="Ja2DataModel.FK_JsdAuxData_SlfRecordJsd" ManuallyRouted="false" />
+        <AssociationConnector Association="Ja2DataModel.FK_JsdRecordHeaderFlag_JsdHeaderFlags" ManuallyRouted="false" />
+        <AssociationConnector Association="Ja2DataModel.FK_JsdRecordHeaderFlag_SlfRecordJsd" ManuallyRouted="false" />
+        <AssociationConnector Association="Ja2DataModel.FK_JsdTileTileFlag_JsdTile" ManuallyRouted="false" />
+        <AssociationConnector Association="Ja2DataModel.FK_JsdTileTileFlag_JsdTileFlags" ManuallyRouted="false" />
+        <AssociationConnector Association="Ja2DataModel.FK_SlfRecord_SlfFile" ManuallyRouted="false" />
+        <AssociationConnector Association="Ja2DataModel.FK_SlfRecordJsd_SlfFile" ManuallyRouted="false" />
+        <AssociationConnector Association="Ja2DataModel.FK_SlfRecordStci_SlfFile" ManuallyRouted="false" />
+        <AssociationConnector Association="Ja2DataModel.FK_StciIndexed_SlfRecordStci" ManuallyRouted="false" />
+        <AssociationConnector Association="Ja2DataModel.FK_StciRecordStciFlag_SlfRecordStci" ManuallyRouted="false" />
+        <AssociationConnector Association="Ja2DataModel.FK_StciRgb_SlfRecordStci" ManuallyRouted="false" />
+        <AssociationConnector Association="Ja2DataModel.FK_StciRecordStciFlag_StciFlags" ManuallyRouted="false" />
+        <AssociationConnector Association="Ja2DataModel.FK_StciIndexedSubImage_StciIndexed" ManuallyRouted="false" />
+        <AssociationConnector Association="Ja2DataModel.FK_JsdStructure_SlfRecordJsd" />
+        <AssociationConnector Association="Ja2DataModel.FK_JsdTile_JsdStructure" />
+        <EntityTypeShape EntityType="Ja2DataModel.UnstructuredData" Width="1.5" PointX="13.375" PointY="16" />
+        <AssociationConnector Association="Ja2DataModel.FK_SlfRecord_UnstructuredData" />
+        <AssociationConnector Association="Ja2DataModel.FK_StciIndexedSubImage_UnstructuredData" />
+        <AssociationConnector Association="Ja2DataModel.FK_StciRgb_UnstructuredData" />
+        <EntityTypeShape EntityType="Ja2DataModel.AuxDataJsdAux" Width="1.5" PointX="12.5" PointY="19.25" />
+        <AssociationConnector Association="Ja2DataModel.FK_AuxDataJsdAux_AuxObjectData" />
+        <AssociationConnector Association="Ja2DataModel.FK_AuxDataJsdAux_JsdAuxData" />
+        <AssociationConnector Association="Ja2DataModel.FK_SlfFile_DataInfo" />
+        <EntityTypeShape EntityType="Ja2DataModel.DataType" Width="1.5" PointX="15.75" PointY="16" />
+        <EntityTypeShape EntityType="Ja2DataModel.FileExtention" Width="1.5" PointX="18" PointY="15.875" />
+        <EntityTypeShape EntityType="Ja2DataModel.SlfRecordText" Width="1.5" PointX="3.375" PointY="15.5" />
+        <AssociationConnector Association="Ja2DataModel.FK_FileExtention_DataType" />
+        <AssociationConnector Association="Ja2DataModel.FK_SlfRecordText_SlfFile" />
+        <EntityTypeShape EntityType="Ja2DataModel.SlfRecordHeader" Width="1.5" PointX="0.75" PointY="10" />
+        <AssociationConnector Association="Ja2DataModel.FK_SlfRecord_SlfRecordHeader" />
+        <AssociationConnector Association="Ja2DataModel.FK_SlfRecordJsd_SlfRecordHeader" />
+        <AssociationConnector Association="Ja2DataModel.FK_SlfRecordStci_SlfRecordHeader" />
+        <AssociationConnector Association="Ja2DataModel.FK_SlfRecordText_SlfRecordHeader" />
+        <EntityTypeShape EntityType="Ja2DataModel.JsdStructureStructureFlag" Width="1.5" PointX="17.25" PointY="9.875" />
+        <AssociationConnector Association="Ja2DataModel.FK_JsdStructureStrucrureFlag_JsdStructure" />
+        <AssociationConnector Association="Ja2DataModel.FK_JsdStructureStrucrureFlag_JsdStructureFlags" />
+        <EntityTypeShape EntityType="Ja2DataModel.JsdTileCell" Width="1.5" PointX="12" PointY="3.75" />
+        <AssociationConnector Association="Ja2DataModel.FK_JsdTileCell_JsdTile" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

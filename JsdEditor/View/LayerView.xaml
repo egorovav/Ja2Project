@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="JsdEditor.LayerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" 
+             Loaded="UserControl_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Label x:Name="lblHeader" FontSize="10" FontWeight="Medium" HorizontalAlignment="Center" />
+        <StackPanel Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">
+            <Label x:Name="lblNumber" FontSize="10" FontWeight="Medium" />
+            <Expander Header="Random">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Filled" />
+                        <TextBox Text="{Binding FillCellNumber}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="X" />
+                        <TextBox Text="{Binding RandomFieldX}" />
+                        <Label Content="Y" />
+                        <TextBox Text="{Binding RandomFieldY}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="X Size" />
+                        <TextBox Text="{Binding RandomFieldXSize}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Y Size" />
+                        <TextBox Text="{Binding RandomFieldYSize}" />
+                    </StackPanel>
+                    <Button Content="Fill" Click="RandomButton_Click" />
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+        <UniformGrid Grid.Row="1" x:Name="ugShapeLayer" />
+    </Grid>
+</UserControl>

@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{414D6BDC-21FB-4AD8-98D6-974982EA399E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ja2DataDb</RootNamespace>
+    <AssemblyName>Ja2DataDb</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AuxDataFlags.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AuxDataJsdAux.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AuxObjectAuxFlag.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AuxObjectData.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataType.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FileExtention.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JsdCell.cs" />
+    <Compile Include="JsdStructureStructureFlag.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JsdTileCell.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LoaderFactory.cs" />
+    <Compile Include="SlfRecordsLoader.cs" />
+    <Compile Include="DataInfo.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FileState.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ja2DataAccess.cs" />
+    <Compile Include="Ja2DataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Ja2DataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ja2DataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ja2DataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Ja2DataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="JsdArmor.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JsdAuxData.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JsdHeaderFlags.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JsdLoader.cs" />
+    <Compile Include="JsdRecordHeaderFlag.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JsdStructure.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JsdStructureFlags.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JsdTile.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JsdTileFlags.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JsdTileTileFlag.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SlfFile.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SlfRecord.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SlfRecordHeader.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SlfRecordJsd.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SlfRecordStci.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SlfRecordText.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SlfRecordWithAuxLoader.cs" />
+    <Compile Include="StciFlags.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StciIndexed.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StciIndexedSubImage.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StciLoader.cs" />
+    <Compile Include="StciRecordStciFlag.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StciRgb.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TextLoader.cs" />
+    <Compile Include="UnstructuredData.cs">
+      <DependentUpon>Ja2DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UnstructuredLoader.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ja2Data\Ja2Data.csproj">
+      <Project>{d61aa296-7dc9-4960-9544-60cc09923505}</Project>
+      <Name>Ja2Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Ja2DataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Ja2DataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="Ja2DataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Ja2DataModel.edmx</DependentUpon>
+      <LastGenOutput>Ja2DataModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Ja2DataModel.edmx.diagram">
+      <DependentUpon>Ja2DataModel.edmx</DependentUpon>
+    </None>
+    <None Include="Ja2DataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Ja2DataModel.edmx</DependentUpon>
+      <LastGenOutput>Ja2DataModel.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

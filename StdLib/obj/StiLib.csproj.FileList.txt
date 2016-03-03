@@ -1,0 +1,10 @@
+bin\Release\StiLib.dll
+bin\Release\StiLib.pdb
+obj\Release\ResolveAssemblyReference.cache
+obj\Release\StiLib.dll
+obj\Release\StiLib.pdb
+bin\Debug\StiLib.dll
+bin\Debug\StiLib.pdb
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\StiLib.dll
+obj\Debug\StiLib.pdb

@@ -1,0 +1,49 @@
+﻿<Window x:Class="Ja2DataDbTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Ja2DataTest.ViewModel"
+        xmlns:controls="clr-namespace:CommonWpfControls;assembly=CommonWpfControls"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <vm:SlfTestViewModel x:Key="SlfViewModel" />
+    </Window.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <TabControl>
+            <TabItem Header="Slf Table" DataContext="{StaticResource SlfViewModel}">
+                <StackPanel>
+                    <controls:TestFileControl x:Name="tfsSlf" FileFilter="SLF Files | *.SLF"
+                            FileName="{Binding FileName, Mode=OneWayToSource}"
+                            FolderName="{Binding FolderName, Mode=OneWayToSource}"
+                            ResultString="{Binding ResultString}"
+                            StatusString="{Binding StatusString}"
+                            ErrorString="{Binding ErrorString}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Data info id" />
+                        <TextBox Margin="2" Width="200" Text="{Binding DataInfoId}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="btnUploadAll" Content="Upload All" Command="{Binding UploadAllCommand}"
+                                CommandParameter="{Binding}" />
+                        <Button x:Name="btnUpload" Content="Upload" Command="{Binding UploadCommand}"
+                                CommandParameter="{Binding}" />
+                        <Button x:Name="btnDownload" Content="Download" Command="{Binding DownloadCommand}"
+                                CommandParameter="{Binding}" />
+                        <Button x:Name="btnDownloadAll" Content="Download All" Command="{Binding DownloadAllCommand}"
+                                CommandParameter="{Binding}" />
+                    </StackPanel>
+                    <DataGrid x:Name="dgSlf" SelectedValue="{Binding SelectesSlf}" 
+                              ItemsSource="{Binding SlfItemSource}" />
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Sti Table">
+                <StackPanel>
+                    <DataGrid x:Name="dgStciRgb"></DataGrid>
+                    <DataGrid x:Name="dgStciIndexed"></DataGrid>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Jsd Table">
+                <DataGrid x:Name="dgJsd"></DataGrid>
+            </TabItem>
+        </TabControl>
+    </ScrollViewer>
+</Window>

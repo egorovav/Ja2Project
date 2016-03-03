@@ -1,0 +1,29 @@
+﻿<ArrayOfPaletteRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PaletteRecord Name="Army">
+    <ColorListNames>
+      <string>BLONDHEAD</string>
+      <string>GREENPANTS</string>
+      <string>PINKSKIN</string>
+      <string>REDVEST</string>
+    </ColorListNames>
+    <ShadowColorName>Серая</ShadowColorName>
+  </PaletteRecord>
+  <PaletteRecord Name="Elite">
+    <ColorListNames>
+      <string>BLONDHEAD</string>
+      <string>BLACKPANTS</string>
+      <string>TANSKIN</string>
+      <string>BLACKSHIRT</string>
+    </ColorListNames>
+    <ShadowColorName>Серая</ShadowColorName>
+  </PaletteRecord>
+  <PaletteRecord Name="White John">
+    <ColorListNames>
+      <string>BLONDHEAD</string>
+      <string>BEIGEPANTS</string>
+      <string>PINKSKIN</string>
+      <string>WHITEVEST</string>
+    </ColorListNames>
+    <ShadowColorName>Прозрачная</ShadowColorName>
+  </PaletteRecord>
+</ArrayOfPaletteRecord>

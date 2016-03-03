@@ -1,0 +1,394 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+using System.IO;
+using System.Drawing.Imaging;
+using System.Collections;
+using System.Diagnostics;
+using DockManager;
+using System.Reflection;
+using WeifenLuo.WinFormsUI;
+using StiLib;
+using Localizer;
+using System.Collections.Specialized;
+using System.Configuration;
+
+namespace dotNetStiEditor
+{
+	public partial class EditorMainForm : Form
+	{
+		public static bool configExists = true;
+		public static Configuration config = 
+			ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+
+		public EditorMainForm(string cultureInfo)
+		{
+			Initialize();
+
+			if (cultureInfo != null && cultureInfo != "")
+			{
+				EditorMainForm.configExists = false;
+				EditorMainForm.config.AppSettings.Settings.Remove("cultureInfo");
+				EditorMainForm.config.AppSettings.Settings.Add("cultureInfo", cultureInfo);
+			}
+
+			string rootDir = null;
+			if (File.Exists("dotNetStiEditor.exe.config"))
+			{
+				rootDir = ConfigurationManager.AppSettings.Get("RootDir");
+			}
+			if (rootDir == null || !Directory.Exists(rootDir))
+			{
+				EditorMainForm.configExists = false;
+				if (this.folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+				{
+					rootDir = this.folderBrowserDialog1.SelectedPath;
+					EditorMainForm.config.AppSettings.Settings.Remove("RootDir");
+					EditorMainForm.config.AppSettings.Settings.Add("RootDir", rootDir);
+				}
+			}
+			if (rootDir == null)
+				rootDir = Application.StartupPath;
+			this.browser = new Browser(this, Directory.CreateDirectory(rootDir));
+			this.workSpace = new WorkSpace(this);
+			this.player = new Player(workSpace);
+
+			if (File.Exists(Path.Combine(Application.StartupPath, "Layout.user.config")))
+			{
+				dockManager = new DockContentManager(this.panel, this, true,
+						delegate
+						{
+							return Assembly.GetAssembly
+									(this.GetType()).GetManifestResourceStream(this.GetType(), "Layout.user.config");
+						}
+				);
+			}
+			else
+				dockManager = new DockContentManager(this.panel, this, true,
+					delegate { return new MemoryStream(Properties.Resources.Layout_user); });
+
+
+				dockManager.AddControl(this.libDataGridView, "libDataGridView", Resources.GetString("Library"));
+			dockManager.AddControl(this.browser, "browser", Resources.GetString("Files"));
+			dockManager.AddControl(this.workSpace, "workSpace", Resources.GetString("WorkingArea"));
+			player.Dock = DockStyle.Fill;
+			dockManager.AddControl(this.player, "player", Resources.GetString("Player"));
+			dockManager.AddControl(this.dataGridView3, "dataGridView3", Resources.GetString("Info"));
+			dockManager.AddControl(this.dataGridView4, "dataGridView4", Resources.GetString("Info2"));
+
+			this.menuStrip1.Items.Add(dockManager.GenerateMenu(Resources.GetString("Windows"),
+				Resources.GetString("ShowAll"), Resources.GetString("Lock"), Resources.GetString("DefaultPosition")));
+		}
+
+		void Initialize()
+		{ 
+			InitializeComponent();
+
+			#region SET LOCAL STRINGS
+			this.добавитьToolStripMenuItem.Text = Resources.GetString("AddToWorking");
+			this.оПрограммеToolStripMenuItem1.Text = Resources.GetString("About");
+			this.копироватьВБуферToolStripMenuItem.Text = Resources.GetString("CopyToBuffer");
+			this.файлToolStripMenuItem.Text = Resources.GetString("File");
+			this.оПрограммеToolStripMenuItem.Text = Resources.GetString("Information");
+			this.открытьToolStripMenuItem.Text = Resources.GetString("Open");
+			this.Text = Resources.GetString("StiEditor");
+			this.просмотретьToolStripMenuItem.Text = Resources.GetString("View");
+			this.просмотретьСинхронноToolStripMenuItem.Text = Resources.GetString("ViewSynchronously");
+			this.помощьToolStripMenuItem.Text = Resources.GetString("Help");
+			#endregion
+		}
+
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if(!EditorMainForm.configExists)
+			{
+				//this.config.SaveAs(Path.Combine(Application.StartupPath, "dotNetStiEditor.exe.config"));
+				EditorMainForm.config.Save(ConfigurationSaveMode.Full);
+			}
+
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
+
+		DockContentManager dockManager;
+		Player player;
+		WorkSpace workSpace;
+		Browser browser;
+		List<BitmapsList> lists = new List<BitmapsList>();
+
+		Control activeControl
+		{
+			get
+			{
+				IDockContent active = panel.ActiveContent;
+				return ((DockControlAdapter)active).InnerControl;
+			}
+		}
+
+		public void AddRowToLibrary(string fileName, int foreshoting)
+		{
+			if (this.libDataGridView.Columns.Count == 0)
+				this.libDataGridView.Columns.Add("File", Resources.GetString("File"));
+			List<ExtendedBitmap> nextList = getImageList(fileName, foreshoting);
+			BitmapsList list = new BitmapsList(fileName, foreshoting, nextList);
+			lists.Add(list);
+			int colunmsCount = this.libDataGridView.Columns.Count;
+			if (colunmsCount - 1 < nextList.Count)
+				for (int i = colunmsCount; i <= nextList.Count; i++)
+				{
+					DataGridViewImageColumn column = new DataGridViewImageColumn();
+					column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+					column.HeaderText = i.ToString();
+					this.libDataGridView.Columns.Add(column);
+				}
+			this.libDataGridView.RowCount = lists.Count;
+			this.dataGridView3.DataSource = new List<StciData>(infoData);
+			this.dataGridView4.DataSource = new List<ETRLEData>(infoEtrleData);
+		}
+
+		List<StciData> infoData = new List<StciData>();
+		List<ETRLEData> infoEtrleData = new List<ETRLEData>();
+
+		private List<ExtendedBitmap> getImageList(string fileName, int foreshorting)
+		{
+			if (fileName.EndsWith(".sti", StringComparison.InvariantCultureIgnoreCase))
+			{
+				StciData stciData = new StciData(fileName, infoData.Count);
+				infoData.Add(stciData);
+				List<ExtendedBitmap> bm = new List<ExtendedBitmap>();
+				if (stciData._Indexed != null)
+				{
+					try
+					{
+						ETRLEData data = IndexedConverter.LoadIndexedImageData(stciData); ;
+						bm = IndexedConverter.ConvertEtrleDataToBitmaps(data, foreshorting);
+						infoEtrleData.Add(data);
+					}
+					catch (Exception exc)
+					{
+						MessageBox.Show(String.Format("{3} {0}/n{1}/n{2}",
+							fileName, exc.Message, exc.StackTrace, Resources.GetString("LoadingError")));
+					}
+				}
+				else
+				{
+					ExtendedBitmap exBm = RGBConverter.GetBitmap(stciData);
+					exBm.ApplicationData = null;
+					bm.Add(exBm);
+				}
+				return bm;
+			}
+			else if (fileName.EndsWith(".tif", StringComparison.InvariantCultureIgnoreCase))
+			{
+				List<Bitmap> bitmaps = TIFF.ConvertTiffToBitmaps(fileName);
+				return bitmaps.ConvertAll<ExtendedBitmap>(
+						delegate(Bitmap bm) { return new ExtendedBitmap(bm, 0, 0); });
+			}
+			else if (fileName.EndsWith(".gif", StringComparison.InvariantCultureIgnoreCase))
+			{
+				List<ExtendedBitmap> result = new List<ExtendedBitmap>();
+				try
+				{ 
+					bool containsLocalPalette;
+					result = GIF.ConvertGifToBitmaps(fileName, 0, out containsLocalPalette);
+					if (containsLocalPalette)
+						MessageBox.Show(Resources.GetString("FileContainsLocaPalettes"),
+							Resources.GetString("Attention"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				}
+				catch (Exception exc)
+				{
+					MessageBox.Show(exc.Message, //Resources.GetString("FileContainsLocaPalettes"),
+						Resources.GetString("Attention"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				}
+
+				return result;
+			}
+			else if (fileName.EndsWith(".bmp", StringComparison.InvariantCultureIgnoreCase))
+			{
+				List<ExtendedBitmap> result = new List<ExtendedBitmap>();
+				Bitmap bm = new Bitmap(fileName);
+				result.Add(new ExtendedBitmap(bm, 0, 0));
+				return result;
+			}
+			else
+				return null;
+		}
+
+		private void открытьToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			this.openFileDialog1.Filter = "Image Files (*.sti, *.gif, *.tif, *.bmp)|*.sti; *.gif; *.tif; *.bmp";
+			if (this.openFileDialog1.ShowDialog() == DialogResult.OK)
+			{
+				foreach (string fileName in this.openFileDialog1.FileNames)
+					browser.AddList(fileName, browser.Foreshortening);
+			}
+		}
+
+		private void просмотретьToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			List<DataGridViewCell> sortedList =
+					sortSelectedCells(((DataGridView)activeControl).SelectedCells);
+			player.SetMovie
+				(getExtendedMovieFromLibraryCells(sortedList), new List<ExtendedBitmap>());
+		}
+
+		List<ExtendedBitmap> getExtendedMovieFromLibraryCells(IList cells)
+		{
+			List<ExtendedBitmap> result = new List<ExtendedBitmap>();
+			foreach (DataGridViewCell cell in cells)
+				if (cell.Value != DBNull.Value)
+				{
+					int rowIndex = cell.RowIndex;
+					int columnIndex = cell.ColumnIndex;
+					if (columnIndex == 0)
+						continue;
+					ExtendedBitmap bm = lists[rowIndex][columnIndex - 1];
+					result.Add(bm);
+				}
+				else
+					break;
+			return result;
+		}
+
+		public List<ExtendedBitmap> Buffer = new List<ExtendedBitmap>();
+
+		private void просмотретьСинхронноToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			List<DataGridViewCell> sortedList =
+				sortSelectedCells(((DataGridView)activeControl).SelectedCells);
+			player.SetMovie(Buffer, getExtendedMovieFromLibraryCells(sortedList));
+		}
+
+		private void добавитьToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			List<DataGridViewCell> sortedList = sortSelectedCells(this.libDataGridView.SelectedCells);
+			foreach (ExtendedBitmap exBm in getExtendedMovieFromLibraryCells(sortedList))
+				workSpace.Add(exBm.Clone());
+		}
+
+
+
+		List<DataGridViewCell> sortSelectedCells(DataGridViewSelectedCellCollection selectedCells)
+		{
+			List<DataGridViewCell> result = new List<DataGridViewCell>();
+			foreach (DataGridViewCell cell in selectedCells)
+			{
+				if (cell.Value != null)
+					result.Add(cell);
+			}
+			result.Sort(delegate(DataGridViewCell x, DataGridViewCell y)
+					{ return x.ColumnIndex.CompareTo(y.ColumnIndex); });
+			return result;
+		}
+
+		List<Bitmap> expendedBitmapsToBitmaps(List<ExtendedBitmap> exBms)
+		{
+			return new List<Bitmap>(Array.ConvertAll<ExtendedBitmap, Bitmap>(exBms.ToArray(),
+					delegate(ExtendedBitmap exBm) { return exBm.Bm; }));
+		}
+
+		private void dataGridView1_CellValueNeeded(object sender, DataGridViewCellValueEventArgs e)
+		{
+			try
+			{
+				int rowIndex = e.RowIndex;
+				int colIndex = e.ColumnIndex;
+				if (rowIndex < lists.Count)
+				{
+					BitmapsList rowList = lists[rowIndex];
+					if (colIndex == 0)
+						e.Value = rowList.ListName;
+					else if (colIndex <= rowList.Count)
+						e.Value = rowList[colIndex - 1].Bm;
+					else
+						e.Value = null;
+				}
+
+			}
+			catch
+			{
+				e.Value = null;
+			}
+		}
+
+		private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+		{
+			int rowIndex = e.Row.Index;
+			lists.RemoveAt(rowIndex);
+			browser.RemoveList(rowIndex);
+		}
+		internal void Play(List<ExtendedBitmap> left, bool mono)
+		{
+			List<ExtendedBitmap> right = new List<ExtendedBitmap>();
+			if (!mono)
+				right = Buffer;
+			player.SetMovie(left, right);
+		}
+		private void копироватьВБуферToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			List<DataGridViewCell> sortedList = sortSelectedCells(libDataGridView.SelectedCells);
+			Buffer = getExtendedMovieFromLibraryCells(sortedList);
+		}
+
+		class BitmapsList
+		{
+			public BitmapsList(string fileName, int foreshortening, List<ExtendedBitmap> bitmaps)
+			{
+				this.fileName = fileName;
+				this.foreshortening = foreshortening;
+				this.bitmaps = bitmaps;
+			}
+			string fileName;
+			int foreshortening;
+			public string ListName
+			{
+				get
+				{
+					string name = fileName;
+					if (foreshortening != 0)
+						name += String.Format("_{0}_{1}", 
+							Resources.GetString("Foreshortening"), foreshortening);
+					return getShortName(name);
+				}
+			}
+
+			List<ExtendedBitmap> bitmaps;
+			public ExtendedBitmap this[int index]
+			{
+				get { return bitmaps[index]; }
+			}
+			public int Count
+			{
+				get { return bitmaps.Count; }
+			}
+
+			string getShortName(string fullName)
+			{
+				string[] pathElements = fullName.Split('\\');
+				return Path.Combine
+						(pathElements[pathElements.Length - 2], pathElements[pathElements.Length - 1]);
+			}
+		}
+
+		private void помощьToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+				new ManualForm().Show();
+		}
+
+		private void оПрограммеToolStripMenuItem1_Click(object sender, EventArgs e)
+		{
+			new AboutForm().ShowDialog();
+		}
+	}
+}

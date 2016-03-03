@@ -1,0 +1,197 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.IO;
+
+namespace StiLib
+{
+    public class StciData
+    {
+        const string STCI_ID_STRING = "STCI"; // Sir Tech Crazy Image
+        const Int32 STCI_ID_LEN = 4;
+        const Int32 STCI_HEADER_SIZE = 64;
+
+        const UInt32 STCI_INDEXED = 0x0008;
+        const UInt32 STCI_RGB = 0x0004;
+        const UInt32 STCI_ALPHA = 0x0002;
+        const UInt32 STCI_TRANSPARENT = 0x0001;
+
+        // ETRLE defines
+        const UInt32 COMPRESS_TRANSPARENT = 0x80;
+        const UInt32 COMPRESS_NON_TRANSPARENT = 0x00;
+        const UInt32 COMPRESS_RUN_LIMIT = 0x7F;
+
+        public StciData(string fileName, Int32 number)//(FileStream stiFileStream)
+        {
+            //   using(FileStream stiFileStream = new FileStream(fileName, FileMode.Open))
+            using (BinaryReader stiHeaderReader = new BinaryReader(new FileStream(fileName, FileMode.Open)))
+            {
+                this.number = number;
+                this.fileName = fileName;
+                this.cID = stiHeaderReader.ReadBytes(STCI_ID_LEN);
+                this.uiOriginalSize = stiHeaderReader.ReadUInt32();
+                this.uiStoredSize = stiHeaderReader.ReadUInt32();
+                this.uiTransparentValue = stiHeaderReader.ReadUInt32();
+                this.fFlags = stiHeaderReader.ReadUInt32();
+                this.usHeight = stiHeaderReader.ReadUInt16();
+                this.usWidth = stiHeaderReader.ReadUInt16();
+                // Determine from the header the data stored in the file. and run the appropriate loader
+                if ((byte)(this.fFlags & STCI_RGB) != 0)
+                {
+                    this.rgb = new RGB
+                    (
+                        stiHeaderReader.ReadUInt32(),
+                        stiHeaderReader.ReadUInt32(),
+                        stiHeaderReader.ReadUInt32(),
+                        stiHeaderReader.ReadUInt32(),
+                        stiHeaderReader.ReadByte(),
+                        stiHeaderReader.ReadByte(),
+                        stiHeaderReader.ReadByte(),
+                        stiHeaderReader.ReadByte()
+                    );
+                }
+                else if ((byte)(this.fFlags & STCI_INDEXED) != 0)
+                {
+                    this.indexed = new Indexed
+                    (
+                        stiHeaderReader.ReadUInt32(),
+                        stiHeaderReader.ReadUInt16(),
+                        stiHeaderReader.ReadByte(),
+                        stiHeaderReader.ReadByte(),
+                        stiHeaderReader.ReadByte(),
+                        stiHeaderReader.ReadBytes(11)
+                    );
+                }
+                else
+                {
+                    // unsupported type of data, or the right flags weren't set!
+                    //  throw new Exception("unsupported type of data, or the right flags weren't set!");
+
+                }
+                ubDepth = stiHeaderReader.ReadByte();
+                // Какие-то непонятные три байта.
+                stiHeaderReader.BaseStream.Position += 3;
+                uiAppDataSize = stiHeaderReader.ReadUInt32();
+                cUnused = stiHeaderReader.ReadBytes(12);
+
+                imageData = stiHeaderReader.ReadBytes((Int32)stiHeaderReader.BaseStream.Length - 64);
+            }
+        }
+
+        Int32 number;
+        public Int32 Number { get { return number; } } 
+        string fileName;
+        public string FileName 
+        { 
+            get 
+            {
+                string[] pathElements = fileName.Split('\\');
+                Int32 length = pathElements.Length;
+                return String.Format(@"{0}\{1}", pathElements[length - 2], pathElements[length - 1]); 
+            } 
+        }
+        public byte[] cID = new byte[STCI_ID_LEN];                                 // 4
+        UInt32 uiOriginalSize;
+        public UInt32 UiOriginalSize { get { return uiOriginalSize; } }// 4
+        UInt32 uiStoredSize; // equal to uiOriginalSize if data uncompressed  // 4
+        public UInt32 UiStoredSize { get { return uiStoredSize; } }
+        UInt32 uiTransparentValue;
+        public UInt32 UiTransparentValue { get { return uiTransparentValue; } } // 4
+        UInt32 fFlags;
+        public UInt32 FFlags { get { return fFlags; } } // 4
+        UInt16 usHeight;                                                    // 2
+        public Int32 Height { get { return (Int32)usHeight; } }
+        UInt16 usWidth;                                                     // 2
+        public Int32 Width { get { return (Int32)usWidth; } }
+        RGB rgb;
+        public RGB _RGB { get { return rgb; } }
+        Indexed indexed;
+        public Indexed _Indexed { get { return indexed; } }// 20
+        byte ubDepth;	// size in bits of one pixel as stored in the file  // 1
+        public byte UbDepth { get { return ubDepth; } }
+        //public Int32 Stride { get { return ubDepth / 8; } }
+        UInt32 uiAppDataSize;
+        public UInt32 UiAppDataSize { get { return uiAppDataSize; } }// 4
+        public UInt16 UsNumberOfSubImages
+        {
+            get
+            {
+                if (indexed != null)
+                {
+                    return indexed.UsNumberOfSubImages;
+                }
+                return 1;
+            }
+        }
+        byte[] cUnused = new byte[14];                                      // 15
+        // Итого: 64
+        public readonly byte[] imageData;
+    }
+
+
+    public class RGB
+    {
+        public RGB
+        (
+            UInt32 uiRedMask,
+            UInt32 uiGreenMask,
+            UInt32 uiBlueMask,
+            UInt32 uiAlphaMask,
+            byte ubRedDepth,
+            byte ubGreenDepth,
+            byte ubBlueDepth,
+            byte ubAlphaDepth
+       )
+        {
+            this.uiRedMask = uiRedMask;
+            this.uiGreenMask = uiGreenMask;
+            this.uiBlueMask = uiBlueMask;
+            this.uiAlphaMask = uiAlphaMask;
+            this.ubRedDepth = ubRedDepth;
+            this.ubGreenDepth = ubGreenDepth;
+            this.ubBlueDepth = ubBlueDepth;
+            this.ubAlphaDepth = ubAlphaDepth;
+        }
+
+        public readonly UInt32 uiRedMask;                                                 // 4
+        public readonly UInt32 uiGreenMask;                                               // 4
+        public readonly UInt32 uiBlueMask;                                                // 4
+        public readonly UInt32 uiAlphaMask;                                               // 4
+        public readonly byte ubRedDepth;                                                // 1
+        public readonly byte ubGreenDepth;                                              // 1
+        public readonly byte ubBlueDepth;                                               // 1
+        public readonly byte ubAlphaDepth;                                              // 1
+        // Итого: 20
+    }
+    public class Indexed
+    {
+        // For indexed files, the palette will contain 3 separate bytes for red, green, and blue
+
+        public Indexed
+        (
+            UInt32 uiNumberOfColours,
+            UInt16 usNumberOfSubImages,
+            byte ubRedDepth,
+            byte ubGreenDepth,
+            byte ubBlueDepth,
+            byte[] cIndexedUnused
+        )
+        {
+            this.UiNumberOfColours = uiNumberOfColours;
+            this.UsNumberOfSubImages = usNumberOfSubImages;
+            this.ubRedDepth = ubRedDepth;
+            this.ubGreenDepth = ubGreenDepth;
+            this.ubBlueDepth = ubBlueDepth;
+            this.cIndexedUnused = cIndexedUnused;
+        }
+
+        public readonly UInt32 UiNumberOfColours;                                          // 4
+        public readonly UInt16 UsNumberOfSubImages;                                      // 2
+        byte ubRedDepth;                                                 // 1
+        byte ubGreenDepth;                                               // 1
+        byte ubBlueDepth;                                                // 1
+        byte[] cIndexedUnused = new byte[11];                            // 11
+        // Итого: 20
+    }
+
+}

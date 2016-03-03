@@ -1,0 +1,98 @@
+﻿<Window x:Class="Ja2DataTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Ja2DataTest.ViewModel"
+        xmlns:controls="clr-namespace:CommonWpfControls;assembly=CommonWpfControls"
+        Title="MainWindow" Height="350" Width="530"
+        >
+    <Window.Resources>
+        <vm:SlfTestViewModel x:Key="SlfViewModel" />
+        <vm:StiTestViewModel x:Key="StiViewModel" />
+        <vm:JsdTestViewModel x:Key="JsdViewModel" />
+        <vm:PcxTestViewModel x:Key="PcxViewModel" />
+    </Window.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Visible">
+        <StackPanel>
+            <TabControl x:Name="tc">
+                <TabItem x:Name="tiSlf" Header="SLF Test" DataContext="{StaticResource SlfViewModel}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="btnReloadAll" Content="Reload All" Command="{Binding ReloadAllCommand}"
+                                CommandParameter="{Binding}"/>
+                            <Button x:Name="btnExtractAll" Content="ExtractAll" Command="{Binding ExtractAllCommand}"
+                                CommandParameter="{Binding}" />
+                            <Button x:Name="btnCreateAll" Content="CreateAll" Command="{Binding CreateAllCommand}"
+                                CommandParameter="{Binding}"/>
+                            <Button x:Name="btnExtract" Content="Extract" Command="{Binding ExtractCommand}"
+                                CommandParameter="{Binding}" />
+                            <Button x:Name="btnCreate" Content="Create" Command="{Binding CreateCommand}"
+                                CommandParameter="{Binding}"/>
+                        </StackPanel>
+                        <controls:TestFileControl x:Name="tfsSlf" FileFilter="SLF Files | *.SLF"
+                            FileName="{Binding FileName, Mode=OneWayToSource}"
+                            FolderName="{Binding FolderName, Mode=OneWayToSource}"
+                            ResultString="{Binding ResultString}"
+                            StatusString="{Binding StatusString}"
+                            ErrorString="{Binding ErrorString}" />
+                    </StackPanel>
+                </TabItem>
+                <TabItem x:Name="tiSti" Header="STI Test" DataContext="{StaticResource StiViewModel}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="btnReloadStiAll" Content="Reload All" Command="{Binding ReloadAllStciCommand}"
+                                CommandParameter="{Binding}"/>
+                            <Button x:Name="btnLoadSti" Content="Reload STI" Command="{Binding ReloadStciCommand}"
+                                CommandParameter="{Binding}" />
+                            <Button x:Name="btnExtractT26" Content="Extract T26" Command="{Binding ExtractT26Command}"
+                                CommandParameter="{Binding}" />
+                        </StackPanel>
+                        <controls:TestFileControl x:Name="tfsSti" FileFilter="STI Files | *.STI"
+                            FileName="{Binding FileName, Mode=OneWayToSource}"
+                            FolderName="{Binding FolderName, Mode=OneWayToSource}"
+                            ResultString="{Binding ResultString}"
+                            StatusString="{Binding StatusString}"
+                            ErrorString="{Binding ErrorString}" />
+                        <Image x:Name="iSti"></Image>
+                    </StackPanel>
+                </TabItem>
+                <TabItem x:Name="tiJsd" Header="JSD Test" DataContext="{StaticResource JsdViewModel}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="btnReloadJsdAll" Content="Reload All" Command="{Binding ReloadAllJsdCommand}"
+                                CommandParameter="{Binding}"/>
+                            <Button x:Name="btnLoadJsd" Content="Reload JSD" Command="{Binding ReloadJsdCommand}"
+                                CommandParameter="{Binding}" />
+                            <Button x:Name="btnConvertAllJsd" Content="Convert All" Command="{Binding ConvertAllJsdCommand}"
+                                CommandParameter="{Binding}" />
+                            <Button x:Name="btnCreateSlfFromJsd" Content="Create All" Command="{Binding CreateAllSlfCommand}"
+                                CommandParameter="{Binding}" />
+                            <Button x:Name="btnRotateJsd" Content="Rotate JSD" Command="{Binding RotateJsdCommand}"
+                                CommandParameter="{Binding}" />
+                        </StackPanel>
+                        <controls:TestFileControl x:Name="tfsJsd" FileFilter="JSD Files | *.JSD"
+                            FileName="{Binding FileName, Mode=OneWayToSource}"
+                            FolderName="{Binding FolderName, Mode=OneWayToSource}"
+                            ResultString="{Binding ResultString}"
+                            StatusString="{Binding StatusString}"
+                            ErrorString="{Binding ErrorString}" />
+                    </StackPanel>
+                </TabItem>
+                <TabItem x:Name="tiPcx" Header="PCX Test" DataContext="{StaticResource PcxViewModel}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="btnLoadPcxAll" Content="Load" Command="{Binding LoadPcxCommand}"
+                                CommandParameter="{Binding}"/>
+                        </StackPanel>
+                        <controls:TestFileControl x:Name="tfsPcx" FileFilter="PCX Files | *.PCX"
+                            FileName="{Binding FileName, Mode=OneWayToSource}"
+                            FolderName="{Binding FolderName, Mode=OneWayToSource}"
+                            ResultString="{Binding ResultString}"
+                            StatusString="{Binding StatusString}"
+                            ErrorString="{Binding ErrorString}" />
+                        <Image Source="{Binding PcxImage}" />
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+        </StackPanel>
+    </ScrollViewer>
+</Window>

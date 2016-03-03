@@ -1,0 +1,16 @@
+bin\Release\SpriteCanvas.dll
+obj\Release\ResolveAssemblyReference.cache
+obj\Release\SpriteCanvas.Canvas.resources
+obj\Release\SpriteCanvas.csproj.GenerateResource.Cache
+obj\Release\SpriteCanvas.dll
+bin\Debug\SpriteCanvas.dll
+bin\Debug\SpriteCanvas.pdb
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\SpriteCanvas.Canvas.resources
+obj\Debug\SpriteCanvas.csproj.GenerateResource.Cache
+obj\Debug\SpriteCanvas.dll
+obj\Debug\SpriteCanvas.pdb
+bin\Debug\StiLib.dll
+bin\Debug\StiLib.pdb
+bin\Release\StiLib.dll
+bin\Release\StiLib.pdb

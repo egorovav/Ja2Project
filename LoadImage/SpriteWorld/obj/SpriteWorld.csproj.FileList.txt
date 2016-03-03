@@ -1,0 +1,15 @@
+bin\Release\SpriteWorld.dll
+bin\Release\SpriteCanvas.dll
+obj\Release\ResolveAssemblyReference.cache
+obj\Release\SpriteWorld.dll
+bin\Debug\SpriteWorld.dll
+bin\Debug\SpriteWorld.pdb
+bin\Debug\SpriteCanvas.dll
+bin\Debug\SpriteCanvas.pdb
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\SpriteWorld.dll
+obj\Debug\SpriteWorld.pdb
+bin\Debug\StiLib.dll
+bin\Debug\StiLib.pdb
+bin\Release\StiLib.dll
+bin\Release\StiLib.pdb

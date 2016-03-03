@@ -1,0 +1,47 @@
+﻿<Window x:Class="JsdEditor.NewJsdFileView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="New Jsd File" Height="300" Width="300" MinHeight="200" MinWidth="200">
+    <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock Text="File Name" TextWrapping="Wrap" />
+        <TextBox Grid.Column="1" Height="30" x:Name="tbFileName" />
+        <TextBlock Grid.Row="1" 
+            Text="Number of Structures Stored" 
+            TextWrapping="Wrap" />
+        <TextBox x:Name="tbStructsNum" Grid.Row="1" Grid.Column="1" Text="0" Width="30" Height="20" />
+        <TextBlock Grid.Row="2"
+                   Text="Number of Auxiliary Data Records" 
+                   TextWrapping="Wrap" />
+        <TextBox x:Name="tbAuxDataNum" Grid.Row="2" Grid.Column="1" Text="0" Width="30" Height="20" />
+        <TextBlock Grid.Row="3" 
+                   Text="Number of Images Tile Locs Stored" 
+                   TextWrapping="Wrap" />
+        <TextBox x:Name="tbTileLocsImagesNum" Grid.Row="3" Grid.Column="1" Text="0" Width="30" Height="20" />
+        <CheckBox x:Name="cbIsHD" Grid.Row="4" Grid.ColumnSpan="2" Content="File Is High Defenition" />
+        <DockPanel Grid.Row="5" Grid.ColumnSpan="2" LastChildFill="False">
+            <Button DockPanel.Dock="Right" Content="Cancel" Width="50" Click="ButtonCancel_Click" />
+            <Button DockPanel.Dock="Right" Content="OK" Width="50" Click="ButtonOK_Click" />
+        </DockPanel>
+        <Popup x:Name="ttErrorMessage"
+               Placement="Mouse" 
+               PopupAnimation="Slide" 
+               StaysOpen="False">
+            <Border Background="Yellow" BorderThickness="1" BorderBrush="Gray" CornerRadius="5">
+                <TextBlock x:Name="tbError" Foreground="Red" TextWrapping="Wrap" Margin="10" />
+            </Border>
+        </Popup>
+
+    </Grid>
+</Window>

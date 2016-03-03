@@ -1,0 +1,189 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+using StiLib;
+using Localizer;
+
+namespace dotNetStiEditor
+{
+	public partial class Foreshortening : Form
+	{
+		public Foreshortening(List<ExtendedBitmap> movie)
+		{
+			Initialize();
+
+			this.count = movie.Count;
+			this.movie = movie;
+
+			if (count % 8 == 0)
+			{
+				this.numericUpDown1.Value = this.numericUpDown2.Value =
+				this.numericUpDown3.Value = this.numericUpDown4.Value =
+				this.numericUpDown5.Value = this.numericUpDown6.Value =
+				this.numericUpDown7.Value = this.numericUpDown8.Value = count / 8;
+				this.numericUpDown9.Value = 8;
+			}
+			else if (count % 6 == 0)
+			{
+				this.numericUpDown1.Value = this.numericUpDown2.Value =
+				this.numericUpDown3.Value = this.numericUpDown4.Value =
+				this.numericUpDown5.Value = this.numericUpDown6.Value = count / 6;
+				this.numericUpDown9.Value = 6;
+			}
+			else if (count % 4 == 0)
+			{
+				this.numericUpDown1.Value = this.numericUpDown2.Value =
+				this.numericUpDown3.Value = this.numericUpDown4.Value = count / 4;
+				this.numericUpDown9.Value = 4;
+			}
+			else if (count % 2 == 0)
+			{
+				this.numericUpDown1.Value = this.numericUpDown2.Value = count / 2;
+				this.numericUpDown9.Value = 2;
+			}
+			else
+			{
+				this.numericUpDown1.Value = count;
+				this.numericUpDown9.Value = 1;
+			}
+
+			this.label1.Text = String.Format("{5}: {0},  {4}: {1},  {3}: {2}.",
+					sum, count, sum - count, Resources.GetString("Difference"),
+					Resources.GetString("InTotalFrames"), Resources.GetString("SumForeshortenings"));
+		}
+
+		void Initialize()
+		{
+			InitializeComponent();
+			this.Text = Resources.GetString("BreakdownForeshortenings");
+			this.button2.Text = Resources.GetString("Cancel");
+			this.label2.Text = Resources.GetString("InTotalForeshortenings");
+			this.button1.Text = Resources.GetString("Save");
+			this.label1.Text = Resources.GetString("SumForeshortenings");
+			this.checkBox1.Text = Resources.GetString("NoAnimated");
+		}
+
+		decimal sum
+		{
+			get
+			{
+				return this.numericUpDown1.Value + this.numericUpDown2.Value +
+						this.numericUpDown3.Value + this.numericUpDown4.Value +
+						this.numericUpDown5.Value + this.numericUpDown6.Value +
+						this.numericUpDown7.Value + this.numericUpDown8.Value;
+			}
+		}
+
+		int count;
+		List<ExtendedBitmap> movie;
+
+		private void numericUpDown_ValueChanged(object sender, EventArgs e)
+		{
+			this.label1.Text = String.Format("{5}: {0},  {4}: {1},  {3}: {2}.",
+					sum, count, sum - count, Resources.GetString("Difference"),
+					Resources.GetString("InTotalFrames"), Resources.GetString("SumForeshortenings"));
+			if (sum - count != 0)
+			{
+				this.label1.BackColor = Color.FromArgb(255, 255, 64, 64);
+				this.button1.Enabled = false;
+			}
+			else
+			{
+				this.label1.BackColor = Color.Transparent;
+				this.button1.Enabled = true;
+			}
+		}
+		int setAppData(decimal value, int index)
+		{
+			if (index < movie.Count)
+			{
+				movie[index].ApplicationData =
+						new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, (byte)value, 2, 0, 0, 0, 0, 0, 0 };
+				for (int i = index + 1; i < value; i++)
+					movie[i].ApplicationData = new byte[16];
+				return index += (int)value;
+			}
+			else
+				return index;
+		}
+		private void button1_Click(object sender, EventArgs e)
+		{
+			if (!this.checkBox1.Checked)
+			{
+				foreach(ExtendedBitmap exBm in movie)
+					if(exBm.ApplicationData == null)
+						exBm.ApplicationData = new byte[16];
+
+				int index = 0;
+				index = setAppData(this.numericUpDown1.Value, index);
+				index = setAppData(this.numericUpDown2.Value, index);
+				index = setAppData(this.numericUpDown3.Value, index);
+				index = setAppData(this.numericUpDown4.Value, index);
+				index = setAppData(this.numericUpDown5.Value, index);
+				index = setAppData(this.numericUpDown6.Value, index);
+				index = setAppData(this.numericUpDown7.Value, index);
+				index = setAppData(this.numericUpDown8.Value, index);
+			}
+			this.saveFileDialog1.AddExtension = true;
+			this.saveFileDialog1.DefaultExt = "sti";
+			if (this.saveFileDialog1.ShowDialog() == DialogResult.OK)
+			{
+				this.Close();
+				IndexedConverter.ConvertBitmapsToEtrleData(movie, this.saveFileDialog1.FileName);
+			}
+			this.Close();
+		}
+
+		private void button2_Click(object sender, EventArgs e)
+		{
+			this.Close();
+		}
+
+
+		decimal setForeshotingCount(decimal value, decimal sum, NumericUpDown num)
+		{
+			if (sum <= count - value)
+			{
+				num.Value = value;
+				return sum += value;
+			}
+			else
+			{
+				num.Value = 0;
+				return sum;
+			}
+		}
+		private void numericUpDown9_ValueChanged(object sender, EventArgs e)
+		{
+			int value = count / (int)this.numericUpDown9.Value;
+			decimal sum = 0;
+			sum = setForeshotingCount(value, sum, this.numericUpDown1);
+			sum = setForeshotingCount(value, sum, this.numericUpDown2);
+			sum = setForeshotingCount(value, sum, this.numericUpDown3);
+			sum = setForeshotingCount(value, sum, this.numericUpDown4);
+			sum = setForeshotingCount(value, sum, this.numericUpDown5);
+			sum = setForeshotingCount(value, sum, this.numericUpDown6);
+			sum = setForeshotingCount(value, sum, this.numericUpDown7);
+			sum = setForeshotingCount(value, sum, this.numericUpDown8);
+		}
+
+		private void checkBox1_CheckedChanged(object sender, EventArgs e)
+		{
+			bool animated = !((CheckBox)sender).Checked;
+			this.numericUpDown1.Enabled = animated;
+			this.numericUpDown2.Enabled = animated;
+			this.numericUpDown3.Enabled = animated;
+			this.numericUpDown4.Enabled = animated;
+			this.numericUpDown5.Enabled = animated;
+			this.numericUpDown6.Enabled = animated;
+			this.numericUpDown7.Enabled = animated;
+			this.numericUpDown8.Enabled = animated;
+			this.numericUpDown9.Enabled = animated;
+		}
+
+	}
+}

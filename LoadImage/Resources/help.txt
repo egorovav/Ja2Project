@@ -1,0 +1,790 @@
+<html>
+<body>
+<a href=#en><font size=2>English version<font></a><br>
+
+ <h2 align=center> .NET Sti Editor v 1.0 </h2>
+ <p> 
+  Программа для просмотра и редактирования файлов формата STI (Sir Tech Image).<br/>
+  Данный формат использован в ресурсах игры Jagged Alliance 2.
+ </p>
+
+ <h3 align=center> Содержание </h3>
+ <pre>
+  			<a href=#intro><font size=3>1. Введение.<font></a><br>
+  			<a href=#main><font size=3>2. Главное окно.<font></a><br>
+  			<a href=#browser><font size=3>3. Окно "Файлы".<font></a><br>
+  			<a href=#libtary><font size=3>4. Окно "Библиотека".<font></a><br>
+  			<a href=#work><font size=3>5. Окно "Рабочая область".<font></a><br>
+  			<a href=#player><font size=3>6. Окно "Проигрыватель".<font></a><br>
+			<a href=#appendix><font size=3>Приложение. Описание формата STCI.<font></a><br>
+			<a href=#appendix1><font size=3>Appendix. STСI file format.<font></a><br>
+ </pre>
+
+ <a name=intro>
+ <h4 align=center>1. Введение.</h4>
+ <p>Для работы программы необходим .NET Framework 2.0. Скачать можно
+ <a href = http://www.microsoft.com/downloads/details.aspx?FamilyID=0856eacb-4362-4b0d-8edd-aab15c5e04f5&DisplayLang=en>здесь</a>.</br>
+ Системные требования для установки .NET Framework 2.0:</br>
+ <ul>
+  <li type=disc>Поддерживаемые системы:
+  <ul>
+   <li type=circle>Windows ME;
+   <li type=circle>Windows 98;
+   <li type=circle>Windows 98 Second Edition;
+   <li type=circle>Windows 2000 Service Pack 3;
+   <li type=circle>Windows XP Service Pack 2
+   <li type=circle>Windows Server 2003;
+   <li type=circle>(На Vista предустановлен, ЕМНИП)
+  </ul>
+  <li type=disc>Требуемое ПО:
+  <ul>
+   <li type=circle>Windows Installer 3.0 (кроме Windows 98/ME, для которых сойдёт и 2.0).</br>
+   Windows Installer 3.1 рекомендуется.
+   <li type=circle>IE 5.01.
+  </ul>
+  <li type=disc>Требуется дискового пространства: 280 MB (x86), 610 MB (x64)
+  </ul>
+
+ Windows Installer 3.0, ЕМНИП, появился впервые в составе Service Pack 2 для XP.</br>
+ Если у вас более старая система, Windows Installer 3.1 придётся
+ <a href = http://www.microsoft.com/downloads/details.aspx?FamilyID=889482fc-5f56-4a38-b838-de776fd4138c&DisplayLang=en#filelist>скачать</a>.
+ </p>
+ <p>
+  Исполняемый файл программы называется <b>dotNetStiEditor.exe</b>. Перед запуском </br>
+  программы рекомендуется настроить конфигурационный файл <b>dotNetStiEditor.EXE.config</b>.</br>
+  <ul>Значения элементов конфигурационного файла.
+   <li> <i>"cultureInfo"</i> - язык программы.
+   <ul>
+    <li type=circle> <b>ru</b> - русский
+    <li type=circle> <b>en</b> - английский 
+    <li type=circle> <b>de</b> - немецкий
+  </ul>
+  По умолчанию - русский.
+  <li> <i>"RootDir"</i> - корневая папка. Папка, в которой программа будет рекурсивно</br>
+           искать STI-файлы. Например: <b>C:\ja2\Data</b>.</br>
+  <li> <i>"EditorPath"</i> - путь к исполняемому файлу графического редактора, с помощью которого</br> 
+           будут редактироватья кадры. Например: <b>C:\WINDOWS\system32\mspaint.exe</b>.</br>
+           Программа тестировалась с MS Paint и Adobe Fotoshop.</br>  
+  <li> <i>"EditorTempDir"</i> - папка для временных файлов создаётся при старте и удаляется при</br>
+           закрытии .NET Sti Editor-а. По умолчанию: <b>C:\WINDOWS\Temp\dotNetStiEditorTemp</b>.</br>
+  </ul>
+ </p>
+ <p>
+ Другие файлы необходимые для работы программы:
+   <ul>
+    <li> <b>WeifenLuo.WinFormsUI.Docking.dll, DockManager.dll</b> - стыковка окон (докинг). 
+    <li> <b>StiLib.dll</b> - загрузка и конвертация STI в BMP, GIF, TIFF.
+    <li> <b>Localizer.dll</b> - локализация.
+    <li> <b>de\Localizer.resources.dll</b> - необходим для немецкой версии.
+    <li> <b>en\Localizer.resources.dll</b> - необходим для английской версии.
+  </ul>
+ </p>
+
+
+ <a name=main>
+ <h4 align=center>2. Главное окно.</h4>
+ <p>
+   Главное окно является контейнером для всех остальных окон и содержит главное меню.</br>
+   Остальные окна: окно <i>"Файлы"</i> (просмоторщик), окно <i>"Библиотека"</i> (библиотека),</br>
+   окно <i>"Рабочая область"</i> (рабочая область), окно <i>"Проигрыватель"</i> (проигрыватель).</br>
+   Окна можно располагать в произвольном порядке с помощью механизма докинга.</br>
+   Конфигурация расположения окон сохраняется в файл <b>Layout.user.config</b>.</br>
+   </br>
+   Главное меню программы:</br>
+   <ul>
+    <li> <i>"Файл"</i>
+    <ul>
+     <li type=circle> <i>"Открыть"</i> - загружает STI или GIF файл в библиотеку. 
+    </ul>  
+    <li> <i>"Справка"</i> 
+    <ul>
+     <li type=circle> <i>"О программе"</i> 
+     <li type=circle> <i>"Помощь"</i> - открывает файл <b>help.htm</b>. Если его нет в папке приложения,</br>
+     то загружает аналогичный файл из ресурсов программы. 
+    </ul> 
+    <li> <i>"Окна"</i>
+    <ul>
+     <li type=circle> <i>"Бибилиотека", "Файлы", "Рабочая область", "Проигрыватель"</i> - переключатели</br>
+      отображения/скрытия соответствующих окон. 
+     <li type=circle> <i>"Показать все"</i>
+     <li type=circle> <i>"Закрепить"</i> - фиксирует расположение окон.
+     <li type=circle> <i>"Расположить по умолчанию"</i> - располагает окна в соответствии с конфигурацией</br>
+      сохранённой в ресурсах программы.   
+    </ul> 
+  </ul> 
+ </p>
+ <a name=browser>
+ <h4 align=center>3. Окно "Файлы".</h4>
+ <p>
+  Отображает дерево подпапок начиная с папки указанной в элементе <i>"RootDir"</i></br>
+  конфигурационного файла <b>dotNetStiEditor.EXE.config</b>. Если такого файла нет или указана</br>
+  несуществующая папка, программа запрашивает корневую папку у пользователя и при закрытии</br> 
+  сохраняет её путь конфигурационный файл.</br>
+  </br>
+  Служит для просмотра и загрузки интересующих файлов в библиотеку. Загрузка осуществляется</br>
+  с помощью команды <i>"Добавить в библиотеку"</i> контекстного меню, или по двойному щелчку</br>
+  ЛКМ. Поддерживается выделение и загрузка нескольких файлов или папок одновременно.</br>
+  </br>
+  Фильтр <i>"Ракурс"</i> позволяет загружать при необходимости только какое-то одно направление.</br>
+  Можно использовать для ускорения загрузки большого колличества файлов.</br>
+  В правом верхнем углу просмоторщика находится кнопка <i>"Обновить"</i>.</br>
+  </br> 
+  Если одна из подпапок корневой папки содержит очень много STI файлов (например это может</br>
+  быть папка <b>ANIMS</b>), то при отображении в просмоторщике её можно разбить на виртуальные</br>
+  подпапки. Для этого нужно поместить в папку программы XML файл, название которого</br>
+   должно совпадать с названием разбиваемой папки. Пример структуры XML файла:<pre>
+  &lt;Название физической папки&gt; 
+   &lt;Виртуальная подпапка 1&gt; 
+    &lt;Виртуальная подпапка 1.1&gt; 
+      &lt;Виртуальная подпапка 1.1.1&gt; 
+        &lt;File&gt; 
+          &lt;FileName>Имя файла 1.1.1.1&lt;/FileName&gt; 
+        &lt;/File&gt; 
+        &lt;File&gt; 
+          &lt;FileName>Имя файла 1.1.1.2&lt;/FileName&gt; 
+        &lt;/File&gt; 
+	...
+        &lt;File&gt; 
+          &lt;FileName>Имя файла  1.1.1.n&lt;/FileName&gt; 
+        &lt;/File&gt; 
+      &lt;/Виртуальная подпапка 1.1.1&gt; 
+      &lt;Виртуальная подпапка 1.1.2&gt; 
+        &lt;File&gt; 
+          &lt;FileName>Имя файла 1.1.2.1&lt;/FileName&gt; 
+        &lt;/File&gt; 
+        &lt;File&gt; 
+          &lt;FileName>Имя файла 1.1.2.2&lt;/FileName&gt; 
+        &lt;/File&gt; 
+	...
+        &lt;File&gt; 
+          &lt;FileName>Имя файла 1.1.2.m&lt;/FileName&gt; 
+        &lt;/File>
+      &lt;/Виртуальная подпапка 1.1.2&gt; 
+    &lt;/Виртуальная подпапка 1.1&gt; 
+    &lt;File>
+      &lt;FileName>Имя файла 1.1&lt;/FileName&gt; 
+    &lt;/File&gt; 
+    &lt;File&gt; 
+      &lt;FileName>Имя файла 1.2&lt;/FileName&gt; 
+    &lt;/File&gt; 
+     ...
+    &lt;File&gt; 
+      &lt;FileName>Имя файла  1.k&lt;/FileName&gt; 
+    &lt;/File&gt; 
+   &lt;/Виртуальная подпапка 1&gt; 
+  &lt;/Название физической папки&gt; 
+</pre>
+ </p>
+
+
+ <a name=libtary>
+ <h4 align=center>4. Окно "Библиотека".</h4>
+  <p>
+   Библиотека содержит файлы загруженные из просмоторщика.</br>
+   Удалить файл из библиотеки можно выделив соответствующую строку и нажав кнопку Del</br>
+   Все остальные команды библиотеки вызываются из контетстного меню и применяются к</br>
+   выделенным ячейкам.</br>
+   Контекстное меню:</br>
+   <ul>
+    <li><i>"Просмотреть"</i> - выделенные ячейки сортируются по номеру колонки и загружаются</br>  
+            в левый спрайт проигрывателя.
+    <li><i>"Копировать в буфер"</i> - выделенные ячейки сортируются по номеру колонки и </br>
+            копируются в буфер.
+    <li><i>"Просмотреть синхронно"</i> - выделенные ячейки сортируются по номеру колонки и</br> 
+            загружаются в правый спрайт проигрывателя, ячейки из буфера загружаются в левый</br> 
+            спрайт проигрывателя.
+    <li><i>"Добавить в рабочую область"</i> - выделенные ячейки сортируются по номеру колонки</br>
+            и загружаются в рабочую область</br>
+   </ul>
+
+  </p>
+ <a name=work>
+ <h4 align=center>5. Окно "Рабочая область".</h4>
+ <p>
+   Служит для создания новых и редактирования существующих STI файлов.</br>
+   Меню окна "Рабочая область":</br>
+   <ul>
+    <li> <i>"Палитра"</i>
+    <ul>
+     <li type=circle> <i>"Волосы", "Штаны", "Кожа", "Фуфайка", "Тень"</i> - установливает цвета</br>
+      соответствующих элементов анимации. Набор цветов загружается из файла палитры</br> 
+      <b>JA2PAL.DAT</b>, если такого файла нет в папке программы, то из ресурсов программы.
+     <li type=circle> <i>"Сохранить..."</i> - сохраняет текущую палитру как пользовательскую.
+     <li type=circle> <i>"Удалить..."</i> - удаляет палитру выбранную пользователем.
+     <li type=circle> <i>"Исходная палитра"</i> - установливает для анимации первоначальные цвета.
+     <li type=circle> <i>"Army", "Elit", "White John" ...</i> - поьзовательские палитры</br>
+      загружаются из файла <b>palettes.xml</b> если его нет, то загружаются эти три из ресурсов.</br>
+      При закрытии программы пользовательские палитры сохраняются в <b>palettes.xml</b>.      
+    </ul>  
+    <li> <i>"Редактирование"</i> 
+    <ul>
+     <li type=circle> <i>"Автообновление"</i> - включает/выключает автоматическую синхронизацию</br>
+      отредактированных кадров рабочей области и временных файлов из папки</br> 
+      определённой элементом <i>"EditorTempDir"</i> конфигурационного файла</br>
+      <b>dotNetStiEditor.EXE.config</b>. Синхронизовать принудительно можно с помощью</br>
+      кнопки <i>"Обновить"</i> в правом верхнем углу окна. 
+    </ul> 
+  </ul>
+   Контекстное меню:</br>
+   <ul>
+    <li><i>"Просмотреть"</i> - выделенные ячейки сортируются по номеру колонки и загружаются</br>  
+            в левый спрайт проигрывателя.
+    <li><i>"Просмотреть синхронно"</i> - выделенные ячейки сортируются по номеру колонки и</br> 
+            загружаются в правый спрайт проигрывателя, ячейки из буфера загружаются в левый</br> 
+            спрайт проигрывателя.
+    <li><i>"Копировать в буфер"</i> - выделенные ячейки сортируются по номеру колонки и </br>
+            копируются в буфер.
+    <li><i>"Вставить из буфера"</i> - ячейки из буфера вставляются перед первой выделенной</br>
+            не пустой ячейкой рабочей области.
+    <li><i>"Редактировать"</i> - сохраняет выделенные ячейки во временные BMP файлы в папку</br>
+            определённую элементом <i>"EditorTempDir"</i> конфигурационного файла</br>
+            <b>dotNetStiEditor.EXE.config</b> и загружает их в графический редактор.  
+    <li><i>"Удалить"</i> - удаляет выделенные ячейки.
+    <li><i>"Сохранить в..."</i> - сохраняют выделенные ячейки в соответствующий формат.
+     При сохранении в STI открывается форма <i>"Разбивка по ракурсам"</i>. С помощью неё можно</br>
+     определить количество кадров в каждом направлении. Если сумма кадров по ракурсам</br>
+     не совпадает с общим количестом кадров сохранение становится невозможным. 
+   </ul>
+ </p>
+ 
+
+ <a name=player>
+ <h4 align=center>6. Окно "Проигрыватель".</h4>
+ <p>
+  Служит для просмотра последовательности кадров в режиме анимаций или в режиме</br>
+  покадрового просмотра и редактирования смещений кадров. Спомощью меню <i>"Фон"</i> можно</br>
+  загрузить в качестве фона произвольную картинку через стандартный диалог или одним</br>
+  щелчком ЛКМ загрузить картинку из папки <i>"Background"</i>.</br>
+
+  Для редактирования смещений надо загрузить последовательность кадров из рабочей</br>
+  области отредактировать смещения и нажать кнопку <i>"Сохранить смещения"</i>.</br>
+ </p>
+Вопросы отсылайте на egorov_av@mail.ru или спрашивайте на <a href = http://www.ja2.su>www.ja2.su</a>.</br>
+Кажись всё. 
+
+ <a name=appendix>
+ <h4 align=center>Приложение. Описание формата STCI.</h4>
+<pre>
+<center><b>STСI (Sir-Tech's Crazy Image) формат.</b></center>
+
+Формат STСI используется для хранения графических объектов в игре Jagged Alliance 2.
+Каждый STСI файл может содержать одно или несколько изображений. Изображения 
+кодируются с помощью 16-битного (16bppRGB565) или 8-битного (8bppIndexed) алгоритмов. 
+16-битные файлы содержат всегда только одно изображение, большая часть их находится 
+в папке LOADSCREENS.
+
+<center><b>Заголовок (64 байта, структура STCIHeader).</b></center>
+
+Структура STCIHeader описана в Standard Gaming Platform\imgfmt.h.
+
+  <i>1-4 байты</i> – буквы “STCI” идентификатор формата.
+  <i>5-8 байты</i> – исходный размер изображений в байтах. Для файлов содержащих 
+   несколько изображений здесь хранится бессмысленное большое число.
+  <i>9-12 байты</i> – размер изображений в байтах после сжатия.
+  <i>13-16 байты</i> – номер прозрачного цвета в палитре, всегда равно 0. Имеет 
+   смысл только для 8-битных файлов.
+  <i>17-20 байты</i> – флаги.
+   <i>1 бит </i>– всегда равен 0, назначение неясно (STCI_TRANSPARENT).
+   <i>2 бит </i>– всегда равен 0, назначение неясно (STCI_ALPHA).
+   <i>3 бит </i>– 1 если файл 16-битный (STCI_RGB).
+   <i>4 бит </i>– 1 если файл 8-битный (STCI_INDEXED).
+   <i>5 бит </i>– 1 если алгоритм сжатия ZLIB (STCI_ZLIB_COMPRESSED).
+   <i>6 бит</i> – 1 если алгоритм сжатия ETRLE (STCI_ETRLE_COMPRESSED).
+   <i>7-32 биты </i>– всегда равны 0, не используются.
+   Повидимому, флаги всегда равны 4, 40 или 41.
+    4 – для 16-битных файлов.
+    40 – для 8-битных неанимированных файлов.
+    41 – для 8-битных анимированных файлов.
+  <i>21-22 байты</i> – высота изображения в пикселях. Имеет смысл только для 
+   16-битных файлов.
+  <i>23-24 байты</i> – ширина изображения в пикселях. Имеет смысл только для 
+   16-битных файлов.
+
+Значение следующих 20 байт разнится в зависимости от алгоритма кодирования.
+
+<b>25-44 байты для 16-битных файлов:</b>
+
+  <i>25-28 байты</i> – маска красного цвета. Повидимому, всегда равна 63488
+   (00000000 00000000 11111000 00000000) .
+  <i>29-32 байты </i>– маска зелёного цвета. Повидимому, всегда равна 2016
+   (00000000 00000000 00000111 11100000) .
+  <i>33-36 байты</i> – маска синего цвета. Повидимому, всегда равна 31
+   (00000000 00000000 00000000 00011111) .
+  <i>37-40 байты </i>– маска альфа канала. Повидимому, всегда равна 0.
+  <i>41  байт </i>– глубина красного цвета. Повидимому, всегда равна 5.
+  <i>42  байт </i>– глубина зелёного цвета. Повидимому, всегда равна 6.
+  <i>43 байт </i>– глубина синего цвета. Повидимому, всегда равна 5.
+  <i>44 байт </i>– глубина альфа канала. Повидимому, всегда равна 0.
+Значения масок и глубин цветов соответствует алгоритму кодирования 16bppRGB565.
+
+<b>25-44 байты для 8-битных файлов:</b>
+
+  <i>25-28 байты </i>– число цветов в палитре, повидимому всегда равно 256.
+  <i>29-30 байты </i>– число изображений в файле.</br>
+  <i>31 байт </i>– глубина красного цвета. Повидимому, всегда равна 8.
+  <i>32 байт </i>– глубина зелёного цвета. Повидимому, всегда равна 8.
+  <i>33 байт </i>– глубина синего цвета. Повидимому, всегда равна 8.
+  <i>34-44 байты </i>– не используются.
+Алгоритм кодирования 8-битных файлов – 8bppIndexed c 24-битной палитрой на 256 
+цветов.
+
+  <i>45 байт </i>– глубина цвета. Число бит на пиксель. Равен 8 для  8-битных 
+   файлов, и 16 для 16-битных.
+  <i>46-49 байты </i>– размер данных приложения (Application Data) в байтах. 
+   Не равно нулю только для анимированных файлов. Повидимому, всегда равно 
+   колличеству изображений умноженное на 16. 
+  <i>49-64 байты </i>– не используются
+
+Повидимому, существует тип STCI файлов, в которых 46-48 байты не используются 
+размер данных приложения при этом сдвигается на три байта. Возможно это зависит от 
+локализации. В .NET StiEditore используется именно такой порядок байт.
+
+<center><b>Изображения.</b></center>
+
+В 16-битных файлах после заголовка и до конца файла идут данные изображения 
+закодированые в формате 16bppRGB565.</br>
+
+В 8-битных файлах после заголовка файла идут  256 * 3 = 768 байт палитры.
+После палитры идут заголовки изображений, которые занимают 
+(кол-во изображений) * 16 байт.
+
+<center><b>Заголовок изображения(16 байт, структура STCISubImage).</b></center>
+
+Структура STCISubImage описана в Standard Gaming Platform\imgfmt.h.
+
+  <i>1-4 байты </i>– сдвиг в байтах от начала данных изображений до начала данных 
+   данного  изображения. Для первого изображения равен 0. Для второго–размер
+   первого и т. д.
+  <i>5-8 байты </i>– размер данных изображения в байтах.
+  <i>9-10 байты </i>– смещение изображения по горизонтали в пикселях.
+  <i>11-12 байты </i>– смещение изображения по вертикали в пикселях.
+  <i>13-14 байты </i>– высота изображения в пикселях.
+  <i>15-16 байты </i>– ширина изображения в пикселях.
+
+После заголовков изображений идут данные изображений. Каждый байт соответствует 
+порядковому номеру цвета пикселя в палитре. Данные изображений сжаты алгоритмом 
+сжатия ETRLE, о котором ниже. Алгоритмом сжатия ZLIB, повидимому, не использется.
+Неанимированные 8-битные файлы на этом заканчиваются
+
+У анимированных файлов есть ещё данные приложения (Application Data). Размер – 
+(кол-во изображений) * 16. Содержание следующее:
+
+Для изображений являющихся началом нового ракурса (направления)
+  <i>1-8 байты</i> – равны нулю, назначение не ясно.
+  <i>9 байт </i>– равен числу изображений в данном ракурсе.
+  <i>10 байт </i>– равен 2, назначение не ясно.
+  <i>11-16 байты</i> – равны нулю, назначение не ясно.
+
+Для изображений неявляющихся началом нового ракурса (направления)
+ <i>1-16 байты </i>– равны нулю, назначение не ясно.
+
+
+<center><b>Алгоритм сжатия ETRLE.</b></center>
+
+Расшифровка аббривиатуры ETRLE не известна. Последние три буквы вероятно 
+означают Run-Length Encoding.
+
+Сжимаемая последовательность разбивается на подпоследовательности нулевых и 
+ненулевых байт. 
+Каждая последовательность нулевых байт заменяется на один байт, старший бит 
+которого равен 1. А значение равно 128 плюс число нулей в подпоследовательности.
+Перед каждой последовательностью ненулевых байт ставится служебный байт, старший 
+бит которого равен 0. А значение равно числу байт в подпоследовательности.
+Если длина нулевой подпоследовательности более 127, то для её кодирования 
+аналогичным образом используется несколько байт, тоже самое можно сказать и о 
+ненулевых последовательностях.
+В конце каждой строки ставится нулевой байт (признак конца строки).
+</pre>
+
+<a name=en>
+<h2 align=center> .NET Sti Editor v 1.0 </h2>
+ <p>
+  Viewer/editor for STI (Sir Tech Image) files.<br/>
+  This format is used in resources for the game Jagged Alliance 2.
+ </p>
+
+ <h3 align=center> Contents </h3>
+ <pre>
+  			<a href=#intro_en><font size=3>1. Introduction.<font></a><br>
+  			<a href=#main_en><font size=3>2. Main window.<font></a><br>
+  			<a href=#browser_en><font size=3>3. "Files" window.<font></a><br>
+  			<a href=#libtary_en><font size=3>4. "Library" window.<font></a><br>
+  			<a href=#work_en><font size=3>5. "Working area" window.<font></a><br>
+  			<a href=#player_en><font size=3>6. "Player" window.<font></a><br>
+			<a href=#appendix1_en><font size=3>Appendix. STСI file format.<font></a><br>
+ </pre>
+
+ <a name=intro_en>
+ <h4 align=center>1. Introduction.</h4>
+ <p>The program needs .NET Framework 2.0 to run. You can download it
+ <a href = http://www.microsoft.com/downloads/details.aspx?FamilyID=0856eacb-4362-4b0d-8edd-aab15c5e04f5&DisplayLang=en>here</a>.</br>
+ System requirements for .NET Framework 2.0:</br>
+ <ul>
+  <li type=disc>OS supported:
+  <ul>
+   <li type=circle>Windows ME;
+   <li type=circle>Windows 98;
+   <li type=circle>Windows 98 Second Edition;
+   <li type=circle>Windows 2000 Service Pack 3;
+   <li type=circle>Windows XP Service Pack 2
+   <li type=circle>Windows Server 2003;
+   <li type=circle>Windows Vista (pre-installed, AFAIR)
+  </ul>
+  <li type=disc>Software required:
+  <ul>
+   <li type=circle>Windows Installer 3.0 (except Windows 98/ME, for these 2.0 is enough).</br>
+   Windows Installer 3.1 recommended.
+   <li type=circle>IE 5.01.
+  </ul>
+  <li type=disc>Disk space required: 280 MB (x86), 610 MB (x64)
+  </ul>
+
+ Windows Installer 3.0 AFAIR was included in WinXP Service Pack 2 for the first time.</br>
+ If your OS is older, you need to 
+ <a href = http://www.microsoft.com/downloads/details.aspx?FamilyID=889482fc-5f56-4a38-b838-de776fd4138c&DisplayLang=en#filelist>download</a> Windows Installer 3.1.
+ </p>
+ <p>
+  The execution file is <b>dotNetStiEditor.exe</b>. Before program launch </br>
+  configuration file <b>dotNetStiEditor.EXE.config</b> setup is recommended.</br>
+  <ul>The elements in config file:.
+   <li> <i>"cultureInfo"</i> - program language.
+   <ul>
+    <li type=circle> <b>ru</b> - Russian
+    <li type=circle> <b>en</b> - English
+    <li type=circle> <b>de</b> - German
+  </ul>
+  The default language is Russian.
+  <li> <i>"RootDir"</i> - root folder. The program will search for STI files in this folder and its subfolders.</br>
+           For example: <b>C:\ja2\Data</b>.</br>
+  <li> <i>"EditorPath"</i> - the path to the execution file of graphics editor which you will use</br>
+           for frames editing. For example: <b>C:\WINDOWS\system32\mspaint.exe</b>.</br>
+           The program was tested with MS Paint and Adobe Fotoshop.</br>
+  <li> <i>"EditorTempDir"</i> - temporary files folder is created at program startup and erased</br>
+           at exit. Default is <b>C:\WINDOWS\Temp\dotNetStiEditorTemp</b>.</br>
+  </ul>
+ </p>
+ <p>
+ Other files required for the program to work:
+   <ul>
+    <li> <b>WeifenLuo.WinFormsUI.Docking.dll, DockManager.dll</b> - window docking.
+    <li> <b>StiLib.dll</b> - STI loading and conversion into BMP, GIF, TIFF.
+    <li> <b>Localizer.dll</b> - localization.
+    <li> <b>de\Localizer.resources.dll</b> - required for German version.
+    <li> <b>en\Localizer.resources.dll</b> - required for English version.
+  </ul>
+ </p>
+
+
+ <a name=main_en>
+ <h4 align=center>2. Main window.</h4>
+ <p>
+   The main window contains all other windows and main menu.</br>
+   The other windows: <i>"Files"</i> (viewer),  <i>"Library"</i> (library),</br>
+   <i>"Working area"</i> (working area), <i>"Player"</i> (player).</br>
+   Docking allows you to place the windows in any order you want.</br>
+   Windows configuration is saved in the file <b>Layout.user.config</b>.</br>
+   </br>
+   Main menu:</br>
+   <ul>
+    <li> <i>"File"</i>
+    <ul>
+     <li type=circle> <i>"Open"</i> - adds STI or GIF file to the library.
+    </ul>
+    <li> <i>"Information"</i>
+    <ul>
+     <li type=circle> <i>"About"</i>
+     <li type=circle> <i>"Help"</i> - opens file <b>help.htm</b>. If this file is missing in the application folder</br>
+     help is loaded from program resources.
+    </ul>
+    <li> <i>"Windows"</i>
+    <ul>
+     <li type=circle> <i>"Library", "Files", "Working area", "Player"</i> - switches</br>
+      show/hide respective windows.
+     <li type=circle> <i>"Show all"</i>
+     <li type=circle> <i>"Lock"</i> - locks all windows' positions.
+     <li type=circle> <i>"Default position"</i> - places all windows according to the saved config.</br>
+    </ul>
+  </ul>
+ </p>
+ <a name=browser_en>
+ <h4 align=center>3. "Files" window.</h4>
+ <p>
+  Shows subfolder tree beginning from the folder in <i>"RootDir"</i> element</br>
+  in config file <b>dotNetStiEditor.EXE.config</b>. If config file or the folder does not exist</br>
+  the application will ask you for the root folder and will save its name in the config file</br>
+  at exit.</br>
+  </br>
+  The purpose of this window is to view files and add them to the library. The file is added</br>
+  with <i>"Add to library"</i> context menu command or with double click of left mouse button.</br>
+  You can highlight and add several files or folders at the same time.</br>
+  </br>
+  <i>"Foreshortening"</i> filter allows you to add only one direction. This filter can be used</br>
+  to speed up loading of big numbers of files.</br>
+  The upper right corner of the viewer contains the <i>"Refresh"</i> button.</br>
+  </br>
+  If some of the subfolders within the root folder contains very big number of STI files (e.g. this</br>
+  could beб <b>ANIMS</b> folder), for more convenient view you can split it to several virtual</br>
+  subfolders. To do this you should place the XML file with the same name as the name of the folder being</br>
+   splitted to the application folder. The example of XML file structure:<pre>
+  &lt;Name of real folder&gt;
+   &lt;Virtual subfolder 1&gt;
+    &lt;Virtual subfolder 1.1&gt;
+      &lt;Virtual subfolder 1.1.1&gt;
+        &lt;File&gt;
+          &lt;FileName>File name 1.1.1.1&lt;/FileName&gt;
+        &lt;/File&gt;
+        &lt;File&gt;
+          &lt;FileName>File name 1.1.1.2&lt;/FileName&gt;
+        &lt;/File&gt;
+	...
+        &lt;File&gt;
+          &lt;FileName>File nameа  1.1.1.n&lt;/FileName&gt;
+        &lt;/File&gt;
+      &lt;/Virtual subfolder 1.1.1&gt;
+      &lt;Virtual subfolder 1.1.2&gt;
+        &lt;File&gt;
+          &lt;FileName>File name 1.1.2.1&lt;/FileName&gt;
+        &lt;/File&gt;
+        &lt;File&gt;
+          &lt;FileName>File name 1.1.2.2&lt;/FileName&gt;
+        &lt;/File&gt;
+	...
+        &lt;File&gt;
+          &lt;FileName>File name 1.1.2.m&lt;/FileName&gt;
+        &lt;/File>
+      &lt;/Virtual subfolder 1.1.2&gt;
+    &lt;/Virtual subfolder 1.1&gt;
+    &lt;File>
+      &lt;FileName>File name 1.1&lt;/FileName&gt;
+    &lt;/File&gt;
+    &lt;File&gt;
+      &lt;FileName>File name 1.2&lt;/FileName&gt;
+    &lt;/File&gt;
+     ...
+    &lt;File&gt;
+      &lt;FileName>File name  1.k&lt;/FileName&gt;
+    &lt;/File&gt;
+   &lt;/Virtual subfolder 1&gt;
+  &lt;/Name of real folder&gt;
+</pre>
+ </p>
+
+
+ <a name=libtary_en>
+ <h4 align=center>4. "Library" window.</h4>
+  <p>
+   The library contains files loaded from the viewer.</br>
+   To remove the file from the library, highlight it and press Delete on keyboard.</br>
+   Other library commands are run from the context menu and applicated to</br>
+   higlighted cells.</br>
+   Context menu:</br>
+   <ul>
+    <li><i>"Play"</i> - highlighted cells are sorted by the column number and loaded</br>
+            to the left sprite of the player.
+    <li><i>"Copy to the buffer"</i> - highlighted cells are sorted by the column number and</br>
+            copied to the buffer.
+    <li><i>"Play synchronously"</i> - highlighted cells are sorted by the column number and</br>
+            loaded to the right sprite of the player, all cells from the buffer are loaded to</br>
+            the left sprite of the player.
+    <li><i>"Add to working area"</i> - highlighted cells are sorted by the column number and</br>
+            added to the working area.</br>
+   </ul>
+
+  </p>
+ <a name=work_en>
+ <h4 align=center>5. "Working area" window.</h4>
+ <p>
+   In this window you can create new and edit existing STI files.</br>
+   Menu of "Working area" window:</br>
+   <ul>
+    <li> <i>"Palette"</i>
+    <ul>
+     <li type=circle> <i>"Hair", "Trousers", "Skin", "Jersey", "Shadow"</i> - sets the colors for</br>
+      the corresponding animation elements. Color palette is loaded from the palette file</br>
+      <b>JA2PAL.DAT</b> or (if the file is missing) from program resources.
+     <li type=circle> <i>"Save"</i> - saves the currant palette as user palette.
+     <li type=circle> <i>"Remove..."</i> - removes the palette chosen by user.
+     <li type=circle> <i>"Initial palette"</i> - sets the initial colors for animations.
+     <li type=circle> <i>"Army", "Elit", "White John" ...</i> - user palettes are loaded from the</br>
+      file <b>palettes.xml</b>; if this file is missing, they (just these three) are loaded from resources.</br>
+      At exit all user palettes are saved in <b>palettes.xml</b>.
+    </ul>
+    <li> <i>"Editing"</i>
+    <ul>
+     <li type=circle> <i>"Autoupdating"</i> - turns the automatic synchronization</br>
+      between edited frames from working area and temporary files from the folder stated in</br>
+      <i>"EditorTempDir"</i> in config file <b>dotNetStiEditor.EXE.config</b> on or off.</br>
+      Forced sychronization can be done with the Refresh button in the upper right corner of the window.</br>
+    </ul>
+  </ul>
+   Context menu:</br>
+   <ul>
+    <li><i>"Play"</i> - highlighted cells are sorted by the column number and loaded</br>
+            to the left sprite of the player.
+    <li><i>"Play synchronously"</i> - highlighted cells are sorted by the column number and</br>
+            loaded to the right sprite of the player, all cells from the buffer are loaded to</br>
+            the left sprite of the player.
+    <li><i>"Copy to the buffer"</i> - highlighted cells are sorted by the column number and</br>
+            copied to the buffer.
+    <li><i>"Insert from buffer"</i> - cells from the buffer are inserted before the first</br>
+            highlighted non-empty cell of the working area.
+    <li><i>"Edit"</i> - copies the highlighted cells to the temporary BMP files in the folder</br>
+            stated in <i>"EditorTempDir"</i> in config file</br>
+            <b>dotNetStiEditor.EXE.config</b> and loads them to the graphics editor.
+    <li><i>"Remove"</i> - removes the highlighted cells.
+    <li><i>"Save as..."</i> - saves the highlighted cells in chosen file type.
+     If STI is chosen, window <i>"Breakdown on foreshortenings"</i> is opened. This window allows</br>
+     to chose number of frames for each direction. The sum of frame numbers for all directions</br>
+     must be equal to the total number of frames, otherwise save would be impossible.
+   </ul>
+ </p>
+
+
+ <a name=player_en>
+ <h4 align=center>6. "Player" window.</h4>
+ <p>
+  In this window you can view set of frames as an animation or frame-by-frame,</br>
+  as well as edit frame displacements. <i>"Background"</i> menu allows to load</br>
+  a background picture in a standard Windows way or load a picture from <i>"Background"</i> folder</br>
+  by a single click of left mouse button.</br>
+
+  To edit displacements you should load set of frames from the working area, change displacements</br>
+  and press <i>"Save displacements"</i> button.</br>
+ </p>
+Please send your questions to egorov_av@mail.ru or ask at <a href = http://www.ja2.su>www.ja2.su</a>.</br>
+Looks like it's all...
+</pre>
+
+ <a name=appendix1_en>
+ <h4 align=center>Appendix. STСI file format</h4>
+<pre>
+<center><b>STСI (Sir-Tech's Crazy Image) file format.</center></b>
+
+STСI format is used to store graphical objects of Jagged Alliance 2 game. Every
+STCI file can hold one or more images. Images are stored using either 16-bit
+(16bppRGB565) or 8-bit (8bppIndexed) format. 16-bit file holds just one
+noncompressed image. The most of them are in LOADSCREENS folder.
+
+
+<center><b>Header (64 bytes, STCIHeader structure).</center></b>
+
+
+STCIHeader structure is described in Standard Gaming Platform\imgfmt.h.
+
+  <i>1-4 bytes</i> – character string  “STCI”, the format identifier.
+  <i>5-8 bytes</i> – initial size of the image in bytes. For files with multiple
+                     images there is large senseless number.
+  <i>9-12 bytes</i> – image size in bytes after compression.
+  <i>13-16 bytes</i> – number of the transparent color in the palette, always 0.
+                       Used only for 8-bit files.
+  <i>17-20 bytes</i> – flags.
+    <i>1 bit</i> – always 0, unknown purpose (STCI_TRANSPARENT).
+    <i>2 bit</i> – always 0, unknown purpose (STCI_ALPHA).
+    <i>3 bit</i> – 1 tells if file is the 16-bit file (STCI_RGB).
+    <i>4 bit</i> – 1 tells if file is the 8-bit file (STCI_INDEXED).
+    <i>5 bit</i> – 1 if ZLIB compression algorithm used (STCI_ZLIB_COMPRESSED).
+    <i>6 bit</i> – 1 if ETRLE compression algorithm used (STCI_ETRLE_COMPRESSED).
+    <i>7-32 bits</i> – 0, not used.
+It seems to be that flags always equals to 4, 40 or 41.
+     4 – for 16-bit files.
+     40 – for 8-bit non-animated files (single image).
+     41 – for 8-bit animated files (multiple images).
+  <i>21-22 bytes</i> – height of the image in pixels. Used in 16-bit files only.
+  <i>23-24 bytes</i> – width of the image in pixels. Used in 16-bit files only.
+
+Values of the next 20 bytes depend on encoding algorithm.
+
+<b>25-44 bytes for 16-bit files:</b>
+
+  <i>25-28 bytes</i> – red color mask. Seems to always equal to 63488
+                       (00000000 00000000 11111000 00000000).
+  <i>29-32 bytes</i> – green color mask. Seems to always equal to 2016
+                       (00000000 00000000 00000111 11100000).
+  <i>33-36 bytes</i> – blue color mask. Seems to always equal to 31
+                       (00000000 00000000 00000000 00011111).
+  <i>37-40 bytes</i> – alpha-channel mask. Seems to always equal to 0.
+  <i>41  byte</i> – red color depth. Seems to always equal to 5.
+  <i>42  byte</i> – green color depth. Seems to always equal to 6.
+  <i>43 byte</i> – blue color depth. Seems to always equal to 5.
+  <i>44 byte</i> – alpha-channel depth. Seems to always equal to 0.
+Colors depth and mask values correspond to 16bppRGB565 encoding algorithm.
+
+<b>25-44 bytes for 8-bit files:</b>
+
+  <i>25-28 bytes</i> – number of colors in a palette, seems to be always 256.
+  <i>29-30 bytes</i> – number of images in the file.
+  <i>31 byte</i> – red color depth. It seems to be always 8.
+  <i>32 byte</i> – green color depth. It seems to be always 8.
+  <i>33 byte</i> – blue color depth. It seems to be always 8.
+  <i>34-44 bytes</i> – not used.
+Algorithm used for encoding 8-bit files – 8bppIndexed with 24-bit palette for 256
+colors.
+
+  <i>45 byte</i> – color depth. Number of bits for one pixel. 8 for  8-bit files
+                   and 16 for 16-bit files.
+  <i>46-49 bytes</i> – size of Application Data in bytes. Other than 0 only for
+                       animated files. It seems to be equaled to number of images
+                       multiplied on 16.
+  <i>49-64 bytes</i> – not used.
+
+There is a possibility that such type of STCI file exists where 46-48 bytes are
+not used, os the size of the application data shifts 3 bytes. Maybe it depends on
+localization. In .NET StiEditor such byte order is used.
+
+<center><b>Images.</center></b>
+
+
+In 16-bit files after header and to the end of file there are image data encoded
+in 16bppRGB565 format.
+In 8-bit files after header there are 256*3 = 768 bytes of palette.
+After palette there are image headers of total size (number of images) x 16 bytes.
+
+
+<center><b>Image header (16 bytes,  STCISubImage structure).</center></b>
+
+
+STCISubImage structure is described in Standard Gaming Platform\imgfmt.h.
+
+  <i>1-4 bytes</i> – shift in bytes from the beginning of images data to beginning
+                     of the current image data. 0 for the first image. Size of the
+                     first image for the second and so on.
+  <i>5-8 bytes</i> – image data size in bytes.
+  <i>9-10 bytes</i> – horizontal image shift in pixels.
+  <i>11-12 bytes</i> – vertical image shift in pixels.
+  <i>13-14 bytes</i> – image height in pixels.
+  <i>15-16 bytes</i> – image width in pixels.
+
+There are images data after image headers. Every byte corresponds to ordinal
+number (index) of pixel’s color in palette. Image data are compressed using ETRLE
+compression algorithm (see below). It seems to be that ZLIB compression is not
+used. Non-animated 8-bit files are finished here.
+
+Animated files have additional Application Data. Size – (number of images) x 16.
+Content follows:
+
+For images which are the beginning of new foreshortening (direction):
+  <i>1-8 bytes</i> – 0, unknown purpose.
+  <i>9 byte</i> – equals to number of images in current direction.
+  <i>10 byte</i> – 2, unknown purpose.
+  <i>11-16 bytes</i> – 0, unknown purpose.
+
+For images which are not the beginning of new direction:
+  <i>1-16</i> bytes – 0, unknown purpose.
+
+
+<center><b>ETRLE compression algorithm.</center></b>
+ETRLE abbreviation meaning is unknown. Last three letters most likely mean
+Run-Length Encoding.
+
+Compressed sequence consist of multiple subsequences of transparent and non-
+-transparent bytes (SirTech have transparent color as zero).
+Every subsequence on transparent bytes is replaced by one byte with highest bit set
+to 1. Lower 7 bits hold number of transparent bytes. If sequence of transparent bytes
+is longer than 127, then new byte for transparent bytes encoding used and so on. One
+service byte used before subsequence of non-transparent bytes. Its highest bit is set
+to 0. Lower 7 bits hold number of non-transparent byte in subsequence. If non-
+-transparent bytes subsequence exceeds 127, new service byte is used and so on.
+Every row has zero byte on its end.
+</pre>
+</body>
+</html>

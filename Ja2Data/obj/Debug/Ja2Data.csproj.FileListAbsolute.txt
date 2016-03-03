@@ -1,0 +1,5 @@
+C:\Users\Alexey\documents\visual studio 2013\Projects\Ja2Project\Ja2Data\bin\Debug\Ja2Data.dll
+C:\Users\Alexey\documents\visual studio 2013\Projects\Ja2Project\Ja2Data\bin\Debug\Ja2Data.pdb
+C:\Users\Alexey\documents\visual studio 2013\Projects\Ja2Project\Ja2Data\obj\Debug\Ja2Data.dll
+C:\Users\Alexey\documents\visual studio 2013\Projects\Ja2Project\Ja2Data\obj\Debug\Ja2Data.pdb
+C:\Users\Alexey\documents\visual studio 2013\Projects\Ja2Project\Ja2Data\obj\Debug\Ja2Data.csprojResolveAssemblyReference.cache

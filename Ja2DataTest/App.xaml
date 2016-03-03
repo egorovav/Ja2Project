@@ -1,0 +1,70 @@
+﻿<Application x:Class="Ja2DataTest.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <Style x:Key="BasicControlType">
+            <Setter Property="Control.FontSize" Value="14" />
+            <Setter Property="Control.Margin" Value="2" />
+        </Style>
+        <ControlTemplate x:Key="CalculatorButtonTemplate" TargetType="{x:Type Button}">
+            <Border x:Name="brd" CornerRadius="10" BorderThickness="1,1,3,3" BorderBrush="Gray">
+                <Border.Background>
+                    <LinearGradientBrush x:Name="ButtonBrush" StartPoint="0.5, 0" EndPoint="0.5, 1">
+                        <GradientStop Color="#F010E0" Offset="0"/>
+                        <GradientStop x:Name="gsWhite" Color="#F090F0" Offset="0.5"/>
+                        <GradientStop Color="#700090" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Label x:Name="lbl" VerticalAlignment="Center" HorizontalAlignment="Center"
+        			FontSize="{TemplateBinding Property=FontSize}"
+        			Content="{TemplateBinding Content}" 
+        			Foreground="{TemplateBinding Foreground}" />
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="brd" Property="BorderThickness" Value="2,2,2,2" />
+                    <Setter TargetName="brd" Property="Background">
+                        <Setter.Value>
+                            <RadialGradientBrush>
+                                <GradientStop Color="#88FF88" Offset="1"/>
+                                <GradientStop x:Name="gsLightGray" Color="#00C000" Offset="0"/>
+                            </RadialGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter TargetName="brd" Property="Background">
+                        <Setter.Value>
+                            <LinearGradientBrush StartPoint="0.5, 0" EndPoint="0.5, 1">
+                                <GradientStop Color="#00A000" Offset="1"/>
+                                <GradientStop Color="#00C000" Offset="0.5"/>
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <EventTrigger RoutedEvent="Button.MouseEnter">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard x:Name="bsbMouseEnter">
+                            <Storyboard x:Name="sbLight">
+                                <DoubleAnimation x:Name="LightAnimation"
+                                                Storyboard.TargetName="gsWhite" 
+                                                Storyboard.TargetProperty="Offset" 
+                                                From="0" To="1" Duration="0:0:0.8"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="Button.MouseLeave">
+                    <EventTrigger.Actions>
+                        <StopStoryboard BeginStoryboardName="bsbMouseEnter" />
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <Style TargetType="Button" BasedOn="{StaticResource BasicControlType}">
+            <Setter Property="Template" Value="{StaticResource CalculatorButtonTemplate}" />
+        </Style>
+    </Application.Resources>
+</Application>
