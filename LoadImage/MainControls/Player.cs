@@ -71,7 +71,11 @@ namespace dotNetStiEditor
 			this.button1.Text = Resources.GetString("Start");
 			this.button2.Text = Resources.GetString("Stop");
 			this.фонToolStripMenuItem.Text = Resources.GetString("Background");
-            this.chbForAllFrames.Text = Resources.GetString("ForAllFrames                                                                                                               ");
+            this.chbForAllFrames.Text = Resources.GetString("ForAllFrames");
+            this.настройкиToolStripMenuItem.Text = Resources.GetString("Settings");
+            this.отрисовыватьТайлToolStripMenuItem.Text = Resources.GetString("DrawTile");
+            this.прозрачностьToolStripMenuItem.Text = Resources.GetString("TransparentBackground");
+            this.прозрачностьТеньToolStripMenuItem.Text = Resources.GetString("TransparentShadow");
 			#endregion
 		}
 

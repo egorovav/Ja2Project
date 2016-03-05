@@ -25,3 +25,4 @@ C:\Ja2Project\LoadImage\obj\Debug\dotNetStiEditor.SelectCulutreForm.resources
 C:\Ja2Project\LoadImage\obj\Debug\dotNetStiEditor.csproj.GenerateResource.Cache
 C:\Ja2Project\LoadImage\obj\Debug\dotNetStiEditor.exe
 C:\Ja2Project\LoadImage\obj\Debug\dotNetStiEditor.pdb
+C:\Ja2Project\LoadImage\bin\Debug\dotNetStiEditor.EXE.config

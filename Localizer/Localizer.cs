@@ -127,13 +127,13 @@ namespace LocalizerNameSpace
                             cultureInfo = (string)cultureInfoObj.Value;
                         else
                         {
-                            config.AppSettings.Settings.Add("cultureInfo", "ru");
-                            cultureInfo = "ru";
+                            cultureInfo = System.Threading.Thread.CurrentThread.CurrentUICulture.Name;
+                            config.AppSettings.Settings.Add("cultureInfo", cultureInfo);
                         }
                     }
                     catch
                     {
-                        cultureInfo = "ru";
+                        cultureInfo = System.Threading.Thread.CurrentThread.CurrentUICulture.Name;
                     }
                 }
                 return cultureInfo;

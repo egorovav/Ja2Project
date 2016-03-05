@@ -29,12 +29,12 @@ namespace dotNetStiEditor
 		{
 			Initialize();
 
-			if (cultureInfo != null && cultureInfo != "")
-			{
-				EditorMainForm.configExists = false;
-				EditorMainForm.config.AppSettings.Settings.Remove("cultureInfo");
-				EditorMainForm.config.AppSettings.Settings.Add("cultureInfo", cultureInfo);
-			}
+            if (cultureInfo != null && cultureInfo != "")
+            {
+                EditorMainForm.configExists = false;
+                EditorMainForm.config.AppSettings.Settings.Remove("cultureInfo");
+                EditorMainForm.config.AppSettings.Settings.Add("cultureInfo", cultureInfo);
+            }
 
 			string rootDir = null;
 			if (File.Exists("dotNetStiEditor.exe.config"))
@@ -99,6 +99,7 @@ namespace dotNetStiEditor
 			this.просмотретьToolStripMenuItem.Text = Resources.GetString("View");
 			this.просмотретьСинхронноToolStripMenuItem.Text = Resources.GetString("ViewSynchronously");
 			this.помощьToolStripMenuItem.Text = Resources.GetString("Help");
+            this.добавитьВПроигрывательToolStripMenuItem.Text = Resources.GetString("AddToPlayer");
 			#endregion
 		}
 

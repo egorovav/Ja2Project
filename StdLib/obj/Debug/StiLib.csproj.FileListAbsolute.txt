@@ -15,6 +15,6 @@ C:\Users\Alexey\Documents\Old\JA2\dotNetStiEditor\dotNetStiEditorSrc\StdLib\obj\
 C:\Users\Alexey\Documents\Old\JA2\dotNetStiEditor\dotNetStiEditorSrc\StdLib\obj\Debug\StiLib.pdb
 C:\Ja2Project\StdLib\bin\Debug\StiLib.dll
 C:\Ja2Project\StdLib\bin\Debug\StiLib.pdb
-C:\Ja2Project\StdLib\obj\Debug\StiLib.csprojResolveAssemblyReference.cache
 C:\Ja2Project\StdLib\obj\Debug\StiLib.dll
 C:\Ja2Project\StdLib\obj\Debug\StiLib.pdb
+C:\Ja2Project\StdLib\obj\Debug\StiLib.csprojResolveAssemblyReference.cache

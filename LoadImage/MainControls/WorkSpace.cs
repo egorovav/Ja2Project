@@ -103,12 +103,7 @@ namespace dotNetStiEditor
 				String.Format("{0}...", Resources.GetString("Remove"));
 			this.удалитьToolStripMenuItem.Text = Resources.GetString("Remove");
 			this.rEDToolStripMenuItem.Text = Resources.GetString("Roody");
-			this.сохранитьToolStripMenuItem.Text =
-				String.Format("{0}...", Resources.GetString("Save"));
-			//this.sTIToolStripMenuItem.Text = Resources.GetString("SaveToSTI");
-			//this.tIFFToolStripMenuItem.Text = Resources.GetString("SaveToTIFF");
-			//this.gIFToolStripMenuItem.Text = Resources.GetString("SaveToGIF");
-			//this.bMPToolStripMenuItem.Text = Resources.GetString("SaveToBMP");
+			this.сохранитьКакToolStripMenuItem.Text = Resources.GetString("SaveAs");
 			this.сохранитьToolStripMenuItem.Text = Resources.GetString("Save");
 			this.кожаToolStripMenuItem1.Text = Resources.GetString("Skin");
 			this.tANToolStripMenuItem1.Text = Resources.GetString("Sunburnt");
