@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -44,10 +43,33 @@ namespace Ja2Data
             this.IsHighDefenition = aIsHighDefentition;
         }
 
-        public int ProfileXSize { get; protected set; }
-        public int ProfileYSize { get; protected set; }
-        public int ProfileZSize { get; protected set; }
-        public int UnusedDataSize { get; protected set; }
+        private int FProfileXSize;
+        public int ProfileXSize 
+        {
+            get { return this.FProfileXSize; }
+            protected set { this.FProfileXSize = value; } 
+        }
+
+        private int FProfileYSize;
+        public int ProfileYSize
+        {
+            get { return this.FProfileXSize; }
+            protected set { this.FProfileYSize = value; } 
+        }
+
+        private int FProfileZSize;
+        public int ProfileZSize 
+        {
+            get { return this.FProfileZSize; }
+            protected set { this.FProfileZSize = value; } 
+        }
+
+        private int FUnusedDataSize;
+        public int UnusedDataSize 
+        {
+            get { return this.FUnusedDataSize; }
+            protected set { this.FUnusedDataSize = value; } 
+        }
 
         public int ProfileSize
         {

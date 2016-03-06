@@ -17,4 +17,3 @@ C:\Ja2Project\StdLib\bin\Debug\StiLib.dll
 C:\Ja2Project\StdLib\bin\Debug\StiLib.pdb
 C:\Ja2Project\StdLib\obj\Debug\StiLib.dll
 C:\Ja2Project\StdLib\obj\Debug\StiLib.pdb
-C:\Ja2Project\StdLib\obj\Debug\StiLib.csprojResolveAssemblyReference.cache

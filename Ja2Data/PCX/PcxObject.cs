@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -28,10 +27,11 @@ namespace Ja2Data
         private byte[] pPcxBuffer;
         private byte[] ubPalette = new byte[PaletteSize];
 
+        private byte[] FImageData;
         public byte[] ImageData
         {
-            get;
-            protected set;
+            get { return this.FImageData; }
+            protected set { this.FImageData = value; }
         }
 
         private UInt16 usWidth;

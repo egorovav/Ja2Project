@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -245,7 +244,8 @@ namespace Ja2Data
             byte[] _tileLocData = new byte[aAuxData.NumberOfTiles * 2];
             Array.Copy(this.TileLocData, aAuxData.TileLocIndex * 2, _tileLocData, 0, aAuxData.NumberOfTiles * 2);
 
-            return _tileLocData.ToList();
+            //return _tileLocData.ToList();
+            return new List<byte>(_tileLocData);
         }
 
         public void BuildInfo(StringBuilder aInfoBuilder)

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -130,16 +129,26 @@ namespace Ja2Data
                 string _mapsFolder = Path.GetDirectoryName(this.FFileName);
                 string _dataFolder = Path.GetDirectoryName(_mapsFolder);
                 string _mapsSlfFile = Path.Combine(_dataFolder, "Maps.slf");
-                if(File.Exists(_mapsSlfFile))
+                if (File.Exists(_mapsSlfFile))
                 {
                     SlfFile _mapsSlf = new SlfFile(_mapsSlfFile);
                     _mapsSlf.LoadRecords();
                     string _mapName = Path.GetFileName(this.FFileName);
-                    SlfFile.Record _record = _mapsSlf.Records.
-                        SingleOrDefault(x => x.FileName.ToUpperInvariant() == _mapName.ToUpperInvariant());
-                    if(_record != null)
+                    //SlfFile.Record _record = _mapsSlf.Records.
+                    //    SingleOrDefault(x => x.FileName.ToUpperInvariant() == _mapName.ToUpperInvariant());
+                    SlfFile.Record _record = null;
+                    foreach (SlfFile.Record _rec in _mapsSlf.Records)
                     {
-                        using(MemoryStream _ms = new MemoryStream(_record.Data))
+                        if (_rec.FileName.ToUpperInvariant() == _mapName.ToUpperInvariant())
+                        {
+                            _record = _rec;
+                            break;
+                        }
+                    }
+
+                    if (_record != null)
+                    {
+                        using (MemoryStream _ms = new MemoryStream(_record.Data))
                         {
                             this.Load(_ms);
                         }
