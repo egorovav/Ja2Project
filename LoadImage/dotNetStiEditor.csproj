@@ -118,6 +118,12 @@
     <Compile Include="ManualForm.Designer.cs">
       <DependentUpon>ManualForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PalettesManager\PaletteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PalettesManager\PaletteForm.Designer.cs">
+      <DependentUpon>PaletteForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PalettesManager\SavePaletteForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,6 +175,9 @@
     <EmbeddedResource Include="ManualForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ManualForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PalettesManager\PaletteForm.resx">
+      <DependentUpon>PaletteForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PalettesManager\SavePaletteForm.resx">
       <SubType>Designer</SubType>

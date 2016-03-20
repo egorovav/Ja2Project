@@ -7,3 +7,8 @@ C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Pro
 C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\Ja2Data\obj\Release\Ja2Data.csprojResolveAssemblyReference.cache
 C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\Ja2Data\obj\Release\Ja2Data.dll
 C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\Ja2Data\obj\Release\Ja2Data.pdb
+C:\Ja2Project\Ja2Data\bin\Release\Ja2Data.dll
+C:\Ja2Project\Ja2Data\bin\Release\Ja2Data.pdb
+C:\Ja2Project\Ja2Data\obj\Release\Ja2Data.csprojResolveAssemblyReference.cache
+C:\Ja2Project\Ja2Data\obj\Release\Ja2Data.dll
+C:\Ja2Project\Ja2Data\obj\Release\Ja2Data.pdb

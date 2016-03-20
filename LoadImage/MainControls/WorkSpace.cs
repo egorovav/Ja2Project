@@ -592,5 +592,29 @@ For example, MS Paint or Adobe Fotoshop.", Resources.GetString("Error"),
         {
 
         }
+
+        private void палитраToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if(workDataGridView.SelectedCells.Count > 0)
+            {
+                int index = workDataGridView.SelectedCells[0].ColumnIndex;
+                ExtendedBitmap _ebm = workSpace[index];
+                PaletteForm _pf = new PaletteForm(_ebm.Bm.Palette.Entries);
+                if(_pf.ShowDialog() == DialogResult.OK)
+                {
+                    int _count = _ebm.Bm.Palette.Entries.Length;
+                    ColorPalette _tempPalette = _ebm.Bm.Palette;
+                    for(int i = 0; i < _count; i++)
+                    {
+                        _tempPalette.Entries[i] = _pf.Colors[i];
+                    }
+
+                    for (int i = 0; i < workSpace.Count; i++)
+                    {
+                        workSpace[i].Bm.Palette = _tempPalette;
+                    }
+                }
+            }
+        }
 	}
 }

@@ -38,3 +38,23 @@ C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Pro
 C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\Ja2DataTest\obj\Release\Ja2DataTest.csproj.GenerateResource.Cache
 C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\Ja2DataTest\obj\Release\Ja2DataTest.exe
 C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\Ja2DataTest\obj\Release\Ja2DataTest.pdb
+C:\Ja2Project\Ja2DataTest\bin\Release\Ja2DataTest.exe.config
+C:\Ja2Project\Ja2DataTest\bin\Release\Ja2DataTest.exe
+C:\Ja2Project\Ja2DataTest\bin\Release\Ja2DataTest.pdb
+C:\Ja2Project\Ja2DataTest\bin\Release\CommonWpfControls.dll
+C:\Ja2Project\Ja2DataTest\bin\Release\Ja2Data.dll
+C:\Ja2Project\Ja2DataTest\bin\Release\Ja2Data.pdb
+C:\Ja2Project\Ja2DataTest\bin\Release\CommonWpfControls.pdb
+C:\Ja2Project\Ja2DataTest\obj\Release\Ja2DataTest.csprojResolveAssemblyReference.cache
+C:\Ja2Project\Ja2DataTest\obj\Release\App.baml
+C:\Ja2Project\Ja2DataTest\obj\Release\MainWindow.g.cs
+C:\Ja2Project\Ja2DataTest\obj\Release\App.g.cs
+C:\Ja2Project\Ja2DataTest\obj\Release\GeneratedInternalTypeHelper.g.cs
+C:\Ja2Project\Ja2DataTest\obj\Release\Ja2DataTest_MarkupCompile.cache
+C:\Ja2Project\Ja2DataTest\obj\Release\Ja2DataTest_MarkupCompile.lref
+C:\Ja2Project\Ja2DataTest\obj\Release\MainWindow.baml
+C:\Ja2Project\Ja2DataTest\obj\Release\Ja2DataTest.g.resources
+C:\Ja2Project\Ja2DataTest\obj\Release\Ja2DataTest.Properties.Resources.resources
+C:\Ja2Project\Ja2DataTest\obj\Release\Ja2DataTest.csproj.GenerateResource.Cache
+C:\Ja2Project\Ja2DataTest\obj\Release\Ja2DataTest.exe
+C:\Ja2Project\Ja2DataTest\obj\Release\Ja2DataTest.pdb

@@ -25,3 +25,5 @@ C:\Ja2Project\LoadImage\obj\Release\dotNetStiEditor.SelectCulutreForm.resources
 C:\Ja2Project\LoadImage\obj\Release\dotNetStiEditor.csproj.GenerateResource.Cache
 C:\Ja2Project\LoadImage\obj\Release\dotNetStiEditor.exe
 C:\Ja2Project\LoadImage\obj\Release\dotNetStiEditor.pdb
+C:\Ja2Project\LoadImage\bin\Release\dotNetStiEditor.EXE.config
+C:\Ja2Project\LoadImage\obj\Release\dotNetStiEditor.PaletteForm.resources

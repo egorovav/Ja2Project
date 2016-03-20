@@ -38,6 +38,8 @@ namespace MapViewer
                 if (aDrawedLayers[aLayerNumber])
                 {
                     for (int i = 0; i < this.FMap.WORLD_SIZE; i++)
+                    //for (int i = this.FMap.WORLD_SIZE; i > 0; i--)
+                    //    for (int j = this.FMap.WORLD_SIZE; j > 0; j--)
                         for (int j = 0; j < this.FMap.WORLD_SIZE; j++)
                         {
                             if (i + j >= 3 * this.FMap.WORLD_SIZE / 2 ||

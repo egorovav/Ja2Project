@@ -50,3 +50,29 @@ C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Pro
 C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\Ja2DataDbTest\obj\Release\Ja2DataDbTest.csproj.GenerateResource.Cache
 C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\Ja2DataDbTest\obj\Release\Ja2DataDbTest.exe
 C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\Ja2DataDbTest\obj\Release\Ja2DataDbTest.pdb
+C:\Ja2Project\Ja2DataDbTest\bin\Release\Ja2DataDbTest.exe.config
+C:\Ja2Project\Ja2DataDbTest\bin\Release\Ja2DataDbTest.exe
+C:\Ja2Project\Ja2DataDbTest\bin\Release\Ja2DataDbTest.pdb
+C:\Ja2Project\Ja2DataDbTest\bin\Release\CommonWpfControls.dll
+C:\Ja2Project\Ja2DataDbTest\bin\Release\EntityFramework.dll
+C:\Ja2Project\Ja2DataDbTest\bin\Release\EntityFramework.SqlServer.dll
+C:\Ja2Project\Ja2DataDbTest\bin\Release\Ja2Data.dll
+C:\Ja2Project\Ja2DataDbTest\bin\Release\Ja2DataDb.dll
+C:\Ja2Project\Ja2DataDbTest\bin\Release\Ja2DataDb.pdb
+C:\Ja2Project\Ja2DataDbTest\bin\Release\Ja2Data.pdb
+C:\Ja2Project\Ja2DataDbTest\bin\Release\CommonWpfControls.pdb
+C:\Ja2Project\Ja2DataDbTest\bin\Release\EntityFramework.xml
+C:\Ja2Project\Ja2DataDbTest\bin\Release\EntityFramework.SqlServer.xml
+C:\Ja2Project\Ja2DataDbTest\obj\Release\Ja2DataDbTest.csprojResolveAssemblyReference.cache
+C:\Ja2Project\Ja2DataDbTest\obj\Release\App.baml
+C:\Ja2Project\Ja2DataDbTest\obj\Release\MainWindow.g.cs
+C:\Ja2Project\Ja2DataDbTest\obj\Release\App.g.cs
+C:\Ja2Project\Ja2DataDbTest\obj\Release\GeneratedInternalTypeHelper.g.cs
+C:\Ja2Project\Ja2DataDbTest\obj\Release\Ja2DataDbTest_MarkupCompile.cache
+C:\Ja2Project\Ja2DataDbTest\obj\Release\Ja2DataDbTest_MarkupCompile.lref
+C:\Ja2Project\Ja2DataDbTest\obj\Release\MainWindow.baml
+C:\Ja2Project\Ja2DataDbTest\obj\Release\Ja2DataDbTest.g.resources
+C:\Ja2Project\Ja2DataDbTest\obj\Release\Ja2DataDbTest.Properties.Resources.resources
+C:\Ja2Project\Ja2DataDbTest\obj\Release\Ja2DataDbTest.csproj.GenerateResource.Cache
+C:\Ja2Project\Ja2DataDbTest\obj\Release\Ja2DataDbTest.exe
+C:\Ja2Project\Ja2DataDbTest\obj\Release\Ja2DataDbTest.pdb

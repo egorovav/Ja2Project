@@ -37,3 +37,15 @@ C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Pro
 C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\StiToGif_v2.0\obj\Release\StiToGif.MainForm.resources
 C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\StiToGif_v2.0\obj\Release\StiToGif.Properties.Resources.resources
 C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\StiToGif_v2.0\obj\Release\StiToGif_v2.0.csproj.GenerateResource.Cache
+C:\Ja2Project\StiToGif_v2.0\bin\Release\StiToGif_v2.0.exe.config
+C:\Ja2Project\StiToGif_v2.0\bin\Release\StiToGif_v2.0.exe
+C:\Ja2Project\StiToGif_v2.0\bin\Release\StiToGif_v2.0.pdb
+C:\Ja2Project\StiToGif_v2.0\bin\Release\StiLib.dll
+C:\Ja2Project\StiToGif_v2.0\bin\Release\StiLib.pdb
+C:\Ja2Project\StiToGif_v2.0\obj\Release\StiToGif_v2.0.csprojResolveAssemblyReference.cache
+C:\Ja2Project\StiToGif_v2.0\obj\Release\StiToGif.ExceptionForm.resources
+C:\Ja2Project\StiToGif_v2.0\obj\Release\StiToGif.MainForm.resources
+C:\Ja2Project\StiToGif_v2.0\obj\Release\StiToGif.Properties.Resources.resources
+C:\Ja2Project\StiToGif_v2.0\obj\Release\StiToGif_v2.0.csproj.GenerateResource.Cache
+C:\Ja2Project\StiToGif_v2.0\obj\Release\StiToGif_v2.0.exe
+C:\Ja2Project\StiToGif_v2.0\obj\Release\StiToGif_v2.0.pdb

@@ -79,3 +79,30 @@ C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Pro
 C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\MapViewer\obj\Release\MapViewer.csproj.GenerateResource.Cache
 C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\MapViewer\obj\Release\MapViewer.exe
 C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\MapViewer\obj\Release\MapViewer.pdb
+C:\Ja2Project\MapViewer\bin\Release\MapViewer.exe.config
+C:\Ja2Project\MapViewer\obj\Release\MapViewer.exe
+C:\Ja2Project\MapViewer\obj\Release\MapViewer.pdb
+C:\Ja2Project\MapViewer\bin\Release\MAP_STUB.bmp
+C:\Ja2Project\MapViewer\bin\Release\MapViewer.exe
+C:\Ja2Project\MapViewer\bin\Release\MapViewer.pdb
+C:\Ja2Project\MapViewer\bin\Release\CommonWpfControls.dll
+C:\Ja2Project\MapViewer\bin\Release\Ja2Data.dll
+C:\Ja2Project\MapViewer\bin\Release\Ja2Data.pdb
+C:\Ja2Project\MapViewer\bin\Release\CommonWpfControls.pdb
+C:\Ja2Project\MapViewer\obj\Release\MapViewer.csprojResolveAssemblyReference.cache
+C:\Ja2Project\MapViewer\obj\Release\View\GlobalMapView.baml
+C:\Ja2Project\MapViewer\obj\Release\View\ShapeView3D.baml
+C:\Ja2Project\MapViewer\obj\Release\MainWindow.g.cs
+C:\Ja2Project\MapViewer\obj\Release\View\GlobalMapsView.g.cs
+C:\Ja2Project\MapViewer\obj\Release\View\GlobalMapView.g.cs
+C:\Ja2Project\MapViewer\obj\Release\View\ShapeView3D.g.cs
+C:\Ja2Project\MapViewer\obj\Release\App.g.cs
+C:\Ja2Project\MapViewer\obj\Release\MapViewer_Content.g.cs
+C:\Ja2Project\MapViewer\obj\Release\GeneratedInternalTypeHelper.g.cs
+C:\Ja2Project\MapViewer\obj\Release\MapViewer_MarkupCompile.cache
+C:\Ja2Project\MapViewer\obj\Release\MapViewer_MarkupCompile.lref
+C:\Ja2Project\MapViewer\obj\Release\MainWindow.baml
+C:\Ja2Project\MapViewer\obj\Release\View\GlobalMapsView.baml
+C:\Ja2Project\MapViewer\obj\Release\MapViewer.g.resources
+C:\Ja2Project\MapViewer\obj\Release\MapViewer.Properties.Resources.resources
+C:\Ja2Project\MapViewer\obj\Release\MapViewer.csproj.GenerateResource.Cache
