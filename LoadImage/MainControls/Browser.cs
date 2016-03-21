@@ -60,7 +60,7 @@ namespace dotNetStiEditor
 						List<ExtendedBitmap> bm = new List<ExtendedBitmap>();
 						if (stciData._Indexed != null)
 						{
-							ETRLEData data = IndexedConverter.LoadIndexedImageData(stciData); ;
+							ETRLEData data = IndexedConverter.LoadIndexedImageData(stciData);
 							bm = IndexedConverter.ConvertEtrleDataToBitmaps(data, 0);
 
 						}
