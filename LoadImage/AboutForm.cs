@@ -19,7 +19,7 @@ namespace dotNetStiEditor
 			StringBuilder about = new StringBuilder();
 
 			about.AppendLine();
-			about.AppendLine("                          .NET Sti Editor версия 1.0.0.26");
+			about.AppendLine("                          .NET Sti Editor версия 1.0.1.0");
 		//	about.AppendLine(" _________________________________________________");
 			about.AppendLine();
 			about.AppendLine(" Авторы:");
