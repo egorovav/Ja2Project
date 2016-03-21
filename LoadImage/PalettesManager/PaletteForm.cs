@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Resources = LocalizerNameSpace.Localizer;
 
 namespace dotNetStiEditor
 {
@@ -13,12 +15,12 @@ namespace dotNetStiEditor
     {
         const int grid_size = 16;
 
-        public PaletteForm(Color[] colors)
+        public PaletteForm(Bitmap bm)
         {
             InitializeComponent();
             this.dataGridView1.ReadOnly = true;
 
-            this.FColors = colors;
+            this.FColors = bm.Palette.Entries;
             for(int i = 0; i < grid_size; i++)
             {
                 this.dataGridView1.Rows.Add();
@@ -26,10 +28,18 @@ namespace dotNetStiEditor
                 for (int j = 0; j < grid_size; j++)
                 {
                     int index = i * grid_size + j;
-                    this.dataGridView1.Rows[i].Cells[j].Style.BackColor = colors[index];
+                    this.dataGridView1.Rows[i].Cells[j].Style.BackColor = this.FColors[index];
                     this.dataGridView1.Rows[i].Cells[j].Value = index;
                 }
             }
+
+            this.pictureBox1.Image = (Bitmap)bm.Clone();
+
+            #region SET LOCAL STRINGS
+            this.btnSave.Text = Resources.GetString("Save");
+            this.Text = Resources.GetString("Palette");
+            this.editToolStripMenuItem.Text = Resources.GetString("Edit");
+            #endregion
         }
 
         Color[] FColors;
@@ -46,6 +56,22 @@ namespace dotNetStiEditor
             {
                 this.FSelectedColor = this.dataGridView1.SelectedCells[0].Style.BackColor;
             }
+
+            ColorPalette _pal = this.pictureBox1.Image.Palette;
+
+            for(int i = 0; i < this.FColors.Length; i++)
+            {
+                _pal.Entries[i] = this.FColors[i];
+            }
+
+            foreach(DataGridViewCell _cell in this.dataGridView1.SelectedCells)
+            {
+                int index = _cell.RowIndex * grid_size + _cell.ColumnIndex;
+                _pal.Entries[index] = Color.Yellow;
+            }
+
+            this.pictureBox1.Image.Palette = _pal;
+            this.pictureBox1.Refresh();
         }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)

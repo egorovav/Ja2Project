@@ -119,6 +119,7 @@ namespace dotNetStiEditor
 			this.теньToolStripMenuItem.Text = Resources.GetString("Shadow");
 			this.волосыToolStripMenuItem.Text = Resources.GetString("Hair");
 			this.refreshToolStripButton3.ToolTipText = Resources.GetString("Refresh");
+            this.палитраToolStripMenuItem1.Text = Resources.GetString("Palette");
 			#endregion
 		}
 		/// <summary> 
@@ -598,20 +599,25 @@ For example, MS Paint or Adobe Fotoshop.", Resources.GetString("Error"),
             if(workDataGridView.SelectedCells.Count > 0)
             {
                 int index = workDataGridView.SelectedCells[0].ColumnIndex;
-                ExtendedBitmap _ebm = workSpace[index];
-                PaletteForm _pf = new PaletteForm(_ebm.Bm.Palette.Entries);
-                if(_pf.ShowDialog() == DialogResult.OK)
+                if (workSpace.Count > index)
                 {
-                    int _count = _ebm.Bm.Palette.Entries.Length;
-                    ColorPalette _tempPalette = _ebm.Bm.Palette;
-                    for(int i = 0; i < _count; i++)
+                    ExtendedBitmap _ebm = workSpace[index];
+                    PaletteForm _pf = new PaletteForm(_ebm.Bm);
+                    if (_pf.ShowDialog() == DialogResult.OK)
                     {
-                        _tempPalette.Entries[i] = _pf.Colors[i];
-                    }
+                        int _count = _ebm.Bm.Palette.Entries.Length;
+                        ColorPalette _tempPalette = _ebm.Bm.Palette;
+                        for (int i = 0; i < _count; i++)
+                        {
+                            _tempPalette.Entries[i] = _pf.Colors[i];
+                        }
 
-                    for (int i = 0; i < workSpace.Count; i++)
-                    {
-                        workSpace[i].Bm.Palette = _tempPalette;
+                        for (int i = 0; i < workSpace.Count; i++)
+                        {
+                            workSpace[i].Bm.Palette = _tempPalette;
+                        }
+
+                        workDataGridView.Refresh();
                     }
                 }
             }
