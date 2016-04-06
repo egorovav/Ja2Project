@@ -39,7 +39,6 @@ C:\Ja2Project\HdsJsdConverter\bin\Release\CommonWpfControls.dll
 C:\Ja2Project\HdsJsdConverter\bin\Release\Ja2Data.dll
 C:\Ja2Project\HdsJsdConverter\bin\Release\Ja2Data.pdb
 C:\Ja2Project\HdsJsdConverter\bin\Release\CommonWpfControls.pdb
-C:\Ja2Project\HdsJsdConverter\obj\Release\HdsJsdConverter.csprojResolveAssemblyReference.cache
 C:\Ja2Project\HdsJsdConverter\obj\Release\MainWindow.baml
 C:\Ja2Project\HdsJsdConverter\obj\Release\MainWindow.g.cs
 C:\Ja2Project\HdsJsdConverter\obj\Release\App.g.cs
@@ -49,3 +48,4 @@ C:\Ja2Project\HdsJsdConverter\obj\Release\HdsJsdConverter.Properties.Resources.r
 C:\Ja2Project\HdsJsdConverter\obj\Release\HdsJsdConverter.csproj.GenerateResource.Cache
 C:\Ja2Project\HdsJsdConverter\obj\Release\HdsJsdConverter.exe
 C:\Ja2Project\HdsJsdConverter\obj\Release\HdsJsdConverter.pdb
+C:\Ja2Project\HdsJsdConverter\obj\Release\HdsJsdConverter.csprojResolveAssemblyReference.cache

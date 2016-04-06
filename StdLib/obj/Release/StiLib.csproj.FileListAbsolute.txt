@@ -14,6 +14,5 @@ C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Pro
 C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\StdLib\obj\Release\StiLib.pdb
 C:\Ja2Project\StdLib\bin\Release\StiLib.dll
 C:\Ja2Project\StdLib\bin\Release\StiLib.pdb
-C:\Ja2Project\StdLib\obj\Release\StiLib.csprojResolveAssemblyReference.cache
 C:\Ja2Project\StdLib\obj\Release\StiLib.dll
 C:\Ja2Project\StdLib\obj\Release\StiLib.pdb

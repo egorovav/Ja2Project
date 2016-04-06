@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:JsdEditor"
         xmlns:controls="clr-namespace:CommonWpfControls;assembly=CommonWpfControls"
-        Title="Jsd Editor v 2.0.4" Height="600" Width="800"
+        Title="Jsd Editor v 2.0.5" Height="600" Width="800"
         Closing="MainWindow_Closing">
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Open" 

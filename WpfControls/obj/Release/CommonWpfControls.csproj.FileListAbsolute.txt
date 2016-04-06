@@ -25,7 +25,6 @@ C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Pro
 C:\Users\Пользовательь\Documents\Visual Studio 2013\Projects\Ja2Project\WpfControls\obj\Release\CommonWpfControls.pdb
 C:\Ja2Project\WpfControls\bin\Release\CommonWpfControls.dll
 C:\Ja2Project\WpfControls\bin\Release\CommonWpfControls.pdb
-C:\Ja2Project\WpfControls\obj\Release\CommonWpfControls.csprojResolveAssemblyReference.cache
 C:\Ja2Project\WpfControls\obj\Release\ProgressWindow.baml
 C:\Ja2Project\WpfControls\obj\Release\TestFileControl.baml
 C:\Ja2Project\WpfControls\obj\Release\View\FlagEditorView.baml

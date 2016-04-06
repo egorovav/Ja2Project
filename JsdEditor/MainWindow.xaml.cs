@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -40,6 +41,15 @@ namespace JsdEditor
             string _initialFileName = ((App)Application.Current).FileName;
             if (!String.IsNullOrEmpty(_initialFileName))
                 this.ViewModel.FilesNames = new string[] { _initialFileName };
+
+            try
+            {
+                System.Configuration.AppSettingsReader _asr = new System.Configuration.AppSettingsReader();
+                this.ViewModel.FolderName = (string)_asr.GetValue("FolderName", typeof(String));
+            }
+            catch (Exception _exc)
+            {
+            }
         }
 
         private void ViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -342,6 +352,19 @@ namespace JsdEditor
 
             if (_thereIsChanges)
                 e.Cancel = true;
+
+            string asName = "FolderName";
+
+            System.Configuration.Configuration config =
+              ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+            if (config.AppSettings.Settings.AllKeys.Contains(asName))
+                config.AppSettings.Settings[asName].Value = this.ViewModel.FolderName;                
+            else
+                config.AppSettings.Settings.Add(asName, this.ViewModel.FolderName);
+
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
         }
     }
 }

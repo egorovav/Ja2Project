@@ -1,5 +1,4 @@
 C:\Ja2Project\LoadImage\bin\Release\Localizer.xml
-C:\Ja2Project\LoadImage\bin\Release\ANIMS.xml
 C:\Ja2Project\LoadImage\bin\Release\dotNetStiEditor.exe
 C:\Ja2Project\LoadImage\bin\Release\dotNetStiEditor.pdb
 C:\Ja2Project\LoadImage\bin\Release\DockManager.dll
@@ -27,3 +26,4 @@ C:\Ja2Project\LoadImage\obj\Release\dotNetStiEditor.exe
 C:\Ja2Project\LoadImage\obj\Release\dotNetStiEditor.pdb
 C:\Ja2Project\LoadImage\bin\Release\dotNetStiEditor.EXE.config
 C:\Ja2Project\LoadImage\obj\Release\dotNetStiEditor.PaletteForm.resources
+C:\Ja2Project\LoadImage\bin\Release\_ANIMS.xml
