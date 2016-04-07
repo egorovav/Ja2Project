@@ -59,6 +59,11 @@
                     Header="Is on Roof"
                     HeaderStyle="{StaticResource ColumnHeaderStyle}" />
                 </DataGrid.Columns>
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Set initial tile" Command="{Binding SetInitialTileCommand}" CommandParameter="{Binding}" />
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
             </DataGrid>
         </DockPanel>
         <DockPanel Grid.Column="1" Margin="5" Visibility="{Binding IsNotContainsStructureData, 

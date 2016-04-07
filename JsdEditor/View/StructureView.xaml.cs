@@ -107,18 +107,25 @@ namespace JsdEditor
                 if (this.ViewModel.SelectedTile != _tile)
                 {
                     this.dgTiles.SelectedItem = this.ViewModel.SelectedTile;
+                    this.dgTiles.ScrollIntoView(this.ViewModel.SelectedTile);
                 }
 
                 this.SetTilesImage();
+
                 if (this.ViewModel.SelectedTile != null)
                 {
-                    this.svShape.ViewModel = this.ViewModel.SelectedTile.ShapeViewModel;
-                    this.dgTiles.ScrollIntoView(this.ViewModel.SelectedTile);
+                    this.svShape.ViewModel = this.ViewModel.SelectedTile.ShapeViewModel;                   
                 }
             }
 
             if(e.PropertyName == StructureViewModel.SelectedTileLocDataPropertyName)
             {
+                RelTileLoc _tileLoc = (RelTileLoc)this.dgTileLocData.SelectedItem;
+                if(this.ViewModel.SelectedTileLocData != _tileLoc)
+                {
+                    this.dgTileLocData.SelectedItem = this.ViewModel.SelectedTileLocData;
+                    this.dgTileLocData.ScrollIntoView(this.ViewModel.SelectedTileLocData);
+                }
                 this.SetTilesLocImage();
             }
         }
@@ -128,7 +135,7 @@ namespace JsdEditor
             if(e.PropertyName == TileViewModel.XPosRelToBasePropertyName || 
                 e.PropertyName == TileViewModel.YPosRelToBasePropertyName)
             {
-                SetTilesImage();
+                SetTilesImage();          
             }
         }
 

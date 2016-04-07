@@ -226,6 +226,7 @@ namespace JsdEditor
                 this.FCopyTileCommand.IsCanExecuteProperty = (value != null);
                 this.FRotateTileCommand.IsCanExecuteProperty = (value != null);
                 this.FAntiRotateTileCommand.IsCanExecuteProperty = (value != null);
+                this.FSetInitialTileCommand.IsCanExecuteProperty = (value != null);
 
                 TileViewModel _unselectedTile = this.Tiles.Where(x => x.IsSelected).SingleOrDefault();
                 if (_unselectedTile != null)
@@ -402,6 +403,12 @@ namespace JsdEditor
             get { return this.FAntiRotateTileCommand; }
         }
 
+        private SetInitialTileCommand FSetInitialTileCommand = new SetInitialTileCommand();
+        public SetInitialTileCommand SetInitialTileCommand
+        {
+            get { return this.FSetInitialTileCommand; }
+        }
+
         public void AddJsdTile(JsdTile aTile)
         {
             this.FStructure.AddTile(aTile);
@@ -429,6 +436,11 @@ namespace JsdEditor
                 foreach (TileViewModel _tile in this.FTiles)
                     _tile.IsTileChanged = value;
             }
+        }
+
+        public void SetInitialTile()
+        {
+            
         }
     }
 
@@ -579,6 +591,39 @@ namespace JsdEditor
             TileViewModel _tileViewModel = new TileViewModel(_tile);
             _viewModel.Tiles.Add(_tileViewModel);
             _viewModel.SelectedTile = _tileViewModel;
+        }
+    }
+
+    public class SetInitialTileCommand : ICommand
+    {
+        private bool FIsCanExecute = false;
+        public bool IsCanExecuteProperty
+        {
+            set
+            {
+                this.FIsCanExecute = value;
+                if (this.CanExecuteChanged != null)
+                    this.CanExecuteChanged(this, EventArgs.Empty);
+            }
+        }
+
+        public bool CanExecute(object parameter)
+        {
+            return this.FIsCanExecute;
+        }
+
+        public event EventHandler CanExecuteChanged;
+
+        public void Execute(object parameter)
+        {
+            StructureViewModel _viewModel = (StructureViewModel)parameter;
+            int _x = _viewModel.SelectedTile.XPosRelToBase;
+            int _y = _viewModel.SelectedTile.YPosRelToBase;
+            foreach(TileViewModel _tile in _viewModel.Tiles)
+            {
+                _tile.XPosRelToBase -= _x;
+                _tile.YPosRelToBase -= _y;
+            }
         }
     }
 }
