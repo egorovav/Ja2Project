@@ -50,6 +50,7 @@
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnSave = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.chbIndicatePixels = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -220,11 +221,23 @@
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
+            // chbIndicatePixels
+            // 
+            this.chbIndicatePixels.AutoSize = true;
+            this.chbIndicatePixels.Location = new System.Drawing.Point(119, 488);
+            this.chbIndicatePixels.Name = "chbIndicatePixels";
+            this.chbIndicatePixels.Size = new System.Drawing.Size(80, 17);
+            this.chbIndicatePixels.TabIndex = 3;
+            this.chbIndicatePixels.Text = "checkBox1";
+            this.chbIndicatePixels.UseVisualStyleBackColor = true;
+            this.chbIndicatePixels.CheckedChanged += new System.EventHandler(this.chbIndicatePixels_CheckedChanged);
+            // 
             // PaletteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(869, 517);
+            this.Controls.Add(this.chbIndicatePixels);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.dataGridView1);
@@ -234,6 +247,7 @@
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -260,5 +274,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.CheckBox chbIndicatePixels;
     }
 }

@@ -38,6 +38,7 @@ namespace dotNetStiEditor
             this.btnSave.Text = Resources.GetString("Save");
             this.Text = Resources.GetString("Palette");
             this.editToolStripMenuItem.Text = Resources.GetString("Edit");
+            this.chbIndicatePixels.Text = Resources.GetString("IndicatePixels");
             #endregion
         }
 
@@ -63,10 +64,13 @@ namespace dotNetStiEditor
                 _pal.Entries[i] = this.FColors[i];
             }
 
-            foreach(DataGridViewCell _cell in this.dataGridView1.SelectedCells)
+            if (this.chbIndicatePixels.Checked)
             {
-                int index = _cell.RowIndex * grid_size + _cell.ColumnIndex;
-                _pal.Entries[index] = Color.Yellow;
+                foreach (DataGridViewCell _cell in this.dataGridView1.SelectedCells)
+                {
+                    int index = _cell.RowIndex * grid_size + _cell.ColumnIndex;
+                    _pal.Entries[index] = Color.Yellow;
+                }
             }
 
             this.pictureBox1.Image.Palette = _pal;
@@ -106,6 +110,30 @@ namespace dotNetStiEditor
                 return 255;
             else
                 return (byte)i;
+        }
+
+        private void chbIndicatePixels_CheckedChanged(object sender, EventArgs e)
+        {
+            ColorPalette _pal = this.pictureBox1.Image.Palette;
+            if (this.chbIndicatePixels.Checked)
+            {
+                foreach (DataGridViewCell _cell in this.dataGridView1.SelectedCells)
+                {
+                    int index = _cell.RowIndex * grid_size + _cell.ColumnIndex;
+                    _pal.Entries[index] = Color.Yellow;
+                }
+            }
+            else
+            {
+                foreach (DataGridViewCell _cell in this.dataGridView1.SelectedCells)
+                {
+                    int index = _cell.RowIndex * grid_size + _cell.ColumnIndex;
+                    _pal.Entries[index] = this.FColors[index];
+                }
+            }
+
+            this.pictureBox1.Image.Palette = _pal;
+            this.pictureBox1.Refresh();
         }
     }
 }
