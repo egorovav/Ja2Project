@@ -49,9 +49,9 @@ namespace dotNetStiEditor
 			{
 				setBackGround(dotNetStiEditor.Properties.Resources.Background);
 
-                MessageBox.Show(LocalizerNameSpace.Localizer.GetString("NoFolder"), 
-                    LocalizerNameSpace.Localizer.GetString("Attention"),
-					MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //MessageBox.Show(LocalizerNameSpace.Localizer.GetString("NoFolder"), 
+                //    LocalizerNameSpace.Localizer.GetString("Attention"),
+                //    MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
 		}
 

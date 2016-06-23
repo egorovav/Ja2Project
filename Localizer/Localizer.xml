@@ -333,13 +333,22 @@
 	</Data>
 	<Data name="Save">
 		<LocalNames>
-			<LocalName language="ru" name="Сохранить..." />
-			<LocalName language="en" name="Save..." />
-			<LocalName language="ua" name="Зберегти..." />
-			<LocalName language="cz" name="Uložit..." />
-      <LocalName language="de" name="Speichern..." />
+			<LocalName language="ru" name="Сохранить" />
+			<LocalName language="en" name="Save" />
+			<LocalName language="ua" name="Зберегти" />
+			<LocalName language="cz" name="Uložit" />
+      <LocalName language="de" name="Speichern" />
 		</LocalNames>
 	</Data>
+  <Data name="Save...">
+    <LocalNames>
+      <LocalName language="ru" name="Сохранить..." />
+      <LocalName language="en" name="Save..." />
+      <LocalName language="ua" name="Зберегти..." />
+      <LocalName language="cz" name="Uložit..." />
+      <LocalName language="de" name="Speichern..." />
+    </LocalNames>
+  </Data>
 	<Data name="SaveAs">
 		<LocalNames>
 			<LocalName language="ru" name="Сохранить как..." />
@@ -652,6 +661,13 @@
       <LocalName language="de" name="Öffnen" />
     </LocalNames>
   </Data>
+  <Data name="Open...">
+    <LocalNames>
+      <LocalName language="ru" name="Открыть..." />
+      <LocalName language="en" name="Open..." />
+      <LocalName language="de" name="Öffnen..." />
+    </LocalNames>
+  </Data>
   <Data name="Help">
     <LocalNames>
       <LocalName language="ru" name="Помощь" />
@@ -692,6 +708,13 @@
       <LocalName language="ru" name="Загрузить" />
       <LocalName language="en" name="Load" />
       <LocalName language="de" name="Laden" />
+    </LocalNames>
+  </Data>
+  <Data name="Load...">
+    <LocalNames>
+      <LocalName language="ru" name="Загрузить..." />
+      <LocalName language="en" name="Load..." />
+      <LocalName language="de" name="Laden..." />
     </LocalNames>
   </Data>
   <Data name="Foreshortening">

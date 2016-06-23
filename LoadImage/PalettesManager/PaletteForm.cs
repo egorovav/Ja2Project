@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using Resources = LocalizerNameSpace.Localizer;
@@ -34,13 +35,16 @@ namespace dotNetStiEditor
 
             this.pictureBox1.Image = (Bitmap)bm.Clone();
 
-            // CHECK IN TEST
-
             #region SET LOCAL STRINGS
+
             this.btnSave.Text = Resources.GetString("Save");
             this.Text = Resources.GetString("Palette");
             this.editToolStripMenuItem.Text = Resources.GetString("Edit");
             this.chbIndicatePixels.Text = Resources.GetString("IndicatePixels");
+            this.fileToolStripMenuItem.Text = Resources.GetString("File");
+            this.openToolStripMenuItem.Text = Resources.GetString("Open...");
+            this.saveToolStripMenuItem.Text = Resources.GetString("Save...");
+
             #endregion
         }
 
@@ -102,6 +106,8 @@ namespace dotNetStiEditor
                     this.FColors[index] = _cell.Style.BackColor;
                 }
             }
+
+            this.RefreshPreview();
         }
 
         private byte IntToByte(int i)
@@ -112,6 +118,19 @@ namespace dotNetStiEditor
                 return 255;
             else
                 return (byte)i;
+        }
+
+        private void RefreshPreview()
+        {
+            ColorPalette _pal = this.pictureBox1.Image.Palette;
+
+            for (int i = 0; i < this.FColors.Length; i++)
+            {
+                _pal.Entries[i] = this.FColors[i];
+            }
+
+            this.pictureBox1.Image.Palette = _pal;
+            this.pictureBox1.Refresh();
         }
 
         private void chbIndicatePixels_CheckedChanged(object sender, EventArgs e)
@@ -136,6 +155,77 @@ namespace dotNetStiEditor
 
             this.pictureBox1.Image.Palette = _pal;
             this.pictureBox1.Refresh();
+        }
+
+        const int palette_size = grid_size * grid_size;
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog _ofd = new OpenFileDialog();
+            _ofd.Filter = "(*.stp)|*.stp";
+            _ofd.DefaultExt = "stp";
+
+            if(_ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                using(FileStream _fs = new FileStream(_ofd.FileName, FileMode.Open))
+                {
+                    if (_fs.Length != palette_size * 3)
+                        MessageBox.Show(String.Format("Invalid file format. File {0}.", _ofd.FileName));
+
+                    this.FColors = new Color[palette_size];
+                    for (int i = 0; i < grid_size; i++)
+                    {
+                        for (int j = 0; j < grid_size; j++)
+                        {
+                            int index = i * grid_size + j;
+
+                            Color _ijc = Color.FromArgb(_fs.ReadByte(), _fs.ReadByte(), _fs.ReadByte());
+                            this.FColors[index] = _ijc;
+
+                            this.dataGridView1.Rows[i].Cells[j].Style.BackColor = _ijc;
+                            this.dataGridView1.Rows[i].Cells[j].Value = index;
+                        }
+                    }
+                }
+            }
+
+            this.RefreshPreview();
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog _sfd = new SaveFileDialog();
+            _sfd.Filter = "(*.stp)|*.stp";
+            _sfd.DefaultExt = "stp";
+
+            if(_sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                FileStream _fs = null;
+                try
+                {
+                    _fs = File.OpenWrite(_sfd.FileName);
+                }
+                catch(Exception ex)
+                {
+                    StringBuilder _sb = new StringBuilder();
+                    _sb.AppendLine(String.Format("Open file error. File {0}", _sfd.FileName));
+                    _sb.AppendLine(ex.Message);
+                    MessageBox.Show(_sb.ToString());
+                }
+
+                if(_fs != null)
+                {
+                    using(_fs)
+                    {
+                        foreach(Color _c in this.FColors)
+                        {
+                            _fs.WriteByte(_c.R);
+                            _fs.WriteByte(_c.G);
+                            _fs.WriteByte(_c.B);
+                        }
+                    }
+                }
+            }
         }
     }
 }
