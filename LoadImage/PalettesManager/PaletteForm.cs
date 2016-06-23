@@ -34,6 +34,8 @@ namespace dotNetStiEditor
 
             this.pictureBox1.Image = (Bitmap)bm.Clone();
 
+            // CHECK IN TEST
+
             #region SET LOCAL STRINGS
             this.btnSave.Text = Resources.GetString("Save");
             this.Text = Resources.GetString("Palette");
