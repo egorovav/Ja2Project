@@ -227,7 +227,6 @@
     <None Include="Resources\Background.PNG" />
     <Content Include="Resources\help.htm">
     </Content>
-    <None Include="Resources\Localizer.xml" />
     <Content Include="Resources\Tile.gif" />
     <EmbeddedResource Include="AboutForm.resx">
       <SubType>Designer</SubType>
