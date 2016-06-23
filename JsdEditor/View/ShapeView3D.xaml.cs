@@ -92,8 +92,6 @@ namespace JsdEditor
         private TileGeometry FSelectedTile;
         private List<TileGeometry> FTiles;
 
-
-
         private MaterialGroup FTileMaterial;
         private MaterialGroup FAltTileMaterial;
         private Material FBackTileMaterial;

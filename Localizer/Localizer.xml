@@ -1291,4 +1291,10 @@
       <LocalName language="en" name="Transparent shadow" />
     </LocalNames>
   </Data>
+  <Data name="IndicatePixels">
+    <LocalNames>
+      <LocalName language="ru" name="Показать пиксели" />
+      <LocalName language="en" name="Indicate pixels" />
+    </LocalNames>    
+  </Data>
 </ArrayOfData>

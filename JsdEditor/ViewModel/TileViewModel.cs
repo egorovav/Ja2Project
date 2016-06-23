@@ -120,6 +120,15 @@ namespace JsdEditor
             }
         }
 
+        public void DettachHandler(object aReciever, PropertyChangedEventHandler aHandler)
+        {
+            if (this.FReceivers.Contains(aReciever))
+            {
+                this.PropertyChanged -= aHandler;
+                this.FReceivers.Remove(aReciever);
+            }
+        }
+
         private void TileViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             this.IsTileChanged = true;

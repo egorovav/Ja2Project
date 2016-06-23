@@ -188,6 +188,15 @@ namespace JsdEditor
             }
         }
 
+        public void DeattachHandler(object aReceiver, PropertyChangedEventHandler aHandler)
+        {
+            if (this.FReceivers.Contains(aReceiver))
+            {
+                this.PropertyChanged -= aHandler;
+                this.FReceivers.Remove(aReceiver);
+            }
+        }
+
         public static string ValuePropertyName = "LayerCellValue";
         private bool FValue;
         public bool LayerCellValue
