@@ -162,15 +162,48 @@ namespace dotNetStiEditor
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog _ofd = new OpenFileDialog();
-            _ofd.Filter = "(*.stp)|*.stp";
-            _ofd.DefaultExt = "stp";
+            _ofd.Filter = "(*.stp;*.pal;*.act)|*.stp;*.pal;*.act";
 
             if(_ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                using(FileStream _fs = new FileStream(_ofd.FileName, FileMode.Open))
+                string ext = Path.GetExtension(_ofd.FileName);
+
+                switch (ext.ToUpper())
                 {
-                    if (_fs.Length != palette_size * 3)
-                        MessageBox.Show(String.Format("Invalid file format. File {0}.", _ofd.FileName));
+                    case ".STP": { this.LoadStpPalette(_ofd.FileName); break; }
+                    case ".ACT": { this.LoadStpPalette(_ofd.FileName); break; }
+                    case ".PAL": { this.LoadPalPalette(_ofd.FileName); break; }
+                    default:
+                        {
+                            MessageBox.Show(String.Format(
+                                "Invalid file format. File {0}. Only STP, PAL, ACT files are supported", 
+                                    _ofd.FileName));
+                            break;
+                        }
+                }
+            }
+
+            this.RefreshPreview();
+        }
+
+        // Pal - palette file (Windows format used in Fotoshop)
+        private void LoadPalPalette(string fileName)
+        {
+            using (FileStream _fs = new FileStream(fileName, FileMode.Open))
+            {
+                using (BinaryReader _br = new BinaryReader(_fs))
+                {
+                    char[] riff = _br.ReadChars(4);
+                    int fileLength = _br.ReadInt32();
+                    char[] pal_data = _br.ReadChars(8);
+                    int data_size = _br.ReadInt32();
+                    int version = 0; // _br.ReadInt16();
+
+                    if (new String(riff) != "RIFF")
+                        MessageBox.Show(String.Format("Invalid file format. File {0}.", fileName));
+
+                    MessageBox.Show(String.Format("{0} \nfile length - {1} \n{2} - {3} \nversion - {4}", 
+                        new String(riff), fileLength, new String(pal_data), data_size, version));                   
 
                     this.FColors = new Color[palette_size];
                     for (int i = 0; i < grid_size; i++)
@@ -179,50 +212,149 @@ namespace dotNetStiEditor
                         {
                             int index = i * grid_size + j;
 
-                            Color _ijc = Color.FromArgb(_fs.ReadByte(), _fs.ReadByte(), _fs.ReadByte());
-                            this.FColors[index] = _ijc;
+                            if (data_size > 0)
+                            {                             
+                                Color _ijc = Color.FromArgb(_fs.ReadByte(), _fs.ReadByte(), _fs.ReadByte());
+                                _fs.ReadByte();
+                                this.FColors[index] = _ijc;
 
-                            this.dataGridView1.Rows[i].Cells[j].Style.BackColor = _ijc;
+                                this.dataGridView1.Rows[i].Cells[j].Style.BackColor = _ijc;
+                            }
+                            else
+                            {
+                                this.dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.Black;
+                                this.FColors[index] = Color.Black;
+                            }
                             this.dataGridView1.Rows[i].Cells[j].Value = index;
+
+                            data_size -= 4;
                         }
                     }
                 }
             }
 
-            this.RefreshPreview();
+            this.dataGridView1.Refresh();
+        }
+
+        // Stp - palette file (German STI-Edit). 
+        private void LoadStpPalette(string fileName)
+        {
+            using (FileStream _fs = new FileStream(fileName, FileMode.Open))
+            {
+                if (_fs.Length < palette_size * 3)
+                {
+                    MessageBox.Show(String.Format("Invalid file format. File {0}.", fileName));
+                    return;
+                }
+
+                this.FColors = new Color[palette_size];
+                for (int i = 0; i < grid_size; i++)
+                {
+                    for (int j = 0; j < grid_size; j++)
+                    {
+                        int index = i * grid_size + j;
+
+                        Color _ijc = Color.FromArgb(_fs.ReadByte(), _fs.ReadByte(), _fs.ReadByte());
+                        this.FColors[index] = _ijc;
+
+                        this.dataGridView1.Rows[i].Cells[j].Style.BackColor = _ijc;
+                        this.dataGridView1.Rows[i].Cells[j].Value = index;
+                    }
+                }
+            }
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog _sfd = new SaveFileDialog();
-            _sfd.Filter = "(*.stp)|*.stp";
+            _sfd.Filter = "(*.stp;*.pal;*act)|*.stp;*pal;*.act";
             _sfd.DefaultExt = "stp";
 
             if(_sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                FileStream _fs = null;
-                try
-                {
-                    _fs = File.OpenWrite(_sfd.FileName);
-                }
-                catch(Exception ex)
-                {
-                    StringBuilder _sb = new StringBuilder();
-                    _sb.AppendLine(String.Format("Open file error. File {0}", _sfd.FileName));
-                    _sb.AppendLine(ex.Message);
-                    MessageBox.Show(_sb.ToString());
-                }
+                string _ext = Path.GetExtension(_sfd.FileName);
 
-                if(_fs != null)
+                switch (_ext.ToUpper())
                 {
-                    using(_fs)
-                    {
-                        foreach(Color _c in this.FColors)
+
+                    case ".STP": { SaveStpPalette(_sfd.FileName); break; }
+                    case ".ACT": { SaveStpPalette(_sfd.FileName); break; }
+                    case ".PAL": { SavePalPalette(_sfd.FileName); break; }
+                    default:
                         {
-                            _fs.WriteByte(_c.R);
-                            _fs.WriteByte(_c.G);
-                            _fs.WriteByte(_c.B);
+                            MessageBox.Show(String.Format(
+                                "Invalid file format. File {0}. Only STP, PAL, ACT files are supported",
+                                    _sfd.FileName));
+                            break;
                         }
+                }
+            }
+        }
+
+        private void SavePalPalette(string fileName)
+        {
+            FileStream _fs = null;
+            try
+            {
+                _fs = File.OpenWrite(fileName);
+            }
+            catch (Exception ex)
+            {
+                StringBuilder _sb = new StringBuilder();
+                _sb.AppendLine(String.Format("Open file error. File {0}", fileName));
+                _sb.AppendLine(ex.Message);
+                MessageBox.Show(_sb.ToString());
+            }
+
+            if (_fs != null)
+            {
+                using (_fs)
+                {
+                    int data_size = palette_size * 4;
+                    int header_size = 20;
+                    using (BinaryWriter _br = new BinaryWriter(_fs))
+                    {
+                        _br.Write(new char[] { 'R', 'I', 'F', 'F' });
+                        _br.Write(data_size + header_size);
+                        _br.Write(new char[] {'P', 'A', 'L', ' ', 'd', 'a', 't', 'a' });
+                        _br.Write(data_size);
+
+                        foreach (Color _c in this.FColors)
+                        {
+                            _br.Write(_c.R);
+                            _br.Write(_c.G);
+                            _br.Write(_c.B);
+                            _br.Write((byte)255);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void SaveStpPalette(string fileName)
+        {
+            FileStream _fs = null;
+            try
+            {
+                _fs = File.OpenWrite(fileName);
+            }
+            catch (Exception ex)
+            {
+                StringBuilder _sb = new StringBuilder();
+                _sb.AppendLine(String.Format("Open file error. File {0}", fileName));
+                _sb.AppendLine(ex.Message);
+                MessageBox.Show(_sb.ToString());
+            }
+
+            if (_fs != null)
+            {
+                using (_fs)
+                {
+                    foreach (Color _c in this.FColors)
+                    {
+                        _fs.WriteByte(_c.R);
+                        _fs.WriteByte(_c.G);
+                        _fs.WriteByte(_c.B);
                     }
                 }
             }
