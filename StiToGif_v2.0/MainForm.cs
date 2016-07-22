@@ -124,7 +124,7 @@ namespace StiToGif
                         }
 
                         string _stiFileName = Path.ChangeExtension(_gifFileName, "sti");
-                        IndexedConverter.ConvertBitmapsToEtrleData(_bmps, _stiFileName);
+                        IndexedConverter.ConvertBitmapsToEtrleData(_bmps, _stiFileName, this.chbTrim.Checked);
                     }
                     catch (Exception exc)
                     {

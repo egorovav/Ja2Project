@@ -243,9 +243,14 @@ namespace StiLib
 			return bitmaps;
 		}
 
-		public static void ConvertBitmapsToEtrleData(List<ExtendedBitmap> bitmaps, string fileName)
+        public static void ConvertBitmapsToEtrleData(List<ExtendedBitmap> bitmaps, string fileName)
+        {
+            ConvertBitmapsToEtrleData(bitmaps, fileName, false);
+        }
+
+		public static void ConvertBitmapsToEtrleData(List<ExtendedBitmap> bitmaps, string fileName, bool isTrim)
 		{
-			ETRLEData data = ConvertBitmapToETRLEObjects(bitmaps);
+			ETRLEData data = ConvertBitmapToETRLEObjects(bitmaps, isTrim);
 			List<byte> appData = new List<byte>();
 			UInt32 flags = 40;
 			foreach (ExtendedBitmap exBm in bitmaps)
@@ -296,7 +301,13 @@ namespace StiLib
 				bw.Write(appData.ToArray());
 			}
 		}
-		static ETRLEData ConvertBitmapToETRLEObjects(List<ExtendedBitmap> bitmaps)
+
+        static ETRLEData ConvertBitmapToETRLEObjects(List<ExtendedBitmap> bitmaps)
+        {
+            return ConvertBitmapToETRLEObjects(bitmaps, false);
+        }
+
+		static ETRLEData ConvertBitmapToETRLEObjects(List<ExtendedBitmap> bitmaps, bool isTrim)
 		{
 			UInt32 dataOffset = 0;
 			List<ETRLEObject> objects = new List<ETRLEObject>();
@@ -312,6 +323,9 @@ namespace StiLib
             
 			foreach (ExtendedBitmap bitmap in bitmaps)
 			{
+                if (isTrim)
+                    bitmap.Trim();
+
 				Int32 paletteLength = bitmap.Bm.Palette.Entries.Length * 4;
 				Int32 height = bitmap.Bm.Height;
 				Int32 width = bitmap.Bm.Width;
@@ -672,5 +686,57 @@ namespace StiLib
             newExBm.BehaviorFlags = this.BehaviorFlags;
 			return newExBm;
 		}
+
+        // Trim background pixels
+        public void Trim()
+        {
+            Color bc = this.Bm.Palette.Entries[0];
+            int _top = 0;
+            int _left = this.Bm.Width;
+
+            for (int i = 0; i < this.Bm.Height; i++)
+            {
+                for (int j = 0; j < this.Bm.Width; j++)
+                {
+                    Color c = this.Bm.GetPixel(j, i);
+                    if (c != bc)
+                    {
+                        if (_top == 0)
+                            _top = i;
+
+                        if (_left > j)
+                            _left = j;
+
+                        continue;
+                    }
+                }
+            }
+
+            int _bottom = this.Bm.Height;
+            int _right = 0;
+
+            for (int i = this.Bm.Height - 1; i > 0; i--)
+            {
+                for (int j = this.Bm.Width - 1; j > 0; j--)
+                {
+                    Color c = this.Bm.GetPixel(j, i);
+                    if (c != bc)
+                    {
+                        if (_bottom == this.Bm.Height)
+                            _bottom = i;
+
+                        if (_right < j)
+                            _right = j;
+                    }
+                }
+            }
+
+            int _width = _right - _left;
+            int _height = _bottom - _top;
+
+            this.Bm = this.Bm.Clone(new Rectangle(_left, _top, _width, _height), PixelFormat.Format8bppIndexed);
+            this.OffsetX += (short)_left;
+            this.OffsetY += (short)_top;
+        }
 	}
 }

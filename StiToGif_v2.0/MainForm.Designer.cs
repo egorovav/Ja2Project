@@ -31,23 +31,24 @@
             this.components = new System.ComponentModel.Container();
             this.btnStiToGif = new System.Windows.Forms.Button();
             this.gbStiToGif = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.nudForeshorteningIndex = new System.Windows.Forms.NumericUpDown();
             this.chbTransparentBackground = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.nudDelay = new System.Windows.Forms.NumericUpDown();
             this.gbGifToSti = new System.Windows.Forms.GroupBox();
-            this.btnGifToSti = new System.Windows.Forms.Button();
-            this.ofd = new System.Windows.Forms.OpenFileDialog();
             this.label3 = new System.Windows.Forms.Label();
             this.nudForeshorteningCount = new System.Windows.Forms.NumericUpDown();
-            this.nudForeshorteningIndex = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
+            this.btnGifToSti = new System.Windows.Forms.Button();
+            this.ofd = new System.Windows.Forms.OpenFileDialog();
             this.ttDelay = new System.Windows.Forms.ToolTip(this.components);
             this.ttTransparent = new System.Windows.Forms.ToolTip(this.components);
+            this.chbTrim = new System.Windows.Forms.CheckBox();
             this.gbStiToGif.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudForeshorteningIndex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDelay)).BeginInit();
             this.gbGifToSti.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudForeshorteningCount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudForeshorteningIndex)).BeginInit();
             this.SuspendLayout();
             // 
             // btnStiToGif
@@ -70,10 +71,31 @@
             this.gbStiToGif.Controls.Add(this.btnStiToGif);
             this.gbStiToGif.Location = new System.Drawing.Point(12, 12);
             this.gbStiToGif.Name = "gbStiToGif";
-            this.gbStiToGif.Size = new System.Drawing.Size(260, 169);
+            this.gbStiToGif.Size = new System.Drawing.Size(288, 169);
             this.gbStiToGif.TabIndex = 1;
             this.gbStiToGif.TabStop = false;
             this.gbStiToGif.Text = "Экспорт из STI в GIF.";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(127, 101);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(122, 39);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Номер выгружаемого \r\nракурса. Если нужны\r\nвсе передавайте 0.";
+            // 
+            // nudForeshorteningIndex
+            // 
+            this.nudForeshorteningIndex.Location = new System.Drawing.Point(130, 143);
+            this.nudForeshorteningIndex.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.nudForeshorteningIndex.Name = "nudForeshorteningIndex";
+            this.nudForeshorteningIndex.Size = new System.Drawing.Size(120, 20);
+            this.nudForeshorteningIndex.TabIndex = 4;
             // 
             // chbTransparentBackground
             // 
@@ -103,15 +125,37 @@
             // 
             // gbGifToSti
             // 
+            this.gbGifToSti.Controls.Add(this.chbTrim);
             this.gbGifToSti.Controls.Add(this.label3);
             this.gbGifToSti.Controls.Add(this.nudForeshorteningCount);
             this.gbGifToSti.Controls.Add(this.btnGifToSti);
             this.gbGifToSti.Location = new System.Drawing.Point(10, 187);
             this.gbGifToSti.Name = "gbGifToSti";
-            this.gbGifToSti.Size = new System.Drawing.Size(260, 90);
+            this.gbGifToSti.Size = new System.Drawing.Size(290, 90);
             this.gbGifToSti.TabIndex = 2;
             this.gbGifToSti.TabStop = false;
             this.gbGifToSti.Text = "Экспорт из GIF в STI.";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(129, 10);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(125, 13);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Колличество ракурсов.";
+            // 
+            // nudForeshorteningCount
+            // 
+            this.nudForeshorteningCount.Location = new System.Drawing.Point(131, 29);
+            this.nudForeshorteningCount.Maximum = new decimal(new int[] {
+            128,
+            0,
+            0,
+            0});
+            this.nudForeshorteningCount.Name = "nudForeshorteningCount";
+            this.nudForeshorteningCount.Size = new System.Drawing.Size(120, 20);
+            this.nudForeshorteningCount.TabIndex = 2;
             // 
             // btnGifToSti
             // 
@@ -128,53 +172,21 @@
             this.ofd.Filter = "GIF файлы (*.gif)|*.gif";
             this.ofd.Multiselect = true;
             // 
-            // label3
+            // chbTrim
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(129, 10);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(125, 13);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Колличество ракурсов.";
-            // 
-            // nudForeshorteningCount
-            // 
-            this.nudForeshorteningCount.Location = new System.Drawing.Point(131, 29);
-            this.nudForeshorteningCount.Maximum = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
-            this.nudForeshorteningCount.Name = "nudForeshorteningCount";
-            this.nudForeshorteningCount.Size = new System.Drawing.Size(120, 20);
-            this.nudForeshorteningCount.TabIndex = 2;
-            // 
-            // nudForeshorteningIndex
-            // 
-            this.nudForeshorteningIndex.Location = new System.Drawing.Point(126, 143);
-            this.nudForeshorteningIndex.Maximum = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
-            this.nudForeshorteningIndex.Name = "nudForeshorteningIndex";
-            this.nudForeshorteningIndex.Size = new System.Drawing.Size(120, 20);
-            this.nudForeshorteningIndex.TabIndex = 4;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(127, 101);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(122, 39);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Номер выгружаемого \r\nракурса. Если нужны\r\nвсе передавайте 0.";
+            this.chbTrim.AutoSize = true;
+            this.chbTrim.Location = new System.Drawing.Point(131, 55);
+            this.chbTrim.Name = "chbTrim";
+            this.chbTrim.Size = new System.Drawing.Size(148, 17);
+            this.chbTrim.TabIndex = 3;
+            this.chbTrim.Text = "Обрезать фон по краям";
+            this.chbTrim.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 289);
+            this.ClientSize = new System.Drawing.Size(312, 289);
             this.Controls.Add(this.gbGifToSti);
             this.Controls.Add(this.gbStiToGif);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -182,11 +194,11 @@
             this.Text = "STI <=> GIF";
             this.gbStiToGif.ResumeLayout(false);
             this.gbStiToGif.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudForeshorteningIndex)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDelay)).EndInit();
             this.gbGifToSti.ResumeLayout(false);
             this.gbGifToSti.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudForeshorteningCount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudForeshorteningIndex)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -207,6 +219,7 @@
         private System.Windows.Forms.NumericUpDown nudForeshorteningIndex;
         private System.Windows.Forms.ToolTip ttDelay;
         private System.Windows.Forms.ToolTip ttTransparent;
+        private System.Windows.Forms.CheckBox chbTrim;
     }
 }
 
