@@ -735,8 +735,8 @@ namespace StiLib
             int _height = _bottom - _top;
 
             this.Bm = this.Bm.Clone(new Rectangle(_left, _top, _width, _height), PixelFormat.Format8bppIndexed);
-            this.OffsetX += (short)_left;
-            this.OffsetY += (short)_top;
+            this.OffsetX -= (short)_left;
+            this.OffsetY -= (short)_top;
         }
 	}
 }

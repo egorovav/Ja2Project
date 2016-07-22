@@ -25,6 +25,8 @@ namespace StiToGif
             this.nudDelay.Value = 10;
             this.nudForeshorteningCount.Value = 8;
             this.nudForeshorteningIndex.Value = 0;
+
+            this.Text += " v. 2.0.1";
         }
 
         private void btnStiToGif_Click(object sender, EventArgs e)
