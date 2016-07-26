@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="BMP.cs" />
     <Compile Include="ETRLE.cs" />
+    <Compile Include="ExtendedBitmap.cs" />
     <Compile Include="GIF.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RGB.cs" />

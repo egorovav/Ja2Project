@@ -186,8 +186,9 @@ namespace StiLib
 			(string fileName, int foreshrteningNum, out bool containsLocalPalette)
 		{
 			List<ExtendedBitmap> result = new List<ExtendedBitmap>();
-			bool itIsStiEditFile = false;
+			//bool itIsStiEditFile = false;
 			containsLocalPalette = false;
+            Bitmap _prevImage = null;
 			using (BinaryReader br = new BinaryReader(new FileStream(fileName, FileMode.Open)))
 			{
 				while (br.BaseStream.Position < br.BaseStream.Length)
@@ -234,7 +235,7 @@ namespace StiLib
 									{
 										if (new String(br.ReadChars(8)) == "STI_EDIT")
 										{
-											itIsStiEditFile = true;
+											// itIsStiEditFile = true;
 											br.ReadBytes(exLength - 8);
 											if (!shiftsRead)
 											{
@@ -275,8 +276,8 @@ namespace StiLib
 						image.Add(separator);
 						// Заголовок картинки.
 
-						Int16 offsetX = (Int16)(BitConverter.ToInt16(br.ReadBytes(2), 0) - shiftX);
-						Int16 offsetY = (Int16)(BitConverter.ToInt16(br.ReadBytes(2), 0) - shiftY);
+                        Int16 offsetX = BitConverter.ToInt16(br.ReadBytes(2), 0);
+                        Int16 offsetY = BitConverter.ToInt16(br.ReadBytes(2), 0);
 
 						image.AddRange(new byte[4]);
 						byte[] width = br.ReadBytes(2); image.AddRange(width);
@@ -309,16 +310,34 @@ namespace StiLib
 						imageCount++;
 						Bitmap bm = new Bitmap(new MemoryStream(image.ToArray()));
 
-						ExtendedBitmap exBm = new ExtendedBitmap(bm, offsetX, offsetY);
+                        // draw next image above previouse
+                        if ((_imageBehaviorFlags >> 2) % 2 == 1)
+                        {
+                            if(_prevImage != null)
+                            {
+                                Bitmap _argbBm = BMP.ConvertIndexedToArgb32(bm);
+                            
+                                Graphics _gr = Graphics.FromImage(_prevImage);
+                                _gr.DrawImage(_argbBm, offsetX, offsetY);
+
+                                bm = BMP.Convert32argbToIndexed(_prevImage, bm.Palette);
+                            }
+                            else
+                            {
+                                _prevImage = BMP.ConvertIndexedToArgb32(bm);
+                            }
+                        }
+
+                        ExtendedBitmap exBm = new ExtendedBitmap(bm, shiftX, shiftY);
 						exBm.ApplicationData = appData;
                         exBm.TransparentColorIndex = _transparentColorIndex;
-                        exBm.BehaviorFlags = _imageBehaviorFlags;
+
 						result.Add(exBm);
 						separator = br.ReadByte();
 					}
 				}
 			}
-			if (!itIsStiEditFile && foreshrteningNum != 0)
+			if (foreshrteningNum != 0)
 			{
 				int length = result.Count / foreshrteningNum;
                 for (int i = 0; i < result.Count; i += length)

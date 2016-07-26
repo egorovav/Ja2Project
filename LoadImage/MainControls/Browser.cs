@@ -75,7 +75,7 @@ namespace dotNetStiEditor
 					}
 					catch (Exception exc)
 					{
-						MessageBox.Show(String.Format("{3} {0}/n{1}/n{2}",
+						MessageBox.Show(String.Format("{3} {0}\n{1}\n{2}",
                             fileName, exc.Message, exc.StackTrace, LocalizerNameSpace.Localizer.GetString("LoadingError")));
 					}
 				}
