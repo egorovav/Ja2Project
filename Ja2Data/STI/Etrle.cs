@@ -16,28 +16,33 @@ namespace Ja2Data
                 int _ruleByte = aReader.ReadByte();
                 _readedBytesCount++;
 
-                if (_ruleByte == 0)
-                {
-                    continue;
-                }
-                else if (_ruleByte > SByte.MaxValue)
-                {
-                    for (byte j = 0; j < _ruleByte + SByte.MinValue; j++)
-                    {
-                        _data[_count] = 0;
-                        _count++;
-                    }
-                }
-                else
-                {
-                    for (byte j = 0; j < _ruleByte; j++)
-                    {
-                        byte _curByte = aReader.ReadByte();
-                        _readedBytesCount++;
-                        _data[_count] = _curByte;
-                        _count++;
-                    }
-                }
+				if (_ruleByte == 0)
+				{
+					continue;
+				}
+				else if (_ruleByte > SByte.MaxValue)
+				{
+					//for (byte j = 0; j < _ruleByte + SByte.MinValue; j++)
+					//{
+					//	_data[_count] = 0;
+					//	_count++;
+					//}
+					// Array is zerro based, so just skip this bytes. 
+					_count += _ruleByte + SByte.MinValue;
+				}
+				else
+				{
+					//for (byte j = 0; j < _ruleByte; j++)
+					//{
+					//	byte _curByte = aReader.ReadByte();
+					//	_readedBytesCount++;
+					//	_data[_count] = _curByte;
+					//	_count++;
+					//}
+
+					aReader.Read(_data, _count, _ruleByte);
+					_count += _ruleByte;
+				}
             }
 
             return _data;
