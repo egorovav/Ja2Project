@@ -27,7 +27,8 @@ namespace Ja2Data
 					//	_data[_count] = 0;
 					//	_count++;
 					//}
-					// Array is zerro based, so just skip this bytes. 
+
+					// Array is zerro based, so just skip these bytes. 
 					_count += _ruleByte + SByte.MinValue;
 				}
 				else
