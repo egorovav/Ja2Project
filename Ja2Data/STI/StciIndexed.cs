@@ -7,7 +7,7 @@ namespace Ja2Data
 {
     public class StciIndexed : IStci
     {
-        const int NUMBER_OF_COLORS = 256;
+        public const int NUMBER_OF_COLORS = 256;
 
         public StciIndexed(StciHeader aHeader)
         {
@@ -125,26 +125,41 @@ namespace Ja2Data
         {
             using (BinaryWriter _bw = new BinaryWriter(aOutput))
             {
+				int _compressedDataSize = 0;
+				int _originalDataSize = 0;
+				for (int i = 0; i < this.SubHeader.NumberOfSubImages; i++)
+					_originalDataSize += this.Images[i].Header.Width * this.Images[i].Header.Height;
+				byte[] _buffer = new byte[_originalDataSize];
+
+				using (MemoryStream _memStream = new MemoryStream(_buffer))
+				using (BinaryWriter _memWriter = new BinaryWriter(_memStream))
+					for (int i = 0; i < this.SubHeader.NumberOfSubImages; i++)
+					{
+						this.Images[i].Header.DataOffset = (uint)_compressedDataSize;
+						int _dataLength = this.FImages[i].WriteData(_memWriter);
+						this.Images[i].Header.DataLength = (uint)_dataLength;
+						_compressedDataSize += _dataLength;
+					}
+
+				this.Header.CompressedImageSize = _compressedDataSize;
+				
                 this.FHeader.Write(_bw);
                 _bw.Write(this.Palette, 0, this.Palette.Length);
-
-                Serializer _serialiaer = new Serializer(aOutput);
+				
+                Serializer _serializer = new Serializer(aOutput);
                 for (int i = 0; i < this.SubHeader.NumberOfSubImages; i++)
                 {
-                    this.FImages[i].Header.Write(_serialiaer);
+                    this.FImages[i].Header.Write(_serializer);
                 }
 
-                for (int i = 0; i < this.SubHeader.NumberOfSubImages; i++)
-                {
-                    this.FImages[i].WriteData(_bw);
-                }
+				_bw.Write(_buffer, 0, _compressedDataSize);
 
                 if (this.FHeader.AppDataSize != 0)
                 {
 
                     for (int i = 0; i < this.SubHeader.NumberOfSubImages; i++)
                     {
-                        this.FImages[i].WriteAuxData(_serialiaer);
+                        this.FImages[i].WriteAuxData(_serializer);
                     }
                 }
             }

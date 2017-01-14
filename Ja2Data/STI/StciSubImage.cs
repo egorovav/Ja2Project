@@ -38,9 +38,9 @@ namespace Ja2Data
             this.FData = Etrle.Read(aReader, (int)this.FHeader.Height, (int)this.FHeader.Width, (int)this.FHeader.DataLength);
         }
 
-        public void WriteData(BinaryWriter aWriter)
+        public int WriteData(BinaryWriter aWriter)
         {
-            Etrle.Write(aWriter, this.FData, this.FHeader.Width);
+            return Etrle.Write(aWriter, this.FData, this.FHeader.Width);
         }
 
         public void ReadAuxData(Deserializer aReader)

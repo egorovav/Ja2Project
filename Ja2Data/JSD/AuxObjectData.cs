@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -72,10 +73,22 @@ namespace Ja2Data
             this.FHeader = (Header)deserializer.Deserialize(typeof(Header));
         }
 
+		public void Load(Stream stream)
+		{
+			Deserializer ds = new Deserializer(stream);
+			Load(ds);
+		}
+
         public void Save(Serializer serializer)
         {
             serializer.Serialize(this.FHeader);
         }
+
+		public void Save(Stream stream)
+		{
+			Serializer s = new Serializer(stream);
+			Save(s);
+		}
 
         public void BuildInfo(StringBuilder aInfoBuilder)
         {

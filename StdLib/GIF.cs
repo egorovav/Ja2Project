@@ -311,24 +311,32 @@ namespace StiLib
 						Bitmap bm = new Bitmap(new MemoryStream(image.ToArray()));
 
                         // draw next image above previouse
-                        if ((_imageBehaviorFlags >> 2) % 2 == 1)
-                        {
-                            if(_prevImage != null)
-                            {
-                                Bitmap _argbBm = BMP.ConvertIndexedToArgb32(bm);
-                            
-                                Graphics _gr = Graphics.FromImage(_prevImage);
-                                _gr.DrawImage(_argbBm, offsetX, offsetY);
+						if ((_imageBehaviorFlags >> 2) % 2 == 1)
+						{
+							if (_prevImage != null)
+							{
+								Bitmap _argbBm = BMP.ConvertIndexedToArgb32(bm);
 
-                                bm = BMP.Convert32argbToIndexed(_prevImage, bm.Palette);
-                            }
-                            else
-                            {
-                                _prevImage = BMP.ConvertIndexedToArgb32(bm);
-                            }
-                        }
+								Graphics _gr = Graphics.FromImage(_prevImage);
+								_gr.DrawImage(_argbBm, offsetX, offsetY);
 
-                        ExtendedBitmap exBm = new ExtendedBitmap(bm, shiftX, shiftY);
+								bm = BMP.Convert32argbToIndexed(_prevImage, bm.Palette);
+								offsetX = (short)-shiftX;
+								offsetY = (short)-shiftY;
+							}
+							else
+							{
+								_prevImage = BMP.ConvertIndexedToArgb32(bm);
+							}
+						}
+						else
+						{
+							offsetX -= shiftX;
+							offsetY -= shiftY;
+						}
+
+                        // ExtendedBitmap exBm = new ExtendedBitmap(bm, shiftX, shiftY);
+						ExtendedBitmap exBm = new ExtendedBitmap(bm, offsetX, offsetY);
 						exBm.ApplicationData = appData;
                         exBm.TransparentColorIndex = _transparentColorIndex;
 
