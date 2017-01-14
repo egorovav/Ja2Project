@@ -29,7 +29,7 @@ namespace Ja2Data
 					//}
 
 					// Array is zerro initialized, so just skip these bytes. 
-					_count += _ruleByte + SByte.MinValue;
+					_count += (_ruleByte + SByte.MinValue);
 				}
 				else
 				{
@@ -43,6 +43,7 @@ namespace Ja2Data
 
 					aReader.Read(_data, _count, _ruleByte);
 					_count += _ruleByte;
+					_readedBytesCount += _ruleByte;
 				}
             }
 
@@ -64,13 +65,14 @@ namespace Ja2Data
                     _zeroCount++;
                     if (_nonZeroCount != 0)
                     {
-                        WriteNonZeroBytes(aWriter, _nonZeroBytes);
+                        WriteNonZeroBytes(aWriter, _nonZeroBytes, _nonZeroCount);
                         _nonZeroCount = 0;
                     }
                 }
                 else
                 {
-                    _nonZeroBytes.Add(_b);
+                    _nonZeroBytes[_nonZeroCount] = _b;
+					_nonZeroCount++;
                     if (_zeroCount != 0)
                     {
                         WriteZeroBytes(aWriter, _zeroCount);
@@ -80,10 +82,10 @@ namespace Ja2Data
 
                 if ((i + 1) % aWidth == 0)
                 {
-                    if (_nonZeroBytes.Count > 0)
+                    if (_nonZeroCount > 0)
                     {
-                        WriteNonZeroBytes(aWriter, _nonZeroBytes);
-                        _nonZeroBytes.Clear();
+                        WriteNonZeroBytes(aWriter, _nonZeroBytes, _nonZeroCount);
+						_nonZeroCount = 0;
                     }
 
                     if (_zeroCount > 0)
