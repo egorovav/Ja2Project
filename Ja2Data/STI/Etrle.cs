@@ -52,7 +52,9 @@ namespace Ja2Data
         public static void Write(BinaryWriter aWriter, byte[] aData, int aWidth)
         {
             int _zeroCount = 0;
-            List<byte> _nonZeroBytes = new List<byte>();
+            // List<byte> _nonZeroBytes = new List<byte>();
+			byte[] _nonZeroBytes = new byte[aWidth];
+			int _nonZeroCount = 0;
 
             for (int i = 0; i < aData.Length; i++)
             {
@@ -60,10 +62,10 @@ namespace Ja2Data
                 if (_b == 0)
                 {
                     _zeroCount++;
-                    if (_nonZeroBytes.Count != 0)
+                    if (_nonZeroCount != 0)
                     {
                         WriteNonZeroBytes(aWriter, _nonZeroBytes);
-                        _nonZeroBytes.Clear();
+                        _nonZeroCount = 0;
                     }
                 }
                 else
@@ -106,22 +108,25 @@ namespace Ja2Data
                 aWriter.Write((byte)(_zeroBytesLastSubsequenceLength - SByte.MinValue));
         }
 
-        private static void WriteNonZeroBytes(BinaryWriter aWriter, List<byte> aNonZeroBytes)
+        private static void WriteNonZeroBytes(BinaryWriter aWriter, byte[] aNonZeroBytes, int aNonZeroCount)
         {
-            int _nonZeroBytesSubSequenceCount = aNonZeroBytes.Count / SByte.MaxValue;
-            int _nonZeroBytesLastSubsequenceLength = aNonZeroBytes.Count % SByte.MaxValue;
+            int _nonZeroBytesSubSequenceCount = aNonZeroCount / SByte.MaxValue;
+            int _nonZeroBytesLastSubsequenceLength = aNonZeroCount % SByte.MaxValue;
 
             for (int j = 0; j < _nonZeroBytesSubSequenceCount; j++)
             {
                 aWriter.Write((byte)SByte.MaxValue);
-                for (int k = 0; k < SByte.MaxValue; k++)
-                    aWriter.Write(aNonZeroBytes[j * SByte.MaxValue + k]);
+
+                //for (int k = 0; k < SByte.MaxValue; k++)
+                //    aWriter.Write(aNonZeroBytes[j * SByte.MaxValue + k]);
+				aWriter.Write(aNonZeroBytes, j * SByte.MaxValue, SByte.MaxValue);
             }
             if (_nonZeroBytesLastSubsequenceLength > 0)
             {
                 aWriter.Write((byte)_nonZeroBytesLastSubsequenceLength);
-                for (int k = 0; k < _nonZeroBytesLastSubsequenceLength; k++)
-                    aWriter.Write(aNonZeroBytes[_nonZeroBytesSubSequenceCount * SByte.MaxValue + k]);
+				//for (int k = 0; k < _nonZeroBytesLastSubsequenceLength; k++)
+				//	aWriter.Write(aNonZeroBytes[_nonZeroBytesSubSequenceCount * SByte.MaxValue + k]);
+				aWriter.Write(aNonZeroBytes, _nonZeroBytesSubSequenceCount * SByte.MaxValue, _nonZeroBytesLastSubsequenceLength);
             }
         }
     }
