@@ -27,7 +27,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StiLib", "StdLib\StiLib.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotNetStiEditor", "LoadImage\dotNetStiEditor.csproj", "{F5A36207-6774-4F52-9638-E031A409ED43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ja2DataImage", "Ja2DataImaging\Ja2DataImage.csproj", "{99636C31-65B8-4E66-9C63-EF677F5B3AA6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ja2DataImage", "Ja2DataImage\Ja2DataImage.csproj", "{99636C31-65B8-4E66-9C63-EF677F5B3AA6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ja2DataImageTest", "Ja2DataImageTest\Ja2DataImageTest.csproj", "{7C4A5577-E8EF-4164-87BC-C795C740B1E9}"
 EndProject
