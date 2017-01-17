@@ -257,7 +257,7 @@ namespace StiLib
 									}
                                     else if (exCode == 0xF9)
                                     {
-                                        // если третий ? бит = 1, предудущий кадр копируется в последующий
+                                        // если третий бит = 1, предудущий кадр копируется в последующий
                                         _imageBehaviorFlags = br.ReadByte();
                                         br.ReadByte(); // Время задержки в мс. В формате STCI не используется.
                                         _transparentColorIndex = br.ReadByte();
@@ -335,7 +335,6 @@ namespace StiLib
 							offsetY -= shiftY;
 						}
 
-                        // ExtendedBitmap exBm = new ExtendedBitmap(bm, shiftX, shiftY);
 						ExtendedBitmap exBm = new ExtendedBitmap(bm, offsetX, offsetY);
 						exBm.ApplicationData = appData;
                         exBm.TransparentColorIndex = _transparentColorIndex;

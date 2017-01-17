@@ -18,24 +18,73 @@ namespace Ja2DataImageTest
 			// LoadStciIndexedTest();
 			// SaveStciIndexedTest();
 
-			//GifTest();
+			// BitmapsToGifTest();
 
-			GifToBitmapTest("SpartanFla.gif");
+			// GifToBitmapTest("SpartanFla.gif");
+
+			// GifToStiTest("SpartanFla.gif");
+
+			// StiToGifTest("F_LAW.STI");
+
+			// GifBitmapFrameTest();
+
+			//ExtendedGifEncoderTest();
+
+			//SmallPaletteTest();
+
+			// GifCoderTest();
+
+			// GifToStciWithGifCoder();
+
+			StciToGifWithGifCoder();
 		}
 
-		private static void GifToBitmapTest(string fileName)
+		private static void StciToGifWithGifCoder()
 		{
-			bool containsLocalPalette = false;
-			var _images = GIF.ConvertGifToBitmaps(fileName, 0, out containsLocalPalette);
+			var _fileName = "M_LAW.STI";
 
-			var _stci = ExtendedBitmap.ConvertBitmapsToStciIndexed(_images, true, false);
-			Console.WriteLine(_stci);
+			var _input = new FileStream(_fileName, FileMode.Open);
 
-			for (int i = 0; i < _images.Count; i++)
+			var _stci = (StciIndexed)StciLoader.LoadStci(_input);
+			_input.Close();
+
+			var _gifCoder = ExtendedBitmap.ConvertStciIndexedToGifCoder(_stci, 15, true);
+
+			var _outputFileName = Path.ChangeExtension(_fileName, ".gif");
+			var _output = new FileStream(_outputFileName, FileMode.Create);
+			_gifCoder.Save(_output);
+
+			_output.Close();
+
+			_stci = ExtendedBitmap.ConvertGifFramesToStciIndexed(_gifCoder.Frames, true, false);
+
+			var _newStiFileName = "NEW_" + _fileName;
+
+			_output = new FileStream(_newStiFileName, FileMode.Create);
+			_stci.Save(_output);
+			_output.Close();
+		}
+
+		private static void GifToStciWithGifCoder()
+		{
+			var _gifFileName = "";
+		}
+
+		private static void GifCoderTest()
+		{
+			var _gifFileName = "F_LAW.gif";
+
+			var _input = new FileStream(_gifFileName, FileMode.Open);
+
+			var _gifCoder = new GifBitmapCoder();
+			_gifCoder.Load(_input);
+			_input.Close();
+
+			for (int i = 0; i < _gifCoder.Frames.Count; i++)
 			{
-				var _output = String.Format(@"result\{0}{1:d3}.bmp", Path.GetFileNameWithoutExtension(fileName), i);
-				var _encoder = new BmpBitmapEncoder();
-				_encoder.Frames.Add(_images[i].Bm);
+				var _output = String.Format(@"result\{0}{1:d3}.gif", Path.GetFileNameWithoutExtension(_gifFileName), i);
+				var _encoder = new GifBitmapEncoder();
+				_encoder.Frames.Add(_gifCoder.Frames[i].Frame);
 
 				using (var _fs = new FileStream(_output, FileMode.Create))
 				{
@@ -43,10 +92,65 @@ namespace Ja2DataImageTest
 				}
 			}
 
+			var _output1 = new FileStream("output.gif", FileMode.Create);
+			_gifCoder.Save(_output1);
+			_output1.Close();
+		}
+
+		private static void SmallPaletteTest()
+		{
+			var _fileName = @"result\output001_16.bmp";
+
+			var _input = new FileStream(_fileName, FileMode.Open);
+			var _decoder = new BmpBitmapDecoder(_input, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+			//_input.Close();
+
+			var _encoder = new GifBitmapEncoder();
+			_encoder.Frames.Add(_decoder.Frames[0]);
+
+			var _output = new FileStream("output.gif", FileMode.Create);
+			_encoder.Save(_output);
+			_input.Close();
+			_output.Close();
+
+		}
+
+		private static void ExtendedGifEncoderTest()
+		{
+			string _stiFileName = "F_LAW.STI";
+			// string _stiFileName = "SpartanFla.sti";
+			var _stci = (StciIndexed)StciLoader.LoadStci(_stiFileName);
+
+			var _images = ExtendedBitmap.ConvertStciIndexedToBitmaps(_stci);
+			var _encoder = new GifBitmapCoder();
+			for (int  i = 0; i < _images.Count; i++)
+			{
+				var _frame = new GifBitmapFrame(_images[i].Frame, _images[i].OffsetX, _images[i].OffsetY);
+				_frame.Delay = 10;
+				_frame.DisposalMethod = GifFrameDisposalMethod.RestoreToBackgroundColor;
+				_frame.UseTransparency = true;
+				_frame.Extensions.Add(new GifCommentExtension("Test extension."));
+				_encoder.AddFrame(_frame);
+			}
+
+			using (var _fs = new FileStream(Path.ChangeExtension(_stiFileName, ".gif"), FileMode.Create))
+				_encoder.Save(_fs);
+		}
+
+		private static void GifBitmapFrameTest()
+		{
+			var _frame = new GifBitmapFrame(null);
+
+			_frame.DisposalMethod = GifFrameDisposalMethod.NotDispose;
+			_frame.UseTransparency = true;
+
+			// byte _flags = _frame.GetFlags();
+
+			//Console.WriteLine("{0:X2}", _flags);
 			Console.ReadLine();
 		}
 
-		static void TrimTest()
+		private static void TrimTest()
 		{
 			var _inputFile = "save0.bmp";
 			ExtendedBitmap _exBm = null;
@@ -60,14 +164,14 @@ namespace Ja2DataImageTest
 
 			var _outputFile = "output.bmp";
 			var _encoder = new BmpBitmapEncoder();
-			_encoder.Frames.Add(_exBm.Bm);
+			_encoder.Frames.Add(_exBm.Frame);
 			using (var _ofs = new FileStream(_outputFile, FileMode.Create))
 			{
 				_encoder.Save(_ofs);
 			}
 		}
 
-		static void LoadStciIndexedTest()
+		private static void LoadStciIndexedTest()
 		{
 			string _stiFileName = "F_LAW.STI";
 			var _stci = (StciIndexed)StciLoader.LoadStci(_stiFileName);
@@ -78,7 +182,7 @@ namespace Ja2DataImageTest
 			{
 				var _output = String.Format(@"result\{0}{1:d3}.bmp", Path.GetFileNameWithoutExtension(_stiFileName), i);
 				var _encoder = new BmpBitmapEncoder();
-				_encoder.Frames.Add(_images[i].Bm);
+				_encoder.Frames.Add(_images[i].Frame);
 
 				using (var _fs = new FileStream(_output, FileMode.Create))
 				{
@@ -87,7 +191,7 @@ namespace Ja2DataImageTest
 			}
 		}
 
-		static void SaveStciIndexedTest()
+		private static void SaveStciIndexedTest()
 		{
 			var _stiFileName = "output.sti";
 
@@ -108,9 +212,9 @@ namespace Ja2DataImageTest
 			_stci.Save(_stiFileName);
 		}
 
-		static void GifTest()
+		private static void BitmapsToGifTest()
 		{
-			var _stiFileName = "output.sti";
+			var _stiFileName = "F_LAW.STI";
 			StciIndexed _stci = null;
 
 			using (var _fs = new FileStream(_stiFileName, FileMode.Open))
@@ -136,7 +240,57 @@ namespace Ja2DataImageTest
 			//using (var _fs = new FileStream(_gifFileName, FileMode.Create))
 			//	_encoder.Save(_fs);
 
-			//GIF.ConvertBitmapsToGif(_bitmaps, _gifFileName, 10, true, false);
+			GIF.ConvertBitmapsToGif(_bitmaps, _gifFileName, 10, true, false);
+		}
+
+		private static void GifToBitmapTest(string fileName)
+		{
+			bool containsLocalPalette = false;
+			var _images = GIF.ConvertGifToBitmaps(fileName, 0, out containsLocalPalette);
+
+			var _stci = ExtendedBitmap.ConvertBitmapsToStciIndexed(_images, true, false);
+			Console.WriteLine(_stci);
+
+			for (int i = 0; i < _images.Count; i++)
+			{
+				var _output = String.Format(@"result\{0}{1:d3}.bmp", Path.GetFileNameWithoutExtension(fileName), i);
+				var _encoder = new BmpBitmapEncoder();
+				_encoder.Frames.Add(_images[i].Frame);
+
+				using (var _fs = new FileStream(_output, FileMode.Create))
+				{
+					_encoder.Save(_fs);
+				}
+			}
+
+			Console.ReadLine();
+		}
+
+		private static void GifToStiTest(string aGifFileName)
+		{
+			bool containsLocalPalette = false;
+			var _images = GIF.ConvertGifToBitmaps(aGifFileName, 0, out containsLocalPalette);
+
+			var _stci = ExtendedBitmap.ConvertBitmapsToStciIndexed(_images, true, false);
+
+			string _stiFileName = String.Format("{0}.sti", Path.GetFileNameWithoutExtension(aGifFileName));
+
+			using (var _fs = new FileStream(_stiFileName, FileMode.Create))
+				_stci.Save(_fs);
+		}
+
+		private static void StiToGifTest(string aStiFileName)
+		{
+			var _stci = new StciIndexed();
+			using (var _fs = new FileStream(aStiFileName, FileMode.Open))
+			using (var _br = new BinaryReader(_fs))
+				_stci.Read(_br);
+				
+			var _images = ExtendedBitmap.ConvertStciIndexedToBitmaps(_stci);
+
+			var _gifFileName = Path.ChangeExtension(aStiFileName, ".gif");
+
+			GIF.ConvertBitmapsToGif(_images, _gifFileName, 10, true, false);
 		}
 	}
 }

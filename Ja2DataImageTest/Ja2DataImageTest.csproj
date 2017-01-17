@@ -63,6 +63,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Ja2DataImage\Ja2DataImage.csproj">
+      <Project>{99636c31-65b8-4e66-9c63-ef677f5b3aa6}</Project>
+      <Name>Ja2DataImage</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ja2Data\Ja2Data.csproj">
       <Project>{d61aa296-7dc9-4960-9544-60cc09923505}</Project>
       <Name>Ja2Data</Name>

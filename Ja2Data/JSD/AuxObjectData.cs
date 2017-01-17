@@ -7,6 +7,7 @@ namespace Ja2Data
 {
     public class AuxObjectData
     {
+		public const int SIZE = 16;
 
         [StructLayout(LayoutKind.Sequential)]
         public struct Header
@@ -108,7 +109,7 @@ namespace Ja2Data
 
             return _sb.ToString();
         }
-    }
+	}
 
     [Flags]
     public enum AuxObjectFlags : byte

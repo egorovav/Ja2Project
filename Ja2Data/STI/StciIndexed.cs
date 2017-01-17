@@ -9,6 +9,10 @@ namespace Ja2Data
     {
         public const int NUMBER_OF_COLORS = 256;
 
+		public StciIndexed()
+		{
+		}
+
         public StciIndexed(StciHeader aHeader)
         {
             this.FHeader = aHeader;
@@ -85,6 +89,13 @@ namespace Ja2Data
                 Load(_br);
             }
         }
+
+		public void Read(BinaryReader aReader)
+		{
+			this.FHeader.Read(aReader);
+
+			Load(aReader);		
+		}
 
         public void Load(BinaryReader aReader)
         {

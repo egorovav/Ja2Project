@@ -2,8 +2,6 @@
 using Ja2DataImage;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -14,184 +12,214 @@ namespace Ja2DataImage
 {
 	public class GIF
 	{
-		//public static void ConvertBitmapsToGif
-		//	(List<ExtendedBitmap> exBms, string fileName, UInt16 timeOut, bool transparent, bool useLocalPalette)
-		//{
-		//	using (BinaryWriter bw = new BinaryWriter(new FileStream(fileName, FileMode.Create)))
-		//	{
-		//		UInt16 screenWidth = 0;
-		//		UInt16 screenHeight = 0;
-		//		Int16 shiftX = 0;
-		//		Int16 shiftY = 0;
-		//		bool headerWrited = false;
-		//		long endHeaderPosition = 0;
+		public static void ConvertBitmapsToGif
+			(List<ExtendedBitmap> exBms, string fileName, UInt16 timeOut, bool transparent, bool useLocalPalette)
+		{
+			UInt16 screenWidth = 0;
+			UInt16 screenHeight = 0;
+			Int16 shiftX = 0;
+			Int16 shiftY = 0;
+			bool headerWrited = false;
 
-		//		foreach (ExtendedBitmap exBm in exBms)
-		//		{
-		//			Bitmap bm = exBm.Bm;
-		//			UInt16 curWidth = (UInt16)bm.Width;
-		//			UInt16 curHeight = (UInt16)bm.Height;
+			foreach (ExtendedBitmap exBm in exBms)
+			{
+				BitmapFrame bm = exBm.Frame;
+				UInt16 curWidth = (UInt16)bm.PixelWidth;
+				UInt16 curHeight = (UInt16)bm.PixelHeight;
 
-		//			if (exBm.OffsetX > 0)
-		//				curWidth += (UInt16)exBm.OffsetX;
-		//			else
-		//			{
-		//				Int16 absShift = (Int16)Math.Abs(exBm.OffsetX);
-		//				if (absShift > shiftX) shiftX = absShift;
-		//			}
-		//			if (exBm.OffsetY > 0)
-		//				curHeight += (UInt16)exBm.OffsetY;
-		//			else
-		//			{
-		//				Int16 absShift = (Int16)Math.Abs(exBm.OffsetY);
-		//				if (absShift > shiftY) shiftY = absShift;
-		//			}
-		//			if (curWidth > screenWidth) screenWidth = curWidth;
-		//			if (curHeight > screenHeight) screenHeight = curHeight;
-		//		}
-		//		screenHeight += (UInt16)shiftY;
-		//		screenWidth += (UInt16)shiftX;
-		//		foreach (ExtendedBitmap exBm in exBms)
-		//		{
-		//			Bitmap bm = exBm.Bm;
-		//			using (MemoryStream ms = new MemoryStream())
-		//			{
-		//				bm.Save(ms, ImageFormat.Gif);
-		//				ms.Position = 0;
-		//				byte[] localPalette = new byte[256 * 3];
-		//				using (BinaryReader br = new BinaryReader(ms))
-		//				{
-		//					if (!headerWrited)
-		//					{
-		//						bw.Write(br.ReadBytes(6)); // Сигнатура, версия: GIF, 89a.
-		//						br.ReadBytes(4);
-		//						bw.Write(screenWidth);
-		//						bw.Write(screenHeight);
-		//						byte flags = br.ReadByte(); bw.Write(flags);
-		//						int paletteDepth = flags % 8 + 1;
-		//						bw.Write(br.ReadBytes(2)); // Цвет фона, форма пикселя.
-		//						int paletteLength = (int)Math.Pow(2, paletteDepth) * 3;
-		//						localPalette = br.ReadBytes(paletteLength);
-		//						bw.Write(localPalette);
+				if (exBm.OffsetX > 0)
+					curWidth += (UInt16)exBm.OffsetX;
+				else
+				{
+					Int16 absShift = (Int16)Math.Abs(exBm.OffsetX);
+					if (absShift > shiftX) shiftX = absShift;
+				}
+				if (exBm.OffsetY > 0)
+					curHeight += (UInt16)exBm.OffsetY;
+				else
+				{
+					Int16 absShift = (Int16)Math.Abs(exBm.OffsetY);
+					if (absShift > shiftY) shiftY = absShift;
+				}
+				if (curWidth > screenWidth) screenWidth = curWidth;
+				if (curHeight > screenHeight) screenHeight = curHeight;
+			}
+			screenHeight += (UInt16)shiftY;
+			screenWidth += (UInt16)shiftX;
 
-		//						//// Расширение.
-		//						//if (!useLocalPalette)
-		//						{
-		//							string comment = "Egorov A. V. aka pipetz for www.ja2.su";
-		//							bw.Write(new byte[] 
-		//						{ 
-		//							0x21,   // '!' - идентификатор начала расширения 
-		//							0xFE,   // Тип расширения. FE - комментарий. 
-		//							(byte)comment.Length,     // Размер блока расширения.
-		//						});
-		//							bw.Write(comment.ToCharArray());
-		//							bw.Write((byte)0);
-		//						}
+			BinaryWriter bw = new BinaryWriter(new FileStream(fileName, FileMode.Create));
+			byte zero = (byte)0;
+			byte _separator = (byte)0x2C;	// ','
+			byte _terminator = (byte)0x3B;	// ';'
+			byte[] _palette = null;
+			foreach (ExtendedBitmap exBm in exBms)
+			{
+				// Convert BitmapFrame to Bitmap
+				//Bitmap bm = null;
 
-		//						// Расширение.
-		//						bw.Write(new byte[] 
-		//						{ 
-		//							0x21,  // '!' - идентификатор начала расширения 
-		//							0xFF,  // Тип расширения. FF - расширение стороннего приложения. 
-		//							11,    // Размер блока расширения. 
-		//							0x4E,0x45,0x54,0x53,0x43,0x41,0x50,0x45,   // NETSCAPE
-		//							0x32,0x2E,0x30,                            // 2.0 
-		//							3,      // Размер блока расширения.
-		//							1, 0, 0,// Зацикливает последовательность картинок.
-		//							0
-		//						});
-		//						//if (!useLocalPalette)
-		//						//{
-		//						bw.Write(new byte[] 
-		//						{ 
-		//							0x21,  // '!' - идентификатор начала расширения 
-		//							0xFF,  // Тип расширения. FF - расширение стороннего приложения. 
-		//							11,    // Размер блока расширения. 
-		//							0x53,0x54,0x49,0x5F,0x45,0x44,0x49,0x54,     // STI_EDIT
-		//							0x31,0x2E,0x30,                              // 1.0 
-		//							4                                    
-		//						});
+				GifBitmapEncoder _encoder = new GifBitmapEncoder();
+				_encoder.Frames.Add(exBm.Frame);
+				MemoryStream ms = new MemoryStream();
 
-		//						bw.Write(shiftX);
-		//						bw.Write(shiftY);
-		//						bw.Write(byte.MinValue);
-		//						//}
+				// Use Bitmap instead BmpBitmapEncoder because Bitmap use compressing
 
-		//						headerWrited = true;
-		//						endHeaderPosition = br.BaseStream.Position;
-		//					}
-		//					else
-		//					{
-		//						if (useLocalPalette)
-		//						{
-		//							br.BaseStream.Position = 13;
-		//							localPalette = br.ReadBytes(256 * 3);
-		//						}
-		//						// Пропускаем заголовок если он уже записан.
-		//						//else
-		//						//{
-		//						br.BaseStream.Position = endHeaderPosition;
-		//						//}
-		//					}
-		//					byte transparentIndex = (byte)(transparent ? 9 : 8);
-		//					//byte transparentIndex = (byte)(transparent ? 5 : 4);
-		//					//if (useLocalPalette)
-		//					//{
-		//					//transparentIndex = byte.MinValue;
-		//					//timeOut = 20;
-		//					//}
-		//					// Расширение.
-		//					bw.Write(new byte[] 
-		//						{ 
-		//							0x21,  // '!' - идентификатор начала расширения 
-		//							0xF9,  // Тип расширения. F9 - поведение картинки 
-		//							4,     // Размер блока расширения. 
-		//							transparentIndex, // Флаги(предыдущая затирается фоном, прозрачность фона).
-		//							(byte)(timeOut % 256),
-		//							(byte)(timeOut / 256),// Время задержки(в сотых секунды). 
-		//							(byte)exBm.TransparentColorIndex,    // Индекс прозрачного цвета.
-		//							0     // Идентификатор окончания блока.
-		//						});
-		//					if (exBm.ApplicationData != null)
-		//					{
-		//						bw.Write(new byte[] 
-		//						{ 
-		//							0x21, // '!' - идентификатор начала расширения 
-		//							0xFF, // Тип расширения. FF - расширение стороннего приложения. 
-		//							11,   // Размер блока расширения. 
-		//							0x53,0x54,0x49,0x5F,0x45,0x44,0x49,0x54,      // STI_EDIT
-		//							0x31,0x2E,0x30,                               // 1.0 
-		//							(byte)exBm.ApplicationData.Length                                    
-		//						});
-		//						bw.Write(exBm.ApplicationData);
-		//						bw.Write(byte.MinValue);
-		//					}
-		//					bw.Write(br.ReadByte());  // ',' - начало описания картинки
-		//					br.ReadInt16(); bw.Write((Int16)(exBm.OffsetX + shiftX));
-		//					br.ReadInt16(); bw.Write((Int16)(exBm.OffsetY + shiftY));
-		//					if (useLocalPalette)
-		//					{
-		//						bw.Write(br.ReadInt16());
-		//						bw.Write(br.ReadInt16());
-		//						bw.Write((byte)(br.ReadByte() + 128 + 7));
-		//						//br.ReadByte();  bw.Write((byte)0xC7);
-		//						bw.Write(localPalette);
-		//					}
-		//					//Читаем до конца. Терминатор не считываем
-		//					bw.Write(br.ReadBytes((Int32)(ms.Length - ms.Position - 1)));
-		//				}
-		//			}
-		//		}
-		//		bw.Write(';'); // Терминатор
-		//	}
-		//}
+				_encoder.Save(ms);
+
+				ms.Position = 0;
+
+				BinaryReader br = new BinaryReader(ms);
+
+				// file header
+				// br.ReadBytes(6);						// GIF89a
+				// br.ReadUInt16();						// screen size compute from frames size
+				// br.ReadUInt16();
+				// br.ReadByte();						// header flags, encoder supply 0x70 for local palette usage
+				// br.ReadByte();						// virtual background color (usualy equals 0)
+				// br.ReadByte();						// pixel shape (usualy equals 0)
+				// br.ReadByte();						// separaptor ','
+				// image header
+				// br.ReadInt16();						// offset X, take it from ExtendedBitmap
+				// br.ReadInt16();						// offset Y, take it from ExtendedBitmap
+				// br.ReadUInt16();						// width, take it from ExtendedBitmap
+				// br.ReadUInt16();						// height, take it from ExtendedBitmap
+				// br.ReadByte();						// flags, encoder supply 0x87 for local palette usage
+
+				ms.Seek(23, SeekOrigin.Begin);
+
+				byte[] _formatId = Encoding.ASCII.GetBytes("GIF89a");
+
+				byte _imageFlags = (byte)0x87;
+				if (!useLocalPalette)
+					_imageFlags = 0;
+
+				byte _headerFlags = (byte)0x70;
+				if (!useLocalPalette)
+					_headerFlags = (byte)0xF7;
+
+				int _paletteDepth = _headerFlags % 8 + 1;
+				int _paletteLength = (int)Math.Pow(2, _paletteDepth) * 3;
+				if (_palette == null || useLocalPalette)
+					_palette = br.ReadBytes(_paletteLength);	// local palette, will used like global if it's necessary
+				else
+					ms.Seek(_paletteLength, SeekOrigin.Current);
+
+				int _imageDataLength = (int)(ms.Length - ms.Position);
+				// last byte is a file terminator. don't put it into image data!
+				_imageDataLength--;
+
+				byte[] _imageData = br.ReadBytes(_imageDataLength);
+
+				br.Close();
+
+				// write header
+				if (!headerWrited)
+				{
+					bw.Write(_formatId);
+					bw.Write(screenWidth);		// screen size
+					bw.Write(screenHeight);
+					bw.Write(_headerFlags);
+					bw.Write(zero);				// virtual background color
+					bw.Write(zero);				// pixel shape
+
+					// global palette
+					if (!useLocalPalette)
+						bw.Write(_palette);
+
+					// file extentions
+					string comment = "Egorov A. V. aka pipetz for www.ja2.su";
+					bw.Write(new byte[] 
+						{ 
+							0x21,					// '!' - идентификатор начала расширения 
+							0xFE,					// Тип расширения. FE - комментарий. 
+							(byte)comment.Length,	// Размер блока расширения.
+						});
+					bw.Write(comment.ToCharArray());
+					bw.Write(zero);
+
+					bw.Write(new byte[] 
+						{ 
+							0x21,									// '!' - идентификатор начала расширения 
+							0xFF,									// Тип расширения. FF - расширение стороннего приложения. 
+							11,										// Размер блока расширения. 
+							0x4E,0x45,0x54,0x53,0x43,0x41,0x50,0x45,// NETSCAPE
+							0x32,0x2E,0x30,							// 2.0 
+							3,										// Размер блока расширения.
+							1, 0, 0,								// Зацикливает последовательность картинок.
+							0
+						});
+
+					bw.Write(new byte[] 
+						{ 
+							0x21,									// '!' - идентификатор начала расширения 
+							0xFF,									// Тип расширения. FF - расширение стороннего приложения. 
+							11,										// Размер блока расширения. 
+							0x53,0x54,0x49,0x5F,0x45,0x44,0x49,0x54,// STI_EDIT
+							0x31,0x2E,0x30,							// 1.0 
+							4                                    
+						});
+
+					bw.Write(shiftX);
+					bw.Write(shiftY);
+					bw.Write(zero);
+
+					headerWrited = true;
+				}
+
+				// image extentions
+				byte transparentIndex = (byte)(transparent ? 9 : 8);
+				bw.Write(new byte[] 
+					{ 
+						0x21,								// '!' - идентификатор начала расширения 
+						0xF9,								// Тип расширения. F9 - поведение картинки 
+						4,									// Размер блока расширения. 
+						transparentIndex,					// Флаги(предыдущая затирается фоном, прозрачность фона).
+						(byte)(timeOut % 256),
+						(byte)(timeOut / 256),				// Время задержки(в сотых секунды). 
+						(byte)exBm.TransparentColorIndex,   // Индекс прозрачного цвета.
+						0									// Идентификатор окончания блока.
+					});
+
+				if (exBm.ApplicationData != null)
+				{
+					bw.Write(new byte[] 
+						{ 
+							0x21,									// '!' - идентификатор начала расширения 
+							0xFF,									// Тип расширения. FF - расширение стороннего приложения. 
+							11,										// Размер блока расширения. 
+							0x53,0x54,0x49,0x5F,0x45,0x44,0x49,0x54,// STI_EDIT
+							0x31,0x2E,0x30,							// 1.0 
+							(byte)AuxObjectData.SIZE                                   
+						});
+
+					exBm.ApplicationData.Save(bw.BaseStream);
+					bw.Write(zero);
+				}
+
+				// image header
+				bw.Write(_separator);
+				bw.Write((Int16)(exBm.OffsetX + shiftX));
+				bw.Write((Int16)(exBm.OffsetY + shiftY));
+				bw.Write((UInt16)exBm.Frame.PixelWidth);
+				bw.Write((UInt16)exBm.Frame.PixelHeight);
+				bw.Write(_imageFlags);
+
+				// local palette
+				if (useLocalPalette)
+					bw.Write(_palette);
+
+				// image data
+				bw.Write(_imageData);
+			}
+
+			bw.Write(_terminator);
+			bw.Close();
+		}
 
 		// Анимированный GIF разбиавается покадрово на неанимированные, каждый из которых преобразуется в ExtendedBitmap.
 		public static List<ExtendedBitmap> ConvertGifToBitmaps
 			(string fileName, int foreshrteningNum, out bool containsLocalPalette)
 		{
 			List<ExtendedBitmap> result = new List<ExtendedBitmap>();
-			//bool itIsStiEditFile = false;
 			containsLocalPalette = false;
 			BitmapFrame _prevImage = null;
 			using (BinaryReader br = new BinaryReader(new FileStream(fileName, FileMode.Open)))
@@ -240,7 +268,6 @@ namespace Ja2DataImage
 									{
 										if (new String(br.ReadChars(8)) == "STI_EDIT")
 										{
-											// itIsStiEditFile = true;
 											br.ReadBytes(exLength - 8);
 											if (!shiftsRead)
 											{
@@ -265,7 +292,7 @@ namespace Ja2DataImage
 									}
 									else if (exCode == 0xF9)
 									{
-										// если третий ? бит = 1, предудущий кадр копируется в последующий
+										// если третий бит = 1, предудущий кадр копируется в последующий
 										_imageBehaviorFlags = br.ReadByte();
 										br.ReadByte(); // Время задержки в мс. В формате STCI не используется.
 										_transparentColorIndex = br.ReadByte();
@@ -303,7 +330,7 @@ namespace Ja2DataImage
 							int paletteLength = (Int32)Math.Pow(2, paletteDepth) * 3;
 							image.AddRange(br.ReadBytes(paletteLength));
 						}
-						image.Add(br.ReadByte()); // кол-во цветов
+						image.Add(br.ReadByte()); // bit per pixel
 						// Читаем картинку
 						byte blockLength = br.ReadByte();
 
@@ -322,7 +349,7 @@ namespace Ja2DataImage
 
 						BitmapFrame _bf = _decoder.Frames[0];
 
-						// draw next image above previouse
+						// draw next image over previouse
 						if ((_imageBehaviorFlags >> 2) % 2 == 1)
 						{
 							if (_prevImage != null)
@@ -338,7 +365,7 @@ namespace Ja2DataImage
 								offsetY = (short)-shiftY;
 							}
 
-							_prevImage = _bf;						
+							_prevImage = _bf;
 						}
 						else
 						{
