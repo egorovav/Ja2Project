@@ -1,0 +1,61 @@
+﻿<Window x:Class="StiToGif_v3._0.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:local="clr-namespace:StiToGif_v3._0"
+        Title="MainWindow" Height="328" Width="328">
+	<Window.Resources>
+		<local:StiToGifViewModel x:Key="StiToGifViewModel" />
+		<local:GifToStiViewModel x:Key="GifToStiViewModel" />
+	</Window.Resources>
+	<StackPanel>
+		<GroupBox Header="Экспорт из STI в GIF" Margin="2"
+				  DataContext="{StaticResource ResourceKey=StiToGifViewModel}">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition />
+					<RowDefinition />
+					<RowDefinition />
+					<RowDefinition />
+					<RowDefinition />
+				</Grid.RowDefinitions>
+				<Button Content="STI => GIF" Width="100" Height="30" Margin="5,5,5,0" 
+						Command="{Binding StiToGifCommand}"/>
+				<Label Grid.Column="1" Content="Задержка кадра в мс." VerticalAlignment="Bottom" 
+					   ToolTip="Frame delay."/>
+				<TextBox Grid.Column="1" Grid.Row="1" Margin="5" Text="{Binding FrameDelay}"/>
+				<CheckBox Grid.Column="1" Grid.Row="2" Content="Прозрачный фон" Margin="5" 
+						  ToolTip="Transparent background." IsChecked="{Binding IsTransparentBackground}" />
+				<TextBox Grid.Column="1" Grid.Row="3" 
+						 TextWrapping="Wrap" BorderThickness="0" IsReadOnly="True"
+						 Text="Номер выгружаемого ракурса. Если нужны все передавайте 0." 
+						 ToolTip="Foreshoting number. Use 0 to get all."/>
+				<TextBox Grid.Column="1" Grid.Row="4" Margin="5" Text="{Binding ForshotingNumber}" />
+			</Grid>
+		</GroupBox>
+		<GroupBox Header="Экспорт из GIF в STI" Margin="2"
+				  DataContext="{StaticResource ResourceKey=GifToStiViewModel}">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition />
+					<RowDefinition />
+					<RowDefinition />
+				</Grid.RowDefinitions>
+				<Button Content="GIF => STI" Width="100" Height="30" Margin="5,5,5,0"
+						Command="{Binding GifToStiCommand}" />
+				<Label Grid.Column="1" Content="Колличеств ракурсов." VerticalAlignment="Bottom"
+					   ToolTip="Foreshoting amount." />
+				<TextBox Grid.Column="1" Grid.Row="1" Margin="5" Text="{Binding ForeshotingAmount}"/>
+				<CheckBox Grid.Column="1" Grid.Row="2" Content="Обрезать фон по краям." 
+						  Margin="5" ToolTip="Trim background." IsChecked="{Binding IsTrimBackground}"/>
+			</Grid>
+		</GroupBox>
+	</StackPanel>
+</Window>

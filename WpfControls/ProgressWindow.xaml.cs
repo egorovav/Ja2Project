@@ -40,7 +40,7 @@ namespace CommonWpfControls
             Dispatcher.BeginInvoke((ThreadStart)delegate
             {
                 this.pbDrawingProgress.Value = this.FProgressHolder.Progress;
-                if (this.FProgressHolder.Progress < 0)
+                if (this.FProgressHolder.Progress < 0 || this.FProgressHolder.Progress >= 100)
                     this.Close();
             });
         }

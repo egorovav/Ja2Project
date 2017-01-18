@@ -54,6 +54,9 @@ namespace HdsJsdConverter
             {
                 foreach (string _fileName in this.FFileNames)
                 {
+					if (_ph.Progress < 0)
+						break;
+
                     JsdFile.ConvertJsdFileToHighDefinition(_fileName);
                     _filesCount++;
 

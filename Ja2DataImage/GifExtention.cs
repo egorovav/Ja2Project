@@ -104,6 +104,7 @@ namespace Ja2DataImage
 						break;
 					}
 			}
+			_extension.FExtensionType = _extensionType;
 			_extension.LoadData(aStream);
 			return _extension;
 		}

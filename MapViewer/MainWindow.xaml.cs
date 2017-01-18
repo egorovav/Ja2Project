@@ -291,7 +291,7 @@ namespace MapViewer
                 ProgressWindow.Run(this.FPh);
                 try
                 {
-                    for (int i = 0; i < _ofd.FileNames.Length; i++)
+                    for (int i = 0; i < _ofd.FileNames.Length && this.FPh.Progress > 0; i++)
                     {
                         Map _map = new Map(_ofd.FileNames[i]);
                         _map.Load();
@@ -336,7 +336,7 @@ namespace MapViewer
                 ProgressWindow.Run(this.FPh);
                 try
                 {
-                    for (int i = 0; i < _ofd.FileNames.Length; i++)
+					for (int i = 0; i < _ofd.FileNames.Length && this.FPh.Progress > 0; i++)
                     {
                         Map _map = new Map(_ofd.FileNames[i]);
                         _map.Load();

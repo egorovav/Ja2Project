@@ -48,7 +48,7 @@ namespace Ja2DataImageTest
 			var _stci = (StciIndexed)StciLoader.LoadStci(_input);
 			_input.Close();
 
-			var _gifCoder = ExtendedBitmap.ConvertStciIndexedToGifCoder(_stci, 15, true);
+			var _gifCoder = Converter.ConvertStciIndexedToGifCoder(_stci, 15, true);
 
 			var _outputFileName = Path.ChangeExtension(_fileName, ".gif");
 			var _output = new FileStream(_outputFileName, FileMode.Create);
@@ -56,7 +56,7 @@ namespace Ja2DataImageTest
 
 			_output.Close();
 
-			_stci = ExtendedBitmap.ConvertGifFramesToStciIndexed(_gifCoder.Frames, true, false);
+			_stci = Converter.ConvertGifFramesToStciIndexed(_gifCoder.Frames, true, false, 0);
 
 			var _newStiFileName = "NEW_" + _fileName;
 

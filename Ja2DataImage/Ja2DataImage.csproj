@@ -42,6 +42,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converter.cs" />
     <Compile Include="ExtendedBitmap.cs" />
     <Compile Include="GifBitmapCoder.cs" />
     <Compile Include="GIF.cs" />

@@ -141,7 +141,7 @@ namespace Ja2DataImage
 			{
 				int _bitsPerPixel = (_flags & 0x07) + 1;
 				int _paletteLength = (int)Math.Pow(2, _bitsPerPixel);
-				this.FGlobalPalette = new BitmapPalette(new List<Color>(_paletteLength));
+				var _colors = new List<Color>(_paletteLength);
 
 				for(int i = 0; i < _paletteLength; i++)
 				{
@@ -149,8 +149,9 @@ namespace Ja2DataImage
 					_c.R = _br.ReadByte();
 					_c.G = _br.ReadByte();
 					_c.B = _br.ReadByte();
-					this.FGlobalPalette.Colors.Add(_c);
+					_colors.Add(_c);
 				}
+				this.FGlobalPalette = new BitmapPalette(_colors);
 			}
 
 			GifExtension _extension = null;
