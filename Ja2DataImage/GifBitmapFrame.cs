@@ -302,8 +302,11 @@ namespace Ja2DataImage
 			int _width = _right - _left;
 			int _height = _bottom - _top;
 
-			this.FOffsetX += (short)(_left - this.Frame.Width / 2);
-			this.FOffsetY += (short)(_top - this.Frame.Height / 2);
+			//this.FOffsetX += (short)(_left - this.Frame.Width / 2);
+			//this.FOffsetY += (short)(_top - this.Frame.Height / 2);
+
+			this.FOffsetX += (short)_left;
+			this.FOffsetY += (short)_top;
 
 			byte[] trimedData = new byte[_width * _height];
 			this.Frame.CopyPixels(new Int32Rect(_left, _top, _width, _height), trimedData, _width, 0);

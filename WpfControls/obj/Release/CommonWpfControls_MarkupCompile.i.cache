@@ -4,7 +4,7 @@
 library
 C#
 .cs
-C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Edit\WpfControls\obj\Release\
+C:\Users\Alexey\Documents\Programs\JA2Edit\src\WpfControls\obj\Release\
 CommonWpfControls
 none
 false
@@ -12,7 +12,7 @@ TRACE
 
 3-1656834764
 
-8-916463107
+9458204161
 131071118929
 ProgressWindow.xaml;TestFileControl.xaml;View\FlagEditorView.xaml;
 

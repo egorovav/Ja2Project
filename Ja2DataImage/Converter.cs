@@ -109,9 +109,11 @@ namespace Ja2DataImage
 
 					_prevFrame = _bf;
 				}
-
-				_subImageHeader.OffsetX = aBitmaps[i].OffsetX;
-				_subImageHeader.OffsetY = aBitmaps[i].OffsetY;
+				else
+				{
+					_subImageHeader.OffsetX = aBitmaps[i].OffsetX;
+					_subImageHeader.OffsetY = aBitmaps[i].OffsetY;
+				}
 				_subImageHeader.Width = (ushort)_bf.PixelWidth;
 				_subImageHeader.Height = (ushort)_bf.PixelHeight;
 

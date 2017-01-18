@@ -94,7 +94,7 @@ namespace StiToGif_v3._0
 				if (this.FProgress.Progress >= 0)
 				{
 					this.FProgress.Progress = this.GifToStiViewModel.Progress;
-					if (this.FProgress.Progress == 100)
+					if (this.FProgress.Progress >= 100)
 						Dispatcher.Invoke((ThreadStart)delegate { this.GifToStiViewModel.StopConvertation(); });
 				}
 				else
@@ -132,11 +132,16 @@ namespace StiToGif_v3._0
 						_sb.AppendFormat("\"{0}\", ", Path.GetFileName(_newFileName));
 				}
 
-
-				if(_sb.ToString() != String.Empty)
+				if(_sb.Length > 0)
 				{
+					string _existingFileNames = String.Empty;
+					if (_sb.Length > 1000)
+						_existingFileNames = _sb.ToString(0, 1000) + " ... ";
+					else
+						_existingFileNames = _sb.ToString().TrimEnd().TrimEnd(',');
+
 					var _message = String.Format(
-						"Files {0} alredy exists. Override?", _sb.ToString().TrimEnd().TrimEnd(','));
+						"Files {0} alredy exists. Override?", _existingFileNames);
 					var _result = MessageBox.Show(_message, "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 					if (_result == MessageBoxResult.No)
 						return null;

@@ -68,7 +68,7 @@ namespace StiToGif_v3._0
 			this.IsConvertationStoped = false;
 
 			int _threadsCount = Environment.ProcessorCount - 1;
-			// int _threadsCount = 1;
+			//int _threadsCount = 1;
 
 			for (int i = 0; i < _threadsCount; i++)
 			{
