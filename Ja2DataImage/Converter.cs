@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -39,9 +40,13 @@ namespace Ja2DataImage
 				var _bf = new GifBitmapFrame(_frame, _header.OffsetX, _header.OffsetY);
 				_bf.TransparentColorIndex = (byte)aStci.Header.TransparentColorIndex;
 
-				var _auxData = new byte[AuxObjectData.SIZE];
-				_subImage.AuxData.Save(new MemoryStream(_auxData));
-				_bf.Extensions.Add(new GifApplicationExtension("STI_EDIT1.0", _auxData));
+				if (_subImage.AuxData != null)
+				{
+					var _auxData = new byte[AuxObjectData.SIZE];
+					_subImage.AuxData.Save(new MemoryStream(_auxData));
+					_bf.Extensions.Add(new GifApplicationExtension("STI_EDIT1.0", _auxData));
+				}
+
 				_bf.DisposalMethod = GifFrameDisposalMethod.RestoreToBackgroundColor;
 				_bf.UseGlobalPalette = true;
 				_bf.UseTransparency = aUseTransparent;
@@ -81,20 +86,39 @@ namespace Ja2DataImage
 				_header.Flags |= StciFlags.STCI_TRANSPARENT;
 
 			var _subImages = new StciSubImage[aBitmaps.Count];
+			BitmapFrame _prevFrame = null;
 			for (int i = 0; i < aBitmaps.Count; i++)
 			{
 				if (aIsTrim)
 					aBitmaps[i].Trim();
 
+				var _bf = aBitmaps[i].Frame;
+
 				var _subImageHeader = new StciSubImageHeader();
+				if (aBitmaps[i].DisposalMethod == GifFrameDisposalMethod.NotDispose)
+				{
+					if (_prevFrame != null)
+					{
+						var _wb = new WriteableBitmap(_prevFrame);
+						byte[] _buffer = new byte[_bf.PixelWidth * _bf.PixelHeight];
+						_bf.CopyPixels(_buffer, _bf.PixelWidth, 0);
+						var _rect = new Int32Rect(aBitmaps[i].OffsetX, aBitmaps[i].OffsetY, _bf.PixelWidth, _bf.PixelHeight);
+						_wb.WritePixels(_rect, _buffer, _bf.PixelWidth, 0);
+						_bf = BitmapFrame.Create(_wb);
+					}
+
+					_prevFrame = _bf;
+				}
+
 				_subImageHeader.OffsetX = aBitmaps[i].OffsetX;
 				_subImageHeader.OffsetY = aBitmaps[i].OffsetY;
-				_subImageHeader.Width = (ushort)aBitmaps[i].Frame.PixelWidth;
-				_subImageHeader.Height = (ushort)aBitmaps[i].Frame.PixelHeight;
+				_subImageHeader.Width = (ushort)_bf.PixelWidth;
+				_subImageHeader.Height = (ushort)_bf.PixelHeight;
 
 				var _subImage = new StciSubImage(_subImageHeader);
 				_subImage.ImageData = new byte[_subImage.Header.Width * _subImage.Header.Height];
-				aBitmaps[i].Frame.CopyPixels(_subImage.ImageData, _subImage.Header.Width, 0);
+				_bf.CopyPixels(_subImage.ImageData, _subImage.Header.Width, 0);
+
 
 				if (aForeshotingAmount != 0)
 				{

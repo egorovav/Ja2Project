@@ -36,7 +36,29 @@ namespace Ja2DataImageTest
 
 			// GifToStciWithGifCoder();
 
-			StciToGifWithGifCoder();
+			// StciToGifWithGifCoder();
+
+			DisposalMethodTest();
+		}
+
+		private static void DisposalMethodTest()
+		{
+			// var _fileName = "SpartanFla.gif";
+			var _fileName = "output.gif";
+
+			var _input = new FileStream(_fileName, FileMode.Open);
+
+			var _gifCoder = new GifBitmapCoder();
+			_gifCoder.Load(_input);
+			_input.Close();
+
+			foreach (var _frame in _gifCoder.Frames)
+				// _frame.DisposalMethod = GifFrameDisposalMethod.RestoreToPrevious;
+				_frame.DisposalMethod = GifFrameDisposalMethod.NotDispose;
+
+			var _output = new FileStream("output.gif", FileMode.Create);
+			_gifCoder.Save(_output);
+			_output.Close();
 		}
 
 		private static void StciToGifWithGifCoder()
