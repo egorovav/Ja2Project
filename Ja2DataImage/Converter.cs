@@ -65,8 +65,8 @@ namespace Ja2DataImage
 				if(_minOffsetX < 0 || _minOffsetY < 0)
 				{
 					// GIF format suports only positive offsets
-					_offsetX = (short)(_offsetX + _minOffsetX);
-					_offsetY = (short)(_offsetY + _minOffsetY);
+					_offsetX = (short)(_offsetX - _minOffsetX);
+					_offsetY = (short)(_offsetY - _minOffsetY);
 				}
 				var _bf = new GifBitmapFrame(_frame, (ushort)_offsetX, (ushort)_offsetY);
 				_bf.TransparentColorIndex = (byte)aStci.Header.TransparentColorIndex;
@@ -155,8 +155,8 @@ namespace Ja2DataImage
 				}
 				else
 				{
-					_subImageHeader.OffsetX = (short)(_bitmaps[i].OffsetX - _shiftX);
-					_subImageHeader.OffsetY = (short)(_bitmaps[i].OffsetY - _shiftY);
+					_subImageHeader.OffsetX = (short)(_bitmaps[i].OffsetX + _shiftX);
+					_subImageHeader.OffsetY = (short)(_bitmaps[i].OffsetY + _shiftY);
 				}
 				_subImageHeader.Width = (ushort)_bf.PixelWidth;
 				_subImageHeader.Height = (ushort)_bf.PixelHeight;
