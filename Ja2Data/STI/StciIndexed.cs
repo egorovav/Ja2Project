@@ -140,7 +140,7 @@ namespace Ja2Data
 				int _originalDataSize = 0;
 				for (int i = 0; i < this.SubHeader.NumberOfSubImages; i++)
 					_originalDataSize += this.Images[i].Header.Width * this.Images[i].Header.Height;
-				byte[] _buffer = new byte[_originalDataSize];
+				byte[] _buffer = new byte[_originalDataSize * 2];
 
 				using (MemoryStream _memStream = new MemoryStream(_buffer))
 				using (BinaryWriter _memWriter = new BinaryWriter(_memStream))
