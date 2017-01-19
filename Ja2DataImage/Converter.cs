@@ -1,4 +1,5 @@
-﻿using Ja2Data;
+﻿using ExtendedGifEncoder;
+using Ja2Data;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,6 +13,8 @@ namespace Ja2DataImage
 {
 	public class Converter
 	{
+		private const string ApplicationId = "STI_EDIT1.0";
+
 		public static GifBitmapCoder ConvertStciIndexedToGifCoder(StciIndexed aStci, UInt16 aDelay, bool aUseTransparent)
 		{
 			var _stciPalette = aStci.Palette;
@@ -21,8 +24,28 @@ namespace Ja2DataImage
 			var _palette = new BitmapPalette(_colors);
 
 			var _gifCoder = new GifBitmapCoder(_palette);
-			_gifCoder.Extentions.Add(new GifCommentExtension("Egorov A. V. for ja2.su"));
-			int j = 0;
+			_gifCoder.Extensions.Add(new GifCommentExtension("Egorov A. V. for ja2.su"));
+
+			Int16 _minOffsetX = Int16.MaxValue;
+			Int16 _minOffsetY = Int16.MaxValue;
+
+			foreach (var _subImage in aStci.Images)
+			{
+				var _header = _subImage.Header;
+
+				_minOffsetX = Math.Min(_minOffsetX, _header.OffsetX);
+				_minOffsetY = Math.Min(_minOffsetY, _header.OffsetY);
+			}
+
+			if (_minOffsetX < 0 || _minOffsetY < 0)
+			{
+				var _shiftData = new List<byte>(4);
+				_shiftData.AddRange(BitConverter.GetBytes(_minOffsetX));
+				_shiftData.AddRange(BitConverter.GetBytes(_minOffsetY));
+				var _shiftExtension = new GifApplicationExtension(ApplicationId, _shiftData.ToArray());
+				_gifCoder.Extensions.Add(_shiftExtension);
+			}
+
 			foreach (var _subImage in aStci.Images)
 			{
 				var _header = _subImage.Header;
@@ -37,14 +60,22 @@ namespace Ja2DataImage
 					_header.Width);
 
 				var _frame = BitmapFrame.Create(_imageSource);
-				var _bf = new GifBitmapFrame(_frame, _header.OffsetX, _header.OffsetY);
+				var _offsetX = _header.OffsetX;
+				var _offsetY = _header.OffsetY;
+				if(_minOffsetX < 0 || _minOffsetY < 0)
+				{
+					// GIF format suports only positive offsets
+					_offsetX = (short)(_offsetX + _minOffsetX);
+					_offsetY = (short)(_offsetY + _minOffsetY);
+				}
+				var _bf = new GifBitmapFrame(_frame, (ushort)_offsetX, (ushort)_offsetY);
 				_bf.TransparentColorIndex = (byte)aStci.Header.TransparentColorIndex;
 
 				if (_subImage.AuxData != null)
 				{
 					var _auxData = new byte[AuxObjectData.SIZE];
 					_subImage.AuxData.Save(new MemoryStream(_auxData));
-					_bf.Extensions.Add(new GifApplicationExtension("STI_EDIT1.0", _auxData));
+					_bf.Extensions.Add(new GifApplicationExtension(ApplicationId, _auxData));
 				}
 
 				_bf.DisposalMethod = GifFrameDisposalMethod.RestoreToBackgroundColor;
@@ -60,49 +91,62 @@ namespace Ja2DataImage
 		}
 
 		public static StciIndexed ConvertGifFramesToStciIndexed(
-			List<GifBitmapFrame> aBitmaps, bool aIsTransparent, bool aIsTrim, int aForeshotingAmount)
+			GifBitmapCoder aCoder, bool aIsTransparent, bool aIsTrim, int aForeshotingAmount)
 		{
-			if (aBitmaps.Count == 0)
+			List<GifBitmapFrame> _bitmaps = aCoder.Frames;
+			if (_bitmaps.Count == 0)
 				return null;
 
-			var _subHeader = new StciIndexedHeader((ushort)aBitmaps.Count);
+			var _subHeader = new StciIndexedHeader((ushort)_bitmaps.Count);
 			var _palette = new byte[StciIndexed.NUMBER_OF_COLORS * 3];
 			for (int i = 0; i < StciIndexed.NUMBER_OF_COLORS; i++)
 			{
-				var _color = aBitmaps[0].Frame.Palette.Colors[i];
+				var _color = _bitmaps[0].Frame.Palette.Colors[i];
 				_palette[i * 3] = _color.R;
 				_palette[i * 3 + 1] = _color.G;
 				_palette[i * 3 + 2] = _color.B;
 			}
 			var _appDataSize = 0;
-			if (aBitmaps[0].Extensions.FirstOrDefault(
+			if (_bitmaps[0].Extensions.FirstOrDefault(
 					x => x.ExtensionType == ExtensionType.ApplicationExtension &&
-						((GifApplicationExtension)x).ApplicationId == "STI_EDIT1.0") != null)
-				_appDataSize = aBitmaps.Count * 16;
+						((GifApplicationExtension)x).ApplicationId == ApplicationId) != null)
+				_appDataSize = _bitmaps.Count * 16;
 
-			var _header = new StciHeader(0, aBitmaps[0].TransparentColorIndex, (uint)_appDataSize, _subHeader);
+			var _header = new StciHeader(0, _bitmaps[0].TransparentColorIndex, (uint)_appDataSize, _subHeader);
 
 			if (aIsTransparent)
 				_header.Flags |= StciFlags.STCI_TRANSPARENT;
 
-			var _subImages = new StciSubImage[aBitmaps.Count];
+			var _subImages = new StciSubImage[_bitmaps.Count];
 			BitmapFrame _prevFrame = null;
-			for (int i = 0; i < aBitmaps.Count; i++)
+
+			var _shiftEx = aCoder.Extensions.FirstOrDefault(x => x.ExtensionType == ExtensionType.ApplicationExtension &&
+				((GifApplicationExtension)x).ApplicationId == ApplicationId);
+
+			int _shiftX = 0;
+			int _shiftY = 0;
+			if(_shiftEx != null)
+			{
+				_shiftX = BitConverter.ToInt16(_shiftEx.Data, 0);
+				_shiftY = BitConverter.ToInt16(_shiftEx.Data, 2);
+			}
+
+			for (int i = 0; i < _bitmaps.Count; i++)
 			{
 				if (aIsTrim)
-					aBitmaps[i].Trim();
+					_bitmaps[i].Trim();
 
-				var _bf = aBitmaps[i].Frame;
+				var _bf = _bitmaps[i].Frame;
 
 				var _subImageHeader = new StciSubImageHeader();
-				if (aBitmaps[i].DisposalMethod == GifFrameDisposalMethod.NotDispose)
+				if (_bitmaps[i].DisposalMethod == GifFrameDisposalMethod.NotDispose)
 				{
 					if (_prevFrame != null)
 					{
 						var _wb = new WriteableBitmap(_prevFrame);
 						byte[] _buffer = new byte[_bf.PixelWidth * _bf.PixelHeight];
 						_bf.CopyPixels(_buffer, _bf.PixelWidth, 0);
-						var _rect = new Int32Rect(aBitmaps[i].OffsetX, aBitmaps[i].OffsetY, _bf.PixelWidth, _bf.PixelHeight);
+						var _rect = new Int32Rect(_bitmaps[i].OffsetX, _bitmaps[i].OffsetY, _bf.PixelWidth, _bf.PixelHeight);
 						_wb.WritePixels(_rect, _buffer, _bf.PixelWidth, 0);
 						_bf = BitmapFrame.Create(_wb);
 					}
@@ -111,8 +155,8 @@ namespace Ja2DataImage
 				}
 				else
 				{
-					_subImageHeader.OffsetX = aBitmaps[i].OffsetX;
-					_subImageHeader.OffsetY = aBitmaps[i].OffsetY;
+					_subImageHeader.OffsetX = (short)(_bitmaps[i].OffsetX - _shiftX);
+					_subImageHeader.OffsetY = (short)(_bitmaps[i].OffsetY - _shiftY);
 				}
 				_subImageHeader.Width = (ushort)_bf.PixelWidth;
 				_subImageHeader.Height = (ushort)_bf.PixelHeight;
@@ -128,14 +172,14 @@ namespace Ja2DataImage
 					if (i % aForeshotingAmount == 0)
 					{
 						_subImage.AuxData.Flags = AuxObjectFlags.AUX_ANIMATED_TILE;
-						_subImage.AuxData.NumberOfFrames = (byte)(aBitmaps.Count / aForeshotingAmount);
+						_subImage.AuxData.NumberOfFrames = (byte)(_bitmaps.Count / aForeshotingAmount);
 					}
 				}
 				else
 				{
-					var _appDataExt = aBitmaps[i].Extensions.FirstOrDefault(x =>
+					var _appDataExt = _bitmaps[i].Extensions.FirstOrDefault(x =>
 						x.ExtensionType == ExtensionType.ApplicationExtension &&
-							((GifApplicationExtension)x).ApplicationId == "STI_EDIT1.0");
+							((GifApplicationExtension)x).ApplicationId == ApplicationId);
 					if (_appDataExt != null)
 					{
 						_subImage.AuxData = new AuxObjectData();

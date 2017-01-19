@@ -47,6 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ExtendedGifCoder">
+      <HintPath>..\..\..\..\Visual Studio 2013\Projects\ExtendedGifCoder\ExtendedGifCoder\bin\Release\ExtendedGifCoder.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />

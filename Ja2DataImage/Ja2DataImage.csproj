@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ExtendedGifCoder">
+      <HintPath>..\..\..\..\Visual Studio 2013\Projects\ExtendedGifCoder\ExtendedGifCoder\bin\Release\ExtendedGifCoder.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -43,11 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converter.cs" />
-    <Compile Include="ExtendedBitmap.cs" />
-    <Compile Include="GifBitmapCoder.cs" />
-    <Compile Include="GIF.cs" />
-    <Compile Include="GifBitmapFrame.cs" />
-    <Compile Include="GifExtention.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

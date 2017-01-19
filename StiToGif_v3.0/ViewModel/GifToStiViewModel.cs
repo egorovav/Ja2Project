@@ -1,4 +1,5 @@
 ﻿using CommonWpfControls;
+using ExtendedGifEncoder;
 using Ja2Data;
 using Ja2DataImage;
 using System;
@@ -104,7 +105,7 @@ namespace StiToGif_v3._0
 			_input.Close();
 
 			var _stci = Converter.ConvertGifFramesToStciIndexed(
-				_gifDecoder.Frames, true, this.IsTrimBackground, this.ForeshotingAmount);
+				_gifDecoder, true, this.IsTrimBackground, this.ForeshotingAmount);
 
 			using (var _output = new FileStream(Path.ChangeExtension(aFileName, ".sti"), FileMode.Create))
 				_stci.Save(_output);

@@ -58,7 +58,7 @@ namespace StiToGif_v3._0
 				if (this.FProgress.Progress >= 0)
 				{
 					this.FProgress.Progress = this.StiToGifViewModel.Progress;
-					if (this.FProgress.Progress == 100)
+					if (this.FProgress.Progress >= 100)
 						Dispatcher.Invoke((ThreadStart)delegate { this.StiToGifViewModel.StopConvertation(); });
 				}
 				else
