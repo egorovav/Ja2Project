@@ -104,6 +104,16 @@ namespace StiToGif_v3._0
 			_gifDecoder.Load(_input);
 			_input.Close();
 
+			foreach(var _frame in _gifDecoder.Frames)
+			{
+				if (!_frame.UseGlobalPalette)
+				{
+					this.ExceptionString =
+						"Внимание! В GIF файле для некоторых кадров используются локальные палитры. Изображение будет искажено.";
+					break;
+				}
+			}
+
 			var _stci = Converter.ConvertGifFramesToStciIndexed(
 				_gifDecoder, true, this.IsTrimBackground, this.ForeshotingAmount);
 

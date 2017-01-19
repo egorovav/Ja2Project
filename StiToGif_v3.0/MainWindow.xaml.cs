@@ -102,6 +102,12 @@ namespace StiToGif_v3._0
 					Dispatcher.Invoke((ThreadStart)delegate { this.GifToStiViewModel.StopConvertation(); });
 				}
 			}
+
+			if (e.PropertyName == BaseViewModel.ExceptionStringPropertyName)
+			{
+				MessageBox.Show(
+					this.GifToStiViewModel.ExceptionString, "Внимание!", MessageBoxButton.OK, MessageBoxImage.Warning);
+			}
 		}
 
 		private ProgressHolder FProgress = new ProgressHolder();
