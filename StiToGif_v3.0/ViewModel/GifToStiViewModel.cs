@@ -114,7 +114,7 @@ namespace StiToGif_v3._0
 				}
 			}
 
-			var _stci = Converter.ConvertGifFramesToStciIndexed(
+			var _stci = Converter.ConvertGifToStciIndexed(
 				_gifDecoder, true, this.IsTrimBackground, this.ForeshotingAmount);
 
 			using (var _output = new FileStream(Path.ChangeExtension(aFileName, ".sti"), FileMode.Create))

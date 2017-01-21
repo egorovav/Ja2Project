@@ -33,7 +33,7 @@
 						 TextWrapping="Wrap" BorderThickness="0" IsReadOnly="True"
 						 Text="Номер выгружаемого ракурса. Если нужны все передавайте 0." 
 						 ToolTip="Foreshoting number. Use 0 to get all."/>
-				<TextBox Grid.Column="1" Grid.Row="4" Margin="5" Text="{Binding ForshotingNumber}" />
+				<TextBox Grid.Column="1" Grid.Row="4" Margin="5" Text="{Binding ForeshotingNumber}" />
 			</Grid>
 		</GroupBox>
 		<GroupBox Header="Экспорт из GIF в STI" Margin="2"

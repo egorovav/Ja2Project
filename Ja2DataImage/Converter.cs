@@ -15,7 +15,8 @@ namespace Ja2DataImage
 	{
 		private const string ApplicationId = "STI_EDIT1.0";
 
-		public static GifBitmapCoder ConvertStciIndexedToGifCoder(StciIndexed aStci, UInt16 aDelay, bool aUseTransparent)
+		public static GifBitmapCoder ConvertStciIndexedToGif(
+			StciIndexed aStci, UInt16 aDelay, bool aUseTransparent, int aForeshotingNumber)
 		{
 			var _stciPalette = aStci.Palette;
 			var _colors = new List<Color>(StciIndexed.NUMBER_OF_COLORS);
@@ -29,8 +30,16 @@ namespace Ja2DataImage
 			Int16 _minOffsetX = Int16.MaxValue;
 			Int16 _minOffsetY = Int16.MaxValue;
 
+			int foreshotingCount = 0;
+
 			foreach (var _subImage in aStci.Images)
 			{
+				if (_subImage.AuxData != null && _subImage.AuxData.NumberOfFrames > 0)
+					foreshotingCount++;
+
+				if (aForeshotingNumber > 0 && aForeshotingNumber != foreshotingCount)
+					continue;
+
 				var _header = _subImage.Header;
 
 				_minOffsetX = Math.Min(_minOffsetX, _header.OffsetX);
@@ -46,8 +55,16 @@ namespace Ja2DataImage
 				_gifCoder.Extensions.Add(_shiftExtension);
 			}
 
+			foreshotingCount = 0;
+
 			foreach (var _subImage in aStci.Images)
 			{
+				if (_subImage.AuxData != null && _subImage.AuxData.NumberOfFrames > 0)
+					foreshotingCount++;
+
+				if (aForeshotingNumber > 0 && aForeshotingNumber != foreshotingCount)
+					continue;
+
 				var _header = _subImage.Header;
 
 				var _imageSource = BitmapSource.Create(
@@ -69,7 +86,6 @@ namespace Ja2DataImage
 					_offsetY = (short)(_offsetY - _minOffsetY);
 				}
 				var _bf = new GifBitmapFrame(_frame, (ushort)_offsetX, (ushort)_offsetY);
-				_bf.TransparentColorIndex = (byte)aStci.Header.TransparentColorIndex;
 
 				if (_subImage.AuxData != null)
 				{
@@ -90,7 +106,12 @@ namespace Ja2DataImage
 			return _gifCoder;
 		}
 
-		public static StciIndexed ConvertGifFramesToStciIndexed(
+		public static GifBitmapCoder ConvertStciIndexedToGif(StciIndexed aStci, UInt16 aDelay, bool aUseTransparent)
+		{
+			return ConvertStciIndexedToGif(aStci, aDelay, aUseTransparent);
+		}
+
+		public static StciIndexed ConvertGifToStciIndexed(
 			GifBitmapCoder aCoder, bool aIsTransparent, bool aIsTrim, int aForeshotingAmount)
 		{
 			List<GifBitmapFrame> _bitmaps = aCoder.Frames;
@@ -131,6 +152,10 @@ namespace Ja2DataImage
 				_shiftY = BitConverter.ToInt16(_shiftEx.Data, 2);
 			}
 
+			int _numberOfFrames = 0;
+			if (aForeshotingAmount > 0)
+				_numberOfFrames = _bitmaps.Count / aForeshotingAmount;
+
 			for (int i = 0; i < _bitmaps.Count; i++)
 			{
 				if (aIsTrim)
@@ -165,14 +190,13 @@ namespace Ja2DataImage
 				_subImage.ImageData = new byte[_subImage.Header.Width * _subImage.Header.Height];
 				_bf.CopyPixels(_subImage.ImageData, _subImage.Header.Width, 0);
 
-
-				if (aForeshotingAmount != 0)
+				if (aForeshotingAmount > 0)
 				{
 					_subImage.AuxData = new AuxObjectData();
-					if (i % aForeshotingAmount == 0)
+					if (i % _numberOfFrames == 0)
 					{
 						_subImage.AuxData.Flags = AuxObjectFlags.AUX_ANIMATED_TILE;
-						_subImage.AuxData.NumberOfFrames = (byte)(_bitmaps.Count / aForeshotingAmount);
+						_subImage.AuxData.NumberOfFrames = (byte)_numberOfFrames;
 					}
 				}
 				else
@@ -192,6 +216,11 @@ namespace Ja2DataImage
 
 			var _stci = new StciIndexed(_header, _palette, _subImages);
 			return _stci;
+		}
+
+		public static StciIndexed ConvertGifToStciIndexed(GifBitmapCoder aCoder, bool aIsTransparent, bool aIsTrim)
+		{
+			return ConvertGifToStciIndexed(aCoder, aIsTransparent, aIsTrim);
 		}
 	}
 }

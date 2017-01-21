@@ -44,7 +44,7 @@ namespace StiToGif_v3._0
 
 		public static string ForeshotingNumberPropertyName = "ForeshotingNumber";
 		private int FForeshotingNumber;
-		public int ForshotingNumber
+		public int ForeshotingNumber
 		{
 			get { return this.FForeshotingNumber; }
 			set
@@ -112,8 +112,8 @@ namespace StiToGif_v3._0
 			var _stci = (StciIndexed)StciLoader.LoadStci(_input);
 			_input.Close();
 
-			var _gifDecoder = Converter.ConvertStciIndexedToGifCoder(
-				_stci, (ushort)this.FrameDelay, this.IsTransparentBackground);
+			var _gifDecoder = Converter.ConvertStciIndexedToGif(
+				_stci, (ushort)this.FrameDelay, this.IsTransparentBackground, this.ForeshotingNumber);
 
 			using (var _output = new FileStream(Path.ChangeExtension(aFileName, ".gif"), FileMode.Create))
 				_gifDecoder.Save(_output);

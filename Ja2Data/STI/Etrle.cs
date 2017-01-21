@@ -22,25 +22,10 @@ namespace Ja2Data
 				}
 				else if (_ruleByte > SByte.MaxValue)
 				{
-					//for (byte j = 0; j < _ruleByte + SByte.MinValue; j++)
-					//{
-					//	_data[_count] = 0;
-					//	_count++;
-					//}
-
-					// Array is zerro initialized, so just skip these bytes. 
 					_count += (_ruleByte + SByte.MinValue);
 				}
 				else
 				{
-					//for (byte j = 0; j < _ruleByte; j++)
-					//{
-					//	byte _curByte = aReader.ReadByte();
-					//	_readedBytesCount++;
-					//	_data[_count] = _curByte;
-					//	_count++;
-					//}
-
 					aReader.Read(_data, _count, _ruleByte);
 					_count += _ruleByte;
 					_readedBytesCount += _ruleByte;
@@ -53,10 +38,10 @@ namespace Ja2Data
         public static int Write(BinaryWriter aWriter, byte[] aData, int aWidth)
         {
 			int _startPosition = (int)aWriter.BaseStream.Position;
+
             int _zeroCount = 0;
-            // List<byte> _nonZeroBytes = new List<byte>();
-			byte[] _nonZeroBytes = new byte[aWidth];
 			int _nonZeroCount = 0;
+			byte[] _nonZeroBytes = new byte[aWidth];
 
             for (int i = 0; i < aData.Length; i++)
             {
@@ -132,16 +117,12 @@ namespace Ja2Data
             {
                 aWriter.Write((byte)SByte.MaxValue);
 				_bytesWroteCount++;
-                //for (int k = 0; k < SByte.MaxValue; k++)
-                //    aWriter.Write(aNonZeroBytes[j * SByte.MaxValue + k]);
 				aWriter.Write(aNonZeroBytes, j * SByte.MaxValue, SByte.MaxValue);
 				_bytesWroteCount += SByte.MaxValue;
             }
             if (_nonZeroBytesLastSubSequenceLength > 0)
             {
                 aWriter.Write((byte)_nonZeroBytesLastSubSequenceLength);
-				//for (int k = 0; k < _nonZeroBytesLastSubsequenceLength; k++)
-				//	aWriter.Write(aNonZeroBytes[_nonZeroBytesSubSequenceCount * SByte.MaxValue + k]);
 				aWriter.Write(aNonZeroBytes, _nonZeroBytesSubSequenceCount * SByte.MaxValue, _nonZeroBytesLastSubSequenceLength);
 				_bytesWroteCount += _nonZeroBytesLastSubSequenceLength;
             }
