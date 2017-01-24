@@ -30,7 +30,7 @@ namespace StiToGif_v3._0
 			}
 		}
 
-		public static string IsTransparentBackgroundPropertyName = "TransparentBackground";
+		public static string IsTransparentBackgroundPropertyName = "IsTransparentBackground";
 		private bool FIsTransparentBackground;
 		public bool IsTransparentBackground
 		{

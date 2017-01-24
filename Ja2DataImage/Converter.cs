@@ -159,7 +159,7 @@ namespace Ja2DataImage
 			for (int i = 0; i < _bitmaps.Count; i++)
 			{
 				if (aIsTrim)
-					_bitmaps[i].Trim();
+					_bitmaps[i].Trim(aCoder.BackgroundColorIndex);
 
 				var _bf = _bitmaps[i].Frame;
 
@@ -172,6 +172,10 @@ namespace Ja2DataImage
 						byte[] _buffer = new byte[_bf.PixelWidth * _bf.PixelHeight];
 						_bf.CopyPixels(_buffer, _bf.PixelWidth, 0);
 						var _rect = new Int32Rect(_bitmaps[i].OffsetX, _bitmaps[i].OffsetY, _bf.PixelWidth, _bf.PixelHeight);
+
+						if (_prevFrame.PixelWidth < _rect.X + _rect.Width || _prevFrame.PixelHeight < _rect.Y + _rect.Height)
+							throw new Exception("Incorrect gif file.");
+
 						_wb.WritePixels(_rect, _buffer, _bf.PixelWidth, 0);
 						_bf = BitmapFrame.Create(_wb);
 					}

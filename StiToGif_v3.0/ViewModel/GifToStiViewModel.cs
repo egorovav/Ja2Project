@@ -44,6 +44,18 @@ namespace StiToGif_v3._0
 			}
 		}
 
+		public static string IsTransparentBackgroundPropertyName = "IsTransparentBackground";
+		private bool FIsTransparentBackground;
+		public bool IsTransparentBackground
+		{
+			get { return this.FIsTransparentBackground; }
+			set
+			{
+				this.FIsTransparentBackground = value;
+				NotifyPropertyChanged(IsTransparentBackgroundPropertyName);
+			}
+		}
+
 		public static string IsFilesNeededPropertyName = "IsFilesNeeded";
 
 		private string[] FFileNames; 
@@ -115,7 +127,7 @@ namespace StiToGif_v3._0
 			}
 
 			var _stci = Converter.ConvertGifToStciIndexed(
-				_gifDecoder, true, this.IsTrimBackground, this.ForeshotingAmount);
+				_gifDecoder, this.IsTransparentBackground, this.IsTrimBackground, this.ForeshotingAmount);
 
 			using (var _output = new FileStream(Path.ChangeExtension(aFileName, ".sti"), FileMode.Create))
 				_stci.Save(_output);
