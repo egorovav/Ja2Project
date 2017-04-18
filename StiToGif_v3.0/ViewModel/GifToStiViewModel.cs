@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Input;
+using System.Windows;
 
 namespace StiToGif_v3._0
 {
@@ -53,6 +53,22 @@ namespace StiToGif_v3._0
 			{
 				this.FIsTransparentBackground = value;
 				NotifyPropertyChanged(IsTransparentBackgroundPropertyName);
+			}
+		}
+
+		public static string OffsetFileNamePropertyName = "OffsetFileName";
+		private string FOffsetFileName;
+		private short[] FOffsetX;
+		private short[] FOffsetY;
+		public string OffsetFileName
+		{
+			get { return this.FOffsetFileName; }
+			set 
+			{
+				this.FOffsetFileName = value;
+				this.FOffsetX = null;
+				this.FOffsetY = null;
+				NotifyPropertyChanged(OffsetFileNamePropertyName);
 			}
 		}
 
@@ -110,6 +126,43 @@ namespace StiToGif_v3._0
 
 		private void Convert(string aFileName)
 		{
+			if(FOffsetX == null && !String.IsNullOrEmpty(this.OffsetFileName))
+			{
+				string _data = null;
+				using(var _offsetFile = File.OpenText(this.FOffsetFileName))
+				{
+					_data =_offsetFile.ReadToEnd();
+				}
+
+				string[] _offsets = _data.Split(new char[] {' ', '/'}, StringSplitOptions.RemoveEmptyEntries);
+				if(_offsets.Length % 2 != 0)
+				{
+					throw new FileFormatException("Odd numbers in offset file.");
+				}
+
+				this.FOffsetX = new short[_offsets.Length / 2];
+				this.FOffsetY = new short[_offsets.Length / 2];
+				for(int i = 0; i < _offsets.Length; i++)
+				{
+					short _offset = 0;
+					if (Int16.TryParse(_offsets[i], out _offset))
+					{
+						if (i % 2 == 0)
+						{
+							this.FOffsetX[i / 2] = _offset;
+						}
+						else
+						{
+							this.FOffsetY[i / 2] = _offset;
+						}
+					}
+					else
+					{
+						throw new FileFormatException("Can't parse number in offset file.");
+					}
+				}
+			}
+
 			var _input = new FileStream(aFileName, FileMode.Open);
 
 			var _gifDecoder = new GifBitmapCoder();
@@ -128,6 +181,28 @@ namespace StiToGif_v3._0
 
 			var _stci = Converter.ConvertGifToStciIndexed(
 				_gifDecoder, this.IsTransparentBackground, this.IsTrimBackground, this.ForeshotingAmount);
+
+			if (this.FOffsetX != null)
+			{
+				if (this.FOffsetX.Length > 1 && _stci.Images.Length != this.FOffsetX.Length)
+				{
+					throw new ArgumentOutOfRangeException("Number frames in STCI is not equal to number of records in offset file");
+				}
+
+				for (int i = 0; i < _stci.Images.Length; i++)
+				{
+					if (this.FOffsetX.Length == 1)
+					{
+						_stci.Images[i].Header.OffsetX = this.FOffsetX[0];
+						_stci.Images[i].Header.OffsetY = this.FOffsetY[0];
+					}
+					else
+					{
+						_stci.Images[i].Header.OffsetX = this.FOffsetX[i];
+						_stci.Images[i].Header.OffsetY = this.FOffsetY[i];
+					}
+				}
+			}
 
 			using (var _output = new FileStream(Path.ChangeExtension(aFileName, ".sti"), FileMode.Create))
 				_stci.Save(_output);

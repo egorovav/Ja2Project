@@ -117,6 +117,16 @@ namespace StiToGif_v3._0
 
 			using (var _output = new FileStream(Path.ChangeExtension(aFileName, ".gif"), FileMode.Create))
 				_gifDecoder.Save(_output);
+
+			var _fileName = Path.GetFileNameWithoutExtension(aFileName);
+			using(var _offsetsFile = File.OpenWrite(_fileName + "_offsets.txt"))
+			using(var _sw = new StreamWriter(_offsetsFile))
+			{
+				for(int i = 0; i < _stci.Images.Length; i++)
+				{
+					_sw.Write("{0} {1}/", _stci.Images[i].Header.OffsetX, _stci.Images[i].Header.OffsetY);
+				}
+			}
 		}
 
 		public void StopConvertation()

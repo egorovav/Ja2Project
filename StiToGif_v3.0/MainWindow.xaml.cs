@@ -157,5 +157,16 @@ namespace StiToGif_v3._0
 			}
 			return null;
 		}
+
+		private void OffsetFile_Click(object sender, RoutedEventArgs e)
+		{
+			var _ofd = new OpenFileDialog();
+			_ofd.Title = "Выберите файл смещений.";
+			_ofd.Multiselect = false;
+			if (_ofd.ShowDialog() == true)
+			{
+				this.GifToStiViewModel.OffsetFileName = _ofd.FileName;
+			}
+		}
 	}
 }
