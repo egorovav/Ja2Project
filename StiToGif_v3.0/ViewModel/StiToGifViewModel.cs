@@ -124,7 +124,8 @@ namespace StiToGif_v3._0
 			{
 				for(int i = 0; i < _stci.Images.Length; i++)
 				{
-					_sw.Write("{0} {1}/", _stci.Images[i].Header.OffsetX, _stci.Images[i].Header.OffsetY);
+					var _img = _stci.Images[i];
+					_sw.Write("{0} {1} {2} {3}/", _img.Header.Width, _img.Header.Height, _img.Header.OffsetX, _img.Header.OffsetY);
 				}
 			}
 		}
