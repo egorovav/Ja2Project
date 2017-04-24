@@ -34,8 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ExtendedGifCoder, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="ExtendedGifCoder">
       <HintPath>..\..\..\..\Visual Studio 2013\Projects\ExtendedGifCoder\ExtendedGifCoder\bin\Release\ExtendedGifCoder.dll</HintPath>
     </Reference>
     <Reference Include="System" />

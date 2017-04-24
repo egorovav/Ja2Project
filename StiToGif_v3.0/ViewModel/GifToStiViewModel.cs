@@ -116,7 +116,18 @@ namespace StiToGif_v3._0
 								_vm.FCurrentIndex++;
 							}
 
-							this.Convert(_fileName);
+							try
+							{
+								this.Convert(_fileName);
+							}
+							catch(Exception ex)
+							{
+								var _messageBuilder = new StringBuilder();
+								_messageBuilder.AppendFormat("Error occured during convertation file {0}:\n", _fileName);
+								_messageBuilder.AppendLine(ex.Message);
+								_messageBuilder.AppendLine(ex.StackTrace);
+								_vm.ExceptionString = _messageBuilder.ToString();
+							}
 							_vm.NotifyPropertyChanged(GifToStiViewModel.ProgressPropertyName);
 						}
 

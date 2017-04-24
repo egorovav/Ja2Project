@@ -79,7 +79,7 @@ namespace Ja2DataImage
 				var _frame = BitmapFrame.Create(_imageSource);
 				var _offsetX = _header.OffsetX;
 				var _offsetY = _header.OffsetY;
-				if(_minOffsetX < 0 || _minOffsetY < 0)
+				if (_minOffsetX < 0 || _minOffsetY < 0)
 				{
 					// GIF format suports only positive offsets
 					_offsetX = (short)(_offsetX - _minOffsetX);
@@ -139,14 +139,13 @@ namespace Ja2DataImage
 				_header.Flags |= StciFlags.STCI_TRANSPARENT;
 
 			var _subImages = new StciSubImage[_bitmaps.Count];
-			BitmapFrame _prevFrame = null;
 
 			var _shiftEx = aCoder.Extensions.FirstOrDefault(x => x.ExtensionType == ExtensionType.ApplicationExtension &&
 				((GifApplicationExtension)x).ApplicationId == ApplicationId);
 
 			int _shiftX = 0;
 			int _shiftY = 0;
-			if(_shiftEx != null)
+			if (_shiftEx != null)
 			{
 				_shiftX = BitConverter.ToInt16(_shiftEx.Data, 0);
 				_shiftY = BitConverter.ToInt16(_shiftEx.Data, 2);
@@ -156,14 +155,12 @@ namespace Ja2DataImage
 			if (aForeshotingAmount > 0)
 				_numberOfFrames = _bitmaps.Count / aForeshotingAmount;
 
+			// process disposal method
+			BitmapFrame _prevFrame = null;
 			for (int i = 0; i < _bitmaps.Count; i++)
 			{
-				if (aIsTrim)
-					_bitmaps[i].Trim(aCoder.BackgroundColorIndex);
-
 				var _bf = _bitmaps[i].Frame;
 
-				var _subImageHeader = new StciSubImageHeader();
 				if (_bitmaps[i].DisposalMethod == GifFrameDisposalMethod.NotDispose)
 				{
 					if (_prevFrame != null)
@@ -177,16 +174,33 @@ namespace Ja2DataImage
 							throw new Exception("Incorrect gif file.");
 
 						_wb.WritePixels(_rect, _buffer, _bf.PixelWidth, 0);
-						_bf = BitmapFrame.Create(_wb);
+						_bitmaps[i].Frame = BitmapFrame.Create(_wb);
+
+						_bitmaps[i].OffsetX = _bitmaps[i - 1].OffsetX;
+						_bitmaps[i].OffsetY = _bitmaps[i - 1].OffsetY;
+						
 					}
 
-					_prevFrame = _bf;
+					_prevFrame = _bitmaps[i].Frame;
 				}
-				else
-				{
-					_subImageHeader.OffsetX = (short)(_bitmaps[i].OffsetX + _shiftX);
-					_subImageHeader.OffsetY = (short)(_bitmaps[i].OffsetY + _shiftY);
-				}
+			}
+
+			// process trim
+			if (aIsTrim)
+			{
+				for (int i = 0; i < _bitmaps.Count; i++)
+					_bitmaps[i].Trim(aCoder.BackgroundColorIndex);
+			}
+
+			// create subimages
+			for (int i = 0; i < _bitmaps.Count; i++)
+			{
+				var _bf = _bitmaps[i].Frame;
+
+				var _subImageHeader = new StciSubImageHeader();
+
+				_subImageHeader.OffsetX = (short)(_bitmaps[i].OffsetX + _shiftX);
+				_subImageHeader.OffsetY = (short)(_bitmaps[i].OffsetY + _shiftY);
 				_subImageHeader.Width = (ushort)_bf.PixelWidth;
 				_subImageHeader.Height = (ushort)_bf.PixelHeight;
 

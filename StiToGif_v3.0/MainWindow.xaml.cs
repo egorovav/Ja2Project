@@ -66,6 +66,12 @@ namespace StiToGif_v3._0
 					Dispatcher.Invoke((ThreadStart)delegate { this.StiToGifViewModel.StopConvertation(); });
 				}
 			}
+
+			if (e.PropertyName == BaseViewModel.ExceptionStringPropertyName)
+			{
+				MessageBox.Show(
+					this.GifToStiViewModel.ExceptionString, "Внимание!", MessageBoxButton.OK, MessageBoxImage.Warning);
+			}
 		}
 
 		private void GifToStiViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
