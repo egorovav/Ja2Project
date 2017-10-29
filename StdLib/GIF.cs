@@ -347,12 +347,15 @@ namespace StiLib
 			if (foreshrteningNum != 0)
 			{
 				int length = result.Count / foreshrteningNum;
-                for (int i = 0; i < result.Count; i += length)
+				if (length != 0)
 				{
-					result[i].ApplicationData =
-							new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, (byte)length, 2, 0, 0, 0, 0, 0, 0 };
-					for (int j = i + 1; j < length; j++)
-						result[j].ApplicationData = new byte[16];
+					for (int i = 0; i < result.Count; i += length)
+					{
+						result[i].ApplicationData =
+								new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, (byte)length, 2, 0, 0, 0, 0, 0, 0 };
+						for (int j = i + 1; j < length; j++)
+							result[j].ApplicationData = new byte[16];
+					}
 				}
 			}
 			return result;
