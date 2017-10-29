@@ -120,14 +120,16 @@ namespace Ja2DataImage
 
 			var _subHeader = new StciIndexedHeader((ushort)_bitmaps.Count);
 			var _palette = new byte[StciIndexed.NUMBER_OF_COLORS * 3];
-			if (StciIndexed.NUMBER_OF_COLORS != _bitmaps[0].Frame.Palette.Colors.Count)
-			{
-				throw new Exception(String.Format(
-					"GIF file palette contains {0} colors. The {1} colors required.",
-					_bitmaps[0].Frame.Palette.Colors.Count, StciIndexed.NUMBER_OF_COLORS));
-			}
+			//if (StciIndexed.NUMBER_OF_COLORS != _bitmaps[0].Frame.Palette.Colors.Count)
+			//{
+			//	throw new Exception(String.Format(
+			//		"GIF file palette contains {0} colors. The {1} colors required.",
+			//		_bitmaps[0].Frame.Palette.Colors.Count, StciIndexed.NUMBER_OF_COLORS));
+			//}
 
-			for (int i = 0; i < StciIndexed.NUMBER_OF_COLORS; i++)
+			var _colorsCount = Math.Min(StciIndexed.NUMBER_OF_COLORS, _bitmaps[0].Frame.Palette.Colors.Count);
+
+			for (int i = 0; i < _colorsCount; i++)
 			{
 				var _color = _bitmaps[0].Frame.Palette.Colors[i];
 				_palette[i * 3] = _color.R;
