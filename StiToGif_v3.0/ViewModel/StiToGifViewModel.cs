@@ -63,7 +63,7 @@ namespace StiToGif_v3._0
 		public static string ProgressPropertyName = "Progress";
 		public int Progress
 		{
-			get { return (this.FCurrentIndex + 1) * 100 / this.FFileNames.Length; }
+			get { return this.FCurrentIndex * 100 / this.FFileNames.Length; }
 		}
 
 		private bool IsConvertationStoped

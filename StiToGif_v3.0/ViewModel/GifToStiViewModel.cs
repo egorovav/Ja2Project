@@ -104,7 +104,7 @@ namespace StiToGif_v3._0
 				Task.Factory.StartNew((ViewModel) =>
 					{
 						var _vm = (GifToStiViewModel)ViewModel;
-						while (!_vm.IsConvertationStoped)// && _vm.FCurrentIndex < _vm.FFileNames.Length)
+						while (!_vm.IsConvertationStoped && _vm.FCurrentIndex < _vm.FFileNames.Length)
 						{
 							string _fileName = null;
 							lock (_vm.FCurrentIndexKey)
