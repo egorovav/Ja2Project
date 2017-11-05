@@ -81,7 +81,7 @@ namespace StiToGif_v3._0
 		public static string ProgressPropertyName = "Progress";
 		public int Progress 
 		{
-			get { return (this.FCurrentIndex + 1) * 100 / this.FFileNames.Length; }
+			get { return this.FCurrentIndex * 100 / this.FFileNames.Length; }
 		}
 
 		private bool IsConvertationStoped
@@ -96,7 +96,7 @@ namespace StiToGif_v3._0
 			this.FCurrentIndex = 0;
 			this.IsConvertationStoped = false;
 
-			int _threadsCount = Environment.ProcessorCount - 1;
+			int _threadsCount = Math.Max(1, Environment.ProcessorCount - 1);
 			//int _threadsCount = 1;
 
 			for (int i = 0; i < _threadsCount; i++)
@@ -104,21 +104,24 @@ namespace StiToGif_v3._0
 				Task.Factory.StartNew((ViewModel) =>
 					{
 						var _vm = (GifToStiViewModel)ViewModel;
-						while (!_vm.IsConvertationStoped && _vm.FCurrentIndex < _vm.FFileNames.Length)
+						while (!_vm.IsConvertationStoped)// && _vm.FCurrentIndex < _vm.FFileNames.Length)
 						{
 							string _fileName = null;
 							lock (_vm.FCurrentIndexKey)
 							{
-								if (_vm.FCurrentIndex >= _vm.FFileNames.Length)
-									return;
-
-								_fileName = aFileNames[_vm.FCurrentIndex];
-								_vm.FCurrentIndex++;
+								//if (_vm.FFileNames.Length <= _vm.FCurrentIndex)
+								//	break;
+								if (_vm.FCurrentIndex < _vm.FFileNames.Length)
+								{
+									_fileName = aFileNames[_vm.FCurrentIndex];
+									_vm.FCurrentIndex++;
+								}
 							}
 
 							try
 							{
-								this.Convert(_fileName);
+								if(_fileName != null)
+									this.Convert(_fileName);
 							}
 							catch(Exception ex)
 							{
