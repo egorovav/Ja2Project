@@ -43,9 +43,18 @@ namespace dotNetStiEditor
                 column.Width = 20;
                 this.workDataGridView.Columns.Add(column);
             }
+
+            for(var i = 0; i < this.workSpace.Length; i++)
+            {
+                this.workSpace[i] = new List<ExtendedBitmap>();
+            }
+
             this.workDataGridView.Rows.Add();
 			this.workDataGridView.Rows.Add();
 			this.workDataGridView.Rows.Add();
+            this.workDataGridView.Rows.Add();
+            this.workDataGridView.Rows.Add();
+            this.workDataGridView.Rows.Add();
 
             string paletteFile = Path.Combine(Application.StartupPath, "palettes.xml");
             Stream palStream;
@@ -157,12 +166,22 @@ namespace dotNetStiEditor
             base.Dispose(disposing);
         }
 
-        public List<ExtendedBitmap> workSpace = new List<ExtendedBitmap>();
+        // public List<ExtendedBitmap> workSpace = new List<ExtendedBitmap>();
+        public List<ExtendedBitmap>[] workSpace = new List<ExtendedBitmap>[6];
         List<Bitmap> workSpaceBitmaps
         {
             get
             {
-                return workSpace.ConvertAll<Bitmap>(delegate(ExtendedBitmap exBm) { return exBm.Bm; });
+                //return workSpace.ConvertAll<Bitmap>(delegate(ExtendedBitmap exBm) { return exBm.Bm; });
+
+                var _list = new List<Bitmap>();
+                for(var i = 0; i < this.workDataGridView.Rows.Count; i++)
+                {
+                    var _bms = workSpace[i].ConvertAll<Bitmap>(delegate (ExtendedBitmap exBm) { return exBm.Bm; });
+                    _list.AddRange(_bms);                 
+                }
+
+                return _list;
             }
         }
         PaletteManager palManamger = new PaletteManager();
@@ -174,7 +193,7 @@ namespace dotNetStiEditor
 
         public void Add(ExtendedBitmap exBm)
         {
-            workSpace.Add(exBm);
+            workSpace[0].Add(exBm);
             rebindWorkSpace();
         }
 
@@ -184,8 +203,9 @@ namespace dotNetStiEditor
             foreach (DataGridViewCell cell in cells)
                 if (cell.Value != null)
                 {
-                    int index = cell.ColumnIndex;
-                    result.Add(workSpace[index]);
+                    int colIndex = cell.ColumnIndex;
+                    int rowIndex = cell.RowIndex;
+                    result.Add(workSpace[rowIndex][colIndex]);
                 }
                 else
                     break;
@@ -274,11 +294,12 @@ For example, MS Paint or Adobe Fotoshop.", Resources.GetString("Error"),
             tempFiles.Clear();
             foreach (DataGridViewCell cell in workDataGridView.SelectedCells)
             {
-                int index = cell.ColumnIndex;
-                if (index < workSpace.Count)
+                int colIndex = cell.ColumnIndex;
+                int rowIndex = cell.RowIndex;
+                if (colIndex < workSpace[rowIndex].Count)
                 {
-                    ExtendedBitmap editingExBm = workSpace[index];
-                    string tempFile = String.Format("Temp_{0}_{1}.bmp", index, editingExBm.Id);
+                    ExtendedBitmap editingExBm = workSpace[rowIndex][colIndex];
+                    string tempFile = String.Format("Temp_{0}_{1}_{2}.bmp", rowIndex, colIndex, editingExBm.Id);
                     tempFile = Path.Combine(tempFolder, tempFile);
                     edit(editingExBm, tempFile);
                 }
@@ -292,28 +313,31 @@ For example, MS Paint or Adobe Fotoshop.", Resources.GetString("Error"),
 
         void rebindWorkSpace()
         {
-            DataGridViewRow workRow = workDataGridView.Rows[0];
-
-            for (int i = 0; i < workDataGridView.Columns.Count; i++)
+            for (int j = 0; j < this.workSpace.Length; j++)
             {
-                if (i < workSpace.Count)
+                DataGridViewRow workRow = workDataGridView.Rows[j];
+
+                for (int i = 0; i < workDataGridView.Columns.Count; i++)
                 {
-                    Bitmap bm = workSpace[i].Bm;
-                    try
+                    if (i < workSpace[j].Count)
                     {
-                        workDataGridView.Columns[i].Width = bm.Width;
-                    }
-                    catch { }
-                    if (workRow.Height < bm.Height + 5)
+                        Bitmap bm = workSpace[j][i].Bm;
                         try
                         {
-                            workRow.Height = bm.Height + 5;
+                            workDataGridView.Columns[i].Width = bm.Width;
                         }
                         catch { }
-                    workRow.Cells[i].Value = bm;
+                        if (workRow.Height < bm.Height + 5)
+                            try
+                            {
+                                workRow.Height = bm.Height + 5;
+                            }
+                            catch { }
+                        workRow.Cells[i].Value = bm;
+                    }
+                    else
+                        workRow.Cells[i].Value = null;
                 }
-                else
-                    workRow.Cells[i].Value = null;
             }
         }
         private void просмотретьToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -338,9 +362,9 @@ For example, MS Paint or Adobe Fotoshop.", Resources.GetString("Error"),
             List<DataGridViewCell> sortedList = sortSelectedCells(workDataGridView.SelectedCells);
             sortedList.Reverse();
             foreach (DataGridViewCell cell in sortedList)
-                workSpace.RemoveAt(cell.ColumnIndex);
+                workSpace[cell.RowIndex].RemoveAt(cell.ColumnIndex);
             rebindWorkSpace();
-            if (workSpace.Count == 0)
+            if (workSpace[0].Count == 0)
             {
                 foreach (object item in this.палитраToolStripMenuItem.DropDownItems)
                     if (item is ToolStripMenuItem)
@@ -351,19 +375,24 @@ For example, MS Paint or Adobe Fotoshop.", Resources.GetString("Error"),
         private void вставитьИзБуфераToolStripMenuItem_Click(object sender, EventArgs e)
         {
             List<DataGridViewCell> sortedList = sortSelectedCells(workDataGridView.SelectedCells);
+            int colIndex = 0;
+            int rowIndex = 0;
+
             if (sortedList.Count > 0)
             {
-                int index = sortedList[0].ColumnIndex;
-                workSpace.InsertRange(index, mainForm.Buffer);
-                rebindWorkSpace();
+                rowIndex = sortedList[0].RowIndex;
+                colIndex = Math.Min(sortedList[0].ColumnIndex, workSpace[rowIndex].Count);
             }
+
+            workSpace[rowIndex].InsertRange(colIndex, mainForm.Buffer);
+            rebindWorkSpace();
         }
         List<DataGridViewCell> sortSelectedCells(DataGridViewSelectedCellCollection selectedCells)
         {
             List<DataGridViewCell> result = new List<DataGridViewCell>();
             foreach (DataGridViewCell cell in selectedCells)
             {
-                if (cell.Value != null)
+                //if (cell.Value != null)
                     result.Add(cell);
             }
             result.Sort(delegate(DataGridViewCell x, DataGridViewCell y)
@@ -468,7 +497,7 @@ For example, MS Paint or Adobe Fotoshop.", Resources.GetString("Error"),
                     {
                         string[] colors = new string[4];
                         record.ColorListNames.CopyTo(colors, 0);
-                        if (workSpace.Count > 0)
+                        if (workSpace[0].Count > 0)
                         {
                             foreach (object item in this.палитраToolStripMenuItem.DropDownItems)
                             {
@@ -506,7 +535,9 @@ For example, MS Paint or Adobe Fotoshop.", Resources.GetString("Error"),
             bool rebindNeeded = false;
             DirectoryInfo dir = Directory.CreateDirectory(tempFolder);
             List<Bitmap> updatedBitmaps = new List<Bitmap>();
-            foreach (ExtendedBitmap exBm in workSpace)
+
+            foreach(var _item in workSpace)
+            foreach (ExtendedBitmap exBm in _item)
             {
                 if (dir != null)
                 {
@@ -600,10 +631,11 @@ For example, MS Paint or Adobe Fotoshop.", Resources.GetString("Error"),
         {
             if(workDataGridView.SelectedCells.Count > 0)
             {
-                int index = workDataGridView.SelectedCells[0].ColumnIndex;
-                if (workSpace.Count > index)
+                int colIndex = workDataGridView.SelectedCells[0].ColumnIndex;
+                int rowIndex = workDataGridView.SelectedCells[0].RowIndex;
+                if (workSpace[rowIndex].Count > colIndex)
                 {
-                    ExtendedBitmap _ebm = workSpace[index];
+                    ExtendedBitmap _ebm = workSpace[rowIndex][colIndex];
                     if (_ebm.Bm.Palette.Entries.Length > 0)
                     {
                         PaletteForm _pf = new PaletteForm(_ebm.Bm);
@@ -616,9 +648,9 @@ For example, MS Paint or Adobe Fotoshop.", Resources.GetString("Error"),
                                 _tempPalette.Entries[i] = _pf.Colors[i];
                             }
 
-                            for (int i = 0; i < workSpace.Count; i++)
+                            for (int i = 0; i < workSpace[rowIndex].Count; i++)
                             {
-                                workSpace[i].Bm.Palette = _tempPalette;
+                                workSpace[rowIndex][i].Bm.Palette = _tempPalette;
                             }
 
                             workDataGridView.Refresh();

@@ -500,14 +500,17 @@ namespace dotNetStiEditor
                         for (int i = 0; i < leftCanvas.NumberOfFrames; i++)
                         {
                             ExtendedBitmap playerExBm = leftCanvas.PictureFile[i];
-                            foreach (ExtendedBitmap workSpaceExBm in workSpace.workSpace)
-                            {
-                                if (workSpaceExBm.Id == playerExBm.Id)
+                            foreach (var _item in workSpace.workSpace)
+                                foreach (ExtendedBitmap workSpaceExBm in _item)
                                 {
-                                    workSpaceExBm.OffsetX = (short)leftXNumericUpDown2.Value;
-                                    workSpaceExBm.OffsetY = (short)leftYNumericUpDown3.Value;
+                                    {
+                                        if (workSpaceExBm.Id == playerExBm.Id)
+                                        {
+                                            workSpaceExBm.OffsetX = (short)leftXNumericUpDown2.Value;
+                                            workSpaceExBm.OffsetY = (short)leftYNumericUpDown3.Value;
+                                        }
+                                    }
                                 }
-                            }
                         }
                     }
                     else
@@ -515,7 +518,8 @@ namespace dotNetStiEditor
                         for (int i = 0; i < leftCanvas.NumberOfFrames; i++)
                         {
                             ExtendedBitmap playerExBm = leftCanvas.PictureFile[i];
-                            foreach (ExtendedBitmap workSpaceExBm in workSpace.workSpace)
+                            foreach(var _item in workSpace.workSpace)
+                            foreach (ExtendedBitmap workSpaceExBm in _item)
                             {
                                 if (workSpaceExBm.Id == playerExBm.Id)
                                 {
