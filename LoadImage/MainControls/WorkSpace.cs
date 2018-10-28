@@ -44,6 +44,8 @@ namespace dotNetStiEditor
                 this.workDataGridView.Columns.Add(column);
             }
             this.workDataGridView.Rows.Add();
+			this.workDataGridView.Rows.Add();
+			this.workDataGridView.Rows.Add();
 
             string paletteFile = Path.Combine(Application.StartupPath, "palettes.xml");
             Stream palStream;
