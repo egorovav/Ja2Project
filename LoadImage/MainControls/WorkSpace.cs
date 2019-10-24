@@ -362,7 +362,10 @@ For example, MS Paint or Adobe Fotoshop.", Resources.GetString("Error"),
             List<DataGridViewCell> sortedList = sortSelectedCells(workDataGridView.SelectedCells);
             sortedList.Reverse();
             foreach (DataGridViewCell cell in sortedList)
-                workSpace[cell.RowIndex].RemoveAt(cell.ColumnIndex);
+            {
+                if(0 <= cell.ColumnIndex && cell.ColumnIndex < workSpace[cell.RowIndex].Count)
+                    workSpace[cell.RowIndex].RemoveAt(cell.ColumnIndex);
+            }
             rebindWorkSpace();
             if (workSpace[0].Count == 0)
             {

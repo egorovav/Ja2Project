@@ -1,0 +1,12 @@
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Ja2DataImageTest\bin\Debug\Ja2DataImageTest.exe
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Ja2DataImageTest\bin\Debug\Ja2DataImageTest.pdb
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Ja2DataImageTest\bin\Debug\ExtendedGifCoder.dll
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Ja2DataImageTest\bin\Debug\Ja2Data.dll
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Ja2DataImageTest\bin\Debug\Ja2DataImaging.dll
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Ja2DataImageTest\bin\Debug\Ja2DataImaging.pdb
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Ja2DataImageTest\bin\Debug\Ja2Data.pdb
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Ja2DataImageTest\bin\Debug\ExtendedGifCoder.pdb
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Ja2DataImageTest\obj\Debug\Ja2DataImageTest.csprojAssemblyReference.cache
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Ja2DataImageTest\obj\Debug\Ja2DataImageTest.csproj.CopyComplete
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Ja2DataImageTest\obj\Debug\Ja2DataImageTest.exe
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Ja2DataImageTest\obj\Debug\Ja2DataImageTest.pdb

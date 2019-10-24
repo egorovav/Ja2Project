@@ -1,0 +1,10 @@
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Ja2DataImage\bin\Debug\Ja2DataImaging.dll
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Ja2DataImage\bin\Debug\Ja2DataImaging.pdb
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Ja2DataImage\bin\Debug\ExtendedGifCoder.dll
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Ja2DataImage\bin\Debug\Ja2Data.dll
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Ja2DataImage\bin\Debug\Ja2Data.pdb
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Ja2DataImage\bin\Debug\ExtendedGifCoder.pdb
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Ja2DataImage\obj\Debug\Ja2DataImage.csprojAssemblyReference.cache
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Ja2DataImage\obj\Debug\Ja2DataImage.csproj.CopyComplete
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Ja2DataImage\obj\Debug\Ja2DataImaging.dll
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Ja2DataImage\obj\Debug\Ja2DataImaging.pdb

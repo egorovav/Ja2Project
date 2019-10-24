@@ -1,0 +1,5 @@
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Ja2Data\bin\Debug\Ja2Data.dll
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Ja2Data\bin\Debug\Ja2Data.pdb
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Ja2Data\obj\Debug\Ja2Data.csprojAssemblyReference.cache
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Ja2Data\obj\Debug\Ja2Data.dll
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Ja2Data\obj\Debug\Ja2Data.pdb

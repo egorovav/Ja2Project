@@ -1,0 +1,5 @@
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\StdLib\bin\Release\StiLib.dll
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\StdLib\bin\Release\StiLib.pdb
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\StdLib\obj\Release\StiLib.dll
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\StdLib\obj\Release\StiLib.pdb
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\StdLib\obj\Release\StiLib.csprojAssemblyReference.cache

@@ -1,0 +1,8 @@
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Localizer\bin\Release\Localizer.xml
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Localizer\bin\Release\Localizer.dll
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Localizer\bin\Release\Localizer.pdb
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Localizer\obj\Release\Localizer.Resource.resources
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Localizer\obj\Release\Localizer.csproj.GenerateResource.Cache
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Localizer\obj\Release\Localizer.dll
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Localizer\obj\Release\Localizer.pdb
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\Localizer\obj\Release\Localizer.csprojAssemblyReference.cache

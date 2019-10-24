@@ -1,0 +1,13 @@
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\StiToGif_v2.0\bin\Debug\StiToGif_v2.0.exe.config
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\StiToGif_v2.0\bin\Debug\StiToGif_v2.0.exe
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\StiToGif_v2.0\bin\Debug\StiToGif_v2.0.pdb
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\StiToGif_v2.0\bin\Debug\StiLib.dll
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\StiToGif_v2.0\bin\Debug\StiLib.pdb
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\StiToGif_v2.0\obj\Debug\StiToGif_v2.0.csprojAssemblyReference.cache
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\StiToGif_v2.0\obj\Debug\StiToGif.ExceptionForm.resources
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\StiToGif_v2.0\obj\Debug\StiToGif.MainForm.resources
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\StiToGif_v2.0\obj\Debug\StiToGif.Properties.Resources.resources
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\StiToGif_v2.0\obj\Debug\StiToGif_v2.0.csproj.GenerateResource.cache
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\StiToGif_v2.0\obj\Debug\StiToGif_v2.0.csproj.CopyComplete
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\StiToGif_v2.0\obj\Debug\StiToGif_v2.0.exe
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\Ja2Project\StiToGif_v2.0\obj\Debug\StiToGif_v2.0.pdb
