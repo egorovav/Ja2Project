@@ -9,8 +9,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using CommonWpfControls;
-using JsdEditor;
 using System;
 using System.Diagnostics;
 using System.Windows;

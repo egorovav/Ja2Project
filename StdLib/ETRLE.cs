@@ -232,6 +232,7 @@ namespace StiLib
 					}
 					bm.RotateFlip(RotateFlipType.RotateNoneFlipY);
 					ExtendedBitmap exBm = new ExtendedBitmap(bm, obj.sOffsetX, obj.sOffsetY);
+					exBm.TransparentColorIndex = data.HeaderData.UiTransparentValue;
 					if (data.pAppData != null)
 					{
 						exBm.ApplicationData = new byte[16];
